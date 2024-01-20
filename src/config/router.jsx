@@ -3,6 +3,7 @@ import { Link, Outlet, createBrowserRouter } from "react-router-dom";
 import { increment } from "../redux/features/counterSlice";
 import { useEffect } from "react";
 import api from "./axios";
+import Header from "../component/header/Header";
 
 const PriveRoute = () => {
   const count = useSelector((store) => store.counter);
@@ -34,7 +35,7 @@ export const router = createBrowserRouter([
     path: "/",
     element: (
       <div>
-        <header>header</header>
+        <Header />
         <h1>test vps ,set up máy ảo</h1>
         <Outlet />
         <footer>footer</footer>
