@@ -10,6 +10,7 @@ const PriveRoute = () => {
   useEffect(() => {
     api.get(`/test2`).then((res) => {
       console.log(res);
+      console.log(res);
     });
   }, [count]);
   return (
