@@ -1,17 +1,56 @@
-import { Link, createBrowserRouter } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Outlet, createBrowserRouter } from "react-router-dom";
+import { increment } from "../redux/features/counterSlice";
+import { useEffect } from "react";
+import api from "./axios";
 
+const PriveRoute = () => {
+  const count = useSelector((store) => store.counter);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    api.get(`/test2`).then((res) => {
+      console.log(res);
+    });
+  }, [count]);
+  return (
+    <div>
+      <h1>
+        <Outlet />
+      </h1>
+      <Link to="/">Home</Link>
+      <button
+        onClick={() => {
+          dispatch(increment());
+        }}
+      >
+        +
+      </button>
+    </div>
+  );
+};
 export const router = createBrowserRouter([
   {
     path: "/",
     element: (
       <div>
-        <h1>Hello World</h1>
-        <Link to="about">About Us</Link>
+        <header>header</header>
+        <h1>test vps ,set up máy ảo</h1>
+        <Outlet />
+        <footer>footer</footer>
       </div>
     ),
-  },
-  {
-    path: "about",
-    element: <div>About</div>,
+    // outlet sẽ show thằng con của nó
+    children: [
+      {
+        path: "audience",
+        element: <PriveRoute />,
+        children: [
+          {
+            path: "profile",
+            element: <h1>audience- profile</h1>,
+          },
+        ],
+      },
+    ],
   },
 ]);
