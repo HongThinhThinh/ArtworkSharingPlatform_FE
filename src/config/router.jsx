@@ -52,6 +52,10 @@ export const router = createBrowserRouter([
           },
         ],
       },
+      {
+        path: "page1",
+        element: <h1>Page1</h1>,
+      },
     ],
   },
 ]);
