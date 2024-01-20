@@ -54,19 +54,15 @@ export const router = createBrowserRouter([
       },
       {
         path: "page1",
-        element: <h1>Page1</h1>,
+        element: <h1>Page1- Bao Tran</h1>,
       },
-    ],
-    children: [
-      {
-        path: "page1",
-        element: <h1>Test</h1>,
-      },
-    ],
-    children: [
       {
         path: "page2",
-        element: <h1>Test</h1>,
+        element: <h1>Page2- Nhi</h1>,
+      },
+      {
+        path: "page3",
+        element: <h1>Page3-Minh</h1>,
       },
     ],
   },
