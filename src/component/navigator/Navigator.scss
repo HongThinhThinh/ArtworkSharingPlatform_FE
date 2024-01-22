@@ -1,15 +1,15 @@
 .navigator {
+  width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   &__nav {
-    font-family: "SemiBoldMonaSans";
-    margin: 1vw;
+    font-family: "MediumMonaSans";
+    margin-right: 3em;
     text-align: center;
     color: #0d0c22;
     text-decoration: none;
-    font-size: 0.87em;
-    font-weight: bold;
+    font-size: 1em;
   }
 }

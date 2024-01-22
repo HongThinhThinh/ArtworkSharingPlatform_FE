@@ -1,22 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navigator.scss";
+import { navFooterConfig, navHeaderConfig } from "./config";
 
-function Navigator() {
+function Navigator({ status }) {
+  const navList = status == "footer" ? navFooterConfig : navHeaderConfig;
   return (
     <div className="navigator">
-      <Link className="navigator__nav" to="/login">
-        Find talent
-      </Link>
-      <Link className="navigator__nav" to="/login">
-        Inspiration
-      </Link>
-      <Link className="navigator__nav" to="/login">
-        Jobs
-      </Link>
-      <Link className="navigator__nav" to="/login">
-        Go Pro
-      </Link>
+      {navList.map((nav) => (
+        <Link className="navigator__nav" to={nav.path}>
+          {nav.title}
+        </Link>
+      ))}
     </div>
   );
 }
