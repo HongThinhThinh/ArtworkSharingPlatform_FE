@@ -4,6 +4,7 @@ import { increment } from "../redux/features/counterSlice";
 import { useEffect } from "react";
 import api from "./axios";
 import Header from "../component/header/Header";
+import Footer from "../component/footer/Footer";
 
 const PriveRoute = () => {
   const count = useSelector((store) => store.counter);
@@ -38,7 +39,8 @@ export const router = createBrowserRouter([
         <Header />
         <h1>test vps ,set up máy ảo</h1>
         <Outlet />
-        <footer>footer</footer>
+        {/* <footer>footer</footer> */}
+        <Footer />
       </div>
     ),
     // outlet sẽ show thằng con của nó
