@@ -19,24 +19,36 @@ export const navHeaderConfig = [
 
 export const navFooterConfig = [
   {
-    title: "Find talent",
-    path: "/app",
+    title: "For designers",
+    path: "/for-designers",
   },
   {
-    title: "user",
-    path: "/user",
+    title: "Hire talent",
+    path: "/hiring",
   },
   {
-    title: "product",
-    path: "/products",
+    title: "Inspiration",
+    path: "/popular",
   },
   {
-    title: "blog",
-    path: "/blog",
+    title: "Advertising",
+    path: "/advertise",
   },
   {
-    title: "login",
-    path: "/login",
+    title: "Blog",
+    path: "/stories",
+  },
+  {
+    title: "About",
+    path: "/about",
+  },
+  {
+    title: "Careers",
+    path: "/careers",
+  },
+  {
+    title: "Support",
+    path: "/hc/en-us",
   },
 ];
 

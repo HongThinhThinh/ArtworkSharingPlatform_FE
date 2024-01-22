@@ -12,71 +12,59 @@ import {
 
 function Footer() {
   return (
-    <div className="footer-v2__container">
-      <div className="footer-v2__upper">
-        <div className="logo">
+    <Row container className="footer">
+      <Row container className="footer__upper">
+        <Col lg={3} className="footer__upper__logo">
           <Logo />
-        </div>
-        <div className="footer-v2__links">
-          <Link className="navigator__nav" to="/login">
-            For designers
+        </Col>
+        <Col lg={18}>
+          <Navigator status="footer" />
+        </Col>
+        <Col lg={3} className="footer__upper__icons">
+          <FaTwitter />
+          <FaFacebookSquare />
+          <FaInstagram />
+          <FaPinterest />
+        </Col>
+      </Row>
+      <Row container className="footer__lower">
+        <Col lg={8} className="footer__lower__privacy">
+          <span className="footer__lower__privacy__tag">
+            &copy;{new Date().getFullYear()} Cremo
+          </span>
+          <Link to="/terms" className="footer__lower__privacy__tag">
+            Terms
           </Link>
-          <Link className="navigator__nav" to="/login">
-            Hire talent
+          <Link to="/privacy" className="footer__lower__privacy__tag">
+            Privacy
           </Link>
-          <Link className="navigator__nav" to="/login">
-            Inspiration
+          <Link to="/cookie-policy" className="footer__lower__privacy__tag">
+            Cookies
           </Link>
-          <Link className="navigator__nav" to="/login">
-            Advertising
+        </Col>
+        <Col lg={8}></Col>
+        <Col lg={8} className="footer__lower__about">
+          <Link to="/jobs" className="footer__lower__about__tag">
+            Jobs
           </Link>
-          <Link className="navigator__nav" to="/login">
-            Blog
+          <Link to="/designers" className="footer__lower__about__tag">
+            Designers
           </Link>
-          <Link className="navigator__nav" to="/login">
-            About
+          <Link to="/freelance-designers" className="footer__lower__about__tag">
+            Freelancers
           </Link>
-          <Link className="navigator__nav" to="/login">
-            Carerrs
+          <Link to="/tags" className="footer__lower__about__tag">
+            Tags
           </Link>
-          <Link className="navigator__nav" to="/login">
-            Support
+          <Link to="/places" className="footer__lower__about__tag">
+            Places
           </Link>
-        </div>
-        <div className="footer-v2__social-links">
-          <div>
-            <FaTwitter />
-          </div>
-          <div>
-            <FaFacebookSquare />
-          </div>
-          <div>
-            <FaInstagram />
-          </div>
-          <div>
-            <FaPinterest />
-          </div>
-        </div>
-      </div>
-
-      <div className="footer-v2__lower">
-        <div className="footer-v2__lower-list">
-          <p>&copy;{new Date().getFullYear()} Cremo</p>
-          <p>Terms</p>
-          <p>Privacy</p>
-          <p>Cookies</p>
-        </div>
-
-        <div className="footer-v2__lower-list">
-          <p>Jobs</p>
-          <p>Designers</p>
-          <p>Freelancers</p>
-          <p>Tags</p>
-          <p>Places</p>
-          <p>Resoursce</p>
-        </div>
-      </div>
-    </div>
+          <Link to="/resources" className="footer__lower__about__tag">
+            Resources
+          </Link>
+        </Col>
+      </Row>
+    </Row>
   );
 }
 
