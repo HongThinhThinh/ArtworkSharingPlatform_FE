@@ -1,0 +1,66 @@
+.workart-card {
+  width: 100%;
+  height: 19em;
+  border-radius: 10px;
+  box-shadow: none;
+  background-size: cover;
+  margin: 2em 0 0.5em 0;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  &__right {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__name {
+      margin-left: 5px;
+      font-family: "MediumMonaSans";
+    }
+    &__tag {
+      font-family: "BoldMonaSans";
+      font-size: 0.74em;
+      background-color: rgba(182, 182, 182, 0.69);
+      color: white;
+      border-radius: 2px;
+      padding: 3px 3px 0px 3px;
+      margin-left: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  &__left {
+    display: flex;
+    &__favorites {
+      margin: 0 10px;
+      display: flex;
+      align-items: center;
+
+      &__subInfo {
+        font-family: "MediumMonaSans";
+        font-size: 0.95em;
+      }
+      &__icon {
+        color: rgb(155, 155, 155);
+        font-size: 1em;
+        margin-right: 2px;
+      }
+    }
+    &__seens {
+      display: flex;
+      align-items: center;
+      &__subInfo {
+        font-family: "MediumMonaSans";
+        font-size: 0.95em;
+      }
+      &__icon {
+        color: rgb(155, 155, 155);
+        font-size: 1em;
+        margin-right: 2px;
+      }
+    }
+  }
+}

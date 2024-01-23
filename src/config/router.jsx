@@ -5,6 +5,9 @@ import { useEffect } from "react";
 import api from "./axios";
 import Header from "../component/header/Header";
 import Footer from "../component/footer/Footer";
+import HomePage from "../pages/homepage/HomePage";
+import Login from "../pages/login/Login";
+import SignUp from "../pages/signUp/SignUp";
 
 const PriveRoute = () => {
   const count = useSelector((store) => store.counter);
@@ -36,36 +39,24 @@ export const router = createBrowserRouter([
     path: "/",
     element: (
       <div>
-        <Header />
-        <h1>test vps ,set up máy ảo</h1>
+        {/* <Header /> */}
         <Outlet />
-        {/* <footer>footer</footer> */}
-        <Footer />
+        {/* <Footer /> */}
       </div>
     ),
     // outlet sẽ show thằng con của nó
     children: [
       {
-        path: "audience",
-        element: <PriveRoute />,
-        children: [
-          {
-            path: "profile",
-            element: <h1>audience- profile</h1>,
-          },
-        ],
+        path: "/",
+        element: <HomePage />,
       },
       {
-        path: "page1",
-        element: <h1>Page1- Bao Tran</h1>,
+        path: "login",
+        element: <Login />,
       },
       {
-        path: "page2",
-        element: <h1>Page2- Nhi</h1>,
-      },
-      {
-        path: "page3",
-        element: <h1>Page3-Minh</h1>,
+        path: "sign-up",
+        element: <SignUp />,
       },
     ],
   },
