@@ -1,0 +1,59 @@
+.footer-cta {
+  width: 100%;
+  height: 45em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffda79;
+  &__title {
+    font-weight: 400;
+    line-height: 1.2;
+    color: black;
+    font-size: 3.7em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    font-family: "Merriweather", serif;
+  }
+  &__subtitle {
+    width: 48%;
+    font-weight: 500;
+    line-height: 1.8;
+    font-family: "RegularMonaSans";
+    font-size: 1.25em;
+    text-align: center;
+    &__join {
+      color: #0d0c22;
+    }
+  }
+  &__subtitle.hiring-question {
+    margin-top: 2em;
+  }
+  &__link-to {
+    display: flex;
+    &__getStarted,
+    &__hiring {
+      margin: 0 0.5em;
+      padding: 20px 24px;
+      display: flex;
+      justify-self: center;
+      align-items: center;
+
+      font-family: "SemiBoldMonaSans";
+
+      font-size: 13.8px;
+      text-decoration: none;
+      border-radius: 100px;
+      font-weight: 500;
+      margin-top: 3em;
+    }
+    &__getStarted {
+      background-color: #0d0c22;
+      color: white;
+    }
+    &__hiring {
+      background-color: white;
+      color: #0d0c22;
+    }
+  }
+}

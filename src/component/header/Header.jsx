@@ -18,13 +18,13 @@ function Header() {
         <Row>
           <Col xl={4} lg={4}></Col>
           <Col
-            xl={10}
-            lg={10}
+            xl={11}
+            lg={11}
             style={{ display: "flex", alignItems: "center" }}
           >
             <StyledSearch />
           </Col>
-          <Col xl={10} lg={10}>
+          <Col xl={9} lg={9}>
             <SignInUp />
           </Col>
         </Row>

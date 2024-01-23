@@ -1,0 +1,23 @@
+.category {
+  width: 250px;
+  text-decoration: none;
+  &__image {
+    height: 50%;
+    width: fit-content;
+    border-radius: 8px;
+    border: 2px solid white;
+    box-shadow: 3.5px -3px rgb(223, 213, 228), 5.5px -5px white,
+      8px -8px rgb(244, 247, 214);
+    transition: all 0.5s ease-in-out;
+  }
+  &__image:hover {
+    box-shadow: 5.5px -5px rgb(223, 213, 228), 8.5px -8px white,
+      13.5px -13px rgb(244, 247, 214);
+  }
+  &__title {
+    transform: translateY(1em);
+    color: black;
+    font-family: "MediumMonaSans";
+    font-size: 0.9em;
+  }
+}

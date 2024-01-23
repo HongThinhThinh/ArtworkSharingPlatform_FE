@@ -16,7 +16,7 @@ export const navHeaderConfig = [
     path: "/pro",
   },
 ];
-
+//edit
 export const navFooterConfig = [
   {
     title: "For designers",

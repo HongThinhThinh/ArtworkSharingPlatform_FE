@@ -1,0 +1,28 @@
+.workart-section {
+  padding: 4.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__title {
+    font-family: "UltraLightMonaSans";
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 0.6em;
+    font-size: 3em;
+  }
+  &__more {
+    width: fit-content;
+    font-family: "SemiBoldMonaSans";
+    padding: 20px;
+    background-color: transparent;
+    border: 1.5px solid black;
+    border-radius: 100px;
+    margin-top: 3em;
+  }
+  &__more:hover {
+    color: grey;
+    border-color: grey;
+    transition: all 0.3s ease-in-out;
+  }
+}
