@@ -16,11 +16,11 @@
     }
     &__lower {
         width: 100%;
-      
+        
 
         &__privacy{
             display: flex;
-            // justify-content: start;
+            align-items: center;
             justify-content: space-between;
            
             &__tag {
@@ -32,6 +32,7 @@
         &__about {
             display: flex;
             justify-content: space-between;
+
 
             &__tag {
                 color: #6e6d7a; 

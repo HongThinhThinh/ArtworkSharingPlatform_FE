@@ -28,7 +28,7 @@ function Footer() {
         </Col>
       </Row>
       <Row container className="footer__lower">
-        <Col lg={8} className="footer__lower__privacy">
+        <Col lg={10} className="footer__lower__privacy">
           <span className="footer__lower__privacy__tag">
             &copy;{new Date().getFullYear()} Cremo
           </span>
@@ -42,8 +42,8 @@ function Footer() {
             Cookies
           </Link>
         </Col>
-        <Col lg={8}></Col>
-        <Col lg={8} className="footer__lower__about">
+        <Col lg={4}></Col>
+        <Col lg={10} className="footer__lower__about">
           <Link to="/jobs" className="footer__lower__about__tag">
             Jobs
           </Link>
