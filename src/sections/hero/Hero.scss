@@ -1,0 +1,37 @@
+.hero {
+  width: 100%;
+  height: 34em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__title {
+    font-weight: 400;
+    line-height: 1.2;
+    color: black;
+    font-size: 4em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    font-family: "Merriweather", serif;
+  }
+  &__subtitle {
+    font-weight: 500;
+    line-height: 1.5;
+    font-family: "MediumMonaSans";
+    font-size: 1.25em;
+  }
+  &__getStarted {
+    padding: 18px 24px;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    background-color: #0d0c22;
+    font-family: "SemiBoldMonaSans";
+    color: white;
+    font-size: 13.8px;
+    text-decoration: none;
+    border-radius: 100px;
+    font-weight: 500;
+    margin-top: 3em;
+  }
+}
