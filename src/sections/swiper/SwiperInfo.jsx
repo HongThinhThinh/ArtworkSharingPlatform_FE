@@ -27,7 +27,7 @@ export default function SwiperInfo() {
         });
       });
     }
-  });
+  }, []);
   const fetch = async () => {
     const response = await axios.get(
       "https://65a7402a94c2c5762da65821.mockapi.io/api/Artwork"

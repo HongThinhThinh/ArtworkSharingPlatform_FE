@@ -28,7 +28,7 @@ export default function CategorySlider() {
         });
       });
     }
-  });
+  }, []);
 
   return (
     <div className="category-scroller" data-direction="left" data-speed="slow">
