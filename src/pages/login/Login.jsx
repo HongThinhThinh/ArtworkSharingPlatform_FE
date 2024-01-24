@@ -39,7 +39,10 @@ function Login() {
     <Row container className="login">
       <Col lg={8} className="login__side-bar">
         <video
-          autoplay
+          muted
+          autoPlay
+          loop
+          preload="auto"
           className="login__side-bar__media"
           src="https://cdn.dribbble.com/uploads/48226/original/b8bd4e4273cceae2889d9d259b04f732.mp4?1689028949"
         ></video>

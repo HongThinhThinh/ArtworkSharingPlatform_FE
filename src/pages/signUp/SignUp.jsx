@@ -69,7 +69,10 @@ function SignUp() {
     <Row container className="signUp">
       <Col lg={8} className="signUp__side-bar">
         <video
-          autoplay
+          muted
+          autoPlay
+          loop
+          preload="auto"
           className="signUp__side-bar__media"
           src="https://cdn.dribbble.com/uploads/48292/original/30fd1f7b63806eff4db0d4276eb1ac45.mp4?1689187515"
         ></video>
