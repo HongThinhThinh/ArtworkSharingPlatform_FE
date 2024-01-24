@@ -3,13 +3,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  transform: translateY(-8em);
   &__title {
     font-family: "UltraLightMonaSans";
     text-align: center;
-    font-weight: 600;
     margin-bottom: 0.6em;
-    font-size: 3em;
+    font-size: 3.2em;
   }
   &__more {
     width: fit-content;

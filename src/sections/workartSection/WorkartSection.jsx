@@ -8,25 +8,25 @@ function WorkartSection() {
     <div className="workart-section">
       <h2 className="workart-section__title">Explore inspiring designs</h2>
       <Row container gutter={32}>
-        <Col xs={24} sm={12} lg={8} xxl={6}>
+        <Col xs={24} sm={12} lg={8} xl={6} xxl={6}>
           <Workart />
         </Col>
-        <Col xs={24} sm={12} lg={8} xxl={6}>
+        <Col xs={24} sm={12} lg={8} xl={6} xxl={6}>
           <Workart />
         </Col>
-        <Col xs={24} sm={12} lg={8} xxl={6}>
+        <Col xs={24} sm={12} lg={8} xl={6} xxl={6}>
           <Workart />
         </Col>
-        <Col xs={24} sm={12} lg={8} xxl={6}>
+        <Col xs={24} sm={12} lg={8} xl={6} xxl={6}>
           <Workart />
         </Col>
-        <Col xs={24} sm={12} lg={8} xxl={6}>
+        <Col xs={24} sm={12} lg={8} xl={6} xxl={6}>
           <Workart />
         </Col>
-        <Col xs={24} sm={12} lg={8} xxl={6}>
+        <Col xs={24} sm={12} lg={8} xl={6} xxl={6}>
           <Workart />
         </Col>
-        <Col xs={24} sm={12} lg={8} xxl={6}>
+        <Col xs={24} sm={12} lg={8} xl={6} xxl={6}>
           <Workart />
         </Col>
       </Row>

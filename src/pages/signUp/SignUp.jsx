@@ -112,9 +112,9 @@ function SignUp() {
             .
           </h4>
           <h5 className="signUp__form__container__linkToSignUp">
-            Don't have an account?
+            Don't have an account?{" "}
             <Link
-              to=""
+              to="/login"
               className="signUp__form__container__linkToSignUp__signUp"
             >
               Sign In
@@ -198,7 +198,7 @@ function SignUp() {
           <h5 className="signUp__form__container__linkToSignUp">
             Don't have an account?
             <Link
-              to=""
+              to="/login"
               className="signUp__form__container__linkToSignUp__signUp"
             >
               Sign In

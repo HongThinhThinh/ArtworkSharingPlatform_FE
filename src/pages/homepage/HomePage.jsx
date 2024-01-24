@@ -10,7 +10,7 @@ function HomePage() {
   const location = useLocation();
   document.body.style.background =
     location.pathname == "/"
-      ? "linear-gradient(0deg, rgba(255, 255, 255, 1) 60%, #f6f5f3 100%)"
+      ? "linear-gradient(0deg, rgba(255, 255, 255, 1) 60%, #f8f7f4 100%)"
       : "white";
   return (
     <div className="homepage">
