@@ -2,15 +2,41 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: start;
   align-items: center;
   &__nav {
-    font-family: "MediumMonaSans";
+    font-family: "SemiBoldMonaSans";
     margin-right: 2vw;
     text-align: center;
     color: #0d0c22;
     text-decoration: none;
     font-size: 1em;
-    
   }
+}
+
+#header {
+  justify-content: start;
+}
+
+#footer {
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 2000px) {
+}
+@media only screen and (max-width: 1880px) {
+}
+@media only screen and (max-width: 1524px) {
+}
+@media only screen and (max-width: 1280px) {
+}
+@media only screen and (max-width: 1180px) {
+  #header.close {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
 }

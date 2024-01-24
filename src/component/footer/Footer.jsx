@@ -17,8 +17,11 @@ function Footer() {
         <Col lg={3} className="footer__upper__logo">
           <Logo />
         </Col>
-        <Col lg={18}>
-          <Navigator status="footer" />
+        <Col lg={18} className="footer__upper__navigator-wrapper">
+          <Navigator
+            status="footer"
+            className="footer__upper__navigator-wrapper__navigator"
+          />
         </Col>
         <Col lg={3} className="footer__upper__icons">
           <FaTwitter />
@@ -28,7 +31,7 @@ function Footer() {
         </Col>
       </Row>
       <Row container className="footer__lower">
-        <Col lg={10} className="footer__lower__privacy">
+        <Col lg={6} className="footer__lower__privacy">
           <span className="footer__lower__privacy__tag">
             &copy;{new Date().getFullYear()} Cremo
           </span>
@@ -42,7 +45,7 @@ function Footer() {
             Cookies
           </Link>
         </Col>
-        <Col lg={4}></Col>
+        <Col lg={8}></Col>
         <Col lg={10} className="footer__lower__about">
           <Link to="/jobs" className="footer__lower__about__tag">
             Jobs

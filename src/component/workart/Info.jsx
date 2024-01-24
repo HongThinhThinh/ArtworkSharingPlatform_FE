@@ -8,7 +8,7 @@ function Info() {
     <div className="info">
       <div className="info__right">
         <Avatar
-          style={{ height: "1.8em", width: "1.8em" }}
+          style={{ height: "1.7em", width: "1.7em" }}
           src="https://cdn.dribbble.com/users/3365798/avatars/small/27142d0984a19231593be35a9972bbc4.jpg?1673891024"
         />
         <Typography className="info__right__name">Coric Design</Typography>

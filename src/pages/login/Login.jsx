@@ -82,9 +82,9 @@ function Login() {
             </Button>
           </Form>
           <h5 className="login__form__container__linkToSignUp">
-            Don't have an account?
+            Don't have an account?{" "}
             <Link
-              to=""
+              to="/register"
               className="login__form__container__linkToSignUp__signUp"
             >
               Sign up

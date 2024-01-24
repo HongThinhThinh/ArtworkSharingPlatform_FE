@@ -16,11 +16,16 @@ function Header() {
       </Col>
       <Col xl={10} lg={10} className="header__action">
         <Row>
-          <Col xl={4} lg={4}></Col>
+          <Col xl={6} lg={6}></Col>
           <Col
-            xl={11}
-            lg={11}
-            style={{ display: "flex", alignItems: "center" }}
+            xl={9}
+            lg={9}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "end",
+              transform: "translateX(2em)",
+            }}
           >
             <StyledSearch />
           </Col>
