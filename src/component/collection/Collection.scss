@@ -1,0 +1,30 @@
+.collection {
+  width: 100%;
+
+  &__main {
+    width: 100%;
+    margin-bottom: 1.5px;
+    border-radius: 10px 10px 0 0;
+  }
+  &__sub-img {
+    display: flex;
+    justify-content: space-between;
+    img {
+      width: 32.5%;
+    }
+    &__sub-1 {
+      border-radius: 0 0 0 10px;
+    }
+    &__sub-3 {
+      border-radius: 0 0 10px 0;
+    }
+  }
+  &__info {
+    font-family: "LightMonaSans";
+    text-align: center;
+    h1 {
+      font-size: 1.1em;
+      padding: 1em;
+    }
+  }
+}

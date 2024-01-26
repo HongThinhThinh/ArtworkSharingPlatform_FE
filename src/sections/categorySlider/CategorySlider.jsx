@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./CategorySlider.scss";
-import InfoCard from "../../component/infoCard/InfoCard";
 import Category from "../../component/category/Category";
 
 export default function CategorySlider() {
