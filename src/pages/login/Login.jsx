@@ -2,7 +2,7 @@ import React from "react";
 import "./Login.scss";
 import ggIcon from "../../assets/google.png";
 import { Button, Col, Divider, Form, Input, Row } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
 import api from "../../config/axios";
 
@@ -40,11 +40,13 @@ const MyFormItemGroup = ({ prefix, children }) => {
 // };
 
 function Login() {
+  const navigate = useNavigate();
   const onFinish = async (value) => {
-    console.log(value);
-
     const response = await api.post("/login", value);
-    console.log(response);
+    const role = response.data.data.role;
+    if (role === "ADMIN") {
+      navigate("/test");
+    }
   };
   return (
     <Row container className="login">
