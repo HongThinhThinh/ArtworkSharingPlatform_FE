@@ -13,7 +13,7 @@ function Navigator({ status }) {
     <div id={`${isFooter ? "footer" : "header"}`} className="navigator">
       {isFooter ? (
         navList.map((nav) => (
-          <Link className="navigator__nav" to={nav.path}>
+          <Link className="navigator__nav" to={nav.path} key={nav.title}>
             {nav.title}
           </Link>
         ))
@@ -21,7 +21,7 @@ function Navigator({ status }) {
         <BarsOutlined />
       ) : (
         navList.map((nav) => (
-          <Link className="navigator__nav" to={nav.path}>
+          <Link className="navigator__nav" to={nav.path} key={nav.title}>
             {nav.title}
           </Link>
         ))

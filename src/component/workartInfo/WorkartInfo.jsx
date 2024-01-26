@@ -1,9 +1,9 @@
 import React from "react";
-import "./styles.scss";
+import "./WorkartInfo.scss";
 import { HeartFilled, EyeFilled } from "@ant-design/icons";
 import { Avatar, Typography } from "antd";
 
-function Info() {
+function WorkartInfo() {
   return (
     <div className="info">
       <div className="info__right">
@@ -30,4 +30,4 @@ function Info() {
   );
 }
 
-export default Info;
+export default WorkartInfo;

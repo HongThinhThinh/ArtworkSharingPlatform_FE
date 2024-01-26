@@ -1,0 +1,57 @@
+.creator-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  &__avatar {
+    height: 10em;
+    width: 10em;
+    margin-top: 3em;
+    margin-bottom: 4em;
+  }
+  &__name {
+    font-size: 1.5em;
+    font-family: "MediumMonaSans";
+    margin-bottom: 0.5em;
+  }
+  &__openLine {
+    font-size: 2em;
+    font-family: "BoldMonaSans";
+    margin-bottom: 0.5em;
+  }
+  &__contact {
+    display: flex;
+    justify-content: center;
+    &__getInTouch,
+    &__follow,
+    &__dropdownCreator {
+      height: 3.5em;
+      margin: 0 0.5em;
+      padding: 1em 1.5em;
+      display: flex;
+      justify-self: center;
+      align-items: center;
+
+      font-family: "BoldMonaSans";
+
+      font-size: 13.8px;
+      text-decoration: none;
+      border-radius: 100px;
+      font-weight: 500;
+      margin-top: 3em;
+      width: fit-content;
+    }
+    &__getInTouch {
+      background-color: #0d0c22;
+      color: white;
+    }
+    &__follow,
+    &__dropdownCreator {
+      background-color: white;
+    }
+    &__dropdownCreator {
+      height: 3.5em;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.change-tab-creator {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1;
+  font-family: "SemiBoldMonaSans";
+  border-bottom: 1px solid rgba(213, 213, 213, 0.487);
+  padding: 2em;
+  &__work,
+  &__liked,
+  &__collection,
+  &__about {
+    color: black;
+    padding: 0.7em 1em;
+    border-radius: 100px;
+  }
+  .active {
+    background-color: rgba(221, 220, 219, 0.356);
+  }
+}
