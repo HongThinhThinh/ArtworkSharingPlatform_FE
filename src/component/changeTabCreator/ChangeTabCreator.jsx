@@ -8,11 +8,13 @@ function ChangeTabCreator() {
   const [status, setStatus] = useState(
     location.pathname.includes("work")
       ? "work"
-      : location.pathname.includes("collection")
-      ? "collection"
+      : location.pathname.includes("collections")
+      ? "collections"
       : location.pathname.includes("liked")
       ? "liked"
-      : "about"
+      : location.pathname.includes("about")
+      ? "about"
+      : "work"
   );
   return (
     <div className="change-tab-creator">
@@ -27,10 +29,10 @@ function ChangeTabCreator() {
       </Link>
       <Link
         to="/creator/collections"
-        className={`change-tab-creator__collection ${
-          status == "collection" ? "active" : ""
+        className={`change-tab-creator__collections ${
+          status == "collections" ? "active" : ""
         }`}
-        onClick={() => setStatus("collection")}
+        onClick={() => setStatus("collections")}
       >
         Collections
       </Link>

@@ -1,12 +1,13 @@
 import React from "react";
 import cremo from "../../assets/Cremo.png";
 import "./Logo.scss";
+import { Link } from "react-router-dom";
 
 function Logo() {
   return (
-    <div className="wrapper">
+    <Link to="/" className="wrapper">
       <img src={cremo} className="wrapper__logo" />
-    </div>
+    </Link>
   );
 }
 
