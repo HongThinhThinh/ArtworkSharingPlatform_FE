@@ -4,6 +4,7 @@ import ggIcon from "../../assets/google.png";
 import { Button, Col, Divider, Form, Input, Row } from "antd";
 import { Link } from "react-router-dom";
 import "./Login.scss";
+import api from "../../config/axios";
 
 const MyFormItemContext = React.createContext([]);
 
@@ -11,6 +12,7 @@ function toArr(str) {
   return Array.isArray(str) ? str : [str];
 }
 
+// eslint-disable-next-line react/prop-types
 const MyFormItemGroup = ({ prefix, children }) => {
   const prefixPath = React.useContext(MyFormItemContext);
   const concatPath = React.useMemo(
@@ -24,22 +26,34 @@ const MyFormItemGroup = ({ prefix, children }) => {
   );
 };
 
-const MyFormItem = ({ name, ...props }) => {
-  const prefixPath = React.useContext(MyFormItemContext);
-  const concatName =
-    name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
-  return <Form.Item name={concatName} {...props} />;
-};
+// eslint-disable-next-line react/prop-types
+// const MyFormItem = ({ name, children, ...props }) => {
+//   const prefixPath = React.useContext(MyFormItemContext);
+//   const concatName =
+//     name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
+//   console.log(children);
+//   return (
+//     <Form.Item name={name} {...props}>
+//       {children}
+//     </Form.Item>
+//   );
+// };
 
 function Login() {
-  const onFinish = (value) => {
+  const onFinish = async (value) => {
     console.log(value);
+
+    const response = await api.post("/login", value);
+    console.log(response);
   };
   return (
     <Row container className="login">
       <Col lg={8} className="login__side-bar">
         <video
-          autoplay
+          muted
+          autoPlay
+          loop
+          preload="auto"
           className="login__side-bar__media"
           src="https://cdn.dribbble.com/uploads/48226/original/b8bd4e4273cceae2889d9d259b04f732.mp4?1689028949"
         ></video>
@@ -61,18 +75,47 @@ function Login() {
             onFinish={onFinish}
           >
             <MyFormItemGroup className="login__form__container__namepass__group-form">
-              <MyFormItem className="login__form__container__namepass__group-form">
+              {/* <MyFormItem
+                name="username"
+                className="login__form__container__namepass__group-form"
+              >
                 <label className="login__form__container__namepass__group-form__label">
                   Username or Email
                 </label>
                 <Input className="login__form__container__namepass__group-form__input" />
-              </MyFormItem>
-              <MyFormItem className="login__form__container__namepass__group-form">
+              </MyFormItem> */}
+              <Form.Item
+                label="Username"
+                name="username"
+                className="login__form__container__namepass__group-form"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your username!",
+                  },
+                ]}
+              >
+                <Input className="login__form__container__namepass__group-form__input" />
+              </Form.Item>
+              {/* <MyFormItem className="login__form__container__namepass__group-form">
                 <label className="login__form__container__namepass__group-form__label">
                   Password
                 </label>
                 <Input className="login__form__container__namepass__group-form__input" />
-              </MyFormItem>
+              </MyFormItem> */}
+              <Form.Item
+                label="Password"
+                name="password"
+                className="login__form__container__namepass__group-form"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your password!",
+                  },
+                ]}
+              >
+                <Input className="login__form__container__namepass__group-form__input" />
+              </Form.Item>
             </MyFormItemGroup>
             <Button
               className="login__form__container__namepass__submit"
@@ -82,7 +125,7 @@ function Login() {
             </Button>
           </Form>
           <h5 className="login__form__container__linkToSignUp">
-            Don't have an account?{" "}
+            Don&apos;t have an account?{" "}
             <Link
               to="/register"
               className="login__form__container__linkToSignUp__signUp"

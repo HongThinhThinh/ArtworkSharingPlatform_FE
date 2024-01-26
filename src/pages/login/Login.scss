@@ -78,3 +78,10 @@
     }
   }
 }
+label.ant-form-item-required {
+  font-family: BoldMonaSans;
+  font-size: 1.1em;
+  &:before {
+    display: none !important;
+  }
+}
