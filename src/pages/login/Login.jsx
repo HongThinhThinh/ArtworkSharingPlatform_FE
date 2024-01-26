@@ -120,7 +120,7 @@ function Login() {
                   },
                 ]}
               >
-                <Input className="login__form__container__namepass__group-form__input" />
+                <Input.Password className="login__form__container__namepass__group-form__input" />
               </Form.Item>
             </MyFormItemGroup>
             <Button
