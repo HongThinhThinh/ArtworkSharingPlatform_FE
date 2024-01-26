@@ -12,7 +12,9 @@ function ChangeTabCreator() {
       ? "collection"
       : location.pathname.includes("liked")
       ? "liked"
-      : "about"
+      : location.pathname.includes("about")
+      ? "about"
+      : "work"
   );
   return (
     <div className="change-tab-creator">
