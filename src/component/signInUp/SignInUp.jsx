@@ -6,15 +6,12 @@ import { Avatar } from "antd";
 function SignInUp() {
   return (
     <div className="signInUp">
-      {/* <Link className="signInUp__login" to="/login">
+      <Link className="signInUp__login" to="/login">
         Log in
-      </Link> */}
-      <Avatar
-        style={{ height: "3em", width: "3em", transform: "translateX(-2em)" }}
-        src="https://cdn.dribbble.com/users/4949363/avatars/normal/606bb85ee728fd3d78bbddf7e70b3901.jpg?1676454777"
-      />
-      <Link className="signInUp__signup" to="/register">
-        Logout
+      </Link>
+
+      <Link className="signInUp__signup" to="/">
+        SignUp
       </Link>
     </div>
   );

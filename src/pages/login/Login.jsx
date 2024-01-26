@@ -44,8 +44,12 @@ function Login() {
   const onFinish = async (value) => {
     const response = await api.post("/login", value);
     const role = response.data.data.role;
+    localStorage.setItem("role", role);
     if (role === "ADMIN") {
       navigate("/test");
+    }
+    if (role === "CREATOR") {
+      navigate("/creator");
     }
   };
   return (

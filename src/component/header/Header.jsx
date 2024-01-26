@@ -4,8 +4,11 @@ import SignInUp from "../signInUp/SignInUp";
 import Navigator from "../navigator/Navigator";
 import "./Header.scss";
 import StyledSearch from "../Search/Search";
+import Account from "../signInUp/Account";
 
 function Header() {
+  const role = localStorage.getItem("role");
+  console.log(role);
   return (
     <Row container className="header">
       <Col xl={10} lg={10} className="header__bar">
@@ -30,7 +33,7 @@ function Header() {
             <StyledSearch />
           </Col>
           <Col xl={9} lg={9}>
-            <SignInUp />
+            {localStorage.getItem("role") != null ? <Account /> : <SignInUp />}
           </Col>
         </Row>
       </Col>
