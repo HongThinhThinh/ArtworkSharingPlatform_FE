@@ -41,6 +41,9 @@ export default function SwiperInfo() {
 
   return (
     <div className="info-scroller" data-direction="left" data-speed="slow">
+      <h2 className="info-scroller__title" data-aos="fade-right">
+        Top creators
+      </h2>
       <div className="info-scroller__inner">
         {datas.map((data) => (
           <InfoCard
