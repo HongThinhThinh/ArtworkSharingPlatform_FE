@@ -1,13 +1,14 @@
 .category {
   width: 250px;
+  margin: 0 1em;
   text-decoration: none;
   &__image {
     height: 50%;
     width: fit-content;
     border-radius: 8px;
     border: 2px solid white;
-    box-shadow: 3.5px -3px rgb(223, 213, 228), 5.5px -5px white,
-      8px -8px rgb(244, 247, 214);
+    box-shadow: 3.5px -3px rgb(226, 228, 213), 5.5px -5px white,
+      8px -8px rgb(207, 227, 235);
     transition: all 0.5s ease-in-out;
   }
   &__image:hover {

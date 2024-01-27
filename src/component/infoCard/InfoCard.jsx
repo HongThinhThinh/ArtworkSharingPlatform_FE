@@ -3,7 +3,7 @@ import "./InfoCard.scss";
 
 function InfoCard({ id, avatar, name, role, tags }) {
   return (
-    <div className="border-card">
+    <div className="border-card" data-aos="fade-left" data-aos-duration="2000">
       <div className="hero-marquee-item" key={id}>
         <div className="hero-marquee-item__info">
           <div className="hero-marquee-item__info__name">{name}</div>

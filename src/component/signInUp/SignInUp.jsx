@@ -11,7 +11,7 @@ function SignInUp() {
       </Link>
 
       <Link className="signInUp__signup" to="/">
-        SignUp
+        Sign up
       </Link>
     </div>
   );

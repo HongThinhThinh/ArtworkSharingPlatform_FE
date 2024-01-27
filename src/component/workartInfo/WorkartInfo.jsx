@@ -3,15 +3,12 @@ import "./WorkartInfo.scss";
 import { HeartFilled, EyeFilled } from "@ant-design/icons";
 import { Avatar, Typography } from "antd";
 
-function WorkartInfo() {
+function WorkartInfo({ name, avatar }) {
   return (
     <div className="info">
       <div className="info__right">
-        <Avatar
-          style={{ height: "1.7em", width: "1.7em" }}
-          src="https://cdn.dribbble.com/users/3365798/avatars/small/27142d0984a19231593be35a9972bbc4.jpg?1673891024"
-        />
-        <Typography className="info__right__name">Coric Design</Typography>
+        <Avatar style={{ height: "1.7em", width: "1.7em" }} src={avatar} />
+        <Typography className="info__right__name">{name}</Typography>
         <div className="info__right__tag">PRO</div>
       </div>
       <div className="info__left">

@@ -3,12 +3,12 @@ import "./Workart.scss";
 import WorkartInfo from "../workartInfo/WorkartInfo";
 import WorkartMedia from "../workartMedia/WorkartMedia";
 
-function Workart({ image }) {
+function Workart({ image, name, avatar }) {
   return (
-    <>
+    <div data-aos="fade-up">
       <WorkartMedia image={image} />
-      <WorkartInfo />
-    </>
+      <WorkartInfo name={name} avatar={avatar} />
+    </div>
   );
 }
 
