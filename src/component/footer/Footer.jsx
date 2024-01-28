@@ -14,27 +14,32 @@ function Footer() {
   return (
     <Row container className="footer">
       <Row container className="footer__upper">
-        <Col lg={3} className="footer__upper__logo">
+        <Col sm={24} lg={3} xl={3} className="footer__upper__logo">
           <Logo />
         </Col>
-        <Col lg={18} className="footer__upper__navigator-wrapper">
+        <Col
+          sm={24}
+          lg={18}
+          xl={18}
+          className="footer__upper__navigator-wrapper"
+        >
           <Navigator
             status="footer"
             className="footer__upper__navigator-wrapper__navigator"
           />
         </Col>
-        <Col lg={3} className="footer__upper__icons">
-          <FaTwitter />
-          <FaFacebookSquare />
-          <FaInstagram />
-          <FaPinterest />
+        <Col sm={24} lg={3} xl={3} className="footer__upper__icons">
+          <FaTwitter className="footer__upper__icons__icon" />
+          <FaFacebookSquare className="footer__upper__icons__icon" />
+          <FaInstagram className="footer__upper__icons__icon" />
+          <FaPinterest className="footer__upper__icons__icon" />
         </Col>
       </Row>
       <Row container className="footer__lower">
-        <Col lg={6} className="footer__lower__privacy">
-          <span className="footer__lower__privacy__tag">
+        <Col xs={24} sm={24} lg={12} className="footer__lower__privacy">
+          <p className="footer__lower__privacy__tag">
             &copy;{new Date().getFullYear()} Cremo
-          </span>
+          </p>
           <Link to="/terms" className="footer__lower__privacy__tag">
             Terms
           </Link>
@@ -45,8 +50,8 @@ function Footer() {
             Cookies
           </Link>
         </Col>
-        <Col lg={8}></Col>
-        <Col lg={10} className="footer__lower__about">
+        {/* <Col sm={5} md={4} lg={6}></Col> */}
+        <Col xs={24} sm={24} lg={12} className="footer__lower__about">
           <Link to="/jobs" className="footer__lower__about__tag">
             Jobs
           </Link>

@@ -10,7 +10,7 @@ function SignInUp() {
         Log in
       </Link>
 
-      <Link className="signInUp__signup" to="/">
+      <Link className="signInUp__signup" to="/register">
         Sign up
       </Link>
     </div>

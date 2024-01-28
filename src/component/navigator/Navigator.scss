@@ -10,6 +10,7 @@
     color: #0d0c22;
     text-decoration: none;
     font-size: 1em;
+    text-wrap: nowrap;
   }
 }
 
@@ -18,7 +19,6 @@
 }
 
 #footer {
-  flex-wrap: wrap;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -35,6 +35,17 @@
 @media only screen and (max-width: 1180px) {
   #header.close {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  #footer {
+    flex-wrap: wrap;
+  }
+  .navigator {
+    &__nav {
+      padding: 0.5em;
+    }
   }
 }
 

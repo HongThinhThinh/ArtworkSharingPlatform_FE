@@ -22,17 +22,16 @@ function Header() {
           <Col xl={6} lg={6}></Col>
           <Col
             xl={9}
-            lg={9}
+            lg={8}
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "end",
-              transform: "translateX(2em)",
             }}
           >
             <StyledSearch />
           </Col>
-          <Col xl={9} lg={9}>
+          <Col xl={9} lg={10}>
             {localStorage.getItem("role") != null ? <Account /> : <SignInUp />}
           </Col>
         </Row>
