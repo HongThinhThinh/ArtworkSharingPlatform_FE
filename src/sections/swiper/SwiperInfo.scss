@@ -1,6 +1,6 @@
 .info-scroller {
   width: 97vw;
-  padding-left: 3vw;
+  padding-left: 2.2vw;
   &__title {
     font-family: "UltraLightMonaSans";
     text-align: center;
@@ -9,5 +9,9 @@
   }
 }
 
-.info-scroller__inner {
+@media only screen and (max-width: 380px) {
+  .info-scroller {
+    width: 97vw;
+    padding-left: 3vw;
+  }
 }

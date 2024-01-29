@@ -5,9 +5,10 @@
   &__inner {
     .slick-slide {
       div {
-        padding-top: 1em;
+        padding-top: 2em;
         height: 300px;
         display: flex;
+        justify-content: center;
       }
     }
   }

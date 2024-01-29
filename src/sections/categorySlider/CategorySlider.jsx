@@ -12,6 +12,56 @@ export default function CategorySlider() {
     autoplay: true,
     speed: 400,
     autoplaySpeed: 1500,
+    responsive: [
+      {
+        breakpoint: 1520,
+        settings: {
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+          autoplay: true,
+          speed: 400,
+          autoplaySpeed: 1500,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+          autoplay: true,
+          speed: 400,
+          autoplaySpeed: 1500,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+          autoplay: true,
+          speed: 400,
+          autoplaySpeed: 1500,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+          autoplay: true,
+          speed: 400,
+          autoplaySpeed: 1500,
+        },
+      },
+    ],
   };
   return (
     <div className="category-scroller" data-direction="left" data-speed="slow">

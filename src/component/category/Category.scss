@@ -1,11 +1,13 @@
 .category {
-  width: 250px;
-  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
   text-decoration: none;
   &__image {
     width: 250px;
     height: 200px;
-    padding: auto;
 
     border-radius: 8px;
     border: 2px solid white;
@@ -18,6 +20,7 @@
       13.5px -13px rgb(244, 247, 214);
   }
   &__title {
+    text-align: start;
     transform: translateY(1em);
     color: black;
     font-family: "MediumMonaSans";
