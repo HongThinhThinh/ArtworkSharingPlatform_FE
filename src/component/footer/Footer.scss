@@ -1,5 +1,4 @@
 .footer {
-  height: 35vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -117,16 +116,16 @@
   .footer {
     &__lower {
       width: 100vw;
-      
+
       &__privacy {
         &__tag {
-          padding:0.3em;
+          padding: 0.3em;
         }
       }
 
       &__about {
         &__tag {
-          padding:0.3em;
+          padding: 0.3em;
         }
       }
     }

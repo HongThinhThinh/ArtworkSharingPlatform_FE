@@ -9,6 +9,10 @@
   }
 }
 
+.slick-arrow.slick-next {
+  display: none !important;
+}
+
 @media only screen and (max-width: 380px) {
   .info-scroller {
     width: 97vw;
