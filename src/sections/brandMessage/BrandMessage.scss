@@ -57,3 +57,29 @@
     }
   }
 }
+
+
+@media only screen and (max-width: 2000px) {
+}
+@media only screen and (max-width: 1880px) {
+}
+@media only screen and (max-width: 1430px) {
+  
+}
+@media only screen and (max-width: 1302px) {
+}
+@media only screen and (max-width: 1000px) {
+  .footer-cta {
+    &__title{
+      font-size: 38px;
+    }
+    &__subtitle {
+      font-size: 18px;
+      width: 78%;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+}

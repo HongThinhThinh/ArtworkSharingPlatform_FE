@@ -7,7 +7,7 @@ function BrandMessage() {
     <div className="footer-cta">
       <h1 className="footer-cta__title">
         Find your next
-        <br />
+        
         designer today
       </h1>
       <h5 className="footer-cta__subtitle">
