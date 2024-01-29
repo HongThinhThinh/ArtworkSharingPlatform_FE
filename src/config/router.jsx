@@ -1,4 +1,4 @@
-import { Link, Outlet, createBrowserRouter } from "react-router-dom";
+import { Outlet, createBrowserRouter } from "react-router-dom";
 import Header from "../component/header/Header";
 import Footer from "../component/footer/Footer";
 import HomePage from "../pages/homepage/HomePage";
@@ -10,7 +10,6 @@ import CreatorWorkart from "../sections/creatorWorkart/CreatorWorkart";
 import CreatorCollection from "../sections/creatorCollection/CreatorCollection";
 
 import Test from "../test";
-
 
 export const router = createBrowserRouter([
   {
