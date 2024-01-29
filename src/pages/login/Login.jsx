@@ -5,12 +5,12 @@ import { Button, Col, Divider, Form, Input, Row } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
 import api from "../../config/axios";
-
-const MyFormItemContext = React.createContext([]);
-
+import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
+const provider = new GoogleAuthProvider();
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
 }
+const MyFormItemContext = React.createContext([]);
 
 // eslint-disable-next-line react/prop-types
 const MyFormItemGroup = ({ prefix, children }) => {
@@ -41,6 +41,18 @@ const MyFormItemGroup = ({ prefix, children }) => {
 
 function Login() {
   const navigate = useNavigate();
+  const handleLoginGoogle = () => {
+    const auth = getAuth();
+    signInWithPopup(auth, provider).then((result) => {
+      console.log(result);
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const token = result.user.accessToken;
+      console.log(token);
+      api.post("/login-gg", { token }).then((data) => {
+        if (data) navigate("/");
+      });
+    });
+  };
   const onFinish = async (value) => {
     const response = await api.post("/login", value);
     const role = response.data.data.role;
@@ -67,7 +79,10 @@ function Login() {
       <Col lg={14} className="login__form">
         <Col lg={14} className="login__form__container">
           <h3>Sign in to Cremo</h3>
-          <Button className="login__form__container__gg-btn">
+          <Button
+            onClick={handleLoginGoogle}
+            className="login__form__container__gg-btn"
+          >
             <img src={ggIcon} />
             Sign in with Google
           </Button>
