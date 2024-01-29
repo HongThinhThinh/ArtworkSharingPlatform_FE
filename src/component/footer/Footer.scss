@@ -28,6 +28,7 @@
 
     &__privacy {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: start;
 
@@ -42,6 +43,7 @@
       display: flex;
       justify-content: end;
       align-items: center;
+      flex-wrap: wrap;
 
       &__tag {
         color: #6e6d7a;
@@ -105,6 +107,26 @@
         }
         &__tag {
           padding-left: 0.7em;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .footer {
+    &__lower {
+      width: 100vw;
+      
+      &__privacy {
+        &__tag {
+          padding:0.3em;
+        }
+      }
+
+      &__about {
+        &__tag {
+          padding:0.3em;
         }
       }
     }

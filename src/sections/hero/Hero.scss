@@ -35,3 +35,30 @@
     margin-top: 3em;
   }
 }
+
+@media only screen and (max-width: 2000px) {
+}
+@media only screen and (max-width: 1880px) {
+}
+@media only screen and (max-width: 1430px) {
+  
+}
+@media only screen and (max-width: 1302px) {
+}
+@media only screen and (max-width: 1000px) {
+  .hero {
+    &__title {
+      font-size: 43px;
+    }
+    &__subtitle {
+      font-size: 18px;
+      line-height: 32px;
+      text-align: center;
+     padding:0 2em;
+    }
+  }
+}
+
+@media only screen and (max-width: 480px) {
+}
+

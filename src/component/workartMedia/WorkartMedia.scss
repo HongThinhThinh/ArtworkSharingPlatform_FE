@@ -66,3 +66,9 @@
     height: 15.5em;
   }
 }
+
+@media only screen and (max-width: 300px) {
+  .workart-media {
+    height: 14em;
+  }
+}

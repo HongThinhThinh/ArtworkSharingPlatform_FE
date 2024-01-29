@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import "./Navigator.scss";
 import { navFooterConfig, navHeaderConfig } from "./config";
 import { useMediaQuery } from "react-responsive";
-import { BarsOutlined } from "@ant-design/icons";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -26,12 +25,12 @@ function Navigator({ status }) {
           </Link>
         ))
       ) : isMobile ? (
-        // <motion.nav animate={isOpen ? "open" : "closed"} variants={variants}>
-        //   <Toggle onClick={() => setIsOpen((isOpen) => !isOpen)} />
-        //   <Items />
-        // </motion.nav>
-      ) : (
-        navList.map((nav) => (
+        <motion.nav animate={isOpen ? "open" : "closed"} variants={variants}>
+          {/* <Toggle onClick={() => setIsOpen((isOpen) => !isOpen)} /> */}
+          {/* <Items /> */}
+        </motion.nav>
+      ) : ( 
+          navList.map((nav) => (
           <Link className="navigator__nav" to={nav.path} key={nav.title}>
             {nav.title}
           </Link>
