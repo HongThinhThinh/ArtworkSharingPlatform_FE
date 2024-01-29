@@ -15,7 +15,7 @@ function HomePage() {
     return <CategorySlider />;
   }, []);
   document.body.style.background =
-    location.pathname == "/"
+    location.pathname === "/"
       ? "linear-gradient(0deg, rgba(255, 255, 255, 1) 60%, #f8f7f4 100%)"
       : "white";
   return (
