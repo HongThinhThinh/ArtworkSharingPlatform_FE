@@ -2,32 +2,70 @@ import React, { useEffect, useState } from "react";
 import "./SwiperInfo.scss";
 import axios from "axios";
 import InfoCard from "../../component/infoCard/InfoCard";
+import Slider from "react-slick";
 
 export default function SwiperInfo() {
   const [datas, setDatas] = useState([]);
-  useEffect(() => {
-    const scrollers = document.querySelectorAll(".info-scroller");
+  const settings = {
+    infinite: true,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    swipeToSlide: true,
+    autoplay: true,
+    speed: 400,
+    autoplaySpeed: 1500,
+    responsive: [
+      {
+        breakpoint: 1520,
+        settings: {
+          infinite: true,
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+          autoplay: true,
+          speed: 400,
+          autoplaySpeed: 1500,
+        },
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+          autoplay: true,
+          speed: 400,
+          autoplaySpeed: 1500,
+        },
+      },
+      {
+        breakpoint: 800,
+        settings: {
+          infinite: true,
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+          autoplay: true,
+          speed: 400,
+          autoplaySpeed: 1500,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          swipeToSlide: true,
+          autoplay: true,
+          speed: 400,
+          autoplaySpeed: 1500,
+        },
+      },
+    ],
+  };
 
-    // If a user hasn't opted in for recuded motion, then we add the animation
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      addAnimation();
-    }
-
-    function addAnimation() {
-      scrollers.forEach((scroller) => {
-        scroller.setAttribute("data-animated", true);
-
-        const scrollerInner = scroller.querySelector(".info-scroller__inner");
-        const scrollerContent = Array.from(scrollerInner.children);
-
-        scrollerContent.forEach((item) => {
-          const duplicatedItem = item.cloneNode(true);
-          duplicatedItem.setAttribute("aria-hidden", true);
-          scrollerInner.appendChild(duplicatedItem);
-        });
-      });
-    }
-  });
   const fetch = async () => {
     const response = await axios.get(
       "https://65a7402a94c2c5762da65821.mockapi.io/api/Artwork"
@@ -44,7 +82,7 @@ export default function SwiperInfo() {
       <h2 className="info-scroller__title" data-aos="fade-right">
         Top creators
       </h2>
-      <div className="info-scroller__inner">
+      <Slider {...settings} className="info-scroller__inner">
         {datas.map((data) => (
           <InfoCard
             key={data.id}
@@ -55,7 +93,7 @@ export default function SwiperInfo() {
             tags={data.tags}
           />
         ))}
-      </div>
+      </Slider>
     </div>
   );
 }
