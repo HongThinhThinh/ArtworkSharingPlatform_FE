@@ -1,17 +1,7 @@
 .info-scroller {
-  width: 100%;
-  margin: 1em 0;
+  width: 97vw;
+  padding-left: 3vw;
   &__title {
-    // width: 30%;
-    // font-family: "LightMonaSans";
-    // text-align: center;
-    // margin-left: 35vw;
-    // margin-bottom: 0.6em;
-    // font-size: 1.5em;
-    // padding: 1em;
-    // color: white;
-    // border-radius: 100px;
-    // background-color: rgb(225, 163, 186);
     font-family: "UltraLightMonaSans";
     text-align: center;
     margin-bottom: 0.6em;
@@ -20,39 +10,4 @@
 }
 
 .info-scroller__inner {
-  padding-block: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-.info-scroller[data-animated="true"] {
-  overflow: hidden;
-}
-
-.info-scroller[data-animated="true"] .info-scroller__inner {
-  width: max-content;
-  flex-wrap: nowrap;
-  animation: scroll var(--_animation-duration, 40s)
-    var(--_animation-direction, forwards) linear infinite;
-}
-
-.info-scroller[data-direction="right"] {
-  --_animation-direction: reverse;
-}
-
-.info-scroller[data-direction="left"] {
-  --_animation-direction: forwards;
-}
-
-.info-scroller[data-speed="fast"] {
-  --_animation-duration: 20s;
-}
-
-.info-scroller[data-speed="slow"] {
-  --_animation-duration: 60s;
-}
-
-@keyframes scroll {
-  to {
-    transform: translate(calc(-50% - 0.5rem));
-  }
 }
