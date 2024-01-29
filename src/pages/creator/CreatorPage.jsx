@@ -1,4 +1,3 @@
-import React from "react";
 import CreatorInfo from "../../component/creatorInfo/CreatorInfo";
 import { Layout } from "antd";
 import Sider from "antd/es/layout/Sider";

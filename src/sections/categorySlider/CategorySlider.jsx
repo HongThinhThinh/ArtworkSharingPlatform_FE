@@ -11,6 +11,9 @@ export default function CategorySlider() {
     swipeToSlide: true,
     autoplay: true,
     speed: 400,
+    dots: false,
+    prevArrow: false,
+    nextArrow: false,
     autoplaySpeed: 1500,
     responsive: [
       {

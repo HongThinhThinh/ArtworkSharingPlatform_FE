@@ -49,7 +49,10 @@ function Login() {
       const token = result.user.accessToken;
       console.log(token);
       api.post("/login-gg", { token }).then((data) => {
-        if (data) navigate("/");
+        if (data) {
+          localStorage.setItem("role", data);
+          navigate("/creator");
+        }
       });
     });
   };
