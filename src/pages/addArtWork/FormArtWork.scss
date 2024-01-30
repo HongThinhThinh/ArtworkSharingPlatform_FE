@@ -1,0 +1,20 @@
+.FormArtWork {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  h3 {
+    text-align: center;
+  }
+  &--overlay {
+    // background-color: red;
+  }
+  //   background-color: black;
+  //   color: white;
+}

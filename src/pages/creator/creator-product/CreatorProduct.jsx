@@ -9,6 +9,7 @@ function CreatorProduct() {
       <DropdownTop />
       <div className="listArtWork--items">
         <CreatorWorkart />
+        <CreatorWorkart />
       </div>
     </div>
   );

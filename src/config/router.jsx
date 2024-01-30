@@ -15,6 +15,7 @@ import RoomChat from "../pages/RoomChat/RoomChat";
 import CreatorProduct from "../pages/creator/creator-product/CreatorProduct";
 import CreatorProfile from "../pages/creator/creator-profile/CreatorProfile";
 import CreatorSetting from "../pages/creator/creator-setting/CreatorSetting";
+import FormArtwork from "../pages/addArtWork/FormArtWork";
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: "/creator-manage/room",
         element: <RoomChat />,
+      },
+      {
+        path: "/creator-manage/addArtWork",
+        element: <FormArtwork />,
       },
       {
         path: "/creator-manage/profile",
