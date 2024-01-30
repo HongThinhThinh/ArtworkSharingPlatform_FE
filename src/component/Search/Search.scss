@@ -1,0 +1,49 @@
+.search {
+  font-size: 1.075em;
+  font-family: "MediumMonaSans";
+  background-color: white;
+  border-radius: 100px;
+  padding: 13px 15px;
+  color: grey;
+}
+.ant-input {
+  font-family: "MediumMonaSans" !important;
+}
+
+@media only screen and (max-width: 993px) {
+  .search {
+    width: min-content;
+    background-color: transparent;
+    margin-left: 4em;
+  }
+  .search.active {
+    background-color: white;
+    width: 100%;
+    margin: 1em;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .search {
+    width: min-content;
+    background-color: transparent;
+    margin-left: 4em;
+  }
+  .search.active {
+    background-color: white;
+    width: 9em;
+    margin: 1em;
+  }
+}
+@media only screen and (max-width: 380px) {
+  .search {
+    width: min-content;
+    background-color: transparent;
+    margin-left: 4em;
+  }
+  .search.active {
+    background-color: white;
+    width: 8em;
+    margin-left: 1em;
+  }
+}

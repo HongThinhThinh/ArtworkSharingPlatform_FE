@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navigator.scss";
 import { navFooterConfig, navHeaderConfig } from "./config";
 import { useMediaQuery } from "react-responsive";
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, useCycle } from "framer-motion";
+import { MobileNav } from "./MobileNav";
+import { MenuToggle } from "./MenuToggle";
+import { Button, Drawer } from "antd";
 
-const variants = {
-  open: { opacity: 1, x: 0 },
-  closed: { opacity: 0, x: "-100%" },
+const sidebar = {
+  open: (height = 1000) => ({
+    clipPath: `circle(${height * 2 + 200}px at 40px 40px)`,
+    transition: {
+      type: "spring",
+      stiffness: 20,
+      restDelta: 2,
+    },
+  }),
+  closed: {
+    clipPath: "circle(30px at 40px 40px)",
+    transition: {
+      delay: 0.5,
+      type: "spring",
+      stiffness: 400,
+      damping: 40,
+    },
+  },
 };
 
 function Navigator({ status }) {
@@ -25,12 +42,29 @@ function Navigator({ status }) {
           </Link>
         ))
       ) : isMobile ? (
-        <motion.nav animate={isOpen ? "open" : "closed"} variants={variants}>
-          {/* <Toggle onClick={() => setIsOpen((isOpen) => !isOpen)} /> */}
-          {/* <Items /> */}
+        <motion.nav animate={isOpen ? "open" : "closed"}>
+          <Button>
+            <MenuToggle
+              style={{ zIndex: 10 }}
+              toggle={() => setIsOpen(!isOpen)}
+            />
+          </Button>
+          <Drawer
+            placement="top"
+            closable={false}
+            open={isOpen}
+            key="top"
+            className="rs-nav-header"
+          >
+            {navList.map((nav) => (
+              <Link className="navigator__nav" to={nav.path} key={nav.title}>
+                {nav.title}
+              </Link>
+            ))}
+          </Drawer>
         </motion.nav>
-      ) : ( 
-          navList.map((nav) => (
+      ) : (
+        navList.map((nav) => (
           <Link className="navigator__nav" to={nav.path} key={nav.title}>
             {nav.title}
           </Link>
