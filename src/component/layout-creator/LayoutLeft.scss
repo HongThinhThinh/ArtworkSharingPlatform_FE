@@ -13,6 +13,7 @@
     width: 50px;
   }
   &--menu {
+    // width: 100%;
     height: 100%;
     cursor: pointer;
     margin-top: 50px;
@@ -34,13 +35,33 @@
         height: 100%;
       }
     }
+  }
+  &--setting {
+    color: white;
+    font-size: 30px;
+    align-items: flex-end;
+    margin-bottom: 30px;
+    cursor: pointer;
+  }
+}
 
-    &__setting {
-      color: white;
-      font-size: 30px;
-      align-items: flex-end;
-      margin-bottom: 30px;
-      cursor: pointer;
+@media only screen and (max-width: 550px) {
+  .layoutLeft {
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    &--menu {
+      flex-direction: row;
+      align-items: center;
+      margin: 0;
+    }
+    &--img {
+      display: none;
+    }
+    &--setting {
+      display: none;
     }
   }
 }

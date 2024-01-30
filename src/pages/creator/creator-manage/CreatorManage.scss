@@ -1,10 +1,29 @@
 .creatorManage {
   display: flex;
+  height: 100vh;
   &--left {
     width: fit-content;
   }
   &--right {
     flex: 1;
     overflow: hidden;
+    &__header {
+      display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .creatorManage {
+    flex-direction: column-reverse;
+
+    &--left {
+      width: 90%;
+    }
+    &--right {
+      &__header {
+        display: block;
+      }
+    }
   }
 }
