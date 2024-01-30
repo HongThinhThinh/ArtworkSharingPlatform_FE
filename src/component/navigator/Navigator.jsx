@@ -3,10 +3,8 @@ import { Link } from "react-router-dom";
 import "./Navigator.scss";
 import { navFooterConfig, navHeaderConfig } from "./config";
 import { useMediaQuery } from "react-responsive";
-import { motion, useCycle } from "framer-motion";
-import { MobileNav } from "./MobileNav";
-import { MenuToggle } from "./MenuToggle";
-import { Button, Drawer } from "antd";
+import { Button, Drawer, Space } from "antd";
+import { AlignLeftOutlined, CloseCircleOutlined } from "@ant-design/icons";
 
 const sidebar = {
   open: (height = 1000) => ({
@@ -42,14 +40,28 @@ function Navigator({ status }) {
           </Link>
         ))
       ) : isMobile ? (
-        <motion.nav animate={isOpen ? "open" : "closed"}>
-          <Button>
-            <MenuToggle
-              style={{ zIndex: 10 }}
-              toggle={() => setIsOpen(!isOpen)}
-            />
+        <nav animate={isOpen ? "open" : "closed"}>
+          <Button
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+            style={{ border: "none" }}
+          >
+            <AlignLeftOutlined style={{ fontSize: "1.5em" }} />
           </Button>
           <Drawer
+            title={
+              <Space>
+                <Button
+                  onClick={() => {
+                    setIsOpen(!isOpen);
+                  }}
+                  style={{ border: "none" }}
+                >
+                  <CloseCircleOutlined style={{ fontSize: "1.5em" }} />
+                </Button>
+              </Space>
+            }
             placement="left"
             closable={false}
             open={isOpen}
@@ -62,7 +74,7 @@ function Navigator({ status }) {
               </Link>
             ))}
           </Drawer>
-        </motion.nav>
+        </nav>
       ) : (
         navList.map((nav) => (
           <Link className="navigator__nav" to={nav.path} key={nav.title}>
