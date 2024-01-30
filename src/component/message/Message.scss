@@ -1,0 +1,38 @@
+.message {
+    &__detail {
+      width: 45%;
+      margin: 5px 0;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+
+      &__avatar {
+        img {
+          width: 30px;
+        }
+        margin-right: 10px;
+      }
+
+      &__text {
+        background-color: #262626;
+        padding: 15px;
+        border-radius: 20px;
+        .info {
+          margin-bottom: 5px;
+          font-size: 12px;
+        }
+      }
+    }
+    &.me {
+      display: flex;
+      justify-content: end;
+
+      .message__detail {
+        flex-direction: row-reverse;
+        &__avatar {
+          margin-left: 20px;
+          margin-right: 0;
+        }
+      }
+    }
+  }
