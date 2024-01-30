@@ -1,0 +1,17 @@
+.DropDownTop {
+  margin: 20px;
+  &--span {
+    margin: 20px;
+    font-weight: 800;
+    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  }
+
+  .ant-dropdown-trigger {
+    font-weight: 500;
+    width: 104px;
+    background-color: hsl(244, 100%, 97%);
+  }
+  .ant-space {
+  }
+}

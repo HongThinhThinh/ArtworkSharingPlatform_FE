@@ -1,3 +1,10 @@
 .creatorManage {
   display: flex;
+  &--left {
+    width: fit-content;
+  }
+  &--right {
+    flex: 1;
+    overflow: hidden;
+  }
 }

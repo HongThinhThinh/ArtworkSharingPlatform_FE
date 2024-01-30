@@ -3,6 +3,8 @@ import image1 from "../../assets/Cremo-white.png";
 import { AiOutlinePicture } from "react-icons/ai";
 import { FaFacebookMessenger } from "react-icons/fa";
 import { AiOutlineSetting } from "react-icons/ai";
+import { IoIosAddCircleOutline } from "react-icons/io";
+import { FaSun } from "react-icons/fa";
 import "./layoutLeft.scss";
 import { useNavigate } from "react-router-dom";
 function LayoutLeft() {
@@ -16,6 +18,12 @@ function LayoutLeft() {
           onClick={() => navigate("/creator-manage/artworks")}
         >
           <AiOutlinePicture />
+        </div>
+        <div
+          className="layoutLeft--menu__addArtwork"
+          onClick={() => navigate("/creator-manage/addArtwork")}
+        >
+          <IoIosAddCircleOutline />
         </div>
         <div
           className="layoutLeft--menu__messenger"
@@ -32,6 +40,12 @@ function LayoutLeft() {
             alt=""
           />
         </div>
+      </div>
+      <div
+        className="layoutLeft--menu__setting"
+        onClick={() => navigate("/creator-manage/settings")}
+      >
+        <FaSun />
       </div>
       <div
         className="layoutLeft--menu__setting"
