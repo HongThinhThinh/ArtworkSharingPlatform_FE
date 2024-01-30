@@ -50,10 +50,10 @@ function Navigator({ status }) {
             />
           </Button>
           <Drawer
-            placement="top"
+            placement="left"
             closable={false}
             open={isOpen}
-            key="top"
+            key="left"
             className="rs-nav-header"
           >
             {navList.map((nav) => (
