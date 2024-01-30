@@ -20,16 +20,16 @@ function LayoutLeft() {
           <AiOutlinePicture />
         </div>
         <div
-          className="layoutLeft--menu__addArtwork"
-          onClick={() => navigate("/creator-manage/addArtwork")}
-        >
-          <IoIosAddCircleOutline />
-        </div>
-        <div
           className="layoutLeft--menu__messenger"
           onClick={() => navigate("/creator-manage/room")}
         >
           <FaFacebookMessenger />
+        </div>
+        <div
+          className="layoutLeft--menu__addArtwork"
+          onClick={() => navigate("/creator-manage/addArtwork")}
+        >
+          <IoIosAddCircleOutline />
         </div>
         <div
           className="layoutLeft--menu__avt"
@@ -40,15 +40,15 @@ function LayoutLeft() {
             alt=""
           />
         </div>
+        <div
+          className="layoutLef--menu__ChangBackground"
+          onClick={() => navigate("/creator-manage/settings")}
+        >
+          <FaSun />
+        </div>
       </div>
       <div
-        className="layoutLeft--menu__setting"
-        onClick={() => navigate("/creator-manage/settings")}
-      >
-        <FaSun />
-      </div>
-      <div
-        className="layoutLeft--menu__setting"
+        className="layoutLeft--setting"
         onClick={() => navigate("/creator-manage/settings")}
       >
         <AiOutlineSetting />
