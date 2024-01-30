@@ -10,6 +10,11 @@ import CreatorWorkart from "../sections/creatorWorkart/CreatorWorkart";
 import CreatorCollection from "../sections/creatorCollection/CreatorCollection";
 
 import Test from "../test";
+import CreatorManage from "../pages/creator/creator-manage/CreatorManage";
+import RoomChat from "../pages/RoomChat/RoomChat";
+import CreatorProduct from "../pages/creator/creator-product/CreatorProduct";
+import CreatorProfile from "../pages/creator/creator-profile/CreatorProfile";
+import CreatorSetting from "../pages/creator/creator-setting/CreatorSetting";
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +29,29 @@ export const router = createBrowserRouter([
     path: "register",
     element: <SignUp />,
   },
+  {
+    path: "creator-manage",
+    element: <CreatorManage />,
+    children: [
+      {
+        path: "/creator-manage/artworks",
+        element: <CreatorProduct />,
+      },
+      {
+        path: "/creator-manage/room",
+        element: <RoomChat />,
+      },
+      {
+        path: "/creator-manage/profile",
+        element: <CreatorProfile />,
+      },
+      {
+        path: "/creator-manage/settings",
+        element: <CreatorSetting />,
+      },
+    ],
+  },
+
   {
     path: "/",
     element: (
