@@ -2,11 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 12em;
+  padding: 6em 12em;
   &__upper {
     width: 100%;
     display: flex;
     justify-content: center;
+    margin-bottom: 4em;
     &__logo {
       display: flex;
       justify-content: start;
@@ -59,7 +60,7 @@
 }
 @media only screen and (max-width: 1430px) {
   .footer {
-    padding: 0 6em;
+    padding: 3em 6em;
   }
 }
 @media only screen and (max-width: 1302px) {

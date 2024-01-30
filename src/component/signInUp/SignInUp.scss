@@ -6,7 +6,7 @@
   font-size: 1em;
   font-family: "SemiBoldMonaSans";
   &__login {
-    padding: 20px;
+    padding-right: 20px;
     color: #0d0c22;
     text-decoration: none;
     text-wrap: nowrap;
@@ -22,5 +22,22 @@
     height: 50px;
     border-radius: 100px;
     text-wrap: nowrap;
+  }
+}
+
+@media only screen and (max-width: 562px) {
+  .signInUp {
+    &__login {
+      padding: 0px 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #0d0c22;
+      color: white;
+      text-decoration: none;
+      height: 50px;
+      border-radius: 100px;
+      text-wrap: nowrap;
+    }
   }
 }

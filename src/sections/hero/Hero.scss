@@ -41,12 +41,13 @@
 @media only screen and (max-width: 1880px) {
 }
 @media only screen and (max-width: 1430px) {
-  
 }
 @media only screen and (max-width: 1302px) {
 }
 @media only screen and (max-width: 1000px) {
   .hero {
+    width: 93%;
+    margin: 0 3.5%;
     &__title {
       font-size: 43px;
     }
@@ -54,11 +55,10 @@
       font-size: 18px;
       line-height: 32px;
       text-align: center;
-     padding:0 2em;
+      padding: 0 2em;
     }
   }
 }
 
 @media only screen and (max-width: 480px) {
 }
-
