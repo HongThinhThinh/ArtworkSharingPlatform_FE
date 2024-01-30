@@ -67,7 +67,7 @@ function SignUp() {
   };
   return (
     <Row container className="signUp">
-      <Col lg={8} className="signUp__side-bar">
+      <Col md={24} lg={8} className="signUp__side-bar">
         <video
           muted
           autoPlay
@@ -77,7 +77,7 @@ function SignUp() {
           src="https://cdn.dribbble.com/uploads/48292/original/30fd1f7b63806eff4db0d4276eb1ac45.mp4?1689187515"
         ></video>
       </Col>
-      <Col lg={16} className="signUp__form">
+      <Col md={24} lg={16} className="signUp__form">
         <Col lg={14} className="signUp__form__container">
           <h3>Sign up to Cremo</h3>
           <Button className="signUp__form__container__gg-btn">
