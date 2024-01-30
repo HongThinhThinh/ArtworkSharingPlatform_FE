@@ -1,0 +1,106 @@
+.chat-list {
+  background-color: #202020;
+  height: 100%;
+  width: 300px;
+  padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  
+  &__information {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding: 0px 25px;
+    // height: 50px;
+    &__left {
+      display: flex;
+      align-items: center;
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+
+      span {
+        // color: #fff;
+      }
+    }
+    &__right {
+      cursor: pointer;
+    }
+  }
+  h3 {
+    // color: #fff;
+    padding: 0px 25px;
+  }
+
+  &__items {
+    margin-top: 20px;
+    flex-grow: 1;
+    overflow-y: scroll;
+    // padding: 0px 25px;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+      width: 3px;
+      /* Độ rộng của thanh cuộn */
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #b2b2b2;
+      /* Màu sắc của "nút cuộn" */
+      border-radius: 10px; /* Độ cong của "nút cuộn" */
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: #202020; /* Màu sắc của phần nền thanh cuộn */
+    }
+
+    // .item {
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    //   padding: 10px 0px;
+    //   cursor: pointer;
+    //   transition: all 0.3s;
+    //   width: 100%;
+    // //   margin-left: 25px;
+    //   overflow-x: hidden;
+
+    //   &:hover {
+    //     background-color: #111;
+    //   }
+
+    //   img {
+    //     width: 40px;
+    //     height: 40px;
+    //     border-radius: 50%;
+    //     margin-right: 10px;
+    //   }
+
+    //   &__detail {
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: space-between;
+    //     width: 65%;
+    //     h4 {
+    //       color: #b2b2b2;
+    //       margin-bottom: 4px;
+    //     }
+
+    //     span {
+    //       display: block;
+    //       font-size: 12px;
+    //       color: #696969;
+    //       overflow: hidden;
+    //       white-space: nowrap;
+    //       text-overflow: ellipsis;
+    //       max-width: 100%;
+    //     }
+    //   }
+    // }
+  }
+}
+

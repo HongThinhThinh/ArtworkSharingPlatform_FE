@@ -5,6 +5,7 @@ import { persistor, store } from "./redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import { StateProvider } from "./Context/StateProvider";
 
 AOS.init({
   // initialise with other settings
@@ -15,7 +16,9 @@ function App() {
     <>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
+        <StateProvider>
           <RouterProvider router={router} />
+          </StateProvider>
         </PersistGate>
       </Provider>
     </>
