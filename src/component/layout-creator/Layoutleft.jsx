@@ -15,7 +15,7 @@ function LayoutLeft() {
 
   const handleTheme = () => {
     setTheme(!theme)
-    localStorage.setItem("theme", theme);
+    localStorage.setItem("theme", !theme);
   }
   return (
     <div className="layoutLeft">

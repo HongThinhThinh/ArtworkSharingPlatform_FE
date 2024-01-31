@@ -7,6 +7,8 @@ import FormSearchFriends from "../../component/formSearchFriends/FormSearchFrien
 
 function RoomChat() {
   const { theme,showSearchFriends } = useStateValue();
+  console.log(theme);
+  console.log(theme?"#202020":"#fff");
 
   return (
     <div className="roomChat" style={{backgroundColor: theme?"#202020":"#fff",color: theme?"#fff":"#202020"}}>
