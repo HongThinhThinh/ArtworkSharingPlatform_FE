@@ -4,6 +4,7 @@ import Footer from "../component/footer/Footer";
 import HomePage from "../pages/homepage/HomePage";
 import Login from "../pages/login/Login";
 import SignUp from "../pages/signUp/SignUp";
+import ForgotPassword from "../pages/forgotPassword/ForgotPassword";
 
 import CreatorPage from "../pages/creator/CreatorPage";
 import CreatorWorkart from "../sections/creatorWorkart/CreatorWorkart";
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
   {
     path: "register",
     element: <SignUp />,
+  },
+  {
+    path: "/password_resets/new",
+    element: <ForgotPassword />,
   },
   {
     path: "creator-manage",
