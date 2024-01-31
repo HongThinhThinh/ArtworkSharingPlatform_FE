@@ -1,18 +1,18 @@
 .chatDetail {
-  background-color: #202020;
+//   background-color: #202020;
   flex-grow: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: #fff;
+//   color: #fff;
   flex-direction: column;
 
   &__icon {
     width: 6rem;
     height: 6rem;
-    border: #fff 3px solid;
+    
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -23,102 +23,7 @@
   }
   p {
     opacity: 0.6;
+    text-align: center;
   }
 }
-.chat-detail {
-  background-color: #202020;
-  height: 100%;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: #fff;
-  &__header {
-    border-bottom: 1px solid rgba(120, 119, 119, 0.3);
-    padding: 20px 30px 15px 30px;
-    display: flex;
-    align-items: center;
 
-    img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-
-    .header__info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      > span {
-        
-        margin-bottom: 4px;
-      }
-
-      .status {
-        display: flex;
-        align-items: center;
-        .dot {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background-color: #4ad262;
-          margin-right: 5px;
-        }
-        span {
-        //   color: #67696a;
-        opacity: 0.4;
-        }
-      }
-    }
-  }
-
-  &__messages {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 30px 0;
-    color: #a6aaac;
-
-    &::-webkit-scrollbar {
-        width: 3px;
-         /* Độ rộng của thanh cuộn */
-      }
-      
-      &::-webkit-scrollbar-thumb {
-        background-color: #b2b2b2;
-         /* Màu sắc của "nút cuộn" */
-        border-radius: 10px; /* Độ cong của "nút cuộn" */
-      }
-      
-      &::-webkit-scrollbar-track {
-        background-color: #202020; /* Màu sắc của phần nền thanh cuộn */
-      }
-
-
-  
-  }
-
-  &__input {
-    display: flex;
-    justify-content: center;
-    padding: 15px 0;
-    textarea {
-      background-color: #2b2c32 !important;
-      border: none;
-      outline: none;
-      font-size: 15px;
-      color: #fff;
-      padding: 10px 20px;
-      width: 90%;
-      border-radius: 20px;
-      height: 40px;
-    }
-    button {
-      // padding: 10px;
-      background-color: #202020;
-      border: none;
-      margin-left: 10px;
-      cursor: pointer;
-    }
-  }
-}

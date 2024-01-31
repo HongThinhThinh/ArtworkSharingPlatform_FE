@@ -7,8 +7,16 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaSun } from "react-icons/fa";
 import "./layoutLeft.scss";
 import { useNavigate } from "react-router-dom";
+import { useStateValue } from "../../Context/StateProvider";
 function LayoutLeft() {
+  const {theme,setTheme} = useStateValue();
+
   const navigate = useNavigate();
+
+  const handleTheme = () => {
+    setTheme(!theme)
+    localStorage.setItem("theme", !theme);
+  }
   return (
     <div className="layoutLeft">
       <img className="layoutLeft--img" src={image1} alt="" />
@@ -42,7 +50,7 @@ function LayoutLeft() {
         </div>
         <div
           className="layoutLef--menu__ChangBackground"
-          onClick={() => navigate("/creator-manage/settings")}
+          onClick={() => handleTheme()}
         >
           <FaSun />
         </div>

@@ -7,7 +7,7 @@ import RoomChatDetail from "../roomchatDetail/RoomChatDetail";
 
 
 function ChatDetail() {
-  const { idRoomChat, setShowSearchFriends } = useStateValue();
+  const { idRoomChat, setShowSearchFriends,theme } = useStateValue();
 
 
  
@@ -23,8 +23,8 @@ function ChatDetail() {
         <RoomChatDetail/>
       ) : (
         <div className="chatDetail">
-          <div className="chatDetail__icon">
-            <LiaFacebookMessenger fontSize={"4rem"} color={"white"} />
+          <div className="chatDetail__icon" style={{border: theme? "#fff 3px solid":"#000 3px solid"}}>
+            <LiaFacebookMessenger fontSize={"4rem"} color={theme?"white":"#000"} />
           </div>
           <h4>Your message</h4>
           <p>Send photos and private messages to friends</p>
