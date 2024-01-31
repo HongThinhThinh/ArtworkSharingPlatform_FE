@@ -9,10 +9,13 @@
       width: 100%;
     //   margin-left: 25px;
       overflow-x: hidden;
+    //   &.active{
+    //     background-color: #545454;
+    //   }
 
 
       &:hover {
-        background-color: #111;
+        background-color: #545454;
       }
 
       img {
@@ -43,4 +46,5 @@
         }
       }
     }
+
   

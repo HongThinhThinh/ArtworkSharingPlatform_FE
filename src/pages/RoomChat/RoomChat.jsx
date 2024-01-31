@@ -6,9 +6,10 @@ import { useStateValue } from "../../Context/StateProvider";
 import FormSearchFriends from "../../component/formSearchFriends/FormSearchFriends";
 
 function RoomChat() {
-  const { showSearchFriends } = useStateValue();
+  const { theme,showSearchFriends } = useStateValue();
+
   return (
-    <div className="roomChat">
+    <div className="roomChat" style={{backgroundColor: theme?"#202020":"#fff",color: theme?"#fff":"#202020"}}>
       <ChatList />
       <ChatDetail />
       {showSearchFriends && <FormSearchFriends/>}

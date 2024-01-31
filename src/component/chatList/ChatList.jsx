@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ChatList.scss";
 import { FaEdit } from "react-icons/fa";
 import RoomMessage from "../roomMessage/RoomMessage";
 import { useStateValue } from "../../Context/StateProvider";
 
 function ChatList() {
-    const {  setShowSearchFriends } = useStateValue();
+    const {  theme,setShowSearchFriends } = useStateValue();
+    // const [active,setActive] = useState(false);
+
 
   return (
     <>
@@ -22,12 +24,12 @@ function ChatList() {
             className="chat-list__information__right"
             onClick={() => setShowSearchFriends(true)}
           >
-            <FaEdit fontSize={"20px"} color="#fff" />
+            <FaEdit fontSize={"20px"} color={theme?"#fff":"#000"} />
           </div>
         </div>
         <h3>Message</h3>
         <div class="chat-list__items">
-          <RoomMessage room={12} />
+          <RoomMessage room={12}/>
           <RoomMessage />
           <RoomMessage />
           <RoomMessage />

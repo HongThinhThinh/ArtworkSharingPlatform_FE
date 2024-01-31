@@ -72,3 +72,29 @@
     // background-color: aqua;
     z-index: 111;
   }
+
+  @media only  screen and (max-width: 950px) {
+    .searchFriends {
+        .formSearch {
+            left: 26%;
+            right: 26%;
+        }
+    }
+  }
+
+  @media only  screen and (max-width: 700px) {
+    .searchFriends {
+        .formSearch {
+            left: 20%;
+            right: 20%;
+        }
+    }
+  }
+  @media only  screen and (max-width: 540px) {
+    .searchFriends {
+        .formSearch {
+            left: 10%;
+            right: 10%;
+        }
+    }
+  }
