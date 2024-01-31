@@ -1,13 +1,13 @@
 import React from "react";
 import cremo from "../../assets/Cremo-white.svg";
-import "./Logo.scss";
+import "./LogoWhite.scss";
 import { Link } from "react-router-dom";
 
 
 function LogoWhite() {
   return (
-    <Link to="/" className="wrapper">
-      <img src={cremo} className="wrapper__logo" />
+    <Link to="/" className="wrapper-white">
+      <img src={cremo} className="wrapper-white__logo" />
     </Link>
   );
 }
