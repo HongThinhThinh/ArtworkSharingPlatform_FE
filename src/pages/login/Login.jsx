@@ -26,19 +26,6 @@ const MyFormItemGroup = ({ prefix, children }) => {
   );
 };
 
-// eslint-disable-next-line react/prop-types
-// const MyFormItem = ({ name, children, ...props }) => {
-//   const prefixPath = React.useContext(MyFormItemContext);
-//   const concatName =
-//     name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
-//   console.log(children);
-//   return (
-//     <Form.Item name={name} {...props}>
-//       {children}
-//     </Form.Item>
-//   );
-// };
-
 function Login() {
   const navigate = useNavigate();
   const handleLoginGoogle = () => {
@@ -69,7 +56,7 @@ function Login() {
   };
   return (
     <Row container className="login">
-      <Col md={24}lg={10} className="login__side-bar">
+      <Col md={24} lg={10} className="login__side-bar">
         <video
           muted
           autoPlay
@@ -89,7 +76,7 @@ function Login() {
             <img src={ggIcon} />
             Sign in with Google
           </Button>
-          <Divider className="login__form__container__divider" plain >
+          <Divider className="login__form__container__divider" plain>
             or sign in with email
           </Divider>
           <Form
@@ -117,7 +104,7 @@ function Login() {
                     required: true,
                     message: "Please input your username!",
                   },
-                ]} 
+                ]}
               >
                 <Input className="login__form__container__namepass__group-form__input" />
               </Form.Item>
