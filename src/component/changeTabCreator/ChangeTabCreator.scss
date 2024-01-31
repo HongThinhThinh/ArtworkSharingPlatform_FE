@@ -3,7 +3,7 @@
 
   bottom: 0em;
   left: 48%;
-  background: linear-gradient(180deg, #aea9a8 0%, #cac6c4 100%);
+  background: #0d0c22;
   z-index: 1;
   font-family: "SemiBoldMonaSans";
   padding: 0em 4em;
@@ -13,7 +13,7 @@
   &__work,
   &__liked,
   &__collections {
-    color: rgba(32, 32, 32, 0.616);
+    color: white;
     padding: 0.7em 1em;
     border-radius: 100px;
   }
