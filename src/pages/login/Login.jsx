@@ -7,6 +7,7 @@ import "./Login.scss";
 import api from "../../config/axios";
 import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
 const provider = new GoogleAuthProvider();
+
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
 }
@@ -69,7 +70,7 @@ function Login() {
   };
   return (
     <Row container className="login">
-      <Col md={24}lg={10} className="login__side-bar">
+      <Col md={24} lg={10} className="login__side-bar">
         <video
           muted
           autoPlay
@@ -89,7 +90,7 @@ function Login() {
             <img src={ggIcon} />
             Sign in with Google
           </Button>
-          <Divider className="login__form__container__divider" plain >
+          <Divider className="login__form__container__divider" plain>
             or sign in with email
           </Divider>
           <Form
@@ -117,7 +118,7 @@ function Login() {
                     required: true,
                     message: "Please input your username!",
                   },
-                ]} 
+                ]}
               >
                 <Input className="login__form__container__namepass__group-form__input" />
               </Form.Item>
@@ -128,7 +129,17 @@ function Login() {
                 <Input className="login__form__container__namepass__group-form__input" />
               </MyFormItem> */}
               <Form.Item
-                label="Password"
+                label={
+                  <label style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
+                    <p>Password</p>
+                    <Link
+                      to="/password_resets/new"
+                      className="login__form__container__linkToSignUp__signUp"
+                    >
+                      Forgot?
+                    </Link>
+                  </label>
+                }
                 name="password"
                 className="login__form__container__namepass__group-form"
                 rules={[
