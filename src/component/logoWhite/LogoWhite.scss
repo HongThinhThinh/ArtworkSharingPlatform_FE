@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper-white {
   position: absolute;
   top: 1em;
   left: 2em;
@@ -13,7 +13,7 @@
 }
 
 @media only screen and (max-width: 2000px) {
-  .wrapper {
+  .wrapper-white {
     &__logo {
       height: 5.5em;
       width: 5.5em;
@@ -21,7 +21,7 @@
   }
 }
 @media only screen and (max-width: 1880px) {
-  .wrapper {
+  .wrapper-white {
     &__logo {
       height: 5.5em;
       width: 5.5em;
@@ -29,7 +29,7 @@
   }
 }
 @media only screen and (max-width: 1430px) {
-  .wrapper {
+  .wrapper-white {
     &__logo {
       height: 5em;
       width: 5em;
@@ -37,7 +37,7 @@
   }
 }
 @media only screen and (max-width: 1302px) {
-  .wrapper {
+  .wrapper-white {
     &__logo {
       height: 5em;
       width: 5em;
@@ -45,7 +45,7 @@
   }
 }
 @media only screen and (max-width: 1000px) {
-  .wrapper {
+  .wrapper-white {
     &__logo {
       height: 4em;
       width: 4em;
@@ -55,7 +55,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .wrapper {
+  .wrapper-white {
     &__logo {
       height: 4em;
       width: 4em;
@@ -65,7 +65,7 @@
 }
 
 @media only screen and (max-width: 300px) {
-  .wrapper {
+  .wrapper-white {
     &__logo {
       height: 4em;
       width: 4em;
