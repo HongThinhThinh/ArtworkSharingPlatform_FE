@@ -64,14 +64,8 @@ function FormArtwork() {
               </Form.Item>
               <Form.Item
                 label="Description"
-                name="password"
+                name="Description"
                 className="login__form__container__namepass__group-form"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your description",
-                  },
-                ]}
               >
                 <TextAreaa />
               </Form.Item>
@@ -79,12 +73,6 @@ function FormArtwork() {
                 label="Tags"
                 name="title"
                 className="login__form__container__namepass__group-form"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your title!",
-                  },
-                ]}
               >
                 <Tags />
               </Form.Item>

@@ -1,7 +1,28 @@
 .tag--style {
   margin-top: 20px;
+  // cursor: pointer;
 }
 .ant-tag {
-  border: 1px solid black;
+  border: 1px solid rgb(86, 86, 10);
   font-weight: 600;
+  width: fit-content;
+}
+.tag-selected {
+  width: 100%;
+  margin-bottom: 20px;
+  border: 1px solid rgb(214, 206, 206);
+  padding: 20px;
+  border-radius: 9px;
+  display: flex;
+}
+.ant-space {
+  display: flex;
+  flex-wrap: wrap;
+  cursor: pointer;
+  width: 400px;
+  .ant-space-item {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
 }
