@@ -1,40 +1,46 @@
 .creator-info {
   display: flex;
-  align-items: center;
   justify-content: center;
   flex-direction: column;
+  transform: translateY(-5em);
+
   &__avatar {
-    height: 10em;
-    width: 10em;
-    margin-top: 3em;
-    margin-bottom: 4em;
+    height: 7.5em;
+    width: 7.5em;
+    transform: translateX(-0.5em);
+    margin-bottom: 2em;
+    border: 0.5em solid #f1f1f0;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
-  &__name {
-    font-size: 1.5em;
+  &__name,
+  &__skill__title {
+    color: #232131;
+    font-size: 1em;
     font-family: "MediumMonaSans";
     margin-bottom: 0.5em;
   }
   &__openLine {
-    font-size: 2em;
+    color: #232131;
+    font-size: 1.6em;
     font-family: "BoldMonaSans";
     margin-bottom: 0.5em;
   }
   &__contact {
     display: flex;
-    justify-content: center;
     &__getInTouch,
     &__follow,
     &__dropdownCreator {
+      border: none;
       height: 3.5em;
-      margin: 0 0.5em;
       padding: 1em 1.5em;
+      margin-right: 0.5em;
       display: flex;
       justify-self: center;
       align-items: center;
 
       font-family: "BoldMonaSans";
 
-      font-size: 13.8px;
+      font-size: 0.9em;
       text-decoration: none;
       border-radius: 100px;
       font-weight: 500;
@@ -47,11 +53,59 @@
     }
     &__follow,
     &__dropdownCreator {
-      background-color: white;
+      border: 1px solid #0d0c22;
     }
     &__dropdownCreator {
       height: 3.5em;
       cursor: pointer;
+    }
+  }
+  &__position {
+    margin-top: 1em;
+    border-radius: 7px;
+    background: linear-gradient(
+      180deg,
+      #eaeae7 0%,
+      rgba(237, 234, 234, 0.9) 100%
+    );
+    padding: 1.5em;
+    font-family: "MediumMonaSans";
+    font-size: 0.85em;
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 1em;
+    &__location {
+      &__icon {
+        font-size: 1em;
+        margin-right: 1em;
+      }
+    }
+    &__isPro {
+      margin: 1em 0;
+      &__icon {
+        font-size: 1em;
+        margin-right: 1em;
+      }
+    }
+    &__since {
+      &__icon {
+        font-size: 1em;
+        margin-right: 1em;
+      }
+    }
+  }
+  &__skill {
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      &__tag {
+        font-size: 0.8em;
+        border-radius: 4px;
+        padding: 0.5em;
+        margin-right: 0.5em;
+        margin-bottom: 0.5em;
+        border: 1px solid rgba(0, 0, 0, 0.568);
+        font-family: "MediumMonaSans";
+      }
     }
   }
 }

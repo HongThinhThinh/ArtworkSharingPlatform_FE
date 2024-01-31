@@ -44,14 +44,6 @@ function ChangeTabCreator() {
       >
         Liked Shots
       </Link>
-      <Link
-        className={`change-tab-creator__about ${
-          status == "about" ? "active" : ""
-        }`}
-        onClick={() => setStatus("about")}
-      >
-        About
-      </Link>
     </div>
   );
 }

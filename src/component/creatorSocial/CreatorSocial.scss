@@ -1,9 +1,10 @@
 .creator-social {
   display: flex;
-  justify-content: center;
   span {
-    margin: 0 1em;
+    margin-right: 0.5em;
+    text-wrap: nowrap;
+    font-size: 0.9em;
     font-family: "SemiBoldMonaSans";
-    color: rgb(57, 57, 57);
+    color: rgba(46, 46, 46, 0.838);
   }
 }
