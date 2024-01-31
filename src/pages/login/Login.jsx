@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
 import api from "../../config/axios";
 import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
+import LogoWhite from "../../component/logoWhite/LogoWhite";
 const provider = new GoogleAuthProvider();
 
 function toArr(str) {
@@ -70,7 +71,8 @@ function Login() {
   };
   return (
     <Row container className="login">
-      <Col md={24} lg={10} className="login__side-bar">
+      <LogoWhite/>
+      <Col md={24} lg={7} className="login__side-bar">
         <video
           muted
           autoPlay
@@ -80,7 +82,7 @@ function Login() {
           src="https://cdn.dribbble.com/uploads/48226/original/b8bd4e4273cceae2889d9d259b04f732.mp4?1689028949"
         ></video>
       </Col>
-      <Col md={24} lg={14} className="login__form">
+      <Col md={24} lg={17} className="login__form">
         <Col lg={14} className="login__form__container">
           <h3>Sign in to Cremo</h3>
           <Button
