@@ -28,6 +28,19 @@ const MyFormItemGroup = ({ prefix, children }) => {
   );
 };
 
+// eslint-disable-next-line react/prop-types
+// const MyFormItem = ({ name, children, ...props }) => {
+//   const prefixPath = React.useContext(MyFormItemContext);
+//   const concatName =
+//     name !== undefined ? [...prefixPath, ...toArr(name)] : undefined;
+//   console.log(children);
+//   return (
+//     <Form.Item name={name} {...props}>
+//       {children}
+//     </Form.Item>
+//   );
+// };
+
 function Login() {
   const navigate = useNavigate();
   const handleLoginGoogle = () => {
@@ -53,17 +66,13 @@ function Login() {
       navigate("/test");
     }
     if (role === "CREATOR") {
-      navigate("/creator");
+      navigate("/creator-manage/artworks");
     }
   };
   return (
     <Row container className="login">
-<<<<<<< HEAD
-      <Col md={24} lg={10} className="login__side-bar">
-=======
-      <LogoWhite/>
+      <LogoWhite />
       <Col md={24} lg={7} className="login__side-bar">
->>>>>>> 5990500eee5c835680f3bbc6e9f0b5345d50701f
         <video
           muted
           autoPlay
@@ -123,7 +132,13 @@ function Login() {
               </MyFormItem> */}
               <Form.Item
                 label={
-                  <label style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
+                  <label
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <p>Password</p>
                     <Link
                       to="/password_resets/new"
