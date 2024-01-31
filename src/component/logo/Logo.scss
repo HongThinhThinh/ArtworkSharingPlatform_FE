@@ -1,4 +1,4 @@
-.wrapper {
+.wrapper-black {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,7 +9,7 @@
 }
 
 @media only screen and (max-width: 2000px) {
-  .wrapper {
+  .wrapper-black {
     &__logo {
       height: 5.5em;
       width: 5.5em;
@@ -17,7 +17,7 @@
   }
 }
 @media only screen and (max-width: 1880px) {
-  .wrapper {
+  .wrapper-black {
     &__logo {
       height: 5.5em;
       width: 5.5em;
@@ -25,7 +25,7 @@
   }
 }
 @media only screen and (max-width: 1430px) {
-  .wrapper {
+  .wrapper-black {
     &__logo {
       height: 5em;
       width: 5em;
@@ -33,7 +33,7 @@
   }
 }
 @media only screen and (max-width: 1302px) {
-  .wrapper {
+  .wrapper-black {
     &__logo {
       height: 5em;
       width: 5em;
@@ -41,7 +41,7 @@
   }
 }
 @media only screen and (max-width: 1000px) {
-  .wrapper {
+  .wrapper-black {
     &__logo {
       height: 4em;
       width: 4em;
@@ -51,7 +51,7 @@
 }
 
 @media only screen and (max-width: 480px) {
-  .wrapper {
+  .wrapper-black {
     &__logo {
       height: 4em;
       width: 4em;
@@ -61,7 +61,7 @@
 }
 
 @media only screen and (max-width: 300px) {
-  .wrapper {
+  .wrapper-black {
     &__logo {
       height: 4em;
       width: 4em;

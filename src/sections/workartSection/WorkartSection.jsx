@@ -9,7 +9,6 @@ function WorkartSection() {
   useEffect(() => {
     const getAll = async () => {
       const response = await api.get("/artworks");
-      console.log(response.data.data);
       setData(response.data.data);
     };
 
@@ -21,8 +20,8 @@ function WorkartSection() {
         Explore inspiring designs
       </h2>
       <Row container gutter={32}>
-        {data.map((artwork) => (
-          <Col xs={24} sm={12} lg={8} xl={6} xxl={6}>
+        {data.map((artwork, index) => (
+          <Col xs={24} sm={12} lg={8} xl={6} xxl={6} key={index}>
             <Workart
               image={artwork.image}
               name={artwork.name}
