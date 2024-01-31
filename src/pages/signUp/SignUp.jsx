@@ -14,6 +14,7 @@ import {
   Checkbox,
 } from "antd";
 import { Link } from "react-router-dom";
+import LogoWhite from "../../component/logoWhite/LogoWhite";
 
 const MyFormItemContext = React.createContext([]);
 
@@ -67,6 +68,7 @@ function SignUp() {
   };
   return (
     <Row container className="signUp">
+      <LogoWhite />
       <Col md={24} lg={8} className="signUp__side-bar">
         <video
           muted
