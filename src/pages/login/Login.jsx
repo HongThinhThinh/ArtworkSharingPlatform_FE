@@ -6,7 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.scss";
 import api from "../../config/axios";
 import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
+import LogoWhite from "../../component/logoWhite/LogoWhite";
 const provider = new GoogleAuthProvider();
+
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
 }
@@ -69,7 +71,8 @@ function Login() {
   };
   return (
     <Row container className="login">
-      <Col md={24}lg={10} className="login__side-bar">
+      <LogoWhite/>
+      <Col md={24} lg={7} className="login__side-bar">
         <video
           muted
           autoPlay
@@ -79,7 +82,7 @@ function Login() {
           src="https://cdn.dribbble.com/uploads/48226/original/b8bd4e4273cceae2889d9d259b04f732.mp4?1689028949"
         ></video>
       </Col>
-      <Col md={24} lg={14} className="login__form">
+      <Col md={24} lg={17} className="login__form">
         <Col lg={14} className="login__form__container">
           <h3>Sign in to Cremo</h3>
           <Button
@@ -89,7 +92,7 @@ function Login() {
             <img src={ggIcon} />
             Sign in with Google
           </Button>
-          <Divider className="login__form__container__divider" plain >
+          <Divider className="login__form__container__divider" plain>
             or sign in with email
           </Divider>
           <Form
@@ -117,7 +120,7 @@ function Login() {
                     required: true,
                     message: "Please input your username!",
                   },
-                ]} 
+                ]}
               >
                 <Input className="login__form__container__namepass__group-form__input" />
               </Form.Item>
@@ -128,7 +131,17 @@ function Login() {
                 <Input className="login__form__container__namepass__group-form__input" />
               </MyFormItem> */}
               <Form.Item
-                label="Password"
+                label={
+                  <label style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
+                    <p>Password</p>
+                    <Link
+                      to="/password_resets/new"
+                      className="login__form__container__linkToSignUp__signUp"
+                    >
+                      Forgot?
+                    </Link>
+                  </label>
+                }
                 name="password"
                 className="login__form__container__namepass__group-form"
                 rules={[
