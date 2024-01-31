@@ -2,22 +2,23 @@
   position: absolute;
 
   bottom: 0em;
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.418);
-  left: 47%;
-  background: linear-gradient(180deg, #2e2e2e 0%, rgba(79, 79, 79, 0.9) 100%);
+  left: 48%;
+  background: linear-gradient(180deg, #aea9a8 0%, #cac6c4 100%);
   z-index: 1;
   font-family: "SemiBoldMonaSans";
-  padding: 2em 4em;
-  border-radius: 10px 10px 0 0;
+  padding: 0em 4em;
+  padding-top: 2em;
+  padding-bottom: 1.5em;
+  border-radius: 30px 30px 0 0;
   &__work,
   &__liked,
   &__collections {
-    color: rgb(255, 255, 255);
+    color: rgba(32, 32, 32, 0.616);
     padding: 0.7em 1em;
     border-radius: 100px;
   }
   .active {
     color: black;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.717);
   }
 }
