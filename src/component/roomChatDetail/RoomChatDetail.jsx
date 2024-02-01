@@ -2,14 +2,20 @@ import React, { useEffect, useRef } from "react";
 import Message from "../message/Message";
 import { IoSend } from "react-icons/io5";
 import { Input } from "antd";
+import "./RoomChatDetail.scss"
+import { BsImageFill } from "react-icons/bs";
+import { useStateValue } from "../../Context/StateProvider";
 const { TextArea } = Input;
 
+
 function RoomChatDetail() {
+    const {theme} = useStateValue();
   const messagesContainerRef = useRef();
   useEffect(() => {
     messagesContainerRef.current.scrollTop =
       messagesContainerRef.current.scrollHeight;
   }, []);
+
   return (
     <div className="chat-detail">
       <div className="chat-detail__header">
@@ -41,10 +47,28 @@ function RoomChatDetail() {
       </div>
 
       <div className="chat-detail__input">
-        <TextArea placeholder="Type a message" autoSize />
+      <TextArea placeholder="Type a message" autoSize style={{backgroundColor: theme? "#2b2c32": "#f6f6f6",color: theme ? "#fff" : "#000"}} />
+
+        <div className="chat-detail__input__iconSend">
+
+        <input
+          style={{ display: "none" }}
+          type="file"
+          id="file"
+          onChange={(e) => {
+            setImg(e.target.files[0]);
+            handleSend(e.target.files[0]);
+          }}
+        />
+        <label htmlFor="file">
+        <BsImageFill fontSize={"25px"} cursor={"pointer"}/>
+        </label>
         <button onClick={() => sendMessage()}>
-          <IoSend color="white" fontSize={"35px"} />
+          <IoSend color={theme?"#fff":"#000"} fontSize={"25px"}/>
         </button>
+        </div>
+        
+        
       </div>
     </div>
   );

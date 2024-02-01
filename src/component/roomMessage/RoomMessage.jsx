@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStateValue } from "../../Context/StateProvider";
 import "./RoomMessage.scss"
 
@@ -11,12 +11,12 @@ function RoomMessage({room}) {
     }
 
   return (
-    <div class="item" onClick={()=>setShow()}>
+    <div className="item" onClick={()=>setShow()}>
       <img
         src="https://demoda.vn/wp-content/uploads/2022/01/anh-dai-dien-avt-anime-nen-xanh-la-553x600.jpg"
         alt=""
       />
-      <div class="item__detail">
+      <div className="item__detail">
         <h4>Đỗ Minh</h4>
         <span>
           Lorem ipsum, dolor sit amet consect áhdf akshdv áhdg ạhdv ạhdv ạhdvas

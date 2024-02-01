@@ -1,12 +1,15 @@
-import React from "react";
-import { Button, Col, Divider, Form, Input, Row } from "antd";
-import { useNavigate } from "react-router-dom";
-import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
+import React, { useState } from "react";
+import { Button, Form, Input, Row } from "antd";
+
 import TextAreaa from "../../component/textarea/TextArea";
-import UploadImg from "../../assets/UploadImg/UploadImg";
 import Tags from "../../component/tags/Tag";
 import "./FormArtwork.scss";
-const provider = new GoogleAuthProvider();
+import ImgPreview from "../Image/Image";
+import uploadFile from "../../assets/hook/useUpload";
+import image1 from "../../assets/CremoBackground.png";
+import UploadArtWork from "../../component/UploadArtWork/UploadArtWork";
+import { useStateValue } from "../../Context/StateProvider";
+
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
 }
@@ -27,28 +30,32 @@ const MyFormItemGroup = ({ prefix, children }) => {
 };
 
 function FormArtwork() {
-  const navigate = useNavigate();
-
+  const { theme } = useStateValue();
+  const [URL, setURL] = useState(image1);
+  const getLink = async (file) => {
+    let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
+    setURL(URL);
+    URL = await uploadFile(file);
+    setURL(URL);
+  };
   const onFinish = async (value) => {};
   return (
-    <div
-      style={{
-        flexDirection: "column",
-        // display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <Row container className="FormArtWork">
+    <div>
+      <Row
+        container
+        className="FormArtWork"
+        style={{ backgroundColor: theme ? "#202020" : "#fff" }}
+      >
         <div className="FormArtWork--overlay">
-          <h3>Upload New ArtWork</h3>
           <Form
             className="login__form__container__namepass"
             name="form_item_path"
             layout="vertical"
             onFinish={onFinish}
           >
+            <h3 style={{ color: theme ? "#fff" : "#202020" }}>
+              Upload New ArtWork
+            </h3>
             <MyFormItemGroup className="login__form__container__namepass__group-form">
               <Form.Item
                 label="Title"
@@ -65,14 +72,8 @@ function FormArtwork() {
               </Form.Item>
               <Form.Item
                 label="Description"
-                name="password"
+                name="Description"
                 className="login__form__container__namepass__group-form"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your description",
-                  },
-                ]}
               >
                 <TextAreaa />
               </Form.Item>
@@ -80,27 +81,28 @@ function FormArtwork() {
                 label="Tags"
                 name="title"
                 className="login__form__container__namepass__group-form"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your title!",
-                  },
-                ]}
               >
-                <Input className="login__form__container__namepass__group-form__input" />
                 <Tags />
-              </Form.Item>
-              <Form.Item>
-                <UploadImg />
               </Form.Item>
             </MyFormItemGroup>
             <Button
               className="login__form__container__namepass__submit"
               htmlType="submit"
+              // style={{backgroundColor: theme?"#1677ff":""}}
             >
               Submit
             </Button>
           </Form>
+        </div>
+        <div className="FormArtWork--image">
+          <ImgPreview src={URL} />
+          <div
+            onChange={(e) => {
+              getLink(e.target.files[0]);
+            }}
+          >
+            <UploadArtWork />
+          </div>
         </div>
       </Row>
     </div>

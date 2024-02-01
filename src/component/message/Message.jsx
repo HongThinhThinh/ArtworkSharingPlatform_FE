@@ -2,7 +2,7 @@ import React from "react";
 import "./Message.scss"
 
 function Message({me}) {
-    console.log(me);
+    
   return (
     <div className={`message ${me}`}>
       <div className="message__detail">
@@ -13,7 +13,7 @@ function Message({me}) {
           />
         </div>
         <div className="message__detail__text">
-          <p>Lorem ipsum dolor sit amet consectetur</p>
+          <p>Lorem ipsum dolor sit amet consectetur ákjdb áibd áiud áid ádiba sdigba sdia sdiyugad iagdiasbdiausdis </p>
         </div>
       </div>
     </div>

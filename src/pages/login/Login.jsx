@@ -66,12 +66,12 @@ function Login() {
       navigate("/test");
     }
     if (role === "CREATOR") {
-      navigate("/creator");
+      navigate("/creator-manage/artworks");
     }
   };
   return (
     <Row container className="login">
-      <LogoWhite/>
+      <LogoWhite />
       <Col md={24} lg={7} className="login__side-bar">
         <video
           muted
@@ -132,7 +132,13 @@ function Login() {
               </MyFormItem> */}
               <Form.Item
                 label={
-                  <label style={{width:"100%",display:"flex",justifyContent:"space-between"}}>
+                  <label
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
                     <p>Password</p>
                     <Link
                       to="/password_resets/new"
