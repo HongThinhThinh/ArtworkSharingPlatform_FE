@@ -8,6 +8,7 @@ import ImgPreview from "../Image/Image";
 import uploadFile from "../../assets/hook/useUpload";
 import image1 from "../../assets/CremoBackground.png";
 import UploadArtWork from "../../component/UploadArtWork/UploadArtWork";
+import { useStateValue } from "../../Context/StateProvider";
 
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
@@ -16,6 +17,7 @@ const MyFormItemContext = React.createContext([]);
 
 // eslint-disable-next-line react/prop-types
 const MyFormItemGroup = ({ prefix, children }) => {
+  
   const prefixPath = React.useContext(MyFormItemContext);
   const concatPath = React.useMemo(
     () => [...prefixPath, ...toArr(prefix)],
@@ -29,6 +31,7 @@ const MyFormItemGroup = ({ prefix, children }) => {
 };
 
 function FormArtwork() {
+  const { theme } = useStateValue();
   const [URL, setURL] = useState(image1);
   const getLink = async (file) => {
     let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
@@ -38,8 +41,8 @@ function FormArtwork() {
   };
   const onFinish = async (value) => {};
   return (
-    <div>
-      <Row container className="FormArtWork">
+    <div >
+      <Row container className="FormArtWork" style={{backgroundColor: theme?"#202020":"#fff"}} >
         <div className="FormArtWork--overlay">
           <Form
             className="login__form__container__namepass"
@@ -47,7 +50,7 @@ function FormArtwork() {
             layout="vertical"
             onFinish={onFinish}
           >
-            <h3>Upload New ArtWork</h3>
+            <h3 style={{color: theme?"#fff":"#202020"}}>Upload New ArtWork</h3>
             <MyFormItemGroup className="login__form__container__namepass__group-form">
               <Form.Item
                 label="Title"
@@ -80,6 +83,7 @@ function FormArtwork() {
             <Button
               className="login__form__container__namepass__submit"
               htmlType="submit"
+              // style={{backgroundColor: theme?"#1677ff":""}}
             >
               Submit
             </Button>
