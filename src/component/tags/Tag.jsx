@@ -69,7 +69,7 @@ const Tags = () => {
     setEditInputIndex(-1);
     setEditInputValue("");
   };
-  
+
   const tagInputStyle = {
     width: 64,
     height: 22,
@@ -83,7 +83,7 @@ const Tags = () => {
   };
   return (
     <div className="tag--style">
-      <div className="tag-selected">
+      {/* <div className="tag-selected">
         {selectedTags.length > 0 && (
           <Space size={[0, 8]} wrap>
             {selectedTags.map((tag) => (
@@ -93,8 +93,8 @@ const Tags = () => {
             ))}
           </Space>
         )}
-      </div>
-      <Space size={[0, 8]} wrap>
+      </div> */}
+      <Space size={[0, 6]} wrap>
         {tags.map((tag, index) => {
           if (editInputIndex === index) {
             return (

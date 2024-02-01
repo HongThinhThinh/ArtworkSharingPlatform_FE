@@ -17,7 +17,6 @@ const MyFormItemContext = React.createContext([]);
 
 // eslint-disable-next-line react/prop-types
 const MyFormItemGroup = ({ prefix, children }) => {
-  
   const prefixPath = React.useContext(MyFormItemContext);
   const concatPath = React.useMemo(
     () => [...prefixPath, ...toArr(prefix)],
@@ -41,8 +40,12 @@ function FormArtwork() {
   };
   const onFinish = async (value) => {};
   return (
-    <div >
-      <Row container className="FormArtWork" style={{backgroundColor: theme?"#202020":"#fff"}} >
+    <div>
+      <Row
+        container
+        className="FormArtWork"
+        style={{ backgroundColor: theme ? "#202020" : "#fff" }}
+      >
         <div className="FormArtWork--overlay">
           <Form
             className="login__form__container__namepass"
@@ -50,7 +53,9 @@ function FormArtwork() {
             layout="vertical"
             onFinish={onFinish}
           >
-            <h3 style={{color: theme?"#fff":"#202020"}}>Upload New ArtWork</h3>
+            <h3 style={{ color: theme ? "#fff" : "#202020" }}>
+              Upload New ArtWork
+            </h3>
             <MyFormItemGroup className="login__form__container__namepass__group-form">
               <Form.Item
                 label="Title"
