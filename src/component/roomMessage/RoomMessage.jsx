@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { useStateValue } from "../../Context/StateProvider";
 import "./RoomMessage.scss"
 
-function RoomMessage({room}) {
+function RoomMessage({room, active, setActive}) {
     const {setIdRoomChat,setShowSearchFriends } = useStateValue();
+   
 
     const setShow = () => {
         setIdRoomChat(room)
         setShowSearchFriends(false)
+        setActive(room)
     }
 
   return (
-    <div className="item" onClick={()=>setShow()}>
+    <div className={`item ${active === room? "active": "" }`} onClick={setShow} >
       <img
         src="https://demoda.vn/wp-content/uploads/2022/01/anh-dai-dien-avt-anime-nen-xanh-la-553x600.jpg"
         alt=""

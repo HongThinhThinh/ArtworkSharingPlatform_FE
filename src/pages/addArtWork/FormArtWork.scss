@@ -28,6 +28,7 @@
         object-fit: cover;
       }
     }
+    
   }
   label.ant-form-item-required {
     color: #afadad !important;
@@ -38,6 +39,7 @@
     font-weight: 700;
   }
 }
+
 
 @media only screen and (max-width: 800px) {
   .FormArtWork {
@@ -50,6 +52,7 @@
     }
   }
 }
+
 @media only screen and (max-width: 546px) {
   .FormArtWork {
     &--overlay {
