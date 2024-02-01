@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Input, Space, Tag, theme, Tooltip } from "antd";
 import "./Tag.scss";
@@ -113,7 +113,7 @@ const Tags = () => {
           const isLongTag = tag.length > 20;
           const tagElem = (
             <Tag
-              color={selectedTags.includes(tag) ? "blue" : "default"}
+              color={selectedTags.includes(tag) ? "#b42d81" : "default"}
               onClick={() => toggleTag(tag)}
               key={tag}
               closable={

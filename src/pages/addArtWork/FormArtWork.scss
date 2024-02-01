@@ -29,16 +29,16 @@
       }
     }
   }
-  //   color: white;
+  label.ant-form-item-required {
+    color: #afadad !important;
+  }
+  label {
+    color: rgb(167, 165, 165) !important;
+    font-size: 25px;
+    font-weight: 700;
+  }
 }
-label.ant-form-item-required {
-  color: #afadad !important;
-}
-label {
-  color: rgb(167, 165, 165) !important;
-  font-size: 25px;
-  font-weight: 700;
-}
+
 @media only screen and (max-width: 800px) {
   .FormArtWork {
     &--image {
