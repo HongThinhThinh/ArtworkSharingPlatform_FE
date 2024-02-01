@@ -24,14 +24,14 @@ function FormSearchFriends() {
             <input type="text" placeholder="Search..." />
           </div>
           <div className="formSearch__friends">
-            <RoomMessage room={12}/>
-            <RoomMessage />
-            <RoomMessage />
-            <RoomMessage />
-            <RoomMessage />
-            <RoomMessage />
-            <RoomMessage />
-            <RoomMessage />
+            <RoomMessage room={1} />
+            <RoomMessage room={3}/>
+            <RoomMessage room={4}/>
+            <RoomMessage room={5}/>
+            <RoomMessage room={6}/>
+            <RoomMessage room={7}/>
+            <RoomMessage room={8}/>
+            <RoomMessage room={9}/>
           </div>
         </div>
       </div>
