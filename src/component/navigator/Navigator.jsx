@@ -45,7 +45,11 @@ function Navigator({ status }) {
             onClick={() => {
               setIsOpen(!isOpen);
             }}
-            style={{ border: "none" }}
+            style={{
+              border: "none",
+              boxShadow: "none",
+              backgroundColor: "transparent",
+            }}
           >
             <AlignLeftOutlined style={{ fontSize: "1.5em" }} />
           </Button>
