@@ -26,4 +26,13 @@ div.ant-tooltip.css-dev-only-do-not-override-1qhpsh8.ant-tooltip-placement-top{
 
 div.ant-image.css-dev-only-do-not-override-1qhpsh8{
   border: rgb(75, 215, 246) 1px solid;
+
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 546px) {
+  .wrapUpload {
+    margin-top: 30px;
+  }
+
 }

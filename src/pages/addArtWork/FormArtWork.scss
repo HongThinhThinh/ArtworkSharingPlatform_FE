@@ -30,34 +30,41 @@
     }
     
   }
-  //   color: white;
-}
-label.ant-form-item-required{
-  color: #afadad !important;
-}
-label{
-  color: rgb(167, 165, 165) !important;
-  font-size: 25px;
-  font-weight: 700;
+  label.ant-form-item-required {
+    color: #afadad !important;
+  }
+  label {
+    color: rgb(167, 165, 165) !important;
+    font-size: 25px;
+    font-weight: 700;
+  }
 }
 
+
+@media only screen and (max-width: 800px) {
+  .FormArtWork {
+    flex-direction: column-reverse;
+
+    &--image {
+      .ant-image {
+        display: none;
+      }
+    }
+  }
+}
 
 @media only screen and (max-width: 546px) {
   .FormArtWork {
-    flex-direction: row;
-    height: fit-content;
     &--overlay {
       padding: 0;
       margin-top: 30px;
+      width: 80%;
     }
     &--image {
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      .ant-image {
-        display: none;
-      }
     }
   }
 }
