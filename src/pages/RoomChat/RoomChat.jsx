@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ChatList from "../../component/chatList/ChatList";
 import ChatDetail from "../../component/chatDetail/ChatDetail";
 import "./RoomChat.scss"
@@ -7,6 +7,10 @@ import FormSearchFriends from "../../component/formSearchFriends/FormSearchFrien
 
 function RoomChat() {
   const { theme,showSearchFriends } = useStateValue();
+  // const [showChatList,setShowChatList] = useState();
+  // const isQuery = useMediaQuery()
+
+
   console.log(theme);
   console.log(theme?"#202020":"#fff");
 
