@@ -25,25 +25,31 @@ const Tags = () => {
   const [editInputValue, setEditInputValue] = useState("");
   const inputRef = useRef(null);
   const editInputRef = useRef(null);
+
   useEffect(() => {
     if (inputVisible) {
       inputRef.current?.focus();
     }
   }, [inputVisible]);
+
   useEffect(() => {
     editInputRef.current?.focus();
   }, [editInputValue]);
+
   const handleClose = (removedTag) => {
     const newTags = tags.filter((tag) => tag !== removedTag);
     console.log(newTags);
     setTags(newTags);
   };
+
   const showInput = () => {
     setInputVisible(true);
   };
+
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
   };
+
   const handleInputConfirm = () => {
     if (inputValue && !tags.includes(inputValue)) {
       setTags([...tags, inputValue]);
@@ -51,9 +57,11 @@ const Tags = () => {
     setInputVisible(false);
     setInputValue("");
   };
+
   const handleEditInputChange = (e) => {
     setEditInputValue(e.target.value);
   };
+
   const handleEditInputConfirm = () => {
     const newTags = [...tags];
     newTags[editInputIndex] = editInputValue;
@@ -61,6 +69,7 @@ const Tags = () => {
     setEditInputIndex(-1);
     setEditInputValue("");
   };
+  
   const tagInputStyle = {
     width: 64,
     height: 22,
