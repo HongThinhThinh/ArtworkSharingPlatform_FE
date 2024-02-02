@@ -5,7 +5,7 @@ import { AiFillEye } from "react-icons/ai";
 import { useState } from "react";
 
 function DropDown() {
-  const [selected, setSelected] = useState("Al");
+  const [selected, setSelected] = useState("All");
 
   const handleMenuClick = (e) => {
     message.info("Click on menu item.");

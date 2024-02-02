@@ -2,12 +2,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
+  .ant-upload-list-item-name{
+    color: rgb(167, 165, 165) !important;
+  }
+  .anticon{
+    color: rgb(167, 165, 165) !important;
+
+  }
+  
+}
+div.ant-tooltip.css-dev-only-do-not-override-1qhpsh8.ant-tooltip-placement-top{
+  display: node !important;
+  z-index: 9999;
+  &:where(.css-dev-only-do-not-override-1qhpsh8).ant-tooltip-hidden{
+    display: none !important;
+    z-index: 99999;
+  }
+  &:where(.css-dev-only-do-not-override-1qhpsh8).ant-tooltip{
+    display: none !important;
+  }
+}
+
+div.ant-image.css-dev-only-do-not-override-1qhpsh8{
+  border: rgb(75, 215, 246) 1px solid;
+
   margin-top: 10px;
 }
 
 @media only screen and (max-width: 546px) {
   .wrapUpload {
-    margin-top: 0;
-    margin-bottom: 90px;
+    margin-top: 30px;
   }
+
 }
