@@ -1,28 +1,35 @@
 import React, { useState } from "react";
 import { useStateValue } from "../../Context/StateProvider";
-import "./RoomMessage.scss"
+import "./RoomMessage.scss";
+// eslint-disable-next-line react/prop-types
+function RoomMessage({
+  room,
+  active,
+  setActive,
+  avt,
+  name,
+  lastMessage,
+  icon,
+}) {
+  const { setIdRoomChat, setShowSearchFriends } = useStateValue();
 
-function RoomMessage({room, active, setActive}) {
-    const {setIdRoomChat,setShowSearchFriends } = useStateValue();
-   
-
-    const setShow = () => {
-        setIdRoomChat(room)
-        setShowSearchFriends(false)
-        setActive(room)
-    }
+  const setShow = () => {
+    setIdRoomChat(room);
+    setShowSearchFriends(false);
+    setActive(room);
+  };
 
   return (
-    <div className={`item ${active === room? "active": "" }`} onClick={setShow} >
-      <img
-        src="https://demoda.vn/wp-content/uploads/2022/01/anh-dai-dien-avt-anime-nen-xanh-la-553x600.jpg"
-        alt=""
-      />
+    <div
+      className={`item ${active === room ? "active" : ""}`}
+      onClick={setShow}
+    >
+      <img src={avt} alt="" />
       <div className="item__detail">
-        <h4>Đỗ Minh</h4>
+        <h4>{name}</h4>
         <span>
-          Lorem ipsum, dolor sit amet consect áhdf akshdv áhdg ạhdv ạhdv ạhdvas
-          dyiuasgdiyadjhv auysfd áuyfd ádgf ạdf ạdv ạdcv
+          {icon}
+          {lastMessage}
         </span>
       </div>
     </div>
