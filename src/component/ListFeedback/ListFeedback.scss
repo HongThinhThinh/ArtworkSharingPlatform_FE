@@ -1,0 +1,124 @@
+.listFeedback {
+  height: 100vh;
+  border-left: 1px solid #e9e9e9;
+  &--contentt {
+    padding: 10px;
+    p {
+      margin: 10px 0;
+      margin-bottom: 20px;
+      font-family: "LightCereal";
+      font-size: 13px;
+    }
+    h2 {
+      font-family: "MediumCereal";
+      font-size: 20px;
+    }
+  }
+  .item.active {
+    padding: 10px;
+
+    background-color: white;
+    justify-content: unset;
+    h4 {
+      color: hsl(0, 0%, 24%);
+    }
+    span {
+      color: hsl(102, 39%, 50%);
+      display: flex;
+      align-items: center;
+      svg {
+        margin-right: 5px;
+        background-color: hsl(102, 39%, 50%);
+        border-radius: 50%;
+      }
+    }
+  }
+  h1 {
+    font-size: 20px;
+    margin-left: 20px;
+    padding-top: 30px;
+    font-family: "BoldCereal";
+  }
+  &--interact {
+    font-family: "LightCereal";
+    display: flex;
+    padding: 10px;
+    gap: 15px;
+    font-size: 15px;
+    > * {
+      gap: 2px;
+      display: flex;
+      align-items: center;
+    }
+    &__like {
+      path {
+        color: red;
+      }
+    }
+  }
+  &--comments {
+    overflow-y: scroll;
+    height: 455px;
+    border-top: 1px solid #e9e9e9;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    .item.active {
+      background-color: white;
+      justify-content: unset;
+      h4 {
+        color: hsl(0, 0%, 24%);
+        font-family: "BoldCereal";
+      }
+      span {
+        font-family: "LightCereal";
+        white-space: wrap;
+        width: 300px;
+        overflow: visible;
+        color: rgb(60, 60, 60);
+        display: flex;
+        align-items: center;
+      }
+      .item__detail {
+        width: 100%;
+        line-height: 15px;
+      }
+    }
+    &__detail {
+      margin: 13px 20px;
+      border-bottom: 1px solid #e9e9e9;
+    }
+  }
+  &--input {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+    gap: 20px;
+    // justify-content: center;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+    &_wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      input {
+        width: 300px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #c0b6b6;
+        background-color: #f7f7f7;
+        padding: 0 10px;
+        outline: none;
+        position: relative;
+      }
+      &__send {
+        position: absolute;
+        right: 60px;
+        path {
+        }
+      }
+    }
+  }
+}

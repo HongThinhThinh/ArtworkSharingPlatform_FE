@@ -17,6 +17,7 @@ import CreatorProduct from "../pages/creator/creator-product/CreatorProduct";
 import CreatorProfile from "../pages/creator/creator-profile/CreatorProfile";
 import CreatorSetting from "../pages/creator/creator-setting/CreatorSetting";
 import FormArtwork from "../pages/addArtWork/FormArtWork";
+import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,14 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "artworksDetails",
+    element: (
+      <div>
+        <ArtworkDetails />,
+      </div>
+    ),
+  },
 
   {
     path: "/",
@@ -71,7 +80,6 @@ export const router = createBrowserRouter([
         <Footer />
       </div>
     ),
-    // outlet sẽ show thằng con của nó
     children: [
       {
         path: "/",
@@ -79,6 +87,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/creator",
     element: (
@@ -87,7 +96,6 @@ export const router = createBrowserRouter([
         <CreatorPage />
       </div>
     ),
-    // outlet sẽ show thằng con của nó
     children: [
       {
         path: "",
