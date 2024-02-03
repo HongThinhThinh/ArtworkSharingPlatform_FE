@@ -17,7 +17,11 @@ import CreatorProduct from "../pages/creator/creator-product/CreatorProduct";
 import CreatorProfile from "../pages/creator/creator-profile/CreatorProfile";
 import CreatorSetting from "../pages/creator/creator-setting/CreatorSetting";
 import FormArtwork from "../pages/addArtWork/FormArtWork";
+
+import Main from "../pages/dashboard/layout/main-dashboard/Main";
+
 import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails";
+
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +39,10 @@ export const router = createBrowserRouter([
   {
     path: "/password_resets/new",
     element: <ForgotPassword />,
+  },
+  {
+    path: "/dashboard",
+    element: <Main />,
   },
   {
     path: "creator-manage",

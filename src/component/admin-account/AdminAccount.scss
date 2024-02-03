@@ -1,0 +1,102 @@
+.admin-account {
+  display: flex;
+  height: min-content;
+  align-items: center;
+  padding-right: 1em;
+  border-radius: 100px;
+  background-color: #1f1f1f;
+  margin-left: 1em;
+  &__avatar {
+    height: 55px !important;
+    width: 55px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(240, 157, 171);
+  }
+  &__info {
+    padding: 0 1em;
+    h3 {
+      font-family: "BookCereal";
+      font-size: medium;
+    }
+    p {
+      font-family: "LightCereal";
+      font-size: smaller;
+      color: rgba(255, 255, 255, 0.733);
+      text-wrap: nowrap;
+    }
+  }
+}
+
+@media only screen and (max-width: 1435px) {
+  .admin-account {
+    &__avatar {
+      height: 50px !important;
+      width: 50px !important;
+    }
+    &__info {
+      padding: 0 1em;
+      h3 {
+        font-size: small;
+      }
+      p {
+        font-size: x-small;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1310px) {
+  .admin-account {
+    &__avatar {
+      height: 50px !important;
+      width: 50px !important;
+    }
+    &__info {
+      padding: 0 1em;
+      h3 {
+        font-size: small;
+      }
+      p {
+        font-size: x-small;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .admin-account {
+    &__avatar {
+      height: 45px !important;
+      width: 45px !important;
+    }
+    &__info {
+      padding: 0 0.7em;
+      h3 {
+        font-size: smaller;
+      }
+      p {
+        font-size: 8px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 1160px) {
+  .admin-account {
+    margin-left: 0.5em;
+    &__avatar {
+      height: 41.5px !important;
+      width: 41.5px !important;
+    }
+    &__info {
+      padding: 0 0.5em;
+      h3 {
+        font-size: smaller;
+      }
+      p {
+        font-size: xx-small;
+      }
+    }
+  }
+}
