@@ -29,19 +29,19 @@
     }
     svg {
       color: white;
-      font-size: 30px;
+      font-size: 25px;
     }
     &__addArtwork {
       svg {
-        font-size: 35px;
+        font-size: 32px;
       }
     }
     &__avt {
       padding: 9px;
       img {
         border-radius: 50%;
-        width: 34 px;
-        height: 34px;
+        width: 32px;
+        height: 32px;
       }
     }
   }
@@ -54,7 +54,8 @@
   }
 }
 .active_state {
-  background-color: #ddd;
+  // background-color: #ddd;
+  border-left: 3px solid #ddd;
   width: 100%;
 }
 @media only screen and (max-width: 550px) {
@@ -89,5 +90,10 @@
     &--setting {
       display: none;
     }
+  }
+
+  .active_state {
+    border: none;
+    background-color: pink;
   }
 }
