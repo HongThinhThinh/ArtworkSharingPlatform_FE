@@ -4,6 +4,7 @@ import "./ArtworkDetails.scss";
 import ArtworkInfo from "../../component/ArtworkInfo/ArtworkInfo";
 import ListFeedback from "../../component/ListFeedback/ListFeedback";
 import CreatorWorkart from "../../sections/creatorWorkart/CreatorWorkart";
+import WorkartSection from "../../sections/workartSection/WorkartSection";
 
 function ArtworkDetails() {
   // call api lưu vào state
@@ -19,8 +20,7 @@ function ArtworkDetails() {
           <ListFeedback />
         </div>
       </div>
-      {/* <h1>Maybe you like</h1>
-      <CreatorWorkart /> */}
+      <WorkartSection />
     </>
   );
 }
