@@ -1,5 +1,7 @@
 .artworkInfo {
   &--back {
+    margin-top: 10px;
+    margin-left: 10px;
     svg {
       font-size: 25px;
       cursor: pointer;
@@ -15,8 +17,12 @@
       width: 90%;
       height: 90%;
       .ant-image {
+        justify-content: center;
         width: 100% !important;
         height: 100% !important;
+        .ant-space {
+          justify-content: center;
+        }
       }
       img {
         object-fit: cover;
@@ -49,6 +55,24 @@
       }
       svg {
         font-size: 25px;
+      }
+    }
+  }
+}
+.ant-space.css-dev-only-do-not-override-1qhpsh8.ant-space-horizontal.ant-space-align-center.toolbar-wrapper {
+  justify-content: center;
+}
+
+@media only screen and (max-width: 550px) {
+  .artworkInfo {
+    &--back {
+      position: absolute;
+      top: 0;
+      margin-bottom: 20px;
+    }
+    &--img {
+      &__image {
+        width: 100%;
       }
     }
   }

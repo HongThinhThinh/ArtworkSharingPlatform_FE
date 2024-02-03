@@ -1,0 +1,16 @@
+.imgPreview {
+  .ant-image {
+    img {
+      height: 90vh;
+    }
+  }
+}
+@media only screen and (max-width: 570px) {
+  .imgPreview {
+    .ant-image {
+      img {
+        height: 50vh;
+      }
+    }
+  }
+}

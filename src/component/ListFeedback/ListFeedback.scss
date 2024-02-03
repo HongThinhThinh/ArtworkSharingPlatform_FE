@@ -16,7 +16,6 @@
   }
   .item.active {
     padding: 10px;
-
     background-color: white;
     justify-content: unset;
     h4 {
@@ -39,16 +38,39 @@
     padding-top: 30px;
     font-family: "BoldCereal";
   }
+  &--listInteract {
+    display: flex;
+    font-family: "LightCereal";
+    font-size: 15px;
+    align-items: center;
+    > * {
+      justify-content: flex-end;
+      gap: 3px;
+      display: flex;
+      align-items: center;
+      width: calc(100% / 3);
+    }
+  }
   &--interact {
     font-family: "LightCereal";
     display: flex;
     padding: 10px;
-    gap: 15px;
     font-size: 15px;
+    &__close {
+      display: none;
+      position: absolute;
+      bottom: 40px;
+      right: 20px;
+      font-size: 23px;
+    }
     > * {
-      gap: 2px;
+      cursor: pointer;
+      justify-content: center;
+      gap: 3px;
       display: flex;
       align-items: center;
+      width: calc(100% / 3);
+      // border-right: 1px solid red;
     }
     &__like {
       path {
@@ -58,16 +80,20 @@
   }
   &--comments {
     overflow-y: scroll;
-    height: 455px;
+    height: 410px;
     border-top: 1px solid #e9e9e9;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    transition: all 2s;
+    .close {
+      height: 0;
+    }
     .item.active {
       background-color: white;
       justify-content: unset;
       h4 {
         color: hsl(0, 0%, 24%);
-        font-family: "BoldCereal";
+        font-family: "BoldCereal" !important;
       }
       span {
         font-family: "LightCereal";
@@ -81,10 +107,14 @@
       .item__detail {
         width: 100%;
         line-height: 15px;
+        // h4 {
+        //   background-color: red;
+        //   font-family: "BoldCereal";
+        // }
       }
     }
     &__detail {
-      margin: 13px 20px;
+      margin: 13px 20px !important;
       border-bottom: 1px solid #e9e9e9;
     }
   }
@@ -103,8 +133,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 100%;
       input {
-        width: 300px;
+        width: 100%;
         height: 40px;
         border-radius: 5px;
         border: 1px solid #c0b6b6;
@@ -120,5 +151,32 @@
         }
       }
     }
+  }
+
+  .item.active {
+    margin-top: 20px;
+    .item__detail {
+      h4 {
+        font-family: "BoldCereal";
+      }
+      span {
+        font-family: "LightCereal";
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .listFeedback {
+    height: fit-content;
+    &--comments {
+      height: 0;
+    }
+    .item.active {
+      margin-top: 40px;
+    }
+  }
+  .wrapListfeedback {
+    // height: 0;
   }
 }

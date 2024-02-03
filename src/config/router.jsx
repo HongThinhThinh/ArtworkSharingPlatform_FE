@@ -63,10 +63,11 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "artworksDetails",
+    path: "artworkDetails",
     element: (
       <div>
         <ArtworkDetails />,
+        <Footer />
       </div>
     ),
   },
