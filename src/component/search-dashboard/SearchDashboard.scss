@@ -1,0 +1,29 @@
+.search-dashboard {
+  font-size: 1.075em;
+  font-family: "MediumCereal";
+  border-radius: 100px;
+  height: fit-content;
+  color: rgb(255, 255, 255);
+  width: min-content;
+  background-color: transparent;
+  transition: all 0.5s ease;
+  border: 1px solid rgba(255, 255, 255, 0.489);
+  margin: 1em;
+  padding: 12px 5px 12px 15px;
+}
+.ant-input {
+  font-family: "MediumCereal" !important;
+}
+.search-dashboard.active {
+  background-color: #1f1f1f;
+  width: 40%;
+  color: white;
+}
+
+@media only screen and (max-width: 1160px) {
+  .search-dashboard {
+    font-size: 0.9em;
+    margin: 0.7em;
+    padding: 10px 3px 10px 13px;
+  }
+}
