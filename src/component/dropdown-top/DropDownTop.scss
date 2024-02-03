@@ -1,12 +1,16 @@
 .DropDownTop {
   margin: 20px;
+  display: flex;
+  align-items: center;
   &--span {
     margin: 20px;
     font-weight: 800;
     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
       "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   }
-
+.ant-space .ant-space-item{
+  margin: 0;
+}
   .ant-dropdown-trigger {
     font-weight: 500;
     width: 104px;
