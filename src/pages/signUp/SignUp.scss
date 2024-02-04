@@ -87,7 +87,6 @@
   }
 }
 
-
 @media only screen and (max-width: 990px) {
   .signUp {
     &__side-bar {
@@ -104,12 +103,11 @@
 
 @media only screen and (max-width: 700px) {
   .signUp {
-   &__form {
-    padding: 0 2em;
-   }
+    &__form {
+      padding: 0 2em;
+    }
   }
 }
 
 @media only screen and (max-width: 480px) {
-  
 }

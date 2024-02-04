@@ -17,6 +17,7 @@ import CreatorProduct from "../pages/creator/creator-product/CreatorProduct";
 import CreatorProfile from "../pages/creator/creator-profile/CreatorProfile";
 import CreatorSetting from "../pages/creator/creator-setting/CreatorSetting";
 import FormArtwork from "../pages/addArtWork/FormArtWork";
+
 import Main from "../pages/dashboard/layout/main-dashboard/Main";
 import Mode from "../pages/dashboard/pages/mode/Mode";
 import Overview from "../pages/dashboard/pages/overview/Overview";
@@ -24,6 +25,10 @@ import Posts from "../pages/dashboard/pages/posts/Posts";
 import ReportedPosts from "../pages/dashboard/pages/reported-posts/ReportedPosts";
 import Audiences from "../pages/dashboard/pages/audiences/Audiences";
 import Creators from "../pages/dashboard/pages/creators/Creators";
+
+import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails";
+import OTP from "../pages/verifyOTP/OTP";
+
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +46,10 @@ export const router = createBrowserRouter([
   {
     path: "/password_resets/new",
     element: <ForgotPassword />,
+  },
+  {
+    path: "/account/unverified",
+    element: <OTP />,
   },
   {
     path: "/dashboard",
@@ -98,6 +107,15 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "artworkDetails",
+    element: (
+      <div>
+        <ArtworkDetails />,
+        <Footer />
+      </div>
+    ),
+  },
 
   {
     path: "/",
@@ -108,7 +126,6 @@ export const router = createBrowserRouter([
         <Footer />
       </div>
     ),
-    // outlet sẽ show thằng con của nó
     children: [
       {
         path: "/",
@@ -116,6 +133,7 @@ export const router = createBrowserRouter([
       },
     ],
   },
+
   {
     path: "/creator",
     element: (
@@ -124,7 +142,6 @@ export const router = createBrowserRouter([
         <CreatorPage />
       </div>
     ),
-    // outlet sẽ show thằng con của nó
     children: [
       {
         path: "",
