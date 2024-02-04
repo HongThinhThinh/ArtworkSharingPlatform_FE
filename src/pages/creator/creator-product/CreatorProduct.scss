@@ -1,22 +1,11 @@
-.listArtWork {
+.creator-product {
   overflow-y: scroll;
   height: 100vh;
-  &--items {
-    // display: none;
-  }
-}
-
-.creator-profilee {
-  height: 40vh;
-  &__img {
-    .ant-image {
-      width: 100px;
-      height: 100px;
-      img {
-        width: 100%;
-        height: fit-content;
-        object-fit: cover;
-      }
+  .listArtWork {
+    overflow-y: visible;
+    height: 100vh;
+    &--items {
+      // display: none;
     }
   }
 }
