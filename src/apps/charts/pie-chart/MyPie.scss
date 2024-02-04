@@ -1,0 +1,12 @@
+.usersBar {
+  height: 100%;
+  width: 100%;
+  h2 {
+    text-align: center;
+    transform: translateX(2em) translateY(2em);
+  }
+  span {
+    color: black !important;
+    font-family: "BookCereal" !important;
+  }
+}

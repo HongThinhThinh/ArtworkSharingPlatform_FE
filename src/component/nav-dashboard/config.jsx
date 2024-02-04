@@ -8,30 +8,60 @@ import {
 
 export const navDashboardConfig = [
   {
+    key: "1",
     icon: <StockOutlined />,
-    title: "Overview",
-    path: "/dashboard",
+    label: "Overview",
   },
   {
-    icon: <UserOutlined />,
-    title: "Mode",
-    path: "/dashboard/mode",
-  },
-  {
+    key: "2",
     icon: <TeamOutlined />,
-    title: "Users",
-    path: "/dashboard/users",
+    label: "Users",
+    children: [
+      {
+        key: "21",
+        label: "Modes",
+      },
+      {
+        key: "22",
+        label: "Creators",
+      },
+      {
+        key: "23",
+        label: "Audiences",
+      },
+    ],
   },
   {
+    key: "3",
     icon: <SolutionOutlined />,
-    title: "Posts",
-    path: "/dashboard/posts",
+    label: "Posts",
   },
   {
+    key: "4",
     icon: <FileExclamationOutlined />,
-    title: "Reported Posts",
-    path: "/dashboard/reported-posts",
+    label: "Reported Posts",
   },
 ];
+
+export const navpath = {
+  1: {
+    path: "/dashboard/overview",
+  },
+  21: {
+    path: "/dashboard/modes",
+  },
+  22: {
+    path: "/dashboard/creators",
+  },
+  23: {
+    path: "/dashboard/audiences",
+  },
+  3: {
+    path: "/dashboard/posts",
+  },
+  4: {
+    path: "/dashboard/reported-posts",
+  },
+};
 
 export default navDashboardConfig;

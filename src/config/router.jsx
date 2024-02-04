@@ -18,6 +18,12 @@ import CreatorProfile from "../pages/creator/creator-profile/CreatorProfile";
 import CreatorSetting from "../pages/creator/creator-setting/CreatorSetting";
 import FormArtwork from "../pages/addArtWork/FormArtWork";
 import Main from "../pages/dashboard/layout/main-dashboard/Main";
+import Mode from "../pages/dashboard/pages/mode/Mode";
+import Overview from "../pages/dashboard/pages/overview/Overview";
+import Posts from "../pages/dashboard/pages/posts/Posts";
+import ReportedPosts from "../pages/dashboard/pages/reported-posts/ReportedPosts";
+import Audiences from "../pages/dashboard/pages/audiences/Audiences";
+import Creators from "../pages/dashboard/pages/creators/Creators";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +45,32 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Main />,
+    children: [
+      {
+        path: "/dashboard/overview",
+        element: <Overview />,
+      },
+      {
+        path: "/dashboard/modes",
+        element: <Mode />,
+      },
+      {
+        path: "/dashboard/audiences",
+        element: <Audiences />,
+      },
+      {
+        path: "/dashboard/creators",
+        element: <Creators />,
+      },
+      {
+        path: "/dashboard/posts",
+        element: <Posts />,
+      },
+      {
+        path: "/dashboard/reported-posts",
+        element: <ReportedPosts />,
+      },
+    ],
   },
   {
     path: "creator-manage",

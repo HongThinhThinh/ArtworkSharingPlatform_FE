@@ -9,7 +9,7 @@ import { LeftCircleFilled, LeftCircleTwoTone } from "@ant-design/icons";
 const { Content, Sider } = Layout;
 
 function Main({ children }) {
-  const [isExpand, setIsExpand] = useState(true);
+  const [isExpand, setIsExpand] = useState(false);
   const [visible, setVisible] = useState(false);
 
   const openDrawer = () => setVisible(!visible);
@@ -36,22 +36,21 @@ function Main({ children }) {
       </Drawer>
 
       <Sider
-        breakpoint="lg"
-        collapsedWidth="0"
+        collapsed={isExpand}
+        collapsedWidth={90}
         trigger={null}
-        width={isExpand ? 300 : 90}
+        width={300}
         style={{
           backgroundColor: "transparent",
-          borderRadius: "50px",
           transition: "all 0.5s ease-out",
         }}
         className="sider-primary ant-layout-sider-primary sider-toggle"
       >
         <LeftCircleFilled
-          className={`expand-icon ${!isExpand ? "rotate" : ""}`}
+          className={`expand-icon ${isExpand ? "rotate" : ""}`}
           onClick={() => setIsExpand(!isExpand)}
         />
-        <SideNav style={{ width: "100%" }} isExpand={isExpand} />
+        <SideNav style={{ width: "100%" }} />
       </Sider>
 
       <Layout>
