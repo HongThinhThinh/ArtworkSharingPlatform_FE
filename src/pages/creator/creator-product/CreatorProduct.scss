@@ -1,7 +1,11 @@
-.listArtWork {
+.creator-product {
   overflow-y: scroll;
   height: 100vh;
-  &--items {
-    // display: none;
+  .listArtWork {
+    overflow-y: visible;
+    height: 100vh;
+    &--items {
+      // display: none;
+    }
   }
 }
