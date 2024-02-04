@@ -1,34 +1,32 @@
-import { Menu, Button } from "antd";
-import { NavLink, useLocation } from "react-router-dom";
+import { Menu } from "antd";
+import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../../../component/Logo/Logo";
-import navDashboardConfig from "../../../../component/nav-dashboard/config";
 import "./SideNav.scss";
-function SideNav({ isExpand }) {
+import navDashboardConfig, {
+  navpath,
+} from "../../../../component/nav-dashboard/config";
+
+function SideNav({}) {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
   const page = pathname.replace("/", "");
+  const onClick = (e) => {
+    navigate(navpath[e.key].path);
+  };
 
   return (
     <>
       <div className="brand">
         <Logo type="white" />
       </div>
-      <Menu className="menu-sidebar" mode="inline">
-        {navDashboardConfig.map((nav, index) => (
-          <Menu.Item className="menu-sidebar__item" key={index} style={{}}>
-            {nav.icon}
-            {isExpand ? (
-              <NavLink style={{ marginLeft: "1em" }} to={nav.path}>
-                <span
-                  className="menu-sidebar__item__label"
-                  style={{ fontSize: "1em" }}
-                >
-                  {nav.title}
-                </span>
-              </NavLink>
-            ) : null}
-          </Menu.Item>
-        ))}
-      </Menu>
+      <Menu
+        onClick={onClick}
+        defaultOpenKeys={["sub1"]}
+        mode="inline"
+        theme="dark"
+        items={navDashboardConfig}
+        className="menu-sidebar"
+      />
     </>
   );
 }
