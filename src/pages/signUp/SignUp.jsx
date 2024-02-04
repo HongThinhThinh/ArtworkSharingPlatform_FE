@@ -15,6 +15,7 @@ import {
 } from "antd";
 import { Link } from "react-router-dom";
 import LogoWhite from "../../component/logoWhite/LogoWhite";
+import { IoIosArrowBack } from "react-icons/io";
 
 const MyFormItemContext = React.createContext([]);
 
@@ -117,7 +118,7 @@ function SignUp() {
             .
           </h4>
           <h5 className="signUp__form__container__linkToSignUp">
-            Don't have an account?{" "}
+          Already have an account? {" "}
             <Link
               to="/login"
               className="signUp__form__container__linkToSignUp__signUp"
@@ -130,7 +131,8 @@ function SignUp() {
         <Drawer
           title={
             <Space>
-              <Button onClick={onClose}>Back</Button>
+              {/* <Button onClick={onClose}>Back</Button> */}
+              <Button onClick={onClose}> <IoIosArrowBack /> </Button>
             </Space>
           }
           placement="top"
@@ -191,17 +193,17 @@ function SignUp() {
               <Link to="" className="about__detail">
                 Notification Settings
               </Link>
-              .
+              
             </Checkbox>
             <Button
               className="sign-up-form__container__namepass__submit"
               htmlType="submit"
             >
-              Sign in
+              Create Account
             </Button>
           </Form>
           <h5 className="signUp__form__container__linkToSignUp">
-            Don't have an account?
+              Already have an account?
             <Link
               to="/login"
               className="signUp__form__container__linkToSignUp__signUp"
