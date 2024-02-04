@@ -21,6 +21,7 @@ import FormArtwork from "../pages/addArtWork/FormArtWork";
 import Main from "../pages/dashboard/layout/main-dashboard/Main";
 
 import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails";
+import OTP from "../pages/verifyOTP/OTP";
 
 
 export const router = createBrowserRouter([
@@ -39,6 +40,10 @@ export const router = createBrowserRouter([
   {
     path: "/password_resets/new",
     element: <ForgotPassword />,
+  },
+  {
+    path: "/account/unverified",
+    element: <OTP />,
   },
   {
     path: "/dashboard",
