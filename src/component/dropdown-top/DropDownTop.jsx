@@ -4,7 +4,6 @@ function DropdownTop() {
   return (
     <div>
       <div className="DropDownTop">
-        <span className="DropDownTop--span">Artwork</span>
         <DropDown />
       </div>
     </div>

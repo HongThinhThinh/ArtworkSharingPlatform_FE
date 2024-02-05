@@ -6,6 +6,7 @@ import { useStateValue } from "../../../Context/StateProvider";
 import ImgPreview from "../../Image/Image";
 import { Button } from "antd";
 import CreatorProfile from "../creator-profile/CreatorProfile";
+import Filter from "../../../component/dropdown/Filter";
 
 function CreatorProduct() {
   const { theme } = useStateValue();
@@ -19,7 +20,13 @@ function CreatorProduct() {
     >
       <CreatorProfile />
       <div className="listArtWork">
-        <DropdownTop />
+        <div className="list-drop">
+          <span className="DropDownTop--span">Artwork</span>
+          <div className="filter">
+            <DropdownTop />
+            <Filter />
+          </div>
+        </div>
         <div className="listArtWork--items">
           <CreatorWorkart />
           <CreatorWorkart />
