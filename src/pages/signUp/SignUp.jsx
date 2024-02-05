@@ -156,6 +156,31 @@ function SignUp() {
             onFinish={onFinish}
           >
             <MyFormItemGroup className="sign-up-form__group-form">
+              <MyFormItem className="sign-up-form__group-form__role">
+                <label className="sign-up-form__group-form__role__label">
+                  Role
+                </label>
+                <Radio.Group
+                  defaultValue="audience"
+                  onChange={(e) => setRole(e.target.value)}
+                  className="sign-up-form__group-form__role__option"
+                >
+                  <Radio.Button
+                    value="audience"
+                    className="sign-up-form__group-form__role__option__detail"
+                    style={{ borderRadius: "10px 0 0 10px", backgroundColor: role === 'audience' ? 'black' : 'white' }}
+                  >
+                    Audience
+                  </Radio.Button>
+                  <Radio.Button
+                    value="creator"
+                    className="sign-up-form__group-form__role__option__detail"
+                    style={{ borderRadius: "0 10px  10px 0",  backgroundColor: role === 'creator' ? 'black' : 'white',}}
+                  >
+                    Creator
+                  </Radio.Button>
+                </Radio.Group>
+              </MyFormItem>
               <MyFormItem className="sign-up-form__group-form__flex">
                 <Row>
                   <Col md={11} lg={11}>
@@ -187,31 +212,6 @@ function SignUp() {
                 />
               </MyFormItem>
               <MyFormItem className="sign-up-form__group-form__role">
-                <div>
-                  <label className="sign-up-form__group-form__role__label">
-                    Your Role
-                  </label>
-                  <Radio.Group
-                    defaultValue="audience"
-                    buttonStyle="solid"
-                    onChange={(e) => setRole(e.target.value)}
-                    className="sign-up-form__group-form__role__option"
-                  >
-                    <Radio.Button
-                      value="audience"
-                      className="sign-up-form__group-form__role__option__detail"
-                      style={{marginRight:"0.3em"}}
-                    >
-                      Audience
-                    </Radio.Button>
-                    <Radio.Button
-                      value="creator"
-                      className="sign-up-form__group-form__role__option__detail"
-                    >
-                      Creator
-                    </Radio.Button>
-                  </Radio.Group>
-                </div>
                 {role === "creator" && (
                   <div>
                     <label className="sign-up-form__group-form__role__label">
