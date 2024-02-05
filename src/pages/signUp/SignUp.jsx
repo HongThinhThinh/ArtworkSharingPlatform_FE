@@ -12,6 +12,8 @@ import {
   Space,
   Input,
   Checkbox,
+  Select,
+  Radio,
 } from "antd";
 import { Link } from "react-router-dom";
 import LogoWhite from "../../component/logoWhite/LogoWhite";
@@ -46,6 +48,8 @@ const MyFormItem = ({ name, ...props }) => {
 function SignUp() {
   const { token } = theme.useToken();
   const [open, setOpen] = useState(false);
+  const [role, setRole] = useState("Audience");
+
   const showDrawer = () => {
     setOpen(true);
   };
@@ -118,7 +122,7 @@ function SignUp() {
             .
           </h4>
           <h5 className="signUp__form__container__linkToSignUp">
-          Already have an account? {" "}
+            Already have an account?{" "}
             <Link
               to="/login"
               className="signUp__form__container__linkToSignUp__signUp"
@@ -132,7 +136,10 @@ function SignUp() {
           title={
             <Space>
               {/* <Button onClick={onClose}>Back</Button> */}
-              <Button onClick={onClose}> <IoIosArrowBack /> </Button>
+              <Button onClick={onClose}>
+                {" "}
+                <IoIosArrowBack />{" "}
+              </Button>
             </Space>
           }
           placement="top"
@@ -151,14 +158,14 @@ function SignUp() {
             <MyFormItemGroup className="sign-up-form__group-form">
               <MyFormItem className="sign-up-form__group-form__flex">
                 <Row>
-                  <Col lg={11}>
+                  <Col md={11} lg={11}>
                     <label className="sign-up-form__group-form__flex__label">
                       Name
                     </label>
                     <Input className="sign-up-form__group-form__flex__input" />
                   </Col>
-                  <Col lg={1}></Col>
-                  <Col lg={12}>
+                  <Col md={2} lg={1}></Col>
+                  <Col md={11} lg={12}>
                     <label className="sign-up-form__group-form__flex__label">
                       Username
                     </label>
@@ -179,6 +186,41 @@ function SignUp() {
                   placeholder="6+ characters"
                 />
               </MyFormItem>
+              <MyFormItem className="sign-up-form__group-form__role">
+                <div>
+                  <label className="sign-up-form__group-form__role__label">
+                    Your Role
+                  </label>
+                  <Radio.Group
+                    defaultValue="audience"
+                    buttonStyle="solid"
+                    onChange={(e) => setRole(e.target.value)}
+                    className="sign-up-form__group-form__role__option"
+                  >
+                    <Radio.Button
+                      value="audience"
+                      className="sign-up-form__group-form__role__option__detail"
+                      style={{marginRight:"0.3em"}}
+                    >
+                      Audience
+                    </Radio.Button>
+                    <Radio.Button
+                      value="creator"
+                      className="sign-up-form__group-form__role__option__detail"
+                    >
+                      Creator
+                    </Radio.Button>
+                  </Radio.Group>
+                </div>
+                {role === "creator" && (
+                  <div>
+                    <label className="sign-up-form__group-form__role__label">
+                      Your Phone
+                    </label>
+                    <Input className="sign-up-form__group-form__role__input" />
+                  </div>
+                )}
+              </MyFormItem>
             </MyFormItemGroup>
             <Checkbox onChange={onChange}>
               I agree with Cremo{" "}
@@ -193,17 +235,14 @@ function SignUp() {
               <Link to="" className="about__detail">
                 Notification Settings
               </Link>
-              
             </Checkbox>
-            <Button
-              className="sign-up-form__container__namepass__submit"
-              htmlType="submit"
-            >
+
+            <Button className="sign-up-form__submit-create" htmlType="submit">
               Create Account
             </Button>
           </Form>
           <h5 className="signUp__form__container__linkToSignUp">
-              Already have an account?
+            Already have an account?
             <Link
               to="/login"
               className="signUp__form__container__linkToSignUp__signUp"
