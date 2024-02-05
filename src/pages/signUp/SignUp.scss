@@ -122,11 +122,13 @@
       &__option {
         &__detail {
           height: 3.5em;
-          width: 22vw;
+          width: 22.5vw;
           margin: 0.5em 0;
           text-align: center;
           padding: 0.5em;
-          // align-items: center;
+          color: #0d0c22;
+          font-family: "SemiBoldMonaSans";
+          border: 0.5px solid rgba(0, 0, 0, 0.265) !important;
         }
       }
     }
