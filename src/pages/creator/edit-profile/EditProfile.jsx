@@ -55,6 +55,7 @@ const EditProfile = () => {
     <div className="editProfileCreator">
       <Space>
         <Button
+          size="middle"
           className="login__form__container__namepass__submit"
           htmlType="submit"
           // style={{backgroundColor: theme?"#1677ff":""}}
@@ -64,6 +65,7 @@ const EditProfile = () => {
         </Button>{" "}
       </Space>
       <Drawer
+        className="PopUpRight"
         title="Edit Your Profile"
         placement="right"
         onClose={() => toggleDrawer(0, false)}
