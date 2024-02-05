@@ -42,7 +42,8 @@ const DraggableUploadListItem = ({ originNode, file }) => {
     </div>
   );
 };
-const UploadArtWork = () => {
+// eslint-disable-next-line react/prop-types
+const UploadArtWork = ({ content }) => {
   const [fileList, setFileList] = useState([]);
   const sensor = useSensor(PointerSensor, {
     activationConstraint: {
@@ -77,7 +78,7 @@ const UploadArtWork = () => {
             )}
           >
             {fileList.length < 1 && (
-              <Button icon={<UploadOutlined />}>Upload Artwork</Button>
+              <Button icon={<UploadOutlined />}>{content}</Button>
             )}
           </Upload>
         </SortableContext>

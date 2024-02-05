@@ -1,0 +1,78 @@
+.editProfileCreator {
+  //   background-color: red;
+  .ant-space {
+    width: fit-content;
+  }
+}
+
+.ant-drawer {
+  &-header {
+    background-color: rgb(32, 32, 32) !important;
+    > * {
+      color: white !important;
+    }
+  }
+  &-close {
+    color: white !important;
+  }
+  &-title {
+    color: white !important;
+  }
+  &-content-wrapper {
+    width: 400px !important;
+    .acss-1g5mw59 {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+      background-color: transparent !important;
+      border: none;
+      box-shadow: rgb(91 91 91 / 82%) -7px 4px 12px 3px;
+    }
+  }
+}
+.ChangeProfileInfo {
+  .ant-col {
+    text-align: start;
+  }
+  .ant-row {
+    display: block;
+  }
+  label.ant-form-item-required {
+    color: #afadad !important;
+    width: 100%;
+    display: block;
+    text-align: start;
+  }
+  label {
+    color: rgb(167, 165, 165) !important;
+    font-size: 25px;
+    font-weight: 700;
+  }
+  .ant-input {
+    display: block;
+    width: 100%;
+  }
+  .changeAvt {
+    margin-bottom: 20px;
+    font-family: "BoldCereal";
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    span {
+      font-family: "MediumCereal";
+    }
+    &--img {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+      .wrapUpload {
+        margin: 0;
+      }
+    }
+  }
+}
