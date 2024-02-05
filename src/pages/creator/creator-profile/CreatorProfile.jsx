@@ -1,10 +1,11 @@
 import React from "react";
 import ImgPreview from "../../Image/Image";
-import { Button } from "antd";
 import "./CreatorProfile.scss";
-import { IoMdNotificationsOutline } from "react-icons/io";
 import Notification from "../../../component/notification/Notification";
+import { useNavigate } from "react-router";
+import EditProfile from "../edit-profile/EditProfile";
 function CreatorProfile() {
+  const navigate = useNavigate();
   return (
     <div className="wrap-creatorProfile">
       <div className="header-noti">
@@ -17,13 +18,9 @@ function CreatorProfile() {
         <div className="creator-profilee__info">
           <div className="creator-profilee__info__name">
             <h2>Hong Thinh</h2>
-            <Button
-              className="login__form__container__namepass__submit"
-              htmlType="submit"
-              // style={{backgroundColor: theme?"#1677ff":""}}
-            >
-              Edit Profile
-            </Button>
+            <div className="creator-profilee__editprofile">
+              <EditProfile />
+            </div>
           </div>
           <div className="creator-profilee__info__follower">
             <h4>20 Post </h4>

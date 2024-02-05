@@ -28,7 +28,7 @@ import Creators from "../pages/dashboard/pages/creators/Creators";
 
 import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails";
 import OTP from "../pages/verifyOTP/OTP";
-
+import EditProfile from "../pages/creator/edit-profile/EditProfile";
 
 export const router = createBrowserRouter([
   {
@@ -104,6 +104,10 @@ export const router = createBrowserRouter([
       {
         path: "/creator-manage/settings",
         element: <CreatorSetting />,
+      },
+      {
+        path: "/creator-manage/edit",
+        element: <EditProfile />,
       },
     ],
   },
