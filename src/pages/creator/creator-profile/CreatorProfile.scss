@@ -6,6 +6,8 @@
   border-bottom: 1px solid rgb(148, 141, 141);
   width: 80%;
   margin: 0 auto;
+  padding-bottom: 40px;
+  margin-bottom: 20px;
   &__info {
     // display: flex;
     // align-items: center;
@@ -73,5 +75,9 @@
   .creator-profilee {
     flex-wrap: wrap;
     height: 50vh;
+    font-size: 14px;
+    &__img {
+      margin-right: 50px;
+    }
   }
 }

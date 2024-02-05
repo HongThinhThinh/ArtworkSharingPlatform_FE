@@ -3,11 +3,12 @@ import ImgPreview from "../../Image/Image";
 import { Button } from "antd";
 import "./CreatorProfile.scss";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import Notification from "../../../component/notification/Notification";
 function CreatorProfile() {
   return (
     <div className="wrap-creatorProfile">
       <div className="header-noti">
-        <IoMdNotificationsOutline />
+        <Notification />
       </div>
       <div className="creator-profilee">
         <div className="creator-profilee__img">
