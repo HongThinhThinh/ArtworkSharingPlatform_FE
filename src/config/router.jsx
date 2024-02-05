@@ -29,6 +29,7 @@ import Creators from "../pages/dashboard/pages/creators/Creators";
 import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails";
 import OTP from "../pages/verifyOTP/OTP";
 import EditProfile from "../pages/creator/edit-profile/EditProfile";
+import AudienceProfile from "../pages/audienceProfile/AudienceProfile";
 
 export const router = createBrowserRouter([
   {
@@ -134,6 +135,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/profile",
+        element: <AudienceProfile />,
       },
     ],
   },
