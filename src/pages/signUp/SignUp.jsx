@@ -154,6 +154,7 @@ function SignUp() {
             name="form_item_path"
             layout="vertical"
             onFinish={onFinish}
+         
           >
             <MyFormItemGroup className="sign-up-form__group-form">
               <MyFormItem className="sign-up-form__group-form__role">
