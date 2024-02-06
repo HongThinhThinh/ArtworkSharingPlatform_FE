@@ -4,20 +4,16 @@ import ggIcon from "../../assets/google.png";
 import {
   Button,
   Col,
-  Divider,
   Form,
-  Drawer,
   theme,
   Row,
-  Space,
   Input,
   Checkbox,
-  Select,
   Radio,
 } from "antd";
 import { Link } from "react-router-dom";
 import LogoWhite from "../../component/logoWhite/LogoWhite";
-import { IoIosArrowBack } from "react-icons/io";
+
 
 const MyFormItemContext = React.createContext([]);
 
@@ -47,15 +43,10 @@ const MyFormItem = ({ name, ...props }) => {
 
 function SignUp() {
   const { token } = theme.useToken();
-  const [open, setOpen] = useState(false);
-  const [role, setRole] = useState("Audience");
+  const [role, setRole] = useState("audience");
+  const [checked, setChecked] = useState(false);
 
-  const showDrawer = () => {
-    setOpen(true);
-  };
-  const onClose = () => {
-    setOpen(false);
-  };
+
   const containerStyle = {
     position: "relative",
     height: 200,
@@ -69,7 +60,9 @@ function SignUp() {
     console.log(value);
   };
   const onChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
+    setChecked(e.target.checked);
+    console.log(checked);
+    // console.log(`checked = ${e.target.checked}`);
   };
   return (
     <Row container className="signUp">
@@ -87,138 +80,82 @@ function SignUp() {
       <Col md={24} lg={16} className="signUp__form">
         <Col lg={14} className="signUp__form__container">
           <h3>Sign up to Cremo</h3>
-          <Button className="signUp__form__container__gg-btn">
-            <img src={ggIcon} />
-            Sign up with Google
-          </Button>
-          <Divider plain>or</Divider>
           <Form
-            className="signUp__form__container__namepass"
+            className="signUp__form__container"
             name="form_item_path"
             layout="vertical"
             onFinish={onFinish}
           >
-            <Button
-              className="signUp__form__container__namepass__submit"
-              htmlType="submit"
-              onClick={showDrawer}
-            >
-              Continue with Email
-            </Button>
-          </Form>
-          <h4 className="signUp__form__container__about">
-            By creating an account you agree with our{" "}
-            <Link to="" className="signUp__form__container__about__detail">
-              Terms of Service
-            </Link>
-            ,{" "}
-            <Link to="" className="signUp__form__container__about__detail">
-              Privacy Policy
-            </Link>
-            , and our default{" "}
-            <Link to="" className="signUp__form__container__about__detail">
-              Notification Settings
-            </Link>
-            .
-          </h4>
-          <h5 className="signUp__form__container__linkToSignUp">
-            Already have an account?{" "}
-            <Link
-              to="/login"
-              className="signUp__form__container__linkToSignUp__signUp"
-            >
-              Sign In
-            </Link>
-          </h5>
-        </Col>
-
-        <Drawer
-          title={
-            <Space>
-              {/* <Button onClick={onClose}>Back</Button> */}
-              <Button onClick={onClose}>
-                {" "}
-                <IoIosArrowBack />{" "}
-              </Button>
-            </Space>
-          }
-          placement="top"
-          closable={false}
-          onClose={onClose}
-          open={open}
-          getContainer={false}
-          style={{ height: "100vh" }}
-        >
-          <Form
-            className="sign-up-form__form__container"
-            name="form_item_path"
-            layout="vertical"
-            onFinish={onFinish}
-         
-          >
-            <MyFormItemGroup className="sign-up-form__group-form">
-              <MyFormItem className="sign-up-form__group-form__role">
-                <label className="sign-up-form__group-form__role__label">
+            <MyFormItemGroup className="signUp__form__container__group-form">
+              <MyFormItem className="signUp__form__container__group-form__role">
+                <label
+                  className="signUp__form__container__group-form__label"
+                  style={{ paddingRight: "1em" }}
+                >
                   Role
                 </label>
                 <Radio.Group
                   defaultValue="audience"
                   onChange={(e) => setRole(e.target.value)}
-                  className="sign-up-form__group-form__role__option"
+                  className="signUp__form__container__group-form__role__option"
                 >
                   <Radio.Button
                     value="audience"
-                    className="sign-up-form__group-form__role__option__detail"
-                    style={{ borderRadius: "10px 0 0 10px", backgroundColor: role === 'audience' ? 'black' : 'white' }}
+                    className="signUp__form__container__group-form__role__option__detail"
+                    style={{
+                      borderRadius: "10px 0 0 10px",
+                      backgroundColor: role === "audience" ? "black" : "white",
+                    }}
                   >
                     Audience
                   </Radio.Button>
                   <Radio.Button
                     value="creator"
-                    className="sign-up-form__group-form__role__option__detail"
-                    style={{ borderRadius: "0 10px  10px 0",  backgroundColor: role === 'creator' ? 'black' : 'white',}}
+                    className="signUp__form__container__group-form__role__option__detail"
+                    style={{
+                      borderRadius: "0 10px  10px 0",
+                      backgroundColor: role === "creator" ? "black" : "white",
+                    }}
                   >
                     Creator
                   </Radio.Button>
                 </Radio.Group>
               </MyFormItem>
-              <MyFormItem className="sign-up-form__group-form__flex">
+              <MyFormItem className="signUp__form__container__group-form__flex">
                 <Row>
                   <Col md={11} lg={11}>
-                    <label className="sign-up-form__group-form__flex__label">
+                    <label className="signUp__form__container__group-form__label">
                       Name
                     </label>
-                    <Input className="sign-up-form__group-form__flex__input" />
+                    <Input className="signUp__form__container__group-form__input" />
                   </Col>
                   <Col md={2} lg={1}></Col>
                   <Col md={11} lg={12}>
-                    <label className="sign-up-form__group-form__flex__label">
+                    <label className="signUp__form__container__group-form__label">
                       Username
                     </label>
-                    <Input className="sign-up-form__group-form__flex__input" />
+                    <Input className="signUp__form__container__group-form__input" />
                   </Col>
                 </Row>
               </MyFormItem>
-              <MyFormItem className="sign-up-form__group-form__base">
-                <label className="sign-up-form__group-form__base__label">
+              <MyFormItem className="signUp__form__container__group-form__base">
+                <label className="signUp__form__container__group-form__label">
                   Email
                 </label>
-                <Input className="sign-up-form__group-form__base__input" />
-                <label className="sign-up-form__group-form__base__label">
+                <Input className="signUp__form__container__group-form__input" />
+                <label className="signUp__form__container__group-form__label">
                   Password
                 </label>
                 <Input
-                  className="sign-up-form__group-form__base__input"
+                  className="signUp__form__container__group-form__input"
                   placeholder="6+ characters"
                 />
-              </MyFormItem>
-              <MyFormItem className="sign-up-form__group-form__role">
                 {role === "creator" && (
                   <div>
-                    <label className="sign-up-form__group-form__role__label">
+                    <label className="signUp__form__container__group-form__label">
                       Your Phone
                     </label>
-                    <Input className="sign-up-form__group-form__role__input" />
+                    <Input className="signUp__form__container__group-form__input" />
                   </div>
                 )}
               </MyFormItem>
@@ -238,7 +175,12 @@ function SignUp() {
               </Link>
             </Checkbox>
 
-            <Button className="sign-up-form__submit-create" htmlType="submit">
+            <Button
+              className="signUp__form__container__submit"
+              htmlType="submit"
+              disabled={!checked}
+              enable={checked}
+            >
               Create Account
             </Button>
           </Form>
@@ -251,7 +193,7 @@ function SignUp() {
               Sign In
             </Link>
           </h5>
-        </Drawer>
+        </Col>
       </Col>
     </Row>
   );
