@@ -13,7 +13,7 @@ function CreatorProfile() {
       </div>
       <div className="creator-profilee">
         <div className="creator-profilee__img">
-          <ImgPreview src="https://i.pinimg.com/236x/5b/5f/f7/5b5ff7b9fc4be5cc8abf3b4b53033b25.jpg" />
+          <ImgPreview src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/405464790_1297996437578088_4420355434371338161_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=z3RtPzDl3R0AX_DswY0&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfBBdE3sw4uS12qiTZhDzsfsUhEeupdvbyTCHLcd-scDMQ&oe=65C888F1" />
         </div>
         <div className="creator-profilee__info">
           <div className="creator-profilee__info__name">

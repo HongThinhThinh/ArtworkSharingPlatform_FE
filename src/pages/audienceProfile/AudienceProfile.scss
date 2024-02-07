@@ -1,0 +1,33 @@
+.audience-profile {
+  .creator-profilee {
+    border-bottom: none;
+  }
+  .profileA {
+    margin: 0 auto;
+    width: 90%;
+    // margin-bottom: 200px;
+    &--navigate {
+      border-bottom: 2px solid rgba(220, 220, 223, 0.773);
+      padding-bottom: 35px;
+      display: flex;
+      cursor: pointer;
+      gap: 30px;
+      font-family: "MediumCereal";
+      opacity: 0.8;
+      font-size: 15px;
+      > * {
+        padding: 10px;
+        &:hover {
+          transition: all 0.4s;
+          color: rgb(128, 187, 255);
+        }
+      }
+      &__like {
+      }
+    }
+  }
+}
+.active_button {
+  background: rgb(245, 243, 240);
+  border-radius: 9999999px;
+}
