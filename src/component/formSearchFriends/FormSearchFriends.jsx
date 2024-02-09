@@ -2,11 +2,10 @@ import React from "react";
 import RoomMessage from "../roomMessage/RoomMessage";
 import { IoClose } from "react-icons/io5";
 import { useStateValue } from "../../Context/StateProvider";
-import "./FormSearchFriends.scss"
-
+import "./FormSearchFriends.scss";
 
 function FormSearchFriends() {
-    const { setShowSearchFriends } = useStateValue();
+  const { setShowSearchFriends, active, setActive } = useStateValue();
 
   return (
     <>
@@ -15,7 +14,10 @@ function FormSearchFriends() {
           <div className="formSearch__header">
             <div style={{ width: "30px" }}></div>
             <h3>New Message</h3>
-            <div style={{cursor: "pointer"}} onClick={() => setShowSearchFriends(false)}>
+            <div
+              style={{ cursor: "pointer" }}
+              onClick={() => setShowSearchFriends(false)}
+            >
               <IoClose fontSize={"30px"} />
             </div>
           </div>
@@ -24,14 +26,86 @@ function FormSearchFriends() {
             <input type="text" placeholder="Search..." />
           </div>
           <div className="formSearch__friends">
-            <RoomMessage room={1} />
-            <RoomMessage room={3}/>
-            <RoomMessage room={4}/>
-            <RoomMessage room={5}/>
-            <RoomMessage room={6}/>
-            <RoomMessage room={7}/>
-            <RoomMessage room={8}/>
-            <RoomMessage room={9}/>
+            <RoomMessage
+              room={1}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf uaysgd ausgyd auysgd aysgdai sd yiag diag diasgdidia gdiagdiasgdi gi"
+            />
+            <RoomMessage
+              room={2}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf "
+            />{" "}
+            <RoomMessage
+              room={3}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf uaysgd ausgyd auysgd aysgdai sd yiag diag diasgdidia gdiagdiasgdi gi"
+            />
+            <RoomMessage
+              room={4}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf "
+            />{" "}
+            <RoomMessage
+              room={5}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf uaysgd ausgyd auysgd aysgdai sd yiag diag diasgdidia gdiagdiasgdi gi"
+            />
+            <RoomMessage
+              room={6}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf "
+            />{" "}
+            <RoomMessage
+              room={7}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf uaysgd ausgyd auysgd aysgdai sd yiag diag diasgdidia gdiagdiasgdi gi"
+            />
+            <RoomMessage
+              room={8}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf "
+            />{" "}
+            <RoomMessage
+              room={9}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf uaysgd ausgyd auysgd aysgdai sd yiag diag diasgdidia gdiagdiasgdi gi"
+            />
+            <RoomMessage
+              room={10}
+              active={active}
+              setActive={setActive}
+              avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
+              name="Đỗ Minh"
+              lastMessage="lorem sadas asdosw s aos sad vpssanf "
+            />
           </div>
         </div>
       </div>

@@ -60,7 +60,7 @@ function LayoutLeft() {
           }`}
           onClick={() => {
             setSelectedLayout("avt");
-            navigate("/creator-manage/profile");
+            navigate("/creator-manage/requestOrder");
           }}
         >
           <img

@@ -4,21 +4,29 @@ import ChatDetail from "../../component/chatDetail/ChatDetail";
 import "./RoomChat.scss"
 import { useStateValue } from "../../Context/StateProvider";
 import FormSearchFriends from "../../component/formSearchFriends/FormSearchFriends";
+import { useMediaQuery } from 'react-responsive';
+
 
 function RoomChat() {
-  const { theme,showSearchFriends } = useStateValue();
-  // const [showChatList,setShowChatList] = useState();
-  // const isQuery = useMediaQuery()
-
-
-  console.log(theme);
-  console.log(theme?"#202020":"#fff");
+  const { theme,showSearchFriends,showChatList } = useStateValue();
+  const isQuery = useMediaQuery({ maxWidth: 800 })
 
   return (
     <div className="roomChat" style={{backgroundColor: theme?"#202020":"#fff",color: theme?"#fff":"#202020"}}>
+      {isQuery ? 
+      <>
+      {showChatList && <ChatList />}
+      {!showChatList && <ChatDetail />}
+      {showSearchFriends && <FormSearchFriends/>}
+    </>
+      :
+      (<>
       <ChatList />
       <ChatDetail />
       {showSearchFriends && <FormSearchFriends/>}
+      </>)
+      
+      }
     </div>
   );
 }

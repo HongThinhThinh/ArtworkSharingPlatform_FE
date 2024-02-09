@@ -3,7 +3,7 @@
 // color: #fff;
 
   height: 100%;
-//   width: 23.5%;
+  // width: 23.5%;
   width: 300px;
   padding: 20px 0px;
   display: flex;
@@ -69,31 +69,30 @@
 
 @media only  screen and (max-width: 1050px) {
     .chat-list{
-        width: 100px;
-        padding-top: 0px;
-        &__information{
-            justify-content: center;
-            margin-bottom: 0px;
-            padding: 30px;
-            // border: #b2b2b2 1px solid;
+        width: 200px;
 
-            &__left{
-               display: none;
-            }
-        }
-        h3{
-            display: none;
-        }
-        &__items{
-            .item {
-                &__detail{
-                    display: none;
-                }
-                img {
-                    margin-right: 0px;
-                }
-            }
-        }
+       &__information{
+        padding: 0px 10px;
+       }
+
+       
     }
 }
 
+@media only  screen and (max-width: 800px){
+  .chat-list{
+    width: 100%;
+    &__information{
+      padding: 0px 25px;
+     }
+     &__items{
+      .item {
+          
+          img {
+              width: 50px;
+              height: 50px;
+          }
+      }
+  }
+  }
+}
