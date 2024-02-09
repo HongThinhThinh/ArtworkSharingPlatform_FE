@@ -9,11 +9,11 @@ function Overview() {
     <Row>
       <Col lg={1} style={{ height: "60vh" }} className="usersPie"></Col>
       <Col lg={9} style={{ height: "60vh" }} className="usersPie">
-        <MyResponsivePie data={users} title="Creator" bottom={50} />
+        <MyResponsivePie data={users} title="Creator" y={40} />
       </Col>
       <Col lg={1} style={{ height: "60vh" }} className="usersPie"></Col>
       <Col lg={9} style={{ height: "60vh" }} className="usersPie">
-        <MyResponsivePie data={users} title="Audience" bottom={0} />
+        <MyResponsivePie data={users} title="Audience" y={100} />
       </Col>
       <Col lg={4} style={{ height: "60vh" }} className="usersPie">
         <Increment />

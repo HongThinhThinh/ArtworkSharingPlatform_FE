@@ -1,12 +1,12 @@
 import { ResponsivePie } from "@nivo/pie";
 import "./MyPie.scss";
 
-const MyResponsivePie = ({ data, title, bottom }) => (
+const MyResponsivePie = ({ data, title, y }) => (
   <div className="usersBar">
     <h2>{title}</h2>
     <ResponsivePie
       data={data}
-      margin={{ top: 0, right: 90, bottom: bottom, left: 200 }}
+      margin={{ top: 0, right: 90, bottom: 50, left: 200 }}
       innerRadius={0}
       padAngle={0.7}
       cornerRadius={3}
@@ -66,8 +66,8 @@ const MyResponsivePie = ({ data, title, bottom }) => (
           anchor: "bottom",
           direction: "row",
           justify: false,
-          translateX: -140,
-          translateY: 50,
+          translateX: -120,
+          translateY: y,
           itemsSpacing: 0,
           itemWidth: 100,
           itemHeight: 18,
