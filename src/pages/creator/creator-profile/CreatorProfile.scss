@@ -1,0 +1,86 @@
+.creator-profilee {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  border-bottom: 1px solid rgb(148, 141, 141);
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 40px;
+  margin-bottom: 20px;
+  &__editprofile {
+    // background-color: red;
+  }
+  &__info {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // flex-direction: column;
+
+    &__name {
+      h2 {
+        font-family: "BoldCereal";
+        text-wrap: nowrap;
+        margin-right: 20px;
+      }
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__follower {
+      margin-top: 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-family: "LightCereal";
+    }
+  }
+  gap: 100px;
+  &__img {
+    width: 100px !important;
+    height: 100px !important;
+    .imgPreview {
+      .ant-image-mask {
+        background-color: none;
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+      }
+      .ant-image {
+        border: none;
+        border-radius: 50%;
+        width: 100px;
+        > * {
+        }
+        img {
+          width: 150px;
+          height: 150px !important;
+          height: fit-content;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
+.header-noti {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 20px;
+  margin-right: 30px;
+  svg {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .creator-profilee {
+    flex-wrap: wrap;
+    height: 50vh;
+    font-size: 14px;
+    &__img {
+      margin-right: 50px;
+    }
+  }
+}

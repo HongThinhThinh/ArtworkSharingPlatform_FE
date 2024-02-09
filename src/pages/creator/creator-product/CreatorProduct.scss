@@ -1,7 +1,47 @@
-.listArtWork {
+.creator-product {
   overflow-y: scroll;
   height: 100vh;
-  &--items {
-    // display: none;
+  .listArtWork {
+    overflow-y: visible;
+    height: 100vh;
+    &--items {
+      // display: none;
+    }
+  }
+  .list-drop {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .filter {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    .ant-space {
+      width: fit-content;
+      flex-wrap: nowrap;
+      .ant-space-item {
+        margin: 0;
+      }
+    }
+    .ant-dropdown-trigger {
+      font-weight: 500;
+      width: 104px;
+      background-color: hsl(244, 100%, 97%);
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .list-drop {
+    span {
+      display: none;
+    }
+  }
+  .filter {
+    width: 100%;
   }
 }

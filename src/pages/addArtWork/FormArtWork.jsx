@@ -101,7 +101,7 @@ function FormArtwork() {
               getLink(e.target.files[0]);
             }}
           >
-            <UploadArtWork />
+            <UploadArtWork content="Upload new Artwork" />
           </div>
         </div>
       </Row>

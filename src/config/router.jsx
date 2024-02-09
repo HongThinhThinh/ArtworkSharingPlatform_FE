@@ -28,7 +28,12 @@ import Creators from "../pages/dashboard/pages/creators/Creators";
 
 import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails";
 import OTP from "../pages/verifyOTP/OTP";
-
+import EditProfile from "../pages/creator/edit-profile/EditProfile";
+import AudienceProfile from "../pages/audienceProfile/AudienceProfile";
+import WorkartMedia from "../component/workartMedia/WorkartMedia";
+import WorkartSection from "../sections/workartSection/WorkartSection";
+import WorkartInfo from "../component/workartInfo/WorkartInfo";
+import Workart from "../component/workart/Workart";
 
 export const router = createBrowserRouter([
   {
@@ -105,6 +110,10 @@ export const router = createBrowserRouter([
         path: "/creator-manage/settings",
         element: <CreatorSetting />,
       },
+      {
+        path: "/creator-manage/edit",
+        element: <EditProfile />,
+      },
     ],
   },
   {
@@ -130,6 +139,20 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/profile",
+        element: <AudienceProfile />,
+        children: [
+          {
+            path: "/profile/likedShots",
+            element: <CreatorWorkart />,
+          },
+          {
+            path: "/profile/orders",
+            element: <CreatorCollection />,
+          },
+        ],
       },
     ],
   },
