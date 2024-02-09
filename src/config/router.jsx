@@ -30,10 +30,14 @@ import ArtworkDetails from "../pages/ArtworkDetails/ArtworkDetails";
 import OTP from "../pages/verifyOTP/OTP";
 import EditProfile from "../pages/creator/edit-profile/EditProfile";
 import AudienceProfile from "../pages/audienceProfile/AudienceProfile";
+
+import RequestOrder from "../pages/requestOrder/RequestOrder";
+
 import WorkartMedia from "../component/workartMedia/WorkartMedia";
 import WorkartSection from "../sections/workartSection/WorkartSection";
 import WorkartInfo from "../component/workartInfo/WorkartInfo";
 import Workart from "../component/workart/Workart";
+
 
 export const router = createBrowserRouter([
   {
@@ -103,8 +107,8 @@ export const router = createBrowserRouter([
         element: <FormArtwork />,
       },
       {
-        path: "/creator-manage/profile",
-        element: <CreatorProfile />,
+        path: "/creator-manage/requestOrder",
+        element: <RequestOrder />,
       },
       {
         path: "/creator-manage/settings",

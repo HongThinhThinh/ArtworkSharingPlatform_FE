@@ -11,12 +11,15 @@ function RoomMessage({
   lastMessage,
   icon,
 }) {
-  const { setIdRoomChat, setShowSearchFriends } = useStateValue();
+  const { setIdRoomChat, setShowSearchFriends,setShowChatList } = useStateValue();
 
   const setShow = () => {
+    
     setIdRoomChat(room);
     setShowSearchFriends(false);
     setActive(room);
+    setShowChatList(false)
+  
   };
 
   return (

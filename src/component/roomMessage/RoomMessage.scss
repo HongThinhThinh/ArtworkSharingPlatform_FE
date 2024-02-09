@@ -50,4 +50,14 @@
       }
     }
 
-  
+@media only  screen and (max-width: 800px){
+  .item {
+    &__detail {
+      width: 75%;
+      span {
+
+      }
+    }
+  }
+
+}
