@@ -1,19 +1,10 @@
 import React, { useState } from "react";
 import "./SignUp.scss";
 import ggIcon from "../../assets/google.png";
-import {
-  Button,
-  Col,
-  Form,
-  theme,
-  Row,
-  Input,
-  Checkbox,
-  Radio,
-} from "antd";
+import { Button, Col, Form, theme, Row, Input, Checkbox, Radio } from "antd";
 import { Link } from "react-router-dom";
 import LogoWhite from "../../component/logoWhite/LogoWhite";
-
+import api from "../../config/axios";
 
 const MyFormItemContext = React.createContext([]);
 
@@ -44,25 +35,31 @@ const MyFormItem = ({ name, ...props }) => {
 function SignUp() {
   const { token } = theme.useToken();
   const [role, setRole] = useState("audience");
+  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
   const [checked, setChecked] = useState(false);
 
-
-  const containerStyle = {
-    position: "relative",
-    height: 200,
-    padding: 48,
-    overflow: "hidden",
-    background: token.colorFillAlter,
-    border: `1px solid ${token.colorBorderSecondary}`,
-    borderRadius: token.borderRadiusLG,
-  };
-  const onFinish = (value) => {
-    console.log(value);
+  const onFinish = async () => {
+    try {
+      console.log(userName);
+      const response = await api.post("/signup", {
+        userName,
+        password,
+        name,
+        email,
+        role,
+        phone,
+      });
+      console.log(response.data.data);
+    } catch (e) {
+      console.log(e.response.data);
+    }
   };
   const onChange = (e) => {
     setChecked(e.target.checked);
-    console.log(checked);
-    // console.log(`checked = ${e.target.checked}`);
   };
   return (
     <Row container className="signUp">
@@ -127,14 +124,20 @@ function SignUp() {
                     <label className="signUp__form__container__group-form__label">
                       Name
                     </label>
-                    <Input className="signUp__form__container__group-form__input" />
+                    <Input
+                      onInput={(e) => setName(e.target.value)}
+                      className="signUp__form__container__group-form__input"
+                    />
                   </Col>
                   <Col md={2} lg={1}></Col>
                   <Col md={11} lg={12}>
                     <label className="signUp__form__container__group-form__label">
                       Username
                     </label>
-                    <Input className="signUp__form__container__group-form__input" />
+                    <Input
+                      onInput={(e) => setUserName(e.target.value)}
+                      className="signUp__form__container__group-form__input"
+                    />
                   </Col>
                 </Row>
               </MyFormItem>
@@ -142,11 +145,15 @@ function SignUp() {
                 <label className="signUp__form__container__group-form__label">
                   Email
                 </label>
-                <Input className="signUp__form__container__group-form__input" />
+                <Input
+                  onInput={(e) => setEmail(e.target.value)}
+                  className="signUp__form__container__group-form__input"
+                />
                 <label className="signUp__form__container__group-form__label">
                   Password
                 </label>
                 <Input
+                  onInput={(e) => setPassword(e.target.value)}
                   className="signUp__form__container__group-form__input"
                   placeholder="6+ characters"
                 />
@@ -155,7 +162,10 @@ function SignUp() {
                     <label className="signUp__form__container__group-form__label">
                       Your Phone
                     </label>
-                    <Input className="signUp__form__container__group-form__input" />
+                    <Input
+                      onInput={(e) => setPhone(e.target.value)}
+                      className="signUp__form__container__group-form__input"
+                    />
                   </div>
                 )}
               </MyFormItem>
