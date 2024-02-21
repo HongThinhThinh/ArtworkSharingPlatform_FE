@@ -1,13 +1,17 @@
 .signUp {
   // overflow-y: hidden;
+  width: 100%;
   display: flex;
   height: 100vh;
   &__side-bar {
     height: 110vh;
     &__media {
-      width: 100%;
+      width: 30%;
       height: 100%;
+      position: fixed;
       object-fit: cover;
+      object-position: center;
+      left: 0;
     }
   }
 
@@ -42,10 +46,10 @@
         &__label {
           font-family: "BoldMonaSans";
           font-size: 1em;
-          // margin-top: 0.5em;
+          margin-bottom: 0.5em;
         }
         &__input {
-          margin-top: 0.5em;
+          // margin-top: 0.5em;
           height: 3em !important;
         }
         &__role {
@@ -131,7 +135,6 @@
     &__form {
       &__container {
         margin-left: 2em;
-       
       }
     }
   }

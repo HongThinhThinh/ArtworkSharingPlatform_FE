@@ -5,6 +5,7 @@ import { Button, Col, Form, theme, Row, Input, Checkbox, Radio } from "antd";
 import { Link } from "react-router-dom";
 import LogoWhite from "../../component/logoWhite/LogoWhite";
 import api from "../../config/axios";
+import { WarningFilled } from "@ant-design/icons";
 
 const MyFormItemContext = React.createContext([]);
 
@@ -119,53 +120,145 @@ function SignUp() {
                 </Radio.Group>
               </MyFormItem>
               <MyFormItem className="signUp__form__container__group-form__flex">
-                <Row>
+                <Row style={{marginBottom:"-1em"}}>
                   <Col md={11} lg={11}>
-                    <label className="signUp__form__container__group-form__label">
-                      Name
-                    </label>
-                    <Input
-                      onInput={(e) => setName(e.target.value)}
-                      className="signUp__form__container__group-form__input"
-                    />
+                    <Form.Item
+                      label="Name"
+                      name="name"
+                      className="signUp__form__container__group-form__label"
+                      rules={[
+                        {
+                          required: true,
+                          message: (
+                            <div>
+                              <WarningFilled /> Please input your username!
+                            </div>
+                          ),
+                        },
+                      ]}
+                    >
+                      <Input className="signUp__form__container__group-form__input" />
+                    </Form.Item>
                   </Col>
                   <Col md={2} lg={1}></Col>
                   <Col md={11} lg={12}>
-                    <label className="signUp__form__container__group-form__label">
-                      Username
-                    </label>
-                    <Input
-                      onInput={(e) => setUserName(e.target.value)}
-                      className="signUp__form__container__group-form__input"
-                    />
+                    <Form.Item
+                      label="Username"
+                      name="username"
+                      className="signUp__form__container__group-form__label"
+                      rules={[
+                        {
+                          required: true,
+                          message: (
+                            <div>
+                              <WarningFilled /> Please input your name!
+                            </div>
+                          ),
+                        },
+                      ]}
+                    >
+                      <Input
+                        onInput={(e) => setName(e.target.value)}
+                        className="signUp__form__container__group-form__input"
+                      />
+                    </Form.Item>
                   </Col>
                 </Row>
               </MyFormItem>
               <MyFormItem className="signUp__form__container__group-form__base">
-                <label className="signUp__form__container__group-form__label">
-                  Email
-                </label>
-                <Input
-                  onInput={(e) => setEmail(e.target.value)}
-                  className="signUp__form__container__group-form__input"
-                />
-                <label className="signUp__form__container__group-form__label">
-                  Password
-                </label>
-                <Input
-                  onInput={(e) => setPassword(e.target.value)}
-                  className="signUp__form__container__group-form__input"
-                  placeholder="6+ characters"
-                />
+                <Form.Item
+                  label="Email"
+                  name="email"
+                  rules={[
+                    {
+                      type: "email",
+                      message: (
+                        <div>
+                          <WarningFilled /> Email is not valid!
+                        </div>
+                      ),
+                    },
+                    {
+                      required: true,
+                      message: (
+                        <div>
+                          <WarningFilled /> Please input your email!
+                        </div>
+                      ),
+                    },
+                  ]}
+                  className="signUp__form__container__group-form__label"
+                >
+                  <Input
+                    onInput={(e) => setEmail(e.target.value)}
+                    className="signUp__form__container__group-form__input"
+                  />
+                </Form.Item>
+
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  rules={[
+                    {
+                      min: 6,
+                      message: (
+                        <div>
+                          <WarningFilled /> Password must be at least 6
+                          characters!
+                        </div>
+                      ),
+                    },
+                    {
+                      required: true,
+                      message: (
+                        <div>
+                          <WarningFilled /> Please input your password!
+                        </div>
+                      ),
+                    },
+                  ]}
+                  className="signUp__form__container__group-form__label"
+                >
+                  <Input.Password
+                    onInput={(e) => setPassword(e.target.value)}
+                    className="signUp__form__container__group-form__input"
+                    placeholder="6+ characters"
+                  />
+                </Form.Item>
+
                 {role === "creator" && (
                   <div>
-                    <label className="signUp__form__container__group-form__label">
-                      Your Phone
-                    </label>
-                    <Input
-                      onInput={(e) => setPhone(e.target.value)}
-                      className="signUp__form__container__group-form__input"
-                    />
+                    <Form.Item
+                      label="Phone Number"
+                      name="phone"
+                      rules={[
+                        {
+                          pattern: /^\d{9}$|^\d{11}$/,
+                          message: (
+                            <div>
+                              <WarningFilled /> Phone number must be 9 or 11
+                              digits!
+                            </div>
+                          ),
+                        },
+                        {
+                          required: true,
+                          message: (
+                            <div>
+                              <WarningFilled /> Please input your phone number!
+                            </div>
+                          ),
+                        },
+                      ]}
+                      className="signUp__form__container__group-form__label"
+                    >
+                      <Input
+                        onInput={(e) => setPhone(e.target.value)}
+                        className="signUp__form__container__group-form__input"
+                      />
+                    </Form.Item>
+
+                    <Form.Item></Form.Item>
                   </div>
                 )}
               </MyFormItem>

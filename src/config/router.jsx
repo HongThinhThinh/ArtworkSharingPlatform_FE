@@ -37,12 +37,15 @@ import WorkartMedia from "../component/workartMedia/WorkartMedia";
 import WorkartSection from "../sections/workartSection/WorkartSection";
 import WorkartInfo from "../component/workartInfo/WorkartInfo";
 import Workart from "../component/workart/Workart";
+import FormRequest from "../component/formRequest/FormRequest";
 
 
 export const router = createBrowserRouter([
+
   {
     path: "/test",
-    element: <Test />,
+    // element: <Test />,
+    element:<FormRequest />,
   },
   {
     path: "login",
