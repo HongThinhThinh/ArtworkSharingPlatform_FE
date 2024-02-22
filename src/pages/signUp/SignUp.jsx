@@ -6,6 +6,11 @@ import { Link } from "react-router-dom";
 import LogoWhite from "../../component/logoWhite/LogoWhite";
 import api from "../../config/axios";
 import { WarningFilled } from "@ant-design/icons";
+import {
+  alertFail,
+  alertSuccess,
+  alertSuccessSignUp,
+} from "../../assets/hook/useNotification";
 
 const MyFormItemContext = React.createContext([]);
 
@@ -54,9 +59,9 @@ function SignUp() {
         role,
         phone,
       });
-      console.log(response.data.data);
+      alertSuccessSignUp("Please check and confirm to activate this account");
     } catch (e) {
-      console.log(e.response.data);
+      alertFail(e.response.data);
     }
   };
   const onChange = (e) => {
@@ -131,13 +136,16 @@ function SignUp() {
                           required: true,
                           message: (
                             <div>
-                              <WarningFilled /> Please input your username!
+                              <WarningFilled /> Please input your name!
                             </div>
                           ),
                         },
                       ]}
                     >
-                      <Input className="signUp__form__container__group-form__input" />
+                      <Input
+                        onInput={(e) => setName(e.target.value)}
+                        className="signUp__form__container__group-form__input"
+                      />
                     </Form.Item>
                   </Col>
                   <Col md={2} lg={1}></Col>
@@ -151,14 +159,14 @@ function SignUp() {
                           required: true,
                           message: (
                             <div>
-                              <WarningFilled /> Please input your name!
+                              <WarningFilled /> Please input your username!
                             </div>
                           ),
                         },
                       ]}
                     >
                       <Input
-                        onInput={(e) => setName(e.target.value)}
+                        onInput={(e) => setUserName(e.target.value)}
                         className="signUp__form__container__group-form__input"
                       />
                     </Form.Item>
@@ -233,10 +241,10 @@ function SignUp() {
                       name="phone"
                       rules={[
                         {
-                          pattern: /^\d{9}$|^\d{11}$/,
+                          pattern: /^\d{10}$|^\d{11}$/,
                           message: (
                             <div>
-                              <WarningFilled /> Phone number must be 9 or 11
+                              <WarningFilled /> Phone number must be 10 or 11
                               digits!
                             </div>
                           ),
