@@ -120,7 +120,7 @@ function SignUp() {
                 </Radio.Group>
               </MyFormItem>
               <MyFormItem className="signUp__form__container__group-form__flex">
-                <Row style={{marginBottom:"-1em"}}>
+                <Row style={{ marginBottom: "-1em" }}>
                   <Col md={11} lg={11}>
                     <Form.Item
                       label="Name"
@@ -257,8 +257,6 @@ function SignUp() {
                         className="signUp__form__container__group-form__input"
                       />
                     </Form.Item>
-
-                    <Form.Item></Form.Item>
                   </div>
                 )}
               </MyFormItem>
