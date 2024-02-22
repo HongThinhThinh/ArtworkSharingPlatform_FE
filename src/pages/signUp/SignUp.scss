@@ -35,7 +35,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #0d0c22 !important;
+        background-color: #0d0c22;
         color: white;
         font-family: "SemiBoldMonaSans";
         padding: 27px;
@@ -52,7 +52,7 @@
         &__input {
           // margin-top: 0.5em;
           height: 3em !important;
-          .ant-form-item-control-input{
+          .ant-form-item-control-input {
             display: none;
           }
         }

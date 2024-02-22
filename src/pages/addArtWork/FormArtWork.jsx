@@ -12,6 +12,7 @@ import { useStateValue } from "../../Context/StateProvider";
 import getCurrentDateTime from "../../assets/hook/useGetTime";
 import api from "../../config/axios";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
+import Loading from "../../component/loading/Loading";
 
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
@@ -33,10 +34,10 @@ const MyFormItemGroup = ({ prefix, children }) => {
 };
 
 function FormArtwork() {
+  const [isLoading, setIsLoading] = useState(false);
   const { theme } = useStateValue();
   const [URL, setURL] = useState(image1);
   const [imageUploaded, setImageUploaded] = useState(false); // State to track if image is uploaded
-
   const getLink = async (file) => {
     let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
     setURL(URL);
@@ -48,7 +49,7 @@ function FormArtwork() {
   const [selectedTags, setSelectedTags] = useState([]);
 
   const onFinish = async (value) => {
-    console.log(selectedTags);
+    setIsLoading(true);
     try {
       const response = await api.post("/postArtwork", {
         title: value.title,
@@ -63,77 +64,82 @@ function FormArtwork() {
     } catch (e) {
       alertFail(e.message);
     }
+    setIsLoading(false);
   };
   return (
     <div>
-      <Row
-        container
-        className="FormArtWork"
-        style={{ backgroundColor: theme ? "#202020" : "#fff" }}
-      >
-        <div className="FormArtWork--overlay">
-          <Form
-            className="login__form__container__namepass"
-            name="form_item_path"
-            layout="vertical"
-            onFinish={onFinish}
-          >
-            <h3 style={{ color: theme ? "#fff" : "#202020" }}>
-              Upload New ArtWork
-            </h3>
-            <MyFormItemGroup className="login__form__container__namepass__group-form">
-              <Form.Item
-                label="Title"
-                name="title"
-                className="login__form__container__namepass__group-form"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your title!",
-                  },
-                ]}
-              >
-                <Input className="login__form__container__namepass__group-form__input" />
-              </Form.Item>
-              <Form.Item
-                label="Description"
-                name="description"
-                className="login__form__container__namepass__group-form"
-              >
-                <TextArea rows={4} />
-              </Form.Item>
-              <Form.Item
-                label="Tags"
-                name="title"
-                className="login__form__container__namepass__group-form"
-              >
-                <Tags
-                  setSelectedTags={setSelectedTags}
-                  selectedTags={selectedTags}
-                />
-              </Form.Item>
-            </MyFormItemGroup>
-            <Button
-              className="login__form__container__namepass__submit"
-              style={!imageUploaded && { color: "white" }}
-              htmlType="submit"
-              disabled={!imageUploaded} // Disable the button if image is not uploaded
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <Row
+          container
+          className="FormArtWork"
+          style={{ backgroundColor: theme ? "#202020" : "#fff" }}
+        >
+          <div className="FormArtWork--overlay">
+            <Form
+              className="login__form__container__namepass"
+              name="form_item_path"
+              layout="vertical"
+              onFinish={onFinish}
             >
-              {!imageUploaded ? "Please Upload Image To Submit" : "Submit"}
-            </Button>
-          </Form>
-        </div>
-        <div className="FormArtWork--image">
-          <ImgPreview src={URL} />
-          <div
-            onChange={(e) => {
-              getLink(e.target.files[0]);
-            }}
-          >
-            <UploadArtWork content="Upload new Artwork" />
+              <h3 style={{ color: theme ? "#fff" : "#202020" }}>
+                Upload New ArtWork
+              </h3>
+              <MyFormItemGroup className="login__form__container__namepass__group-form">
+                <Form.Item
+                  label="Title"
+                  name="title"
+                  className="login__form__container__namepass__group-form"
+                  rules={[
+                    {
+                      required: true,
+                      message: "Please input your title!",
+                    },
+                  ]}
+                >
+                  <Input className="login__form__container__namepass__group-form__input" />
+                </Form.Item>
+                <Form.Item
+                  label="Description"
+                  name="description"
+                  className="login__form__container__namepass__group-form"
+                >
+                  <TextArea rows={4} />
+                </Form.Item>
+                <Form.Item
+                  label="Tags"
+                  name="title"
+                  className="login__form__container__namepass__group-form"
+                >
+                  <Tags
+                    setSelectedTags={setSelectedTags}
+                    selectedTags={selectedTags}
+                  />
+                </Form.Item>
+              </MyFormItemGroup>
+              <Button
+                className="login__form__container__namepass__submit"
+                style={!imageUploaded && { color: "white" }}
+                htmlType="submit"
+                disabled={!imageUploaded} // Disable the button if image is not uploaded
+              >
+                {!imageUploaded ? "Please Upload Image To Submit" : "Submit"}
+              </Button>
+            </Form>
           </div>
-        </div>
-      </Row>
+          <div className="FormArtWork--image">
+            <ImgPreview src={URL} />
+            <div
+              onChange={(e) => {
+                getLink(e.target.files[0]);
+              }}
+            >
+              <UploadArtWork content="Upload new Artwork" />
+            </div>
+          </div>
+        </Row>
+      )}
     </div>
   );
 }
