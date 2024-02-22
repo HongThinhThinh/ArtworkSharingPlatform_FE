@@ -37,7 +37,11 @@ import WorkartMedia from "../component/workartMedia/WorkartMedia";
 import WorkartSection from "../sections/workartSection/WorkartSection";
 import WorkartInfo from "../component/workartInfo/WorkartInfo";
 import Workart from "../component/workart/Workart";
+
+import ConfirmSuccess from "../pages/confirmSuccess/ConfirmSuccess";
+
 import FormRequest from "../component/formRequest/FormRequest";
+
 
 
 export const router = createBrowserRouter([
@@ -50,6 +54,10 @@ export const router = createBrowserRouter([
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "confirm-success",
+    element: <ConfirmSuccess />,
   },
   {
     path: "register",
