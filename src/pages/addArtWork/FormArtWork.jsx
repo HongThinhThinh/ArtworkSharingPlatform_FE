@@ -11,6 +11,7 @@ import UploadArtWork from "../../component/UploadArtWork/UploadArtWork";
 import { useStateValue } from "../../Context/StateProvider";
 import getCurrentDateTime from "../../assets/hook/useGetTime";
 import api from "../../config/axios";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
@@ -57,12 +58,12 @@ function FormArtwork() {
         createDate: getCurrentDateTime(),
         categoriesName: selectedTags,
       });
-      console.log(response.data.data);
+      console.log(response.data);
+      alertSuccess(response.data.message);
     } catch (e) {
-      console.log(e);
+      alertFail(e.message);
     }
   };
-
   return (
     <div>
       <Row
@@ -114,10 +115,11 @@ function FormArtwork() {
             </MyFormItemGroup>
             <Button
               className="login__form__container__namepass__submit"
+              style={!imageUploaded && { color: "white" }}
               htmlType="submit"
               disabled={!imageUploaded} // Disable the button if image is not uploaded
             >
-              Submit
+              {!imageUploaded ? "Please Upload Image To Submit" : "Submit"}
             </Button>
           </Form>
         </div>
