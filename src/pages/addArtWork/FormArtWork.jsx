@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Form, Input, Row } from "antd";
 
-import TextAreaa from "../../component/textarea/TextArea";
+const { TextArea } = Input;
 import Tags from "../../component/tags/Tag";
 import "./FormArtwork.scss";
 import ImgPreview from "../Image/Image";
@@ -9,13 +9,15 @@ import uploadFile from "../../assets/hook/useUpload";
 import image1 from "../../assets/CremoBackground.png";
 import UploadArtWork from "../../component/UploadArtWork/UploadArtWork";
 import { useStateValue } from "../../Context/StateProvider";
+import getCurrentDateTime from "../../assets/hook/useGetTime";
+import api from "../../config/axios";
 
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
 }
+
 const MyFormItemContext = React.createContext([]);
 
-// eslint-disable-next-line react/prop-types
 const MyFormItemGroup = ({ prefix, children }) => {
   const prefixPath = React.useContext(MyFormItemContext);
   const concatPath = React.useMemo(
@@ -32,13 +34,35 @@ const MyFormItemGroup = ({ prefix, children }) => {
 function FormArtwork() {
   const { theme } = useStateValue();
   const [URL, setURL] = useState(image1);
+  const [imageUploaded, setImageUploaded] = useState(false); // State to track if image is uploaded
+
   const getLink = async (file) => {
     let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
     setURL(URL);
     URL = await uploadFile(file);
     setURL(URL);
+    setImageUploaded(true); // Set imageUploaded to true after uploading the image
   };
-  const onFinish = async (value) => {};
+
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  const onFinish = async (value) => {
+    console.log(selectedTags);
+    try {
+      const response = await api.post("/postArtwork", {
+        title: value.title,
+        image: URL,
+        description: value.description,
+        price: 0,
+        createDate: getCurrentDateTime(),
+        categoriesName: selectedTags,
+      });
+      console.log(response.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div>
       <Row
@@ -72,23 +96,26 @@ function FormArtwork() {
               </Form.Item>
               <Form.Item
                 label="Description"
-                name="Description"
+                name="description"
                 className="login__form__container__namepass__group-form"
               >
-                <TextAreaa />
+                <TextArea rows={4} />
               </Form.Item>
               <Form.Item
                 label="Tags"
                 name="title"
                 className="login__form__container__namepass__group-form"
               >
-                <Tags />
+                <Tags
+                  setSelectedTags={setSelectedTags}
+                  selectedTags={selectedTags}
+                />
               </Form.Item>
             </MyFormItemGroup>
             <Button
               className="login__form__container__namepass__submit"
               htmlType="submit"
-              // style={{backgroundColor: theme?"#1677ff":""}}
+              disabled={!imageUploaded} // Disable the button if image is not uploaded
             >
               Submit
             </Button>

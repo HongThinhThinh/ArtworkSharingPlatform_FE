@@ -2,7 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { PlusOutlined } from "@ant-design/icons";
 import { Input, Space, Tag, theme, Tooltip } from "antd";
 import "./Tag.scss";
-const Tags = () => {
+// eslint-disable-next-line react/prop-types
+const Tags = ({ setSelectedTags, selectedTags }) => {
   const { token } = theme.useToken();
   const [tags, setTags] = useState([
     "art",
@@ -13,12 +14,12 @@ const Tags = () => {
   const toggleTag = (tag) => {
     const index = selectedTags.indexOf(tag);
     if (index === -1) {
-      setSelectedTags([...selectedTags, tag]);
+      setSelectedTags((prev) => [...prev, tag]);
     } else {
-      setSelectedTags(selectedTags.filter((t) => t !== tag));
+      setSelectedTags((prev) => prev.filter((t) => t !== tag));
     }
   };
-  const [selectedTags, setSelectedTags] = useState([]);
+  // const [selectedTags, setSelectedTags] = useState([]);
   const [inputVisible, setInputVisible] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [editInputIndex, setEditInputIndex] = useState(-1);
