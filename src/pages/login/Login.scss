@@ -56,7 +56,7 @@
         &__submit {
           width: 100%;
           border-radius: 100px;
-          background-color: #0d0c22;
+          background-color: #0d0c22 !important;
           color: white;
           display: flex;
           justify-content: center;
@@ -80,7 +80,7 @@
     }
   }
 }
-.ant-form-item-required{
+.ant-form-item-required {
   width: 100%;
 }
 label.ant-form-item-required {
@@ -111,11 +111,12 @@ label.ant-form-item-required {
         &__divider {
           color: white !important;
         }
-        &__namepass{
+        &__namepass {
           &__group-form {
-            p{
-              color:white;
-            }}
+            p {
+              color: white;
+            }
+          }
         }
 
         &__linkToSignUp {
