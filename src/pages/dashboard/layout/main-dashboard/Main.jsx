@@ -55,9 +55,9 @@ function Main({ children }) {
 
       <Layout>
         <Header onPress={openDrawer} name={pathname} subName={pathname} />
-        <Content className="content-ant">
+        <div className="div-ant" style={{height:"86vh"}}>
           <Outlet />
-        </Content>
+        </div>
       </Layout>
     </Layout>
   );

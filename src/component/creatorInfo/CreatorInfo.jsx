@@ -1,5 +1,5 @@
 import { Avatar, Button, Dropdown, Space } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import "./CreatorInfo.scss";
 import CreatorSocial from "../creatorSocial/CreatorSocial";
 import {
@@ -8,6 +8,7 @@ import {
   StarFilled,
   UserOutlined,
 } from "@ant-design/icons";
+import FormRequest from "../formRequest/FormRequest";
 
 function CreatorInfo({
   avatar,
@@ -19,6 +20,7 @@ function CreatorInfo({
   tags,
   position,
 }) {
+  const [status ,setStatus] = useState(false);
   const items = [
     {
       label: (
@@ -72,9 +74,10 @@ function CreatorInfo({
         likes={likes}
       />
       <div className="creator-info__contact">
-        <Button className="creator-info__contact__getInTouch">
+        <Button className="creator-info__contact__getInTouch" onClick={() => setStatus(!status)}>
           Get In Touch
         </Button>
+        <FormRequest status={status} setStatus={() => setStatus(!status)}/>
         <Button className="creator-info__contact__follow">Follow</Button>
 
         <Dropdown
