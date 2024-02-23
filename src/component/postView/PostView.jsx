@@ -1,25 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import ImgPreview from "../../pages/Image/Image";
 
 import "./PostView.scss";
 import { Button, Modal } from "antd";
-import { IoMdTime } from "react-icons/io";
-function PostView({img,title}) {
+function PostView({ img, title }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
-    <div className="postview" >
-
-
-function PostView() {
-  return (
-    <div>
-
+    <div className="postview">
       <ImgPreview
         width={300}
         height={250}
         style={{ borderRadius: "10px", border: "none", outline: "none" }}
-
         src={img}
-       
       />
       <div className="postview__content">
         <div className="postview__content__info">
@@ -40,16 +41,55 @@ function PostView() {
 
         <div className="postview__content__button">
           <Button className="postview__content__button__detail">Accept</Button>
-          <Button className="postview__content__button__detail">Deny</Button>
+          <Button
+            className="postview__content__button__detail"
+            onClick={showModal}
+          >
+            Deny
+          </Button>
         </div>
       </div>
-      <Modal title="Reason deny" >
-        <h5>444</h5>
+      <Modal
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        title="Reason deny"
+      >
+        <div class="col-span-full">
+          <label
+            for="street-address"
+            class="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Title
+          </label>
+          <div class="mt-2">
+            <input
+              type="text"
+              name="street-address"
+              id="street-address"
+              autocomplete="street-address"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            />
+          </div>
+        </div>
+
+        <div class="col-span-full">
+          <label
+            for="about"
+            class="block text-sm font-medium leading-6 text-gray-900"
+          >
+            Reason
+          </label>
+          <div class="mt-2">
+            <textarea
+              id="about"
+              name="about"
+              rows="3"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            ></textarea>
+          </div>
+        </div>
       </Modal>
-
-        src="https://images.unsplash.com/photo-1706650079705-160f2c07c913?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-      />
-
     </div>
   );
 }

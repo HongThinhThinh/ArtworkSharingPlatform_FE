@@ -5,7 +5,7 @@
   padding: 1em;
   &__content {
     margin: 0.5em 2em 0;
-   
+
     h1 {
       font-family: "BoldMonaSans";
       font-size: 1.7em;
@@ -55,7 +55,7 @@
         margin: 0.5em 0;
       }
       &__detail:first-child {
-        background-color: #9bcf53;
+        background-color: #41b84d;
         margin-right: 1em;
         border: 1.8px solid rgb(204, 243, 204);
       }
@@ -65,4 +65,8 @@
       }
     }
   }
+}
+
+.ant-btn-primary {
+  background-color: rgb(44, 178, 222) !important;
 }
