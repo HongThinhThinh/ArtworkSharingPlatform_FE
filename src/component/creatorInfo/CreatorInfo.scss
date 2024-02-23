@@ -48,7 +48,7 @@
       width: fit-content;
     }
     &__getInTouch {
-      background-color: #0d0c22;
+      background-color: #0d0c22 !important;
       color: white;
     }
     &__follow,
@@ -98,6 +98,7 @@
       display: flex;
       flex-wrap: wrap;
       &__tag {
+        cursor: pointer;
         font-size: 0.8em;
         border-radius: 4px;
         padding: 0.5em;
@@ -108,4 +109,8 @@
       }
     }
   }
+}
+
+.creator-info .top {
+  flex-direction: row;
 }
