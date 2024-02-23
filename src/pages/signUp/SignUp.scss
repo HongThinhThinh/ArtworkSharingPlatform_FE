@@ -102,6 +102,12 @@
     &__side-bar {
       position: relative;
       filter: blur(7px);
+      &__media {
+        width: 100%;
+        position: static;
+        top: 0;
+        left: auto;
+      }
     }
     &__form {
       position: absolute;
@@ -138,6 +144,24 @@
     &__form {
       &__container {
         margin-left: 2em;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .signUp {
+    &__form {
+      &__container {
+        &__group-form {
+          &__role {
+            &__option {
+              &__detail {
+                width: 30vw;
+              }
+            }
+          }
+        }
       }
     }
   }
