@@ -3,13 +3,13 @@
 
   bottom: 0em;
   left: 48%;
-  background: #0d0c22;
+  background: #232131;
   z-index: 1;
   font-family: "SemiBoldMonaSans";
   padding: 0em 4em;
   padding-top: 2em;
   padding-bottom: 1.5em;
-  border-radius: 30px 30px 0 0;
+  border-radius: 10px 10px 0 0;
   &__work,
   &__liked,
   &__collections {
@@ -19,6 +19,6 @@
   }
   .active {
     color: black;
-    background-color: rgba(255, 255, 255, 0.717);
+    background-color: rgba(255, 255, 255, 0.906);
   }
 }
