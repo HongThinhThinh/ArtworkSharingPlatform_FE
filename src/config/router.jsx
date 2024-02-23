@@ -43,14 +43,15 @@ import ConfirmSuccess from "../pages/confirmSuccess/ConfirmSuccess";
 import FormRequest from "../component/formRequest/FormRequest";
 import PostView from "../component/postView/PostView";
 
-
-
 export const router = createBrowserRouter([
-
   {
     path: "/test",
     // element: <Test />,
-    element:<PostView/>,
+
+//     element:<PostView/>,
+
+    element: <FormRequest />,
+
   },
   {
     path: "login",

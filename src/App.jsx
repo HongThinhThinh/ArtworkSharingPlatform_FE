@@ -16,8 +16,8 @@ function App() {
     <>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-        <StateProvider>
-          <RouterProvider router={router} />
+          <StateProvider>
+            <RouterProvider router={router} />
           </StateProvider>
         </PersistGate>
       </Provider>

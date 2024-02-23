@@ -7,11 +7,14 @@ function Posts() {
     <div
       style={{
         width: "100%",
+
         height:"100%",
+
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
+
         overflowY:"scroll",
         padding:"10em 0"
       }}
@@ -33,6 +36,12 @@ function Posts() {
         img="https://cdn.dribbble.com/userupload/13053936/file/original-9b153bacd9cfd53b6a918779321dde12.jpg?crop=0x190-1600x1390&resize=450x338&vertical=center"
         title="Landscape"
       />
+
+      }}
+      className="mode"
+    >
+      <PostView />
+
     </div>
   );
 }
