@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Login.scss";
 import ggIcon from "../../assets/google.png";
 import { Button, Col, Divider, Form, Input, Row } from "antd";
@@ -7,6 +7,9 @@ import "./Login.scss";
 import api from "../../config/axios";
 import { signInWithPopup, GoogleAuthProvider, getAuth } from "firebase/auth";
 import LogoWhite from "../../component/logoWhite/LogoWhite";
+import { alertFail } from "../../assets/hook/useNotification";
+import { useDispatch, useSelector } from "react-redux";
+import { login, selectUser } from "../../redux/features/counterSlice";
 const provider = new GoogleAuthProvider();
 
 function toArr(str) {
@@ -42,7 +45,10 @@ const MyFormItemGroup = ({ prefix, children }) => {
 // };
 
 function Login() {
+  const user = useSelector(selectUser);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleLoginGoogle = () => {
     const auth = getAuth();
     signInWithPopup(auth, provider).then((result) => {
@@ -58,17 +64,35 @@ function Login() {
       });
     });
   };
+
   const onFinish = async (value) => {
-    const response = await api.post("/login", value);
-    const role = response.data.data.role;
-    localStorage.setItem("role", role);
-    if (role === "ADMIN") {
-      navigate("/test");
-    }
-    if (role === "CREATOR") {
-      navigate("/creator-manage/artworks");
+    try {
+      const response = await api.post("/login", value);
+      const role = response.data.data.role;
+      const user = response.data.data;
+      console.log(user);
+      localStorage.setItem("token", response.data.data.token);
+      //save redux
+      dispatch(login(user));
+      if (role === "ADMIN") {
+        navigate("/dashboard");
+      }
+      if (role === "CREATOR") {
+        navigate("/creator-manage/artworks");
+      }
+      if (role === "AUDIENCE") {
+        navigate("/profile");
+      }
+    } catch (e) {
+      console.log(e);
+      alertFail(e.response.data, "Please Try Again");
     }
   };
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
   return (
     <Row container className="login">
       <LogoWhite />
