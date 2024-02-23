@@ -70,3 +70,18 @@
 .ant-btn-primary {
   background-color: rgb(44, 178, 222) !important;
 }
+
+@media only screen and (max-width: 850px) {
+  .postview {
+    display: block;
+  }
+}
+@media only screen and (max-width: 550px) {
+  .postview {
+    margin: 0em;
+    padding: 1em 0;
+     &__image {
+      width: 10% !important;
+     }
+  }
+}

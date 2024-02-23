@@ -16,9 +16,27 @@
     color: white;
     padding: 0.7em 1em;
     border-radius: 100px;
+    text-wrap: nowrap;
   }
   .active {
     color: black;
     background-color: rgba(255, 255, 255, 0.906);
+  }
+}
+
+@media only screen and (max-width: 1467px) {
+  .change-tab-creator {
+    position: relative;
+    left: 0;
+    background: transparent;
+    &__work,
+    &__liked,
+    &__collections {
+      color: black;
+    }
+
+    .active {
+      background-color:rgb(231, 230, 230);
+    }
   }
 }

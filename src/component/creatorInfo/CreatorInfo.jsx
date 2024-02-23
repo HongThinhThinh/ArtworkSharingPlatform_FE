@@ -20,7 +20,7 @@ function CreatorInfo({
   tags,
   position,
 }) {
-  const [status ,setStatus] = useState(false);
+  const [status, setStatus] = useState(false);
   const items = [
     {
       label: (
@@ -65,49 +65,60 @@ function CreatorInfo({
   ];
   return (
     <div className={`creator-info ${position == "top" && "top"}`}>
-      <Avatar className="creator-info__avatar" src={avatar} />
-      <h3 className="creator-info__name">{name}</h3>
-      <h1 className="creator-info__openLine">{openingLine}</h1>
-      <CreatorSocial
-        followers={followers}
-        following={following}
-        likes={likes}
-      />
-      <div className="creator-info__contact">
-        <Button className="creator-info__contact__getInTouch" onClick={() => setStatus(!status)}>
-          Get In Touch
-        </Button>
-        <FormRequest status={status} setStatus={() => setStatus(!status)}/>
-        <Button className="creator-info__contact__follow">Follow</Button>
+      <div style={{ display: "flex", marginTop: "7em", marginLeft: "2.6em" }} className="creator-info-res">
+        <div style={{marginTop:"1.2em"}}>
+          <Avatar className="creator-info__avatar" src={avatar} />
+        </div>
+        <div style={{ marginLeft: "1em" }}>
+          <h3 className="creator-info__name">{name}</h3>
+          <h1 className="creator-info__openLine">{openingLine}</h1>
+          <CreatorSocial
+            followers={followers}
+            following={following}
+            likes={likes}
+          />
 
-        <Dropdown
-          className="creator-info__contact__dropdownCreator"
-          menu={{
-            items,
-          }}
-          trigger={["click"]}
-        >
-          <Button>...</Button>
-        </Dropdown>
+          <div className="creator-info__contact" >
+            <Button
+              className="creator-info__contact__getInTouch"
+              onClick={() => setStatus(!status)}
+            >
+              Get In Touch
+            </Button>
+            <FormRequest status={status} setStatus={() => setStatus(!status)} />
+            <Button className="creator-info__contact__follow">Follow</Button>
+
+            <Dropdown
+              className="creator-info__contact__dropdownCreator"
+              menu={{
+                items,
+              }}
+              trigger={["click"]}
+            >
+              <Button>...</Button>
+            </Dropdown>
+          </div>
+        </div>
       </div>
-
       <div className="creator-info__position">
-        <div className="creator-info__position__location">
+        <div className="creator-info__position__location"  style={{marginLeft:"2em"}}>
           <CompassOutlined className="creator-info__position__location__icon" />
           Tallinn, Estonia
         </div>
-        <div className="creator-info__position__isPro">
+        <div className="creator-info__position__isPro"  style={{marginLeft:"2em"}}>
           <StarFilled className="creator-info__position__isPro__icon" />
           Cremo Pro
         </div>
-        <div className="creator-info__position__since">
+        <div className="creator-info__position__since"  style={{marginLeft:"2em"}}>
           <UserOutlined className="creator-info__position__since__icon" />
           Member since Mar 2020
         </div>
       </div>
-      <div className="creator-info__skill">
+
+    
+      <div className="creator-info__skill" style={{marginLeft:"2em"}}>
         <h3 className="creator-info__skill__title">Skill</h3>
-        <div className="creator-info__skill__tags">
+        <div className="creator-info__skill__tags" >
           {tags.slice(0, 2).map((item) => (
             <div className="creator-info__skill__tags__tag">{item}</div>
           ))}

@@ -27,6 +27,7 @@
   }
   &__contact {
     display: flex;
+    margin-top: -1.5em;
     &__getInTouch,
     &__follow,
     &__dropdownCreator {
@@ -61,7 +62,7 @@
     }
   }
   &__position {
-    margin-top: 1em;
+    margin: 2em;
     border-radius: 7px;
     background: linear-gradient(
       180deg,
@@ -113,4 +114,21 @@
 
 .creator-info .top {
   flex-direction: row;
+}
+
+@media only screen and (max-width: 500px) {
+  .creator-info {
+    &__name,
+    &__skill__title {
+      font-size: 0.8em;
+    }
+    &__openLine {
+      
+      font-size: 1.3em;
+     
+    }
+    .creator-info-res{
+        flex-direction: column;
+    }
+  }
 }
