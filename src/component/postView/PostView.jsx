@@ -3,7 +3,7 @@ import ImgPreview from "../../pages/Image/Image";
 
 import "./PostView.scss";
 import { Button, Modal } from "antd";
-function PostView({ img, title }) {
+function PostView({ img, title,avatar,name,description }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -24,19 +24,16 @@ function PostView({ img, title }) {
       />
       <div className="postview__content">
         <div className="postview__content__info">
-          <img src="https://cdn.dribbble.com/users/31348/avatars/normal/27c9b6b5f30020754935a86969f3c7a8.png?1682367368" />
+          <img src={avatar} />
 
           <div className="postview__content__info__details">
-            <h4>DKNG</h4>
+            <h4>{name}</h4>
             <p> 1 hour ago</p>
           </div>
         </div>
         <h1>{title}</h1>
         <p>
-          In celebration of beach festivals and dreaming of warm summer days
-          ahead, all of our beach themed prints and products are on sale for 25%
-          off, for 24 hours only! Sale ends at 12pm PT on Wednesday, 1/31. 25%
-          discount automatically applied at checkout.
+          {description}
         </p>
 
         <div className="postview__content__button">
