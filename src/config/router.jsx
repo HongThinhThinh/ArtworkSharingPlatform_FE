@@ -42,14 +42,11 @@ import ConfirmSuccess from "../pages/confirmSuccess/ConfirmSuccess";
 
 import FormRequest from "../component/formRequest/FormRequest";
 
-
-
 export const router = createBrowserRouter([
-
   {
     path: "/test",
     // element: <Test />,
-    element:<FormRequest />,
+    element: <FormRequest />,
   },
   {
     path: "login",

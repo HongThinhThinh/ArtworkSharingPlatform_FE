@@ -15,10 +15,11 @@ export const alertSuccessSignUp = (message) => {
     icon: "success",
   });
 };
-export const alertFail = (message) => {
+
+export const alertFail = (message, title = "Oops...") => {
   Swal.fire({
     icon: "error",
-    title: "Oops...",
+    title: `${title}`,
     text: `${message}`,
   });
 };
