@@ -48,10 +48,9 @@ export const router = createBrowserRouter([
     path: "/test",
     // element: <Test />,
 
-//     element:<PostView/>,
+    //     element:<PostView/>,
 
     element: <FormRequest />,
-
   },
   {
     path: "login",
@@ -134,7 +133,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "artworkDetails",
+    path: "/artworkDetails/:id",
     element: (
       <div>
         <ArtworkDetails />,

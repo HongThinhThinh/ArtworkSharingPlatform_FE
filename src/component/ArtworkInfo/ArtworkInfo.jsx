@@ -6,9 +6,9 @@ import ImgPreview from "../../pages/Image/Image";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-function ArtworkInfo() {
+function ArtworkInfo({ img }) {
   const isMobile = useMediaQuery({ maxWidth: "550px" });
-
+  console.log(img);
   const navigate = useNavigate();
   return (
     <div className="artworkInfo">
@@ -18,7 +18,7 @@ function ArtworkInfo() {
       <div className="artworkInfo--img">
         {!isMobile ? (
           <div className="artworkInfo--img__image">
-            <ImgPreview src="https://images.unsplash.com/photo-1706650079705-160f2c07c913?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+            <ImgPreview src={img} />
           </div>
         ) : null}
         {/* <div className="artworkInfo--img__icon">

@@ -9,7 +9,7 @@ import { FaRegCircle } from "react-icons/fa6";
 import { useMediaQuery } from "react-responsive";
 import ImgPreview from "../../pages/Image/Image";
 import { IoMdClose } from "react-icons/io";
-function ListFeedback() {
+function ListFeedback({ title, description, avt, name }) {
   const isMobile = useMediaQuery({ maxWidth: "550px" });
   const [isOpen, setIsOpen] = useState(true);
   useEffect(() => {
@@ -24,14 +24,14 @@ function ListFeedback() {
   return (
     <div className="listFeedback">
       <RoomMessage
-        avt="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/405274365_1295058761205189_4884784238252082746_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=SfSAh7w5UUIAX9VNPky&_nc_ht=scontent.fsgn5-9.fna&oh=00_AfAEoxvG68QbPMPmLHwG7NtiT4P8toTZmBnknMPgiRMvBg&oe=65C11307"
-        name="HongThinh"
+        avt={avt || "abc"}
+        name={name}
         lastMessage="Available for working"
         icon={<FaRegCircle />}
       />
       <div className="listFeedback--contentt">
-        <h2>The mushroom</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
       </div>
       {isMobile ? (
         <div className="artworkInfo--img__image">
