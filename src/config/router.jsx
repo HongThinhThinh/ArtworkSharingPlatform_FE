@@ -41,6 +41,7 @@ import Workart from "../component/workart/Workart";
 import ConfirmSuccess from "../pages/confirmSuccess/ConfirmSuccess";
 
 import FormRequest from "../component/formRequest/FormRequest";
+import PostView from "../component/postView/PostView";
 
 
 
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
   {
     path: "/test",
     // element: <Test />,
-    element:<FormRequest />,
+    element:<PostView/>,
   },
   {
     path: "login",
