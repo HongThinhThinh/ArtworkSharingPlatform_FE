@@ -16,6 +16,8 @@ function CreatorInfo({
   followers,
   following,
   likes,
+  tags,
+  position,
 }) {
   const items = [
     {
@@ -60,7 +62,7 @@ function CreatorInfo({
     },
   ];
   return (
-    <div className="creator-info">
+    <div className={`creator-info ${position == "top" && "top"}`}>
       <Avatar className="creator-info__avatar" src={avatar} />
       <h3 className="creator-info__name">{name}</h3>
       <h1 className="creator-info__openLine">{openingLine}</h1>
@@ -103,13 +105,12 @@ function CreatorInfo({
       <div className="creator-info__skill">
         <h3 className="creator-info__skill__title">Skill</h3>
         <div className="creator-info__skill__tags">
-          <div className="creator-info__skill__tags__tag">art direction</div>
-          <div className="creator-info__skill__tags__tag">design system</div>
-          <div className="creator-info__skill__tags__tag">leadership</div>
-          <div className="creator-info__skill__tags__tag">mobile design</div>
-          <div className="creator-info__skill__tags__tag">team management</div>
-          <div className="creator-info__skill__tags__tag">ux research</div>
-          <div className="creator-info__skill__tags__tag">web design</div>
+          {tags.slice(0, 2).map((item) => (
+            <div className="creator-info__skill__tags__tag">{item}</div>
+          ))}
+          <div className="creator-info__skill__tags__tag">
+            +{tags.length - 3}
+          </div>
         </div>
       </div>
     </div>

@@ -4,31 +4,25 @@ import Sider from "antd/es/layout/Sider";
 import { Content } from "antd/es/layout/layout";
 import { Outlet } from "react-router-dom";
 import ChangeTabCreator from "../../component/changeTabCreator/ChangeTabCreator";
-
-const contentStyle = {
-  backgroundColor: "#ffffff",
-  overflowY: "scroll",
-  paddingBottom: "7em",
-};
-
-const siderStyle = {
-  background: "#f9f9f9",
-  border: "1px solid #e8e8e8",
-  margin: "3em 1em 1em 1em",
-  padding: "1.5em",
-  borderRadius: " 10px",
-};
-
-const layoutStyle = {
-  backgroundColor: "#ffffff",
-  display: "flex",
-  height: "86vh",
-};
+import { useMediaQuery } from "react-responsive";
+import styles from "./CreatorPage.module.scss";
 
 function CreatorPage() {
+  const isChangeLayout = useMediaQuery({ maxWidth: 1467 });
+
+  const tags = [
+    "art direction",
+    "design system",
+    "leadership",
+    "mobile design",
+    "team management",
+    "ux research",
+    "web design",
+  ];
+
   return (
-    <Layout style={layoutStyle}>
-      <Sider width="20%" style={siderStyle}>
+    <Layout className={styles.layoutStyle}>
+      {isChangeLayout ? (
         <CreatorInfo
           avatar="https://cdn.dribbble.com/users/4949363/avatars/normal/606bb85ee728fd3d78bbddf7e70b3901.jpg?1676454777"
           name="Ronas IT | UI/UX Team"
@@ -36,9 +30,27 @@ function CreatorPage() {
           following="1,325"
           likes="14,897"
           openingLine="We make complex applications simple for users"
+          tags={tags}
+          position="top"
         />
-      </Sider>
-      <Content width="75%" style={contentStyle}>
+      ) : (
+        <Sider width="20%" className={styles.siderStyle}>
+          <CreatorInfo
+            avatar="https://cdn.dribbble.com/users/4949363/avatars/normal/606bb85ee728fd3d78bbddf7e70b3901.jpg?1676454777"
+            name="Ronas IT | UI/UX Team"
+            followers="9,511"
+            following="1,325"
+            likes="14,897"
+            openingLine="We make complex applications simple for users"
+            tags={tags}
+          />
+        </Sider>
+      )}
+
+      <Content
+        width={isChangeLayout ? "100%" : "75%"}
+        className={styles.contentStyle}
+      >
         <ChangeTabCreator />
         <Outlet />
       </Content>

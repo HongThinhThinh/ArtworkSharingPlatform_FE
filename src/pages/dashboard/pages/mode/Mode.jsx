@@ -1,5 +1,4 @@
 import React from "react";
-import UserTable from "../../../../component/table/TableDashboard";
 
 function Mode() {
   return (
@@ -13,7 +12,7 @@ function Mode() {
       }}
       className="mode"
     >
-      <UserTable />
+      Mode
     </div>
   );
 }

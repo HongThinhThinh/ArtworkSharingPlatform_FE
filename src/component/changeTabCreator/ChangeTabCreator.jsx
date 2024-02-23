@@ -4,7 +4,6 @@ import "./ChangeTabCreator.scss";
 
 function ChangeTabCreator() {
   const location = useLocation();
-  console.log(location.pathname);
   const [status, setStatus] = useState(
     location.pathname.includes("work")
       ? "work"

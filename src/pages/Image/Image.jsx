@@ -8,7 +8,7 @@ import {
 } from "@ant-design/icons";
 import { Image, Space } from "antd";
 import "./ImagePreview.scss";
-function ImgPreview(src) {
+function ImgPreview({ src, width, height, style }) {
   const onDownload = () => {
     fetch(src.src)
       .then((response) => response.blob())
@@ -26,8 +26,10 @@ function ImgPreview(src) {
   return (
     <div className="imgPreview">
       <Image
-        width={200}
-        src={src.src}
+        width={width || 200}
+        height={height}
+        src={src}
+        style={style}
         preview={{
           toolbarRender: (
             _,
