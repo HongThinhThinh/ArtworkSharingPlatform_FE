@@ -182,18 +182,18 @@ export const router = createBrowserRouter([
       </div>
     ),
     children: [
-      // {
-      //   path: "",
-      //   element: <CreatorWorkart />,
-      // },
-      // {
-      //   path: "/creator/work",
-      //   element: <CreatorWorkart />,
-      // },
-      // {
-      //   path: "/creator/collections",
-      //   element: <CreatorCollection />,
-      // },
+      {
+        path: "",
+        element: <CreatorWorkart />,
+      },
+      {
+        path: "/creator/:id/work",
+        element: <CreatorWorkart />,
+      },
+      {
+        path: "/creator/:id/collections",
+        element: <CreatorCollection />,
+      },
     ],
   },
 ]);

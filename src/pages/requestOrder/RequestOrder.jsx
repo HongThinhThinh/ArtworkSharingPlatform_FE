@@ -1,15 +1,15 @@
-import React from 'react'
-import "./RequestOrder.scss"
-import RequestOrderDetail from '../../component/RequestOrderDetail/RequestOrderDetail'
-import RequestOrderList from '../../component/requestOrderList/RequestOrderList'
+import React from "react";
+import "./RequestOrder.scss";
+import RequestOrderDetail from "../../component/RequestOrderDetail/RequestOrderDetail";
+import RequestOrderList from "../../component/requestOrderList/RequestOrderList";
 
 function RequestOrder() {
   return (
-    <div className='requestOrder'>
-        <RequestOrderList/>
-        <RequestOrderDetail/>
+    <div className="requestOrder">
+      <RequestOrderList />
+      <RequestOrderDetail />
     </div>
-  )
+  );
 }
 
-export default RequestOrder
+export default RequestOrder;
