@@ -5,6 +5,7 @@ import api from "../../../../config/axios";
 function Posts() {
   const [data, setData] = useState([]);
   const [reload, setReload] = useState("");
+
   useEffect(() => {
     const getAllArtworkPending = async () => {
       const response = await api.get("/artworks-pending");
@@ -13,6 +14,7 @@ function Posts() {
     };
     getAllArtworkPending();
   }, [reload]);
+
   return (
     <div style={{ height: "100%", overflowY: "scroll" }}>
       {data.length <= 0

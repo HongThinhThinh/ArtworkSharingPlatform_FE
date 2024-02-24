@@ -36,8 +36,8 @@ function WorkartSection() {
           >
             <Workart
               image={artwork.image}
-              name={artwork.name}
-              avatar={artwork.description}
+              name={artwork.user.name}
+              avatar={artwork.user.avt}
             />
           </Col>
         ))}
