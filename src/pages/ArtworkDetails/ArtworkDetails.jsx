@@ -30,7 +30,6 @@ function ArtworkDetails() {
 
     fetchData();
   }, [id]);
-
   return (
     <>
       <div className="artworkDetails">
@@ -41,6 +40,7 @@ function ArtworkDetails() {
         </div>
         <div className="artworkDetails--right">
           <ListFeedback
+            id={user.id}
             title={data.title}
             description={data.description}
             avt={user.avt}

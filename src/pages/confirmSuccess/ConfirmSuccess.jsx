@@ -10,7 +10,6 @@ function ConfirmSuccess() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const myParam = params.get("id");
-  console.log(myParam);
 
   useEffect(() => {
     const getVerify = async () => {

@@ -71,7 +71,7 @@ function PostView({ img, title, avatar, name, description, id, setReload }) {
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        title="Reason ject"
+        title="Reason reject"
       >
         <div class="col-span-full">
           <div class="mt-2">

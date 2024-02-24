@@ -174,7 +174,7 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/creator",
+    path: "/creator/:id",
     element: (
       <div>
         <Header />
@@ -182,18 +182,18 @@ export const router = createBrowserRouter([
       </div>
     ),
     children: [
-      {
-        path: "",
-        element: <CreatorWorkart />,
-      },
-      {
-        path: "/creator/work",
-        element: <CreatorWorkart />,
-      },
-      {
-        path: "/creator/collections",
-        element: <CreatorCollection />,
-      },
+      // {
+      //   path: "",
+      //   element: <CreatorWorkart />,
+      // },
+      // {
+      //   path: "/creator/work",
+      //   element: <CreatorWorkart />,
+      // },
+      // {
+      //   path: "/creator/collections",
+      //   element: <CreatorCollection />,
+      // },
     ],
   },
 ]);
