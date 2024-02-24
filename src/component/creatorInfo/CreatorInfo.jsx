@@ -64,8 +64,8 @@ function CreatorInfo({
     },
   ];
   return (
-    <div className={`creator-info ${position == "top" && "top"}`}>
-      <div style={{ display: "flex", marginTop: "7em", marginLeft: "2.6em" }} className="creator-info-res">
+    <div className={`creator-info ${position == "top" ? "top" : ""}`}>
+      <div  className="creator-info-res">
         <div style={{marginTop:"1.2em"}}>
           <Avatar className="creator-info__avatar" src={avatar} />
         </div>
@@ -101,15 +101,15 @@ function CreatorInfo({
         </div>
       </div>
       <div className="creator-info__position">
-        <div className="creator-info__position__location"  style={{marginLeft:"2em"}}>
+        <div className="creator-info__position__location"  style={{marginLeft:"1em"}}>
           <CompassOutlined className="creator-info__position__location__icon" />
           Tallinn, Estonia
         </div>
-        <div className="creator-info__position__isPro"  style={{marginLeft:"2em"}}>
+        <div className="creator-info__position__isPro"  style={{marginLeft:"1em"}}>
           <StarFilled className="creator-info__position__isPro__icon" />
           Cremo Pro
         </div>
-        <div className="creator-info__position__since"  style={{marginLeft:"2em"}}>
+        <div className="creator-info__position__since"  style={{marginLeft:"1em"}}>
           <UserOutlined className="creator-info__position__since__icon" />
           Member since Mar 2020
         </div>
