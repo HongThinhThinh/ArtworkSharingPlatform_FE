@@ -112,10 +112,32 @@
   }
 }
 
-.creator-info .top {
-  flex-direction: row;
+@media only screen and (max-width: 2000px) {
+  .creator-info {
+  .creator-info-res {
+    display: flex;
+    flex-direction: column;
+  }
+}
 }
 
+@media only screen and (max-width: 1510px) {
+  .creator-info {
+    &__name,
+    &__skill__title {
+      font-size: 0.8em;
+    }
+    &__openLine {
+      font-size: 1.3em;
+    }
+    .creator-info-res {
+      display: flex;
+      flex-direction: row;
+      margin-top: 7em;
+      margin-left: 2em;
+    }
+  }
+}
 @media only screen and (max-width: 500px) {
   .creator-info {
     &__name,
@@ -123,12 +145,10 @@
       font-size: 0.8em;
     }
     &__openLine {
-      
       font-size: 1.3em;
-     
     }
-    .creator-info-res{
-        flex-direction: column;
+    .creator-info-res {
+      flex-direction: column;
     }
   }
 }

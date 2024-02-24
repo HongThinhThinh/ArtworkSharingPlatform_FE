@@ -8,7 +8,7 @@ import { useMediaQuery } from "react-responsive";
 import styles from "./CreatorPage.module.scss";
 
 function CreatorPage() {
-  const isChangeLayout = useMediaQuery({ maxWidth: 1467 });
+  const isChangeLayout = useMediaQuery({ maxWidth: 1510 });
 
   const tags = [
     "art direction",
@@ -43,6 +43,7 @@ function CreatorPage() {
             likes="14,897"
             openingLine="We make complex applications simple for users"
             tags={tags}
+            position="left"
           />
         </Sider>
       )}
