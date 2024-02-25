@@ -1,4 +1,117 @@
-.requestOrderDetail{
-    flex-grow: 1;
-    height: 100%;
+.request-order-detail {
+  flex-grow: 1;
+  height: 100%;
+  &__head {
+    padding: 5em 2em 1em 2em;
+    display: flex;
+    justify-content: space-between;
+    font-family: "BoldCereal";
+    border-bottom: 1px solid #eee;
+    &__deadline {
+      border-radius: 100px;
+      font-size: 0.8em;
+      color: white;
+      background-color: #b42d81;
+      padding: 5px 10px;
+      letter-spacing: 0.5px;
+      font-family: "MediumCereal";
+    }
+  }
+  &__detail {
+    padding: 2em;
+    &__creator {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &__right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &__avatar {
+          height: 4em;
+          width: 4em;
+          margin-right: 1em;
+        }
+        &__info {
+          h3 {
+            font-family: "MediumCereal";
+          }
+          span {
+            color: #3c3c3c;
+            font-size: 0.8em;
+            font-family: "BookCereal";
+          }
+        }
+      }
+      &__left {
+        cursor: pointer;
+        border: 1px solid #585858;
+        padding: 0.5em;
+        border-radius: 100px;
+        svg {
+          color: #585858;
+          font-size: 1.5em;
+        }
+      }
+    }
+    &__payment {
+      font-size: 0.9em;
+      color: #3c3c3c;
+      font-family: "BoldCereal";
+      margin: 2em 0;
+      h3 {
+        margin: 0.5em 0;
+      }
+    }
+    &__description {
+      font-size: 0.9em;
+      margin-bottom: 2em;
+      h3 {
+        font-family: "BoldCereal";
+      }
+      p {
+        font-family: "BookCereal";
+      }
+    }
+    &__confirm {
+      display: flex;
+      justify-content: flex-end;
+      &__cancel,
+      &__accept {
+        height: 3em;
+        margin-left: 1em;
+        padding: 0 2em;
+        border-color: #252839;
+        font-family: "BoldCereal";
+      }
+      &__accept {
+        background-color: #252839;
+        color: white;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .request-order-detail {
+    &__head {
+      flex-direction: column;
+      &__deadline {
+        margin-top: 1em;
+        width: fit-content;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 785px) {
+  .request-order-detail {
+    display: none;
+  }
+  .request-order-detail.active {
+    display: block;
+    z-index: 10;
+
+    width: 100%;
+  }
 }
