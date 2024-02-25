@@ -9,9 +9,8 @@ export const counterSlice = createSlice({
       state = actions.payload;
       return state;
     },
-    logout: (state) => {
-      state.user = null;
-      return state;
+    logout: () => {
+      return null;
     },
   },
 });

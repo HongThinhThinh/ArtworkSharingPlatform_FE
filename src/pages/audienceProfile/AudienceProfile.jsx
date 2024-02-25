@@ -5,20 +5,23 @@ import ImgPreview from "../Image/Image";
 import EditProfile from "../creator/edit-profile/EditProfile";
 import "./AudienceProfile.scss";
 import { Outlet, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
 function AudienceProfile() {
   const [selectedLayout, setSelectedLayout] = useState("");
   const navigate = useNavigate();
+  const user = useSelector(selectUser);
   return (
     <div className="audience-profile">
       <div className="creator-profilee">
         <div className="creator-profilee__img">
-          <ImgPreview src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/405464790_1297996437578088_4420355434371338161_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=z3RtPzDl3R0AX_DswY0&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfBBdE3sw4uS12qiTZhDzsfsUhEeupdvbyTCHLcd-scDMQ&oe=65C888F1" />
+          <ImgPreview src={user.avt} />
         </div>
         <div className="creator-profilee__info">
           <div className="creator-profilee__info__name">
-            <h2>Hong Thinh</h2>
+            <h2>{user.name}</h2>
             <div className="creator-profilee__editprofile">
-              <EditProfile />
+              <EditProfile user={user} />
             </div>
           </div>
         </div>

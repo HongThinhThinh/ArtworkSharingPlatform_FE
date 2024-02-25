@@ -36,7 +36,7 @@ function Header() {
             <StyledSearch />
           </Col>
           <Col xl={9} lg={10}>
-            {localStorage.getItem("role") != null ? <Account /> : <SignInUp />}
+            {localStorage.getItem("token") != null ? <Account /> : <SignInUp />}
           </Col>
         </Row>
       </Col>
@@ -71,7 +71,7 @@ function Header() {
             <StyledSearch />
           </Col>
           <Col lg={10}>
-            {localStorage.getItem("role") != null ? <Account /> : <SignInUp />}
+            {localStorage.getItem("token") != null ? <Account /> : <SignInUp />}
           </Col>
         </Row>
       </Col>
@@ -99,7 +99,7 @@ function Header() {
             <StyledSearch />
           </Col>
           <Col xl={9} lg={10}>
-            {localStorage.getItem("role") != null ? <Account /> : <SignInUp />}
+            {localStorage.getItem("token") != null ? <Account /> : <SignInUp />}
           </Col>
         </Row>
       </Col>

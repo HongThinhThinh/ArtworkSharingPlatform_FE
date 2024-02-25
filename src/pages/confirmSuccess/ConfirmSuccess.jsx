@@ -36,7 +36,7 @@ function ConfirmSuccess() {
         extra={[
           // eslint-disable-next-line react/jsx-key
           <RoundedBtn color="#1f1f1f" onClick={toLogin}>
-            Navigate to Login
+            Go to login
           </RoundedBtn>,
         ]}
       />

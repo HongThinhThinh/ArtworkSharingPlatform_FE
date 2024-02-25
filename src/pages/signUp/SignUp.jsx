@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./SignUp.scss";
 import ggIcon from "../../assets/google.png";
 import { Button, Col, Form, theme, Row, Input, Checkbox, Radio } from "antd";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import LogoWhite from "../../component/logoWhite/LogoWhite";
 import api from "../../config/axios";
 import { WarningFilled } from "@ant-design/icons";
@@ -49,7 +49,7 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [checked, setChecked] = useState(false);
-
+  const navigae = useNavigate();
   const onFinish = async () => {
     setIsLoading(true);
     try {
@@ -60,9 +60,9 @@ function SignUp() {
         name,
         email,
         role,
-        phone,
       });
       alertSuccessSignUp("Please check and confirm to activate this account");
+      navigae("/login");
     } catch (e) {
       alertFail(e.response.data);
     }
@@ -243,41 +243,6 @@ function SignUp() {
                         placeholder="6+ characters"
                       />
                     </Form.Item>
-
-                    {role === "creator" && (
-                      <div>
-                        <Form.Item
-                          label="Phone Number"
-                          name="phone"
-                          rules={[
-                            {
-                              pattern: /^\d{10}$|^\d{11}$/,
-                              message: (
-                                <div>
-                                  <WarningFilled /> Phone number must be 10 or
-                                  11 digits!
-                                </div>
-                              ),
-                            },
-                            {
-                              required: true,
-                              message: (
-                                <div>
-                                  <WarningFilled /> Please input your phone
-                                  number!
-                                </div>
-                              ),
-                            },
-                          ]}
-                          className="signUp__form__container__group-form__label"
-                        >
-                          <Input
-                            onInput={(e) => setPhone(e.target.value)}
-                            className="signUp__form__container__group-form__input"
-                          />
-                        </Form.Item>
-                      </div>
-                    )}
                   </MyFormItem>
                 </MyFormItemGroup>
                 <Checkbox onChange={onChange}>
