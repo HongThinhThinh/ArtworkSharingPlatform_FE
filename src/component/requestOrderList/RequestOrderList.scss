@@ -1,5 +1,5 @@
 .requestOrderList {
-  width: 20%;
+  width: 20em;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -76,5 +76,21 @@
     &__item.active {
       background-color: #545454;
     }
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .requestOrderList {
+    width: 18em;
+  }
+}
+
+@media only screen and (max-width: 785px) {
+  .requestOrderList {
+    display: none;
+  }
+  .requestOrderList.active {
+    display: block;
+    width: 100%;
   }
 }

@@ -5,9 +5,8 @@ import { Button } from "antd";
 import RequestOrderTab from "../requestOrderTab/RequestOrderTab";
 import { list } from "firebase/storage";
 
-function RequestOrderList() {
+function RequestOrderList({ choice, setChoice }) {
   const [option, setOption] = useState(0);
-  const [choice, setChoice] = useState(0);
   const listOption = ["Offer", "My Jobs", "History"];
   const listOrder = [
     {
@@ -30,7 +29,7 @@ function RequestOrderList() {
     },
   ];
   return (
-    <div className="requestOrderList">
+    <div className={`requestOrderList ${choice != -1 ? "" : "active"}`}>
       <div className="requestOrderList__title">
         <h1>Offer</h1>
       </div>

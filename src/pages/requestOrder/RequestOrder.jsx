@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RequestOrder.scss";
 import RequestOrderDetail from "../../component/RequestOrderDetail/RequestOrderDetail";
 import RequestOrderList from "../../component/requestOrderList/RequestOrderList";
 
 function RequestOrder() {
+  const [choice, setChoice] = useState(-1);
   return (
     <div className="requestOrder">
-      <RequestOrderList />
-      <RequestOrderDetail />
+      <RequestOrderList choice={choice} setChoice={setChoice} />
+      <RequestOrderDetail choice={choice} setChoice={setChoice} />
     </div>
   );
 }

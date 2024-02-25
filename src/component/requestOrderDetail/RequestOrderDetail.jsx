@@ -2,10 +2,23 @@ import React from "react";
 import "./RequestOrderDetail.scss";
 import { Avatar, Button } from "antd";
 import { AiFillMessage } from "react-icons/ai";
+import { useMediaQuery } from "react-responsive";
+import { LeftCircleTwoTone } from "@ant-design/icons";
 
-function RequestOrderDetail() {
+function RequestOrderDetail({ choice, setChoice }) {
+  const isMobile = useMediaQuery({ maxWidth: 785 });
   return (
-    <div className="request-order-detail">
+    <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
+      {isMobile ? (
+        <LeftCircleTwoTone
+          twoToneColor="#b42d81"
+          style={{
+            transform: "translateY(2em) translateX(1.5em)",
+            fontSize: "1.4em",
+          }}
+          onClick={() => setChoice(-1)}
+        />
+      ) : null}
       <div className="request-order-detail__head">
         <div className="request-order-detail__head__title">
           Title: Logo for brand

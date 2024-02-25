@@ -91,3 +91,27 @@
     }
   }
 }
+
+@media only screen and (max-width: 1000px) {
+  .request-order-detail {
+    &__head {
+      flex-direction: column;
+      &__deadline {
+        margin-top: 1em;
+        width: fit-content;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 785px) {
+  .request-order-detail {
+    display: none;
+  }
+  .request-order-detail.active {
+    display: block;
+    z-index: 10;
+
+    width: 100%;
+  }
+}
