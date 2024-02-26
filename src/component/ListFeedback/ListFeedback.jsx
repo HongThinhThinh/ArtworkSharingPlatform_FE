@@ -11,7 +11,6 @@ import ImgPreview from "../../pages/Image/Image";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 function ListFeedback({ title, description, avt, name, id }) {
-  console.log(id);
   const isMobile = useMediaQuery({ maxWidth: "550px" });
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();

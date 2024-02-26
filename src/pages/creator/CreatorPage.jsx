@@ -45,6 +45,7 @@ function CreatorPage() {
     <Layout className={styles.layoutStyle}>
       {isChangeLayout ? (
         <CreatorInfo
+          id={id}
           avatar={data.avt || "abc"}
           name={data.name}
           followers="9,511"
