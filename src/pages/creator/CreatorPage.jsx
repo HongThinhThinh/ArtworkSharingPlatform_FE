@@ -15,7 +15,6 @@ import CreatorWorkart from "../../sections/creatorWorkart/CreatorWorkart";
 function CreatorPage() {
   const isChangeLayout = useMediaQuery({ maxWidth: 1510 });
   const { id } = useParams();
-  const { setCreatorDetail } = useStateValue();
 
   const [data, setData] = useState("");
   console.log(id);
@@ -26,9 +25,7 @@ function CreatorPage() {
   const getDetailCreator = async () => {
     try {
       const response = await api.get(`/getCreator-detail/${id}`);
-      console.log(response.data.data);
       setData(response.data.data);
-      setCreatorDetail(response.data.data.artworks);
     } catch (e) {
       alertFail("Fail to load");
     }
@@ -43,6 +40,7 @@ function CreatorPage() {
     "ux research",
     "web design",
   ];
+  console.log(data);
   return (
     <Layout className={styles.layoutStyle}>
       {isChangeLayout ? (
