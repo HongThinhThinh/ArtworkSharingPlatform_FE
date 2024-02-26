@@ -39,7 +39,6 @@ import PostView from "../component/postView/PostView";
 import GoPro from "../pages/goPro/GoPro";
 import JobsPage from "../pages/jobsPage/JobsPage";
 
-
 export const router = createBrowserRouter([
   {
     path: "/test",
@@ -159,7 +158,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/jobs",
-        element: <JobsPage/>,
+        element: <JobsPage />,
       },
       {
         path: "/profile",
