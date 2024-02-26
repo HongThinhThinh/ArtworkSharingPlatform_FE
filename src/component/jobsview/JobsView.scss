@@ -1,0 +1,64 @@
+.jobsview {
+  margin: 2em;
+
+  &__cart {
+    border-radius: 20px;
+    border: 0.3px solid rgb(153, 151, 151);
+    h1 {
+      font-weight: 600;
+      font-family: "RegularMonaSans";
+      font-size: 1.5em;
+      text-wrap: wrap;
+    }
+    &__info {
+      margin-top: 1em;
+      display: flex;
+      img {
+        width: 7%;
+        height: 7%;
+        border-radius: 100px;
+        margin-right: 1.5em;
+      }
+      p {
+        font-family: "RegularMonaSans";
+        font-weight: 500;
+        color: #a9aba9;
+        margin-top: 0.5em;
+      }
+    }
+    &__info-details {
+      margin-top: 1em;
+      display: flex;
+      font-family: "RegularMonaSans";
+
+      p {
+        font-weight: 700;
+        margin-right: 2em;
+      }
+    }
+    &__description {
+      margin-top: 1em;
+      font-family: "RegularMonaSans";
+      line-height: 1.5em;
+    }
+    &__submit {
+      margin-top: 1em;
+      width: max-content;
+      border-radius: 100px;
+      background-color: #0d0c22 !important;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "SemiBoldMonaSans";
+      padding: 25px;
+      border: 1.8px solid rgb(231, 231, 231);
+      float: right;
+    }
+  }
+}
+
+@media only screen and (max-width: 2000px) {
+}
+@media only screen and (max-width: 1880px) {
+}
