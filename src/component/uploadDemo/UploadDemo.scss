@@ -1,0 +1,17 @@
+.demo-uploader {
+  width: auto !important;
+  .ant-upload.ant-upload-select {
+    background-color: #f1d4ef3e !important;
+    width: 12rem !important;
+    height: 12rem !important;
+    border: 2.35px dashed #b42d81 !important;
+  }
+}
+
+@media only screen and (max-width: 1353px) {
+  .demo-uploader {
+    .ant-upload.ant-upload-select {
+      margin: 1.5em;
+    }
+  }
+}
