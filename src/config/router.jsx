@@ -38,15 +38,12 @@ import FormRequest from "../component/formRequest/FormRequest";
 import PostView from "../component/postView/PostView";
 import GoPro from "../pages/goPro/GoPro";
 import JobsPage from "../pages/jobsPage/JobsPage";
+import OrderHistory from "../sections/orderHistory/OrderHistory";
 
 export const router = createBrowserRouter([
   {
     path: "/test",
-    // element: <Test />,
-
-    //     element:<PostView/>,
-
-    element: <FormRequest />,
+    element: <OrderHistory />,
   },
   {
     path: "login",
@@ -170,7 +167,7 @@ export const router = createBrowserRouter([
           },
           {
             path: "/profile/orders",
-            element: <CreatorCollection />,
+            element: <OrderHistory />,
           },
         ],
       },
