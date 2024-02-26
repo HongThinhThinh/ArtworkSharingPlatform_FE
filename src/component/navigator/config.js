@@ -13,7 +13,7 @@ export const navHeaderConfig = [
   },
   {
     title: "Go Pro",
-    path: "/pro",
+    path: "/go-pro",
   },
 ];
 //edit config footer

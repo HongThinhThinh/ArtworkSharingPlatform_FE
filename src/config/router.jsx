@@ -42,6 +42,7 @@ import ConfirmSuccess from "../pages/confirmSuccess/ConfirmSuccess";
 
 import FormRequest from "../component/formRequest/FormRequest";
 import PostView from "../component/postView/PostView";
+import GoPro from "../pages/goPro/GoPro";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ export const router = createBrowserRouter([
   {
     path: "/account/unverified",
     element: <OTP />,
+  },
+  {
+    path: "/go-pro",
+    element: <GoPro />,
   },
   {
     path: "/dashboard",
