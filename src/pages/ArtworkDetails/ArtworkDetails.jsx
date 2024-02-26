@@ -43,7 +43,7 @@ function ArtworkDetails() {
             id={user.id}
             title={data.title}
             description={data.description}
-            avt={user.avt}
+            avt={user.avt || "abc"}
             name={user.name}
           />
         </div>

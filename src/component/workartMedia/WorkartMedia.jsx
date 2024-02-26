@@ -1,10 +1,17 @@
 import React from "react";
 import "./WorkartMedia.scss";
+import { useNavigate } from "react-router-dom";
 
-function WorkartMedia({ image }) {
+function WorkartMedia({ image, id }) {
+  console.log(id);
+  const navigate = useNavigate();
   return (
     <div
+      onClick={() => {
+        navigate(`/artworkDetails/${id}`);
+      }}
       style={{
+        cursor: "pointer",
         backgroundImage: `url(${image})`,
       }}
       className="workart-media"

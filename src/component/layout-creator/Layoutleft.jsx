@@ -8,11 +8,13 @@ import "./layoutLeft.scss";
 import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../Context/StateProvider";
 import { MdLightMode } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/features/counterSlice";
 function LayoutLeft() {
   const { theme, setTheme } = useStateValue();
   const [selectedLayout, setSelectedLayout] = useState("");
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const handleTheme = () => {
     setTheme(!theme);
     localStorage.setItem("theme", !theme);
@@ -72,15 +74,23 @@ function LayoutLeft() {
           <MdLightMode />
         </div>
       </div>
-      <div className="layoutLeft--logout" onClick={() => navigate("/login")}>
+      <div
+        className="layoutLeft--logout"
+        onClick={() => {
+          localStorage.removeItem("token");
+          //save redux
+          dispatch(logout());
+          navigate("/");
+        }}
+      >
         <AiOutlineLogout />
       </div>
-      <div
+      {/* <div
         className="layoutLeft--setting"
         onClick={() => navigate("/creator-manage/settings")}
       >
         <AiOutlineSetting />
-      </div>
+      </div> */}
     </div>
   );
 }

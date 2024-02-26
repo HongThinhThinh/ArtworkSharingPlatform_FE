@@ -21,7 +21,9 @@ const useStyle = createStyles(({ token }) => ({
   },
 }));
 
-const EditProfile = () => {
+// eslint-disable-next-line react/prop-types
+const EditProfile = ({ user }) => {
+  console.log(user);
   const [open, setOpen] = useState([false, false]);
   const { styles } = useStyle();
   const token = useTheme();
@@ -76,10 +78,7 @@ const EditProfile = () => {
         <div className="ChangeProfileInfo">
           <div className="changeAvt">
             <div className="changeAvt--img">
-              <img
-                src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/405464790_1297996437578088_4420355434371338161_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=z3RtPzDl3R0AX_DswY0&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfBBdE3sw4uS12qiTZhDzsfsUhEeupdvbyTCHLcd-scDMQ&oe=65C888F1"
-                alt=""
-              />
+              <img src={user.avt} alt="" />
               <UploadArtWork content="Upload New Avatar" />
             </div>
           </div>
@@ -92,7 +91,8 @@ const EditProfile = () => {
                 rules={[{}]}
               >
                 <Input
-                  defaultValue="Hong Thinh"
+                  readOnly
+                  defaultValue={user.name}
                   className="login__form__container__namepass__group-form__input"
                 />
               </Form.Item>
@@ -104,7 +104,7 @@ const EditProfile = () => {
                 rules={[{}]}
               >
                 <Input
-                  defaultValue="thinhnhse171708@fpt.edu.vn"
+                  defaultValue={user.email}
                   className="login__form__container__namepass__group-form__input"
                 />
               </Form.Item>
@@ -114,10 +114,7 @@ const EditProfile = () => {
                 className="login__form__container__namepass__group-form"
                 rules={[{}]}
               >
-                <Input
-                  defaultValue="thinhnhse171708@fpt.edu.vn"
-                  className="login__form__container__namepass__group-form__input"
-                />
+                <Input className="login__form__container__namepass__group-form__input" />
               </Form.Item>
               <Form.Item
                 label="New Password"
@@ -125,10 +122,7 @@ const EditProfile = () => {
                 className="login__form__container__namepass__group-form"
                 rules={[{}]}
               >
-                <Input
-                  defaultValue="thinhnhse171708@fpt.edu.vn"
-                  className="login__form__container__namepass__group-form__input"
-                />
+                <Input className="login__form__container__namepass__group-form__input" />
               </Form.Item>
               <Button
                 className="login__form__container__namepass__submit"

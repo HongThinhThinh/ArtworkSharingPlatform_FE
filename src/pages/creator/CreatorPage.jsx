@@ -9,10 +9,13 @@ import styles from "./CreatorPage.module.scss";
 import api from "../../config/axios";
 import { useEffect, useState } from "react";
 import { alertFail } from "../../assets/hook/useNotification";
+import { useStateValue } from "../../Context/StateProvider";
+import CreatorWorkart from "../../sections/creatorWorkart/CreatorWorkart";
 
 function CreatorPage() {
   const isChangeLayout = useMediaQuery({ maxWidth: 1510 });
   const { id } = useParams();
+
   const [data, setData] = useState("");
   console.log(id);
   useEffect(() => {
@@ -22,7 +25,6 @@ function CreatorPage() {
   const getDetailCreator = async () => {
     try {
       const response = await api.get(`/getCreator-detail/${id}`);
-      console.log(response.data.data);
       setData(response.data.data);
     } catch (e) {
       alertFail("Fail to load");
@@ -38,12 +40,12 @@ function CreatorPage() {
     "ux research",
     "web design",
   ];
-
+  console.log(data);
   return (
     <Layout className={styles.layoutStyle}>
       {isChangeLayout ? (
         <CreatorInfo
-          avatar={data.avt}
+          avatar={data.avt || "abc"}
           name={data.name}
           followers="9,511"
           following="1,325"
@@ -55,7 +57,7 @@ function CreatorPage() {
       ) : (
         <Sider width="20%" className={styles.siderStyle}>
           <CreatorInfo
-            avatar={data.avt}
+            avatar={data.avt || "abc"}
             name={data.name}
             followers="9,511"
             following="1,325"
@@ -72,7 +74,7 @@ function CreatorPage() {
         className={styles.contentStyle}
       >
         <ChangeTabCreator />
-        <Outlet />
+        <CreatorWorkart list={data.artworks} />
       </Content>
     </Layout>
   );
