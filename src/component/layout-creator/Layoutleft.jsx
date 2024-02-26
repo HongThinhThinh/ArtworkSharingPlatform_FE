@@ -21,7 +21,13 @@ function LayoutLeft() {
   };
   return (
     <div className="layoutLeft">
-      <img className="layoutLeft--img" src={image1} alt="" />
+      <img
+        style={{ cursor: "pointer" }}
+        onClick={() => navigate("/")}
+        className="layoutLeft--img"
+        src={image1}
+        alt=""
+      />
       <div className="layoutLeft--menu">
         <div
           className={`layoutLeft--menu__icon ${
