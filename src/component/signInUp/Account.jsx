@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./SignInUp.scss";
 import { Avatar } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +8,7 @@ import { logout, selectUser } from "../../redux/features/counterSlice";
 function Account() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
+
   return (
     <div className="signInUp">
       {/* <Link className="signInUp__login" to="/login">
