@@ -10,11 +10,9 @@ import CreatorPage from "../pages/creator/CreatorPage";
 import CreatorWorkart from "../sections/creatorWorkart/CreatorWorkart";
 import CreatorCollection from "../sections/creatorCollection/CreatorCollection";
 
-import Test from "../test";
 import CreatorManage from "../pages/creator/creator-manage/CreatorManage";
 import RoomChat from "../pages/RoomChat/RoomChat";
 import CreatorProduct from "../pages/creator/creator-product/CreatorProduct";
-import CreatorProfile from "../pages/creator/creator-profile/CreatorProfile";
 import CreatorSetting from "../pages/creator/creator-setting/CreatorSetting";
 import FormArtwork from "../pages/addArtWork/FormArtWork";
 
@@ -33,15 +31,9 @@ import AudienceProfile from "../pages/audienceProfile/AudienceProfile";
 
 import RequestOrder from "../pages/requestOrder/RequestOrder";
 
-import WorkartMedia from "../component/workartMedia/WorkartMedia";
-import WorkartSection from "../sections/workartSection/WorkartSection";
-import WorkartInfo from "../component/workartInfo/WorkartInfo";
-import Workart from "../component/workart/Workart";
-
 import ConfirmSuccess from "../pages/confirmSuccess/ConfirmSuccess";
 
 import FormRequest from "../component/formRequest/FormRequest";
-import PostView from "../component/postView/PostView";
 
 export const router = createBrowserRouter([
   {
@@ -182,10 +174,6 @@ export const router = createBrowserRouter([
       </div>
     ),
     children: [
-      {
-        path: "",
-        element: <CreatorWorkart />,
-      },
       {
         path: "/creator/:id/work",
         element: <CreatorWorkart />,
