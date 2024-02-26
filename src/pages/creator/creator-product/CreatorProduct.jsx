@@ -7,9 +7,16 @@ import ImgPreview from "../../Image/Image";
 import { Button } from "antd";
 import CreatorProfile from "../creator-profile/CreatorProfile";
 import Filter from "../../../component/dropdown/Filter";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../redux/features/counterSlice";
+import Workart from "../../../component/workart/Workart";
+import WorkartInfo from "../../../component/workartInfo/WorkartInfo";
+import WorkartMedia from "../../../component/workartMedia/WorkartMedia";
 
 function CreatorProduct() {
   const { theme } = useStateValue();
+  const user = useSelector(selectUser);
+  console.log(user);
   return (
     <div
       className="creator-product"
@@ -28,8 +35,7 @@ function CreatorProduct() {
           </div>
         </div>
         <div className="listArtWork--items">
-          <CreatorWorkart />
-          <CreatorWorkart />
+          <CreatorWorkart list={user.artworks} />
         </div>
       </div>
     </div>
