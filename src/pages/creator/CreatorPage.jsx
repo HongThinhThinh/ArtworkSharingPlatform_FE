@@ -45,7 +45,7 @@ function CreatorPage() {
     <Layout className={styles.layoutStyle}>
       {isChangeLayout ? (
         <CreatorInfo
-          avatar={data.avt}
+          avatar={data.avt || "abc"}
           name={data.name}
           followers="9,511"
           following="1,325"
@@ -57,7 +57,7 @@ function CreatorPage() {
       ) : (
         <Sider width="20%" className={styles.siderStyle}>
           <CreatorInfo
-            avatar={data.avt}
+            avatar={data.avt || "abc"}
             name={data.name}
             followers="9,511"
             following="1,325"

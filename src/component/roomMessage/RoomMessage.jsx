@@ -11,15 +11,14 @@ function RoomMessage({
   lastMessage,
   icon,
 }) {
-  const { setIdRoomChat, setShowSearchFriends,setShowChatList } = useStateValue();
+  const { setIdRoomChat, setShowSearchFriends, setShowChatList } =
+    useStateValue();
 
   const setShow = () => {
-    
     setIdRoomChat(room);
     setShowSearchFriends(false);
     setActive(room);
-    setShowChatList(false)
-  
+    setShowChatList(false);
   };
 
   return (
@@ -27,7 +26,7 @@ function RoomMessage({
       className={`item ${active === room ? "active" : ""}`}
       onClick={setShow}
     >
-      <img src={avt} alt="" />
+      <img src={avt || "abc"} alt="" />
       <div className="item__detail">
         <h4>{name}</h4>
         <span>

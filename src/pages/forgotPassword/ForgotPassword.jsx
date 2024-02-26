@@ -2,6 +2,9 @@ import React from "react";
 import "./ForgotPassword.scss";
 import { Button, Col, Divider, Form, Input, Row } from "antd";
 import LogoWhite from "../../component/logoWhite/LogoWhite";
+import api from "../../config/axios";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
+import { useNavigate } from "react-router-dom";
 
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
@@ -23,6 +26,17 @@ const MyFormItemGroup = ({ prefix, children }) => {
 };
 
 function ForgotPassword() {
+  const navigate = useNavigate();
+  const onFinish = async (value) => {
+    try {
+      const email = value.email_address;
+      const res = await api.put(`/forgotPassword/${email}`, {});
+      alertSuccess(res.data.message);
+      navigate("/login");
+    } catch (e) {
+      alertFail(e.response.data);
+    }
+  };
   return (
     <>
       <LogoWhite />
@@ -53,7 +67,7 @@ function ForgotPassword() {
               className="forgot__form__container__email"
               name="form_item_path"
               layout="vertical"
-              // onFinish={onFinish}
+              onFinish={onFinish}
             >
               <MyFormItemGroup className="forgot__form__container__email__group-form">
                 <Form.Item
