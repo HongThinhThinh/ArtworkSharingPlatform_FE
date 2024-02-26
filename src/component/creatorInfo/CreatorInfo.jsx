@@ -11,6 +11,7 @@ import {
 import FormRequest from "../formRequest/FormRequest";
 
 function CreatorInfo({
+  id,
   avatar,
   name,
   openingLine,
@@ -65,8 +66,8 @@ function CreatorInfo({
   ];
   return (
     <div className={`creator-info ${position == "top" ? "top" : ""}`}>
-      <div  className="creator-info-res">
-        <div style={{marginTop:"1.2em"}}>
+      <div className="creator-info-res">
+        <div style={{ marginTop: "1.2em" }}>
           <Avatar className="creator-info__avatar" src={avatar} />
         </div>
         <div style={{ marginLeft: "1em" }}>
@@ -78,14 +79,18 @@ function CreatorInfo({
             likes={likes}
           />
 
-          <div className="creator-info__contact" >
+          <div className="creator-info__contact">
             <Button
               className="creator-info__contact__getInTouch"
               onClick={() => setStatus(!status)}
             >
               Get In Touch
             </Button>
-            <FormRequest status={status} setStatus={() => setStatus(!status)} />
+            <FormRequest
+              id={id}
+              status={status}
+              setStatus={() => setStatus(!status)}
+            />
             <Button className="creator-info__contact__follow">Follow</Button>
 
             <Dropdown
@@ -101,24 +106,32 @@ function CreatorInfo({
         </div>
       </div>
       <div className="creator-info__position">
-        <div className="creator-info__position__location"  style={{marginLeft:"1em"}}>
+        <div
+          className="creator-info__position__location"
+          style={{ marginLeft: "1em" }}
+        >
           <CompassOutlined className="creator-info__position__location__icon" />
           Tallinn, Estonia
         </div>
-        <div className="creator-info__position__isPro"  style={{marginLeft:"1em"}}>
+        <div
+          className="creator-info__position__isPro"
+          style={{ marginLeft: "1em" }}
+        >
           <StarFilled className="creator-info__position__isPro__icon" />
           Cremo Pro
         </div>
-        <div className="creator-info__position__since"  style={{marginLeft:"1em"}}>
+        <div
+          className="creator-info__position__since"
+          style={{ marginLeft: "1em" }}
+        >
           <UserOutlined className="creator-info__position__since__icon" />
           Member since Mar 2020
         </div>
       </div>
 
-    
-      <div className="creator-info__skill" style={{marginLeft:"2em"}}>
+      <div className="creator-info__skill" style={{ marginLeft: "2em" }}>
         <h3 className="creator-info__skill__title">Skill</h3>
-        <div className="creator-info__skill__tags" >
+        <div className="creator-info__skill__tags">
           {tags.slice(0, 2).map((item) => (
             <div className="creator-info__skill__tags__tag">{item}</div>
           ))}

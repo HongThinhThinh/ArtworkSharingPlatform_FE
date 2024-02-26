@@ -3,12 +3,34 @@ import TextArea from "antd/es/input/TextArea";
 import React, { useState } from "react";
 import "./FormRequest.scss";
 import { WarningFilled } from "@ant-design/icons";
+import api from "../../config/axios";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
+import getCurrentDateTime from "../../assets/hook/useGetTime";
 
-function FormRequest({ status, setStatus }) {
+function FormRequest({ status, setStatus, id }) {
   const [option, setOption] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-
-
+  const onFinish = async () => {
+    try {
+      const response = await api.post("/sendOrderRequest", {
+        creatorID: id,
+        title: title,
+        dateStart: getCurrentDateTime(),
+        dateEnd: option,
+        description: description,
+        price: 0,
+      });
+      console.log(response.data.data);
+      alertSuccess("Send request successfully");
+      setStatus(false);
+      setTitle("");
+      setDescription("");
+    } catch (e) {
+      alertFail("loi");
+    }
+  };
   return (
     <div className="form">
       <Modal
@@ -27,8 +49,8 @@ function FormRequest({ status, setStatus }) {
             <div className="form__footer__upper">
               <h4 onClick={setStatus}>Nevermind</h4>
               <Button
+                onClick={onFinish}
                 className="form__footer__upper__button"
-                
               >
                 Send Request
               </Button>
@@ -60,9 +82,11 @@ function FormRequest({ status, setStatus }) {
           >
             <p> What are your looking to design...</p>
             <Input
+              onInput={(e) => setTitle(e.target.value)}
               placeholder="e.g. landing page, iOS icon"
               maxLength={80}
               showCount
+              value={title}
               className="form__container__details__input"
             />
           </Form.Item>
@@ -76,10 +100,10 @@ function FormRequest({ status, setStatus }) {
             <div className="form__container__details__option">
               <Button
                 className="form__container__details__option__button"
-                onClick={() => setOption("question1")}
+                onClick={() => setOption("ASAP")}
                 style={{
-                  backgroundColor: option === "question1" ? "black" : "",
-                  color: option === "question1" ? "white" : "",
+                  backgroundColor: option === "ASAP" ? "black" : "",
+                  color: option === "ASAP" ? "white" : "",
                 }}
               >
                 ASAP
@@ -87,20 +111,21 @@ function FormRequest({ status, setStatus }) {
 
               <Button
                 className="form__container__details__option__button"
-                onClick={() => setOption("question2")}
+                onClick={() => setOption("Within the next month")}
                 style={{
-                  backgroundColor: option === "question2" ? "black" : "",
-                  color: option === "question2" ? "white" : "",
+                  backgroundColor:
+                    option === "Within the next month" ? "black" : "",
+                  color: option === "Within the next month" ? "white" : "",
                 }}
               >
                 Within the next month
               </Button>
               <Button
                 className="form__container__details__option__button"
-                onClick={() => setOption("question3")}
+                onClick={() => setOption("No urgent")}
                 style={{
-                  backgroundColor: option === "question3" ? "black" : "",
-                  color: option === "question3" ? "white" : "",
+                  backgroundColor: option === "No urgent" ? "black" : "",
+                  color: option === "No urgent" ? "white" : "",
                 }}
               >
                 No urgent
@@ -119,6 +144,8 @@ function FormRequest({ status, setStatus }) {
               <span style={{ color: "red" }}>*</span>
             </p>
             <TextArea
+              value={description}
+              onInput={(e) => setDescription(e.target.value)}
               rows={8}
               placeholder="Looking to add another landing page to my current Webflow site..."
               className="form__container__details__input"
