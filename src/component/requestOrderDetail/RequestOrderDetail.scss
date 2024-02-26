@@ -1,12 +1,14 @@
 .request-order-detail {
   flex-grow: 1;
-  height: 100%;
+  height: 100vh;
+  overflow-y: scroll;
+
   &__head {
     padding: 5em 2em 1em 2em;
     display: flex;
     justify-content: space-between;
     font-family: "BoldCereal";
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #e9e9e9;
     &__deadline {
       border-radius: 100px;
       font-size: 0.8em;
@@ -23,6 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 2em;
       &__right {
         display: flex;
         justify-content: center;
@@ -85,8 +88,44 @@
         font-family: "BoldCereal";
       }
       &__accept {
-        background-color: #252839;
+        background-color: #252839 !important;
         color: white;
+      }
+    }
+  }
+  &__detail.in-progress {
+    margin-bottom: 2em;
+    background-color: #fbf3fb;
+    border-bottom: 1px solid #e9e9e9;
+    stroke-width: 6px;
+  }
+  &__upload-demo {
+    margin: 0 2em;
+    margin-bottom: 5em;
+    &__content {
+      margin-bottom: 2em;
+      h3 {
+        font-family: "BoldCereal";
+      }
+      p {
+        margin-top: 1em;
+        font-family: "BookCereal";
+      }
+    }
+    &__upload {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1353px) {
+  .request-order-detail {
+    &__upload-demo {
+      &__upload {
+        justify-content: center;
       }
     }
   }
