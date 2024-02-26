@@ -37,6 +37,7 @@ import FormRequest from "../component/formRequest/FormRequest";
 
 import PostView from "../component/postView/PostView";
 import GoPro from "../pages/goPro/GoPro";
+import JobsPage from "../pages/jobsPage/JobsPage";
 
 
 export const router = createBrowserRouter([
@@ -155,6 +156,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/jobs",
+        element: <JobsPage/>,
       },
       {
         path: "/profile",

@@ -1,0 +1,112 @@
+.jobspage {
+  width: 100%;
+  overflow-x: hidden;
+  &__hero {
+    width: 100%;
+    margin-top: 6em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-weight: 400;
+      line-height: 1.2;
+      color: black;
+      font-size: 4em;
+      margin-bottom: 0.5em;
+      text-align: center;
+      font-family: "Merriweather", serif;
+    }
+    h5 {
+      line-height: 1.5;
+      font-family: "MediumMonaSans";
+      font-size: 1.2em;
+      text-wrap: wrap;
+      text-align: center;
+      color: #464753;
+    }
+    &__submit {
+      margin-top: 2em;
+      width: max-content;
+      border-radius: 100px;
+      background-color: #0d0c22 !important;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "SemiBoldMonaSans";
+      padding: 28px;
+      border: 1.8px solid rgb(231, 231, 231);
+      float: right;
+    }
+  }
+  &__hero-banner {
+    width: 100%;
+    margin-top: 6em;
+    margin-left: 3em;
+
+    &__submit {
+      width: fit-content;
+      border-radius: 100px;
+      background-color: #f3f3f4 !important;
+      color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "SemiBoldMonaSans";
+      padding: 18px;
+      border: 1.8px solid rgb(243, 242, 242);
+    }
+    p {
+      margin-left: 1.5em;
+      margin-top: 0.4em;
+      text-align: center;
+    }
+    &__search {
+      width: 90%;
+      margin-top: 2em;
+      height: 3.5em;
+      border: 1.8px solid rgb(243, 242, 242);
+    }
+  }
+  &__new-opportunities {
+    margin-top: 2em;
+    margin-left: 3em;
+    h3 {
+      font-weight: 400;
+      line-height: 1.2;
+      color: black;
+      font-size: 1.3em;
+      margin-bottom: 0.5em;
+      font-family: "SemiBoldMonaSans";
+    }
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .jobspage {
+    &__hero-banner {
+      &__search {
+        width: 85%;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 750px) {
+  .jobspage {
+    &__hero {
+        padding: 1em;
+      h1 {
+        font-size: 3em;
+      }
+      h5 {
+        font-size: 1em;
+      }
+    }
+    &__hero-banner {
+      &__search {
+        width: 85%;
+      }
+    }
+  }
+}
