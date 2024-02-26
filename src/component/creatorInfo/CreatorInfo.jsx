@@ -11,7 +11,6 @@ import {
 import FormRequest from "../formRequest/FormRequest";
 
 function CreatorInfo({
-  id,
   avatar,
   name,
   openingLine,
@@ -86,11 +85,7 @@ function CreatorInfo({
             >
               Get In Touch
             </Button>
-            <FormRequest
-              id={id}
-              status={status}
-              setStatus={() => setStatus(!status)}
-            />
+            <FormRequest status={status} setStatus={() => setStatus(!status)} />
             <Button className="creator-info__contact__follow">Follow</Button>
 
             <Dropdown

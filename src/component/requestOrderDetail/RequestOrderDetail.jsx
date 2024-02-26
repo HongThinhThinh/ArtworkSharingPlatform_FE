@@ -3,18 +3,6 @@ import "./RequestOrderDetail.scss";
 import { Avatar, Button, InputNumber, Modal } from "antd";
 import { AiFillMessage } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
-import { LeftCircleTwoTone } from "@ant-design/icons";
-import api from "../../config/axios";
-
-function RequestOrderDetail({ choice, setChoice }) {
-  const isMobile = useMediaQuery({ maxWidth: 785 });
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await api.get("/getOrderRequest-creator");
-      console.log(data.data.data);
-    };
-    fetchData();
-  }, []);
 import { ExclamationCircleFilled, LeftCircleTwoTone } from "@ant-design/icons";
 import CustomeSteps from "../steps/CustomeSteps";
 import TextArea from "antd/es/input/TextArea";
@@ -23,9 +11,11 @@ import en from "antd/es/date-picker/locale/en_US";
 import enUS from "antd/es/locale/en_US";
 import dayjs from "dayjs";
 import buddhistEra from "dayjs/plugin/buddhistEra";
+import api from "../../config/axios";
 
 function RequestOrderDetail({ choice, setChoice }) {
   const isMobile = useMediaQuery({ maxWidth: 785 });
+
   const { confirm } = Modal;
   const showCancel = () => {
     confirm({

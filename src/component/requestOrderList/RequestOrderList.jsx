@@ -4,10 +4,13 @@ import "./RequestOrderList.scss";
 import { Button } from "antd";
 import RequestOrderTab from "../requestOrderTab/RequestOrderTab";
 import { list } from "firebase/storage";
+import moment from "moment";
 
-function RequestOrderList({ choice, setChoice }) {
+function RequestOrderList({ choice, setChoice, list }) {
+  console.log(list);
   const [option, setOption] = useState(0);
   const listOption = ["Offer", "My Jobs", "History"];
+
   const listOrder = [
     {
       title: "Order an webpage design",
@@ -54,16 +57,23 @@ function RequestOrderList({ choice, setChoice }) {
           </Button>
         ))}
       </div>
-      {listOrder.map((item, index) => (
-        <RequestOrderTab
-          onClick={() => setChoice(index)}
-          key={index}
-          title={item.title}
-          time={item.time}
-          content={item.content}
-          status={index == choice}
-        />
-      ))}
+      {list.map((item, index) => {
+        console.log(item.dateStart);
+        const currentTime = moment(
+          item.dateStart,
+          "MMMM Do YYYY, h:mm:ss a"
+        ).fromNow();
+        return (
+          <RequestOrderTab
+            onClick={() => setChoice(index)}
+            key={index}
+            title={item.title}
+            time={currentTime}
+            content={item.description}
+            status={index === choice}
+          />
+        );
+      })}
     </div>
   );
 }

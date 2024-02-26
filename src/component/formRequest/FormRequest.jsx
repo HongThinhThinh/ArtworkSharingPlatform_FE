@@ -6,12 +6,14 @@ import { WarningFilled } from "@ant-design/icons";
 import api from "../../config/axios";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import getCurrentDateTime from "../../assets/hook/useGetTime";
+import { useParams } from "react-router-dom";
 
-function FormRequest({ status, setStatus, id }) {
+function FormRequest({ status, setStatus }) {
+  const { id } = useParams();
   const [option, setOption] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-
+  console.log(id);
   const onFinish = async () => {
     try {
       const response = await api.post("/sendOrderRequest", {
