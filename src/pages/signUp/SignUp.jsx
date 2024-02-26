@@ -98,42 +98,6 @@ function SignUp() {
                 onFinish={onFinish}
               >
                 <MyFormItemGroup className="signUp__form__container__group-form">
-                  <MyFormItem className="signUp__form__container__group-form__role">
-                    <label
-                      className="signUp__form__container__group-form__label"
-                      style={{ paddingRight: "1em" }}
-                    >
-                      Role
-                    </label>
-                    <Radio.Group
-                      defaultValue="audience"
-                      onChange={(e) => setRole(e.target.value)}
-                      className="signUp__form__container__group-form__role__option"
-                    >
-                      <Radio.Button
-                        value="audience"
-                        className="signUp__form__container__group-form__role__option__detail"
-                        style={{
-                          borderRadius: "10px 0 0 10px",
-                          backgroundColor:
-                            role === "audience" ? "black" : "white",
-                        }}
-                      >
-                        Audience
-                      </Radio.Button>
-                      <Radio.Button
-                        value="creator"
-                        className="signUp__form__container__group-form__role__option__detail"
-                        style={{
-                          borderRadius: "0 10px  10px 0",
-                          backgroundColor:
-                            role === "creator" ? "black" : "white",
-                        }}
-                      >
-                        Creator
-                      </Radio.Button>
-                    </Radio.Group>
-                  </MyFormItem>
                   <MyFormItem className="signUp__form__container__group-form__flex">
                     <Row style={{ marginBottom: "-1em" }}>
                       <Col md={11} lg={11}>
@@ -177,6 +141,9 @@ function SignUp() {
                         >
                           <Input
                             onInput={(e) => setUserName(e.target.value)}
+                            onChange={(e) =>
+                              e.target.value.includes(" ") ? true : false
+                            }
                             className="signUp__form__container__group-form__input"
                           />
                         </Form.Item>
