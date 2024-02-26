@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./RequestOrderDetail.scss";
 import { Avatar, Button } from "antd";
 import { AiFillMessage } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
 import { LeftCircleTwoTone } from "@ant-design/icons";
+import api from "../../config/axios";
 
 function RequestOrderDetail({ choice, setChoice }) {
   const isMobile = useMediaQuery({ maxWidth: 785 });
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await api.get("/getOrderRequest-creator");
+      console.log(data.data.data);
+    };
+    fetchData();
+  }, []);
   return (
     <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
       {isMobile ? (
