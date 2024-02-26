@@ -9,10 +9,14 @@ import styles from "./CreatorPage.module.scss";
 import api from "../../config/axios";
 import { useEffect, useState } from "react";
 import { alertFail } from "../../assets/hook/useNotification";
+import { useStateValue } from "../../Context/StateProvider";
+import CreatorWorkart from "../../sections/creatorWorkart/CreatorWorkart";
 
 function CreatorPage() {
   const isChangeLayout = useMediaQuery({ maxWidth: 1510 });
   const { id } = useParams();
+  const { setCreatorDetail } = useStateValue();
+
   const [data, setData] = useState("");
   console.log(id);
   useEffect(() => {
@@ -24,6 +28,7 @@ function CreatorPage() {
       const response = await api.get(`/getCreator-detail/${id}`);
       console.log(response.data.data);
       setData(response.data.data);
+      setCreatorDetail(response.data.data.artworks);
     } catch (e) {
       alertFail("Fail to load");
     }
@@ -38,7 +43,6 @@ function CreatorPage() {
     "ux research",
     "web design",
   ];
-
   return (
     <Layout className={styles.layoutStyle}>
       {isChangeLayout ? (
@@ -72,7 +76,7 @@ function CreatorPage() {
         className={styles.contentStyle}
       >
         <ChangeTabCreator />
-        <Outlet />
+        <CreatorWorkart list={data.artworks} />
       </Content>
     </Layout>
   );
