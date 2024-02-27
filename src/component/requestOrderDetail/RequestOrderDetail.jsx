@@ -16,7 +16,6 @@ import RoundedBtn from "../rounded-button/RoundedButton";
 function RequestOrderDetail({ choice, setChoice }) {
   const [reason, setReason] = useState("");
   const [payment, setPayment] = useState(1000);
-  const [deadline, setDeadline] = useState(null);
   const [modal1Open, setModal1Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 785 });

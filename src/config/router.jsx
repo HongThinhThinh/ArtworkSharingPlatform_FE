@@ -39,6 +39,7 @@ import PostView from "../component/postView/PostView";
 import GoPro from "../pages/goPro/GoPro";
 import JobsPage from "../pages/jobsPage/JobsPage";
 import OrderHistory from "../sections/orderHistory/OrderHistory";
+import Checkout from "../pages/checkout/Checkout";
 
 export const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ export const router = createBrowserRouter([
   {
     path: "/go-pro",
     element: <GoPro />,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
   },
   {
     path: "/dashboard",
