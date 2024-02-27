@@ -185,11 +185,7 @@ function RequestOrderDetail({ choice, setChoice, data }) {
                   </span>
                 </Form.Item>
 
-                <Form.Item
-                  name="date-time-picker"
-                  label="DatePicker[showTime]"
-                  {...config}
-                >
+                <Form.Item name="date-time-picker" label="Deadline" {...config}>
                   <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
                 </Form.Item>
               </div>
