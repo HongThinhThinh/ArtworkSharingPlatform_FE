@@ -23,7 +23,7 @@ function RequestOrder() {
   }, []);
 
   console.log(list);
-
+  console.log(data);
   return (
     <div className="requestOrder">
       <>

@@ -12,11 +12,11 @@ import enUS from "antd/es/locale/en_US";
 import dayjs from "dayjs";
 import buddhistEra from "dayjs/plugin/buddhistEra";
 import RoundedBtn from "../rounded-button/RoundedButton";
+import { getDifTime } from "../../assets/hook/useGetTime";
 
-function RequestOrderDetail({ choice, setChoice }) {
+function RequestOrderDetail({ choice, setChoice, data }) {
   const [reason, setReason] = useState("");
   const [payment, setPayment] = useState(1000);
-  const [deadline, setDeadline] = useState(null);
   const [modal1Open, setModal1Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 785 });
@@ -186,7 +186,7 @@ function RequestOrderDetail({ choice, setChoice }) {
               <ConfigProvider locale={globalBuddhistLocale}>
                 <Space direction="vertical">
                   <DatePicker
-                    onChange={(e) => setDeadline(e)}
+                    onChange={(e) => console.log(e)}
                     defaultValue={defaultValue}
                     showTime
                     style={{ margin: "1em 0" }}
@@ -197,7 +197,7 @@ function RequestOrderDetail({ choice, setChoice }) {
             <RoundedBtn
               color="#3c3c3c"
               style={{ width: "100%" }}
-              onClick={() => alert(payment + " " + deadline)}
+              onClick={fetchData}
             >
               Submit
             </RoundedBtn>
