@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./RequestOrderDetail.scss";
 import { Avatar, Button, InputNumber, Modal } from "antd";
 import { AiFillMessage } from "react-icons/ai";
@@ -12,9 +12,29 @@ import enUS from "antd/es/locale/en_US";
 import dayjs from "dayjs";
 import buddhistEra from "dayjs/plugin/buddhistEra";
 import api from "../../config/axios";
+import { getDifTime } from "../../assets/hook/useGetTime";
+import { alertFail } from "../../assets/hook/useNotification";
 
-function RequestOrderDetail({ choice, setChoice }) {
+function RequestOrderDetail({ choice, setChoice, data }) {
   const isMobile = useMediaQuery({ maxWidth: 785 });
+  console.log(data);
+  const [status, setStatus] = useState();
+  const [inputValue, setInputValue] = useState(0);
+  const [deadline, setDeadline] = useState("");
+  const fetchData = async () => {
+    // try {
+    //   const res = await api.put("/updateOrderRequest-creator", {
+    //     id: data.id,
+    //     dateEnd: "string",
+    //     price: inputValue,
+    //   });
+    //   console.log(res);
+    // } catch (e) {
+    //   alertFail(e);
+    // }
+    console.log(inputValue);
+    console.log(deadline);
+  };
 
   const { confirm } = Modal;
   const showCancel = () => {
@@ -35,7 +55,8 @@ function RequestOrderDetail({ choice, setChoice }) {
         />
       ),
       onOk() {
-        console.log("OK");
+        // api send deny
+        // fetchData();
       },
       onCancel() {
         console.log("Cancel");
@@ -66,6 +87,10 @@ function RequestOrderDetail({ choice, setChoice }) {
       lang: buddhistLocale.lang,
     },
   };
+  const onChange = (value) => {
+    console.log("changed", value);
+    setInputValue(value);
+  };
   const defaultValue = dayjs("2024-01-01");
   const showAccept = () => {
     confirm({
@@ -75,19 +100,22 @@ function RequestOrderDetail({ choice, setChoice }) {
         <div style={{ fontFamily: "MediumCereal", marginTop: "1em" }}>
           <h3>Payment</h3>
           <InputNumber
-            defaultValue={1000}
+            defaultValue={inputValue}
             formatter={(value) =>
               `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
             }
             parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
             style={{ margin: "1em 0" }}
+            onChange={onChange}
           />
+          <input type="number" onInput={(e) => setInputValue(e.target.value)} />
           <h3>Deadline</h3>
           <ConfigProvider locale={globalBuddhistLocale}>
             <Space direction="vertical">
               <DatePicker
                 defaultValue={defaultValue}
                 showTime
+                onChange={(date, dateString) => setDeadline(date, dateString)}
                 style={{ margin: "1em 0" }}
               />
             </Space>
@@ -95,13 +123,12 @@ function RequestOrderDetail({ choice, setChoice }) {
         </div>
       ),
       onOk() {
-        return new Promise((resolve, reject) => {
-          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-        }).catch(() => console.log("Oops errors!"));
+        fetchData();
       },
       onCancel() {},
     });
   };
+
   return (
     <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
       {isMobile ? (
@@ -115,9 +142,7 @@ function RequestOrderDetail({ choice, setChoice }) {
         />
       ) : null}
       <div className="request-order-detail__head">
-        <div className="request-order-detail__head__title">
-          Title: Logo for brand
-        </div>
+        <div className="request-order-detail__head__title">{data.title}</div>
         <div className="request-order-detail__head__deadline">
           Deadline: 30/4/2023
         </div>
@@ -130,20 +155,30 @@ function RequestOrderDetail({ choice, setChoice }) {
               className="request-order-detail__detail__creator__right__avatar"
             />
             <div className="request-order-detail__detail__creator__right__info">
-              <h3>Dennis Salvatier - tanoshiboy</h3>
-              <span>Member since January 2, 2024</span>
+              <h3>{data.audience.name}</h3>
+              <span>{getDifTime(data.dateStart)}</span>
             </div>
           </div>
           <div className="request-order-detail__detail__creator__left">
             <AiFillMessage />
           </div>
         </div>
-        <CustomeSteps />
-        <div className="request-order-detail__detail__payment">
-          <h3>Payment:</h3>
-          <h3>45 $</h3>
-        </div>
-        <div className="request-order-detail__detail__description">
+        <CustomeSteps state={status} />
+        {status != "PENDING" ? (
+          <div
+            style={{ marginBottom: "-15px" }}
+            className="request-order-detail__detail__payment"
+          >
+            <h3>Payment:</h3>
+            <h3>45 $</h3>
+          </div>
+        ) : (
+          ""
+        )}
+        <div
+          style={{ marginTop: "30px" }}
+          className="request-order-detail__detail__description"
+        >
           <h3>Job Description: </h3>
           <p>
             Lorem ipsum dolor sit amet, consectetur adip elit. Phasellus non est

@@ -8,18 +8,42 @@ import api from "../../config/axios";
 function RequestOrder() {
   const [choice, setChoice] = useState(-1);
   const [list, setList] = useState([]);
+  const [data, setData] = useState({});
+
   useEffect(() => {
     const fetchData = async () => {
-      const data = await api.get("/getOrderRequest-creator");
-      setList(data.data.data);
+      try {
+        const response = await api.get("/getOrderRequestCreator-pending");
+        setList(response.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     fetchData();
   }, []);
+
+  console.log(list);
+
   return (
     <div className="requestOrder">
-      <RequestOrderList list={list} choice={choice} setChoice={setChoice} />
-      <RequestOrderDetail choice={choice} setChoice={setChoice} />
-      {/* <InProgressOrderDetail choice={choice} setChoice={setChoice} /> */}
+      <>
+        <RequestOrderList
+          setData={setData}
+          list={list}
+          choice={choice}
+          setChoice={setChoice}
+        />
+        {choice == -1 ? (
+          ""
+        ) : (
+          <RequestOrderDetail
+            data={data}
+            choice={choice}
+            setChoice={setChoice}
+          />
+        )}
+        {/* <InProgressOrderDetail choice={choice} setChoice={setChoice} /> */}
+      </>
     </div>
   );
 }
