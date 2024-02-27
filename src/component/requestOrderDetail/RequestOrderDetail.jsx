@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./RequestOrderDetail.scss";
-import { Avatar, Button, InputNumber, Modal } from "antd";
+import { Avatar, Button, Form, InputNumber, Modal } from "antd";
 import { AiFillMessage } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
 import { ExclamationCircleFilled, LeftCircleTwoTone } from "@ant-design/icons";
@@ -39,34 +39,28 @@ function RequestOrderDetail({ choice, setChoice, data }) {
     console.log(deadline);
   };
 
-  dayjs.extend(buddhistEra);
-  const { Title } = Typography;
-
-  // Component level locale
-  const buddhistLocale = {
-    ...en,
-    lang: {
-      ...en.lang,
-      fieldDateFormat: "BBBB-MM-DD",
-      fieldDateTimeFormat: "BBBB-MM-DD HH:mm:ss",
-      yearFormat: "BBBB",
-      cellYearFormat: "BBBB",
-    },
+  const config = {
+    rules: [
+      {
+        type: "object",
+        required: true,
+        message: "Please select time!",
+      },
+    ],
   };
 
-  // ConfigProvider level locale
-  const globalBuddhistLocale = {
-    ...enUS,
-    DatePicker: {
-      ...enUS.DatePicker,
-      lang: buddhistLocale.lang,
-    },
+  const onFinish = (fieldsValue) => {
+    const rangeValue = fieldsValue["range-picker"];
+    const rangeTimeValue = fieldsValue["range-time-picker"];
+    const values = {
+      ...fieldsValue,
+      "date-time-picker": fieldsValue["date-time-picker"].format(
+        "YYYY-MM-DD HH:mm:ss"
+      ),
+    };
+    console.log("Received values of form: ", values);
   };
-  const onChange = (value) => {
-    console.log("changed", value);
-    setInputValue(value);
-  };
-  const defaultValue = dayjs("2024-01-01");
+
   return (
     <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
       {isMobile ? (
@@ -171,36 +165,40 @@ function RequestOrderDetail({ choice, setChoice, data }) {
             onCancel={() => setModal2Open(false)}
             footer={null}
           >
-            <div style={{ fontFamily: "MediumCereal", marginTop: "1em" }}>
-              <h3>Payment</h3>
-              <InputNumber
-                onChange={(e) => setPayment(e)}
-                defaultValue={1000}
-                formatter={(value) =>
-                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
-                style={{ margin: "1em 0" }}
-              />
-              <h3>Deadline</h3>
-              <ConfigProvider locale={globalBuddhistLocale}>
-                <Space direction="vertical">
-                  <DatePicker
-                    onChange={(e) => console.log(e)}
-                    defaultValue={defaultValue}
-                    showTime
-                    style={{ margin: "1em 0" }}
-                  />
-                </Space>
-              </ConfigProvider>
-            </div>
-            <RoundedBtn
-              color="#3c3c3c"
-              style={{ width: "100%" }}
-              onClick={fetchData}
-            >
-              Submit
-            </RoundedBtn>
+            <Form onFinish={onFinish}>
+              <div style={{ fontFamily: "MediumCereal", marginTop: "1em" }}>
+                <Form.Item label="Price">
+                  <Form.Item
+                    name="input-number"
+                    noStyle
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input!",
+                      },
+                    ]}
+                  >
+                    <InputNumber />
+                  </Form.Item>
+                  <span className="ant-form-text" style={{ marginLeft: 8 }}>
+                    $
+                  </span>
+                </Form.Item>
+
+                <Form.Item
+                  name="date-time-picker"
+                  label="DatePicker[showTime]"
+                  {...config}
+                >
+                  <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
+                </Form.Item>
+              </div>
+              <Form.Item>
+                <RoundedBtn color="#3c3c3c" style={{ width: "100%" }}>
+                  Submit
+                </RoundedBtn>
+              </Form.Item>
+            </Form>
           </Modal>
         </div>
       </div>
