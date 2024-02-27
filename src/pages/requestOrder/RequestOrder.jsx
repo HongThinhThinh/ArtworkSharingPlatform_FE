@@ -20,7 +20,7 @@ function RequestOrder() {
       }
     };
     fetchData();
-  }, []);
+  }, [data]);
 
   console.log(list);
 
@@ -38,6 +38,7 @@ function RequestOrder() {
         ) : (
           <RequestOrderDetail
             data={data}
+            setData={setData}
             choice={choice}
             setChoice={setChoice}
           />
