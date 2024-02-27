@@ -1,29 +1,56 @@
 import React, { useState } from "react";
-import { Button, ConfigProvider, Drawer, Form, Input, Space } from "antd";
+import {
+  Button,
+  ConfigProvider,
+  Drawer,
+  Form,
+  Input,
+  Modal,
+  Space,
+} from "antd";
 import { createStyles, useTheme } from "antd-style";
 import "./EditProfile.scss";
 import UploadArtWork from "../../../component/UploadArtWork/UploadArtWork";
+import RoundedBtn from "../../../component/rounded-button/RoundedButton";
 const useStyle = createStyles(({ token }) => ({
   "my-drawer-body": {
-    background: token.blue1,
-  },
-  "my-drawer-mask": {
-    boxShadow: `inset 0 0 15px #fff`,
-  },
-  "my-drawer-header": {
-    background: token.green1,
+    background: "white",
   },
   "my-drawer-footer": {
     color: token.colorPrimary,
   },
-  "my-drawer-content": {
-    borderLeft: "2px dotted #333",
-  },
 }));
 
-// eslint-disable-next-line react/prop-types
+function toArr(str) {
+  return Array.isArray(str) ? str : [str];
+}
+
+const MyFormItemContext = React.createContext([]);
+
+const MyFormItemGroup = ({ prefix, children }) => {
+  const prefixPath = React.useContext(MyFormItemContext);
+  const concatPath = React.useMemo(
+    () => [...prefixPath, ...toArr(prefix)],
+    [prefixPath, prefix]
+  );
+  return (
+    <MyFormItemContext.Provider value={concatPath}>
+      {children}
+    </MyFormItemContext.Provider>
+  );
+};
+
 const EditProfile = ({ user }) => {
-  console.log(user);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const [open, setOpen] = useState([false, false]);
   const { styles } = useStyle();
   const token = useTheme();
@@ -43,12 +70,6 @@ const EditProfile = ({ user }) => {
     mask: {
       backdropFilter: "blur(10px)",
     },
-    content: {
-      boxShadow: "-10px 0 10px #666",
-    },
-    header: {
-      borderBottom: `1px solid ${token.colorPrimary}`,
-    },
     body: {
       fontSize: token.fontSizeLG,
     },
@@ -60,7 +81,6 @@ const EditProfile = ({ user }) => {
           size="middle"
           className="login__form__container__namepass__submit"
           htmlType="submit"
-          // style={{backgroundColor: theme?"#1677ff":""}}
           onClick={() => toggleDrawer(0, true)}
         >
           Edit Profile
@@ -85,7 +105,7 @@ const EditProfile = ({ user }) => {
           <div className="changeUsername">
             <Form className="login__form__container__namepass__group-form">
               <Form.Item
-                label="UserName"
+                label="Username"
                 name="userName"
                 className="login__form__container__namepass__group-form"
                 rules={[{}]}
@@ -108,22 +128,14 @@ const EditProfile = ({ user }) => {
                   className="login__form__container__namepass__group-form__input"
                 />
               </Form.Item>
-              <Form.Item
-                label="Old Password"
-                name="OldPassword"
-                className="login__form__container__namepass__group-form"
-                rules={[{}]}
+              <RoundedBtn
+                style={{ width: "100%", border: "#b42d805d 3px solid" }}
+                color="#FDF9FC"
+                onClick={showModal}
               >
-                <Input className="login__form__container__namepass__group-form__input" />
-              </Form.Item>
-              <Form.Item
-                label="New Password"
-                name="NewPassword"
-                className="login__form__container__namepass__group-form"
-                rules={[{}]}
-              >
-                <Input className="login__form__container__namepass__group-form__input" />
-              </Form.Item>
+                Change Password
+              </RoundedBtn>
+
               <Button
                 className="login__form__container__namepass__submit"
                 htmlType="submit"
@@ -135,23 +147,64 @@ const EditProfile = ({ user }) => {
           </div>
         </div>
       </Drawer>
-      <ConfigProvider
-        drawer={{
-          classNames,
-          styles: drawerStyles,
-        }}
+      <Modal
+        title={<h2 style={{ fontFamily: "BoldCereal" }}>Basic Modal</h2>}
+        open={isModalOpen}
+        onCancel={handleCancel}
       >
-        <Drawer
-          title="Edit your profile"
-          placement="right"
-          onClose={() => toggleDrawer(1, false)}
-          open={open[1]}
+        <Form
+          name="form_item_path"
+          layout="vertical"
+          // onFinish={}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Drawer>
-      </ConfigProvider>
+          <MyFormItemGroup>
+            <Form.Item
+              label={
+                <label
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <p>Password</p>
+                </label>
+              }
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+            <Form.Item
+              label={
+                <label
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <p>Re-password</p>
+                </label>
+              }
+              name="re-password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+          </MyFormItemGroup>
+        </Form>
+      </Modal>
     </div>
   );
 };

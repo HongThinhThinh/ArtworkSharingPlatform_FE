@@ -7,7 +7,6 @@ import { list } from "firebase/storage";
 import moment from "moment";
 
 function RequestOrderList({ choice, setChoice, list }) {
-  console.log(list);
   const [option, setOption] = useState(0);
   const listOption = ["Offer", "My Jobs", "History"];
 

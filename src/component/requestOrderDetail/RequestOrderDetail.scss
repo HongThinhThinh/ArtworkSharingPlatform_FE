@@ -60,9 +60,10 @@
     &__payment {
       font-size: 0.9em;
       color: #3c3c3c;
-      font-family: "BoldCereal";
+
       margin: 2em 0;
       h3 {
+        font-family: "BoldCereal";
         margin: 0.5em 0;
       }
     }
@@ -99,6 +100,13 @@
     border-bottom: 1px solid #e9e9e9;
     stroke-width: 6px;
   }
+
+  &__detail {
+    &__request {
+      font-family: "BoldCereal";
+      margin-top: 1em;
+    }
+  }
   &__upload-demo {
     margin: 0 2em;
     margin-bottom: 5em;
@@ -119,6 +127,27 @@
       width: 100%;
     }
   }
+  &__demo {
+    margin: 0 2em;
+    margin-bottom: 5em;
+    &__upload {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 100%;
+      img {
+        margin: 2em 0;
+        height: 200px !important;
+        width: 200px;
+      }
+    }
+  }
+}
+
+.view.request-order-detail {
+  height: auto;
+  overflow: hidden;
+  display: block;
 }
 
 @media only screen and (max-width: 1353px) {
@@ -146,6 +175,29 @@
 @media only screen and (max-width: 785px) {
   .request-order-detail {
     display: none;
+    &__demo {
+      &__upload {
+        justify-content: center;
+      }
+    }
+    &__detail {
+      &__creator {
+        &__right {
+          &__avatar {
+            height: 45px;
+            margin-right: 1em;
+          }
+          &__info {
+          }
+        }
+      }
+      &__confirm {
+        &__cancel,
+        &__accept {
+          padding: 0 1em;
+        }
+      }
+    }
   }
   .request-order-detail.active {
     display: block;

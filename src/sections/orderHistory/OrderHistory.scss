@@ -10,12 +10,14 @@
     font-family: "MediumCereal";
     font-size: 1em;
     color: rgb(77, 77, 77);
-    margin-bottom: 2em;
   }
-  &__detail {
-    border-radius: 10px;
-    border: 1px solid rgb(173, 173, 173);
-    padding: 2em;
-    background-color: rgba(247, 220, 235, 0.322);
+  &__wrapper {
+  }
+}
+
+@media only screen and (max-width: 1353px) {
+  .order-history {
+    width: 100%;
+    margin: 0;
   }
 }

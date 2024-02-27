@@ -99,56 +99,50 @@ function SignUp() {
               >
                 <MyFormItemGroup className="signUp__form__container__group-form">
                   <MyFormItem className="signUp__form__container__group-form__flex">
-                    <Row style={{ marginBottom: "-1em" }}>
-                      <Col md={11} lg={11}>
-                        <Form.Item
-                          label="Name"
-                          name="name"
-                          className="signUp__form__container__group-form__label"
-                          rules={[
-                            {
-                              required: true,
-                              message: (
-                                <div>
-                                  <WarningFilled /> Please input your name!
-                                </div>
-                              ),
-                            },
-                          ]}
-                        >
-                          <Input
-                            onInput={(e) => setName(e.target.value)}
-                            className="signUp__form__container__group-form__input"
-                          />
-                        </Form.Item>
-                      </Col>
-                      <Col md={2} lg={1}></Col>
-                      <Col md={11} lg={12}>
-                        <Form.Item
-                          label="Username"
-                          name="username"
-                          className="signUp__form__container__group-form__label"
-                          rules={[
-                            {
-                              required: true,
-                              message: (
-                                <div>
-                                  <WarningFilled /> Please input your username!
-                                </div>
-                              ),
-                            },
-                          ]}
-                        >
-                          <Input
-                            onInput={(e) => setUserName(e.target.value)}
-                            onChange={(e) =>
-                              e.target.value.includes(" ") ? true : false
-                            }
-                            className="signUp__form__container__group-form__input"
-                          />
-                        </Form.Item>
-                      </Col>
-                    </Row>
+                    <Form.Item
+                      label="Name"
+                      name="name"
+                      className="signUp__form__container__group-form__label"
+                      rules={[
+                        {
+                          required: true,
+                          message: (
+                            <div>
+                              <WarningFilled /> Please input your name!
+                            </div>
+                          ),
+                        },
+                      ]}
+                    >
+                      <Input
+                        onInput={(e) => setName(e.target.value)}
+                        className="signUp__form__container__group-form__input"
+                      />
+                    </Form.Item>
+
+                    <Form.Item
+                      label="Username"
+                      name="username"
+                      className="signUp__form__container__group-form__label"
+                      rules={[
+                        {
+                          required: true,
+                          message: (
+                            <div>
+                              <WarningFilled /> Please input your username!
+                            </div>
+                          ),
+                        },
+                      ]}
+                    >
+                      <Input
+                        onInput={(e) => setUserName(e.target.value)}
+                        onChange={(e) =>
+                          e.target.value.includes(" ") ? true : false
+                        }
+                        className="signUp__form__container__group-form__input"
+                      />
+                    </Form.Item>
                   </MyFormItem>
                   <MyFormItem className="signUp__form__container__group-form__base">
                     <Form.Item
@@ -183,6 +177,36 @@ function SignUp() {
                     <Form.Item
                       label="Password"
                       name="password"
+                      rules={[
+                        {
+                          min: 6,
+                          message: (
+                            <div>
+                              <WarningFilled /> Password must be at least 6
+                              characters!
+                            </div>
+                          ),
+                        },
+                        {
+                          required: true,
+                          message: (
+                            <div>
+                              <WarningFilled /> Please input your password!
+                            </div>
+                          ),
+                        },
+                      ]}
+                      className="signUp__form__container__group-form__label"
+                    >
+                      <Input.Password
+                        onInput={(e) => setPassword(e.target.value)}
+                        className="signUp__form__container__group-form__input"
+                        placeholder="6+ characters"
+                      />
+                    </Form.Item>
+                    <Form.Item
+                      label="Re-password"
+                      name="re-password"
                       rules={[
                         {
                           min: 6,

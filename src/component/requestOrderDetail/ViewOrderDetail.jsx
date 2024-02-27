@@ -2,31 +2,27 @@ import React from "react";
 import "./RequestOrderDetail.scss";
 import { Avatar, Button } from "antd";
 import { AiFillMessage } from "react-icons/ai";
-import { useMediaQuery } from "react-responsive";
 import { ExclamationCircleTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
 import CustomeSteps from "../steps/CustomeSteps";
 import UploadDemo from "../uploadDemo/UploadDemo";
 
 function ViewOrderDetail({ choice, setChoice }) {
-  const isMobile = useMediaQuery({ maxWidth: 785 });
   return (
-    <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
-      {isMobile ? (
-        <LeftCircleTwoTone
-          twoToneColor="#b42d81"
-          style={{
-            transform: "translateY(2em) translateX(1.5em)",
-            fontSize: "1.4em",
-          }}
-          onClick={() => setChoice(-1)}
-        />
-      ) : null}
+    <div className={`request-order-detail ${choice ? "view" : ""}`}>
+      <LeftCircleTwoTone
+        twoToneColor="#b42d81"
+        style={{
+          transform: "translateY(2em) translateX(1.5em)",
+          fontSize: "1.4em",
+        }}
+        onClick={() => setChoice(false)}
+      />
       <div className="request-order-detail__head">
         <div className="request-order-detail__head__title">
           Title: Logo for brand
         </div>
         <div className="request-order-detail__head__deadline">
-          Deadline: 30/4/2023
+          Deadline Response: 30/4/2023
         </div>
       </div>
       <div className="request-order-detail__detail in-progress">
@@ -46,29 +42,41 @@ function ViewOrderDetail({ choice, setChoice }) {
           </div>
         </div>
         <CustomeSteps />
+        <h3 className="request-order-detail__detail__request">
+          Below are the specific prices and deadlines that the creator expects
+          you to agree to:
+        </h3>
         <div className="request-order-detail__detail__payment">
           <h3>Payment:</h3>
           <h3>45 $</h3>
         </div>
         <div className="request-order-detail__detail__description">
-          <h3>Job Description: </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adip elit. Phasellus non est
-            ipsum. Aliquam a ante dui.{" "}
-          </p>
+          <h3>Deadline </h3>
+          <p>30/05/2024</p>
+        </div>
+        <div className="request-order-detail__detail__confirm">
+          <Button className="request-order-detail__detail__confirm__cancel">
+            Cancel Offer
+          </Button>
+          <Button className="request-order-detail__detail__confirm__accept">
+            Accept Offer
+          </Button>
         </div>
       </div>
-      <div className="request-order-detail__upload-demo">
-        <div className="request-order-detail__upload-demo__content">
-          <h3>Upload Demo:</h3>
+
+      <div className="request-order-detail__demo">
+        <div className="request-order-detail__demo__content">
+          <h3>Demo:</h3>
           <p>
-            <ExclamationCircleTwoTone twoToneColor="#B42D81" /> Please add at
-            least <strong>ONE</strong> demo during “Processing” progress for
-            moving to the next steps
+            <ExclamationCircleTwoTone twoToneColor="#B42D81" /> These are some
+            demo of your order which are uploaded by creator
           </p>
         </div>
-        <div className="request-order-detail__upload-demo__upload">
-          <UploadDemo />
+        <div className="request-order-detail__demo__upload">
+          <img
+            src="https://cdn.dribbble.com/userupload/4475107/file/original-dbbcfc1e3b317d4fb8c0dd061d26fde7.png?resize=1200x900"
+            alt=""
+          />
         </div>
       </div>
     </div>
