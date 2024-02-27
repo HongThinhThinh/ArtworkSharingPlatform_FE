@@ -77,6 +77,9 @@
       background-color: #545454;
     }
   }
+  &__tabs {
+    overflow-y: scroll;
+  }
 }
 
 @media only screen and (max-width: 1000px) {

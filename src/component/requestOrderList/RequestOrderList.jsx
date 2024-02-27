@@ -37,21 +37,27 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
           </Button>
         ))}
       </div>
-      {list.map((item, index) => {
-        return (
-          <RequestOrderTab
-            onClick={() => {
-              setChoice(index);
-              setData(item);
-            }}
-            key={index}
-            title={item.title}
-            time={getDifTime(item.dateStart)}
-            content={item.description}
-            status={index === choice}
-          />
-        );
-      })}
+
+      <div className="requestOrderList__tabs">
+        {list.map((item, index) => {
+          console.log(item.dateStart);
+
+          return (
+            <RequestOrderTab
+              onClick={() => {
+                setChoice(index);
+                setData(item);
+              }}
+              key={index}
+              title={item.title}
+              time={getDifTime(item.dateStart)}
+              content={item.description}
+              status={index === choice}
+            />
+          );
+        })}
+      </div>
+
     </div>
   );
 }

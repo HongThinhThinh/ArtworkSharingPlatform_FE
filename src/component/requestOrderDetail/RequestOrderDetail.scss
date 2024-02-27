@@ -150,6 +150,14 @@
   display: block;
 }
 
+.ant-modal {
+  form {
+    label {
+      font-family: "MediumCereal" !important;
+    }
+  }
+}
+
 @media only screen and (max-width: 1353px) {
   .request-order-detail {
     &__upload-demo {

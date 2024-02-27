@@ -203,12 +203,19 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
                     Submit
                   </RoundedBtn>
                 </Form.Item>
-              </Form>
-            </Modal>
-          </div>
-        ) : (
-          ""
-        )}
+                <Form.Item name="date" label="Deadline" {...config}>
+                  <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
+                </Form.Item>
+              </div>
+              <Form.Item>
+                <RoundedBtn color="#3c3c3c" style={{ width: "100%" }}>
+                  Submit
+                </RoundedBtn>
+              </Form.Item>
+            </Form>
+          </Modal>
+        </div>
+
       </div>
     </div>
   );
