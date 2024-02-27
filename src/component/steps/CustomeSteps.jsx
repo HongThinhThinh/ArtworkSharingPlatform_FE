@@ -1,15 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Steps } from "antd";
 import "./CustomeSteps.scss";
 
 function CustomeSteps(state) {
-  console.log(state);
+  console.log(state.state);
   const description = "This is a description.";
+  const [statee, setStatee] = useState(state.state);
+  useEffect(() => {
+    setStatee(state.state);
+  }, [state]);
   let currentStep;
-  if (state == "PENDING") currentStep = 0;
-  if (state == "ACTIVE") currentStep = 1;
-  if (state == "PROCESSING") currentStep = 3;
-  if (state == "DONE") currentStep = 4;
+  if (statee == "PENDING") currentStep = 0;
+  if (statee == "ACTIVE") currentStep = 1;
+  if (statee == "PROCESSING") currentStep = 2;
+  if (statee == "DONE") currentStep = 3;
   return (
     <Steps
       className="custome-steps"
