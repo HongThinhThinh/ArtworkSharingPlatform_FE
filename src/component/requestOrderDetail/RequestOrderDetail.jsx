@@ -11,11 +11,14 @@ import en from "antd/es/date-picker/locale/en_US";
 import enUS from "antd/es/locale/en_US";
 import dayjs from "dayjs";
 import buddhistEra from "dayjs/plugin/buddhistEra";
-import api from "../../config/axios";
-import { getDifTime } from "../../assets/hook/useGetTime";
-import { alertFail } from "../../assets/hook/useNotification";
+import RoundedBtn from "../rounded-button/RoundedButton";
 
-function RequestOrderDetail({ choice, setChoice, data }) {
+function RequestOrderDetail({ choice, setChoice }) {
+  const [reason, setReason] = useState("");
+  const [payment, setPayment] = useState(1000);
+  const [deadline, setDeadline] = useState(null);
+  const [modal1Open, setModal1Open] = useState(false);
+  const [modal2Open, setModal2Open] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 785 });
   console.log(data);
   const [status, setStatus] = useState();
@@ -34,34 +37,6 @@ function RequestOrderDetail({ choice, setChoice, data }) {
     // }
     console.log(inputValue);
     console.log(deadline);
-  };
-
-  const { confirm } = Modal;
-  const showCancel = () => {
-    confirm({
-      title: "Are you sure to cancel this job oppoturnity?",
-      icon: <ExclamationCircleFilled />,
-      content: (
-        <TextArea
-          showCount
-          maxLength={100}
-          placeholder="Please give us the reason"
-          style={{
-            margin: "1em 0em 2em 0",
-            transform: "translateX(-1em)",
-            height: 200,
-            resize: "none",
-          }}
-        />
-      ),
-      onOk() {
-        // api send deny
-        // fetchData();
-      },
-      onCancel() {
-        console.log("Cancel");
-      },
-    });
   };
 
   dayjs.extend(buddhistEra);
@@ -92,43 +67,6 @@ function RequestOrderDetail({ choice, setChoice, data }) {
     setInputValue(value);
   };
   const defaultValue = dayjs("2024-01-01");
-  const showAccept = () => {
-    confirm({
-      title: "Please give us your expect salary and deadline for this order?",
-      icon: <ExclamationCircleFilled />,
-      content: (
-        <div style={{ fontFamily: "MediumCereal", marginTop: "1em" }}>
-          <h3>Payment</h3>
-          <InputNumber
-            defaultValue={inputValue}
-            formatter={(value) =>
-              `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-            }
-            parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
-            style={{ margin: "1em 0" }}
-            onChange={onChange}
-          />
-          <input type="number" onInput={(e) => setInputValue(e.target.value)} />
-          <h3>Deadline</h3>
-          <ConfigProvider locale={globalBuddhistLocale}>
-            <Space direction="vertical">
-              <DatePicker
-                defaultValue={defaultValue}
-                showTime
-                onChange={(date, dateString) => setDeadline(date, dateString)}
-                style={{ margin: "1em 0" }}
-              />
-            </Space>
-          </ConfigProvider>
-        </div>
-      ),
-      onOk() {
-        fetchData();
-      },
-      onCancel() {},
-    });
-  };
-
   return (
     <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
       {isMobile ? (
@@ -188,16 +126,82 @@ function RequestOrderDetail({ choice, setChoice, data }) {
         <div className="request-order-detail__detail__confirm">
           <Button
             className="request-order-detail__detail__confirm__cancel"
-            onClick={showCancel}
+            onClick={() => setModal1Open(true)}
           >
             Cancel Offer
           </Button>
+          <Modal
+            title="Are you sure to cancel this job oppoturnity?"
+            centered
+            open={modal1Open}
+            onCancel={() => setModal1Open(false)}
+            footer={null}
+          >
+            <TextArea
+              onChange={(e) => setReason(e)}
+              showCount
+              maxLength={100}
+              placeholder="Please give us the reason"
+              style={{
+                margin: "1em",
+                transform: "translateX(-1em)",
+                height: 200,
+                resize: "none",
+              }}
+            />
+            <RoundedBtn
+              color="#3c3c3c"
+              style={{ width: "100%" }}
+              onClick={() => alert(reason)}
+            >
+              Submit
+            </RoundedBtn>
+          </Modal>
+
           <Button
             className="request-order-detail__detail__confirm__accept"
-            onClick={showAccept}
+            onClick={() => setModal2Open(true)}
           >
             Accept Offer
           </Button>
+          <Modal
+            title="Please give us your expect salary and deadline for this order?"
+            centered
+            open={modal2Open}
+            onCancel={() => setModal2Open(false)}
+            footer={null}
+          >
+            <div style={{ fontFamily: "MediumCereal", marginTop: "1em" }}>
+              <h3>Payment</h3>
+              <InputNumber
+                onChange={(e) => setPayment(e)}
+                defaultValue={1000}
+                formatter={(value) =>
+                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                }
+                parser={(value) => value.replace(/\$\s?|(,*)/g, "")}
+                style={{ margin: "1em 0" }}
+              />
+              <h3>Deadline</h3>
+              <ConfigProvider locale={globalBuddhistLocale}>
+                <Space direction="vertical">
+                  <DatePicker
+                    onChange={(e) => setDeadline(e)}
+                    defaultValue={defaultValue}
+                    showTime
+                    style={{ margin: "1em 0" }}
+                  />
+                </Space>
+              </ConfigProvider>
+            </div>
+            <RoundedBtn
+              color="#3c3c3c"
+              style={{ width: "100%" }}
+              onClick={() => alert(payment + " " + deadline)}
+            >
+              Submit
+            </RoundedBtn>
+          </Modal>
         </div>
       </div>
     </div>

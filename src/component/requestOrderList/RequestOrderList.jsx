@@ -7,8 +7,7 @@ import { list } from "firebase/storage";
 import moment from "moment";
 import { getDifTime } from "../../assets/hook/useGetTime";
 
-function RequestOrderList({ choice, setChoice, list, setData }) {
-  console.log(list);
+function RequestOrderList({ choice, setChoice, list }) {
   const [option, setOption] = useState(0);
   const listOption = ["Offer", "My Jobs", "History"];
 
