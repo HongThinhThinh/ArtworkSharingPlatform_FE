@@ -9,7 +9,7 @@ import uploadFile from "../../assets/hook/useUpload";
 import image1 from "../../assets/CremoBackground.png";
 import UploadArtWork from "../../component/UploadArtWork/UploadArtWork";
 import { useStateValue } from "../../Context/StateProvider";
-import getCurrentDateTime from "../../assets/hook/useGetTime";
+import { getCurrentDateTime } from "../../assets/hook/useGetTime";
 import api from "../../config/axios";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import Loading from "../../component/loading/Loading";

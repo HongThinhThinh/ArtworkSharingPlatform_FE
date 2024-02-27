@@ -5,8 +5,9 @@ import { Button } from "antd";
 import RequestOrderTab from "../requestOrderTab/RequestOrderTab";
 import { list } from "firebase/storage";
 import moment from "moment";
+import { getDifTime } from "../../assets/hook/useGetTime";
 
-function RequestOrderList({ choice, setChoice, list }) {
+function RequestOrderList({ choice, setChoice, list, setData }) {
   console.log(list);
   const [option, setOption] = useState(0);
   const listOption = ["Offer", "My Jobs", "History"];
@@ -59,16 +60,16 @@ function RequestOrderList({ choice, setChoice, list }) {
       </div>
       {list.map((item, index) => {
         console.log(item.dateStart);
-        const currentTime = moment(
-          item.dateStart,
-          "MMMM Do YYYY, h:mm:ss a"
-        ).fromNow();
+
         return (
           <RequestOrderTab
-            onClick={() => setChoice(index)}
+            onClick={() => {
+              setChoice(index);
+              setData(item);
+            }}
             key={index}
             title={item.title}
-            time={currentTime}
+            time={getDifTime(item.dateStart)}
             content={item.description}
             status={index === choice}
           />

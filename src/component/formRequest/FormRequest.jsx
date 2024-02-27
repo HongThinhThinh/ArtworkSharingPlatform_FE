@@ -5,7 +5,7 @@ import "./FormRequest.scss";
 import { WarningFilled } from "@ant-design/icons";
 import api from "../../config/axios";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
-import getCurrentDateTime from "../../assets/hook/useGetTime";
+import { getCurrentDateTime } from "../../assets/hook/useGetTime";
 import { useParams } from "react-router-dom";
 
 function FormRequest({ status, setStatus }) {
@@ -17,7 +17,7 @@ function FormRequest({ status, setStatus }) {
   const onFinish = async () => {
     try {
       const response = await api.post("/sendOrderRequest", {
-        creatorID: id,
+        userID: id,
         title: title,
         dateStart: getCurrentDateTime(),
         dateEnd: option,
