@@ -11,26 +11,6 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
   const [option, setOption] = useState(0);
   const listOption = ["Offer", "My Jobs", "History"];
 
-  const listOrder = [
-    {
-      title: "Order an webpage design",
-      time: "12 hours",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adip elit. Phasellus non est ipsum. Aliquam a ante dui. ",
-    },
-    {
-      title: "Logo for Brand",
-      time: "11 hours",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adip elit. Phasellus non est ipsum. Aliquam a ante dui. ",
-    },
-    {
-      title: "Responsive webpage for mobile",
-      time: "10 hours",
-      content:
-        "Lorem ipsum dolor sit amet, consectetur adip elit. Phasellus non est ipsum. Aliquam a ante dui. ",
-    },
-  ];
   return (
     <div className={`requestOrderList ${choice != -1 ? "" : "active"}`}>
       <div className="requestOrderList__title">
@@ -58,8 +38,6 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
         ))}
       </div>
       {list.map((item, index) => {
-        console.log(item.dateStart);
-
         return (
           <RequestOrderTab
             onClick={() => {
