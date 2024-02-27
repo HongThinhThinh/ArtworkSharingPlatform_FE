@@ -123,6 +123,7 @@
 
 @media only screen and (max-width: 1510px) {
   .creator-info {
+    margin-top: 2em;
     &__name,
     &__skill__title {
       font-size: 0.8em;
@@ -133,7 +134,7 @@
     .creator-info-res {
       display: flex;
       flex-direction: row;
-      margin-top: 7em;
+      margin-top: 6em;
       margin-left: 2em;
     }
   }

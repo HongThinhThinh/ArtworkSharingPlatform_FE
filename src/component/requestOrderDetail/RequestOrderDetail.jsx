@@ -22,9 +22,7 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
   const [modal1Open, setModal1Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 785 });
-  console.log(data);
   const [newData, setNewData] = useState(data);
-  console.log(newData);
   const config = {
     rules: [
       {
@@ -62,9 +60,6 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
     setModal2Open(false);
   };
 
-  console.log(
-    "RENDERERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR"
-  );
 
   return (
     <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
