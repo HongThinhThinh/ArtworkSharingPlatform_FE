@@ -13,12 +13,12 @@ function Order({ check, setCheck }) {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await api.get("/getOrderRequestAudience-pending");
+        const res = await api.get("/getAllOrderRequestAudience");
         console.log(res.data.data);
         setData(res.data.data);
         setCheck(res.data.data);
       } catch (e) {
-        alertFail("Fail to load");
+        // alertFail("Fail to load");
       }
     };
 

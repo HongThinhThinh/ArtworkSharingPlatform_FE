@@ -7,23 +7,41 @@ import CustomeSteps from "../steps/CustomeSteps";
 import UploadDemo from "../uploadDemo/UploadDemo";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../config/axios";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 
 function ViewOrderDetail({ choice }) {
   const navigate = useNavigate();
   const [data, setData] = useState();
+  const [newData, setNewData] = useState([]);
   const { id } = useParams();
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await api.get(`/getOrderRequestDetail/${id}`);
         setData(response.data.data);
-        console.log(response.data.data);
+        console.log(response.data.data.demoRequests);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
-  }, []);
+  }, [newData]);
+  // console.log(data.creator);
+
+  const acpOrder = async () => {
+    try {
+      const res = await api.put("/updateOrderRequest-audience", {
+        id: data.id,
+        status: "PROCESSING",
+      });
+      setNewData(res.data.data);
+      alertSuccess("Acp order successfully ");
+    } catch (e) {
+      // alertFail("Failed to load");
+      console.log(e);
+    }
+  };
+
   return (
     <>
       {data != null ? (
@@ -41,7 +59,7 @@ function ViewOrderDetail({ choice }) {
               {data.title}
             </div>
             <div className="request-order-detail__head__deadline">
-              Deadline Response: 30/4/2023
+              Deadline Response: {data.dateEnd}
             </div>
           </div>
           <div className="request-order-detail__detail in-progress">
@@ -53,49 +71,80 @@ function ViewOrderDetail({ choice }) {
                 />
                 <div className="request-order-detail__detail__creator__right__info">
                   <h3>{data.creator.name}</h3>
-                  <span>Member since January 2, 2024</span>
+                  <span>{data.dateStart}</span>
                 </div>
               </div>
               <div className="request-order-detail__detail__creator__left">
                 <AiFillMessage />
               </div>
             </div>
-            <CustomeSteps />
+            <CustomeSteps state={data.status} />
             <h3 className="request-order-detail__detail__request">
               {data.description}
             </h3>
-            <div className="request-order-detail__detail__payment">
-              <h3>Payment:</h3>
-              <h3>45 $</h3>
-            </div>
-            <div className="request-order-detail__detail__description">
+
+            {data.status == "PENDING" ? (
+              ""
+            ) : (
+              <div
+                // style={{ marginBottom: "-20px" }}
+                className="request-order-detail__detail__payment"
+              >
+                <h3>Payment:</h3>
+                <h3>45 $</h3>
+              </div>
+            )}
+
+            <div
+              style={{ marginTop: "20px" }}
+              className="request-order-detail__detail__description"
+            >
               <h3>Deadline </h3>
-              <p>30/05/2024</p>
+              <p>{data.dateEnd}</p>
             </div>
-            <div className="request-order-detail__detail__confirm">
-              <Button className="request-order-detail__detail__confirm__cancel">
-                Cancel Offer
-              </Button>
-              <Button className="request-order-detail__detail__confirm__accept">
-                Accept Offer
-              </Button>
-            </div>
+            {data.status == "PENDING" ? (
+              <div className="request-order-detail__detail__confirm">
+                <Button className="request-order-detail__detail__confirm__cancel">
+                  Cancel Offer
+                </Button>
+              </div>
+            ) : data.status == "PROCESSING" ? (
+              ""
+            ) : (
+              <div className="request-order-detail__detail__confirm">
+                <Button className="request-order-detail__detail__confirm__cancel">
+                  Cancel Offer
+                </Button>
+                <Button
+                  onClick={acpOrder}
+                  className="request-order-detail__detail__confirm__accept"
+                >
+                  Accept Offer
+                </Button>
+              </div>
+            )}
           </div>
 
           <div className="request-order-detail__demo">
-            <div className="request-order-detail__demo__content">
-              <h3>Demo:</h3>
-              <p>
-                <ExclamationCircleTwoTone twoToneColor="#B42D81" /> These are
-                some demo of your order which are uploaded by creator
-              </p>
-            </div>
-            <div className="request-order-detail__demo__upload">
-              <img
-                src="https://cdn.dribbble.com/userupload/4475107/file/original-dbbcfc1e3b317d4fb8c0dd061d26fde7.png?resize=1200x900"
-                alt=""
-              />
-            </div>
+            {/* {demoRequest.length == 0 ? (
+              ""
+            ) : (
+              <>
+                <div className="request-order-detail__demo__content">
+                  <h3>Demo:</h3>
+                  <p>
+                    <ExclamationCircleTwoTone twoToneColor="#B42D81" /> These
+                    are some demo of your order which are uploaded by creator
+                  </p>
+                </div>
+                <div className="request-order-detail__demo__upload">
+                  <img src={data.demoRequests[0].image} alt="" />
+                </div>
+                <div className="request-order-detail__demo__upload">
+                  <img src={data.demoRequests[1].image} alt="" />
+                </div>
+              </>
+            )} */}
           </div>
         </div>
       ) : (
