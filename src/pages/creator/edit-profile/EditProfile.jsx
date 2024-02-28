@@ -12,6 +12,11 @@ import { createStyles, useTheme } from "antd-style";
 import "./EditProfile.scss";
 import UploadArtWork from "../../../component/UploadArtWork/UploadArtWork";
 import RoundedBtn from "../../../component/rounded-button/RoundedButton";
+import { WarningFilled } from "@ant-design/icons";
+import useNotification from "antd/es/notification/useNotification";
+import { alertFail } from "../../../assets/hook/useNotification";
+import { useSelector } from "react-redux";
+import uploadFile from "../../../assets/hook/useUpload";
 const useStyle = createStyles(({ token }) => ({
   "my-drawer-body": {
     background: "white",
@@ -41,7 +46,9 @@ const MyFormItemGroup = ({ prefix, children }) => {
 };
 
 const EditProfile = ({ user }) => {
+  const [file, setFile] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [url, setUrl] = useState("");
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -51,6 +58,7 @@ const EditProfile = ({ user }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   const [open, setOpen] = useState([false, false]);
   const { styles } = useStyle();
   const token = useTheme();
@@ -74,6 +82,27 @@ const EditProfile = ({ user }) => {
       fontSize: token.fontSizeLG,
     },
   };
+
+  const handleEditProfile = async () => {
+    const response = await api.put(`/editProfile`, {
+      status: "active",
+    });
+    setReload(response);
+    alertSuccess("Edit sucessfully");
+  };
+
+  const getLink = async(file) => {
+    const URL = await uploadFile(file);
+    setUrl(URL);
+  }
+
+  const onFinish = (e) => {
+    if (e.name == user.name && e.email == user.email && url.length == 0){
+      alertFail("You didn't change any information!");
+    }  
+      
+  }
+  
   return (
     <div className="editProfileCreator">
       <Space>
@@ -98,20 +127,33 @@ const EditProfile = ({ user }) => {
         <div className="ChangeProfileInfo">
           <div className="changeAvt">
             <div className="changeAvt--img">
-              <img src={user.avt} alt="" />
-              <UploadArtWork content="Upload New Avatar" />
-            </div>
+              <img src={url.length == 0 ? user.avt: url} alt="" />
+        <div >
+<div onChange={(e) => getLink(e.target.files[0])}>
+        <UploadArtWork content="Upload New Avatar" />
+        </div>
+        </div>
+              </div>
           </div>
           <div className="changeUsername">
-            <Form className="login__form__container__namepass__group-form">
+            <Form className="login__form__container__namepass__group-form" onFinish={onFinish}>
               <Form.Item
-                label="Username"
-                name="userName"
+                label="Name"
+                name="name"
+                initialValue={user.name}
                 className="login__form__container__namepass__group-form"
-                rules={[{}]}
+                rules={[
+                  {
+                    required: true,
+                    message: (
+                      <div>
+                        <WarningFilled /> Please input your Name!
+                      </div>
+                    ),
+                  },
+                ]}
               >
                 <Input
-                  readOnly
                   defaultValue={user.name}
                   className="login__form__container__namepass__group-form__input"
                 />
@@ -120,8 +162,26 @@ const EditProfile = ({ user }) => {
               <Form.Item
                 label="Email"
                 name="email"
+                initialValue={user.email}
                 className="login__form__container__namepass__group-form"
-                rules={[{}]}
+                rules={[
+                  {
+                    type: "email",
+                    message: (
+                      <div>
+                        <WarningFilled /> Email is not valid!
+                      </div>
+                    ),
+                  },
+                  {
+                    required: true,
+                    message: (
+                      <div>
+                        <WarningFilled /> Please input your email!
+                      </div>
+                    ),
+                  },
+                ]}
               >
                 <Input
                   defaultValue={user.email}
