@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./RequestOrderDetail.scss";
 import { Avatar, Button, Form, InputNumber, Modal } from "antd";
 import { AiFillMessage } from "react-icons/ai";
@@ -6,16 +6,11 @@ import { useMediaQuery } from "react-responsive";
 import { ExclamationCircleFilled, LeftCircleTwoTone } from "@ant-design/icons";
 import CustomeSteps from "../steps/CustomeSteps";
 import TextArea from "antd/es/input/TextArea";
-import { ConfigProvider, DatePicker, Space, Typography } from "antd";
-import en from "antd/es/date-picker/locale/en_US";
-import enUS from "antd/es/locale/en_US";
-import dayjs from "dayjs";
-import buddhistEra from "dayjs/plugin/buddhistEra";
+import { ConfigProvider, DatePicker } from "antd";
 import RoundedBtn from "../rounded-button/RoundedButton";
 import { getDifTime } from "../../assets/hook/useGetTime";
 import api from "../../config/axios";
 import { alertSuccess } from "../../assets/hook/useNotification";
-import moment from "moment";
 
 function RequestOrderDetail({ choice, setChoice, data, setData }) {
   const [reason, setReason] = useState("");
@@ -59,7 +54,6 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
     }
     setModal2Open(false);
   };
-
 
   return (
     <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
@@ -190,11 +184,7 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
                     </span>
                   </Form.Item>
 
-                  <Form.Item
-                    name="date"
-                    label="DatePicker[showTime]"
-                    {...config}
-                  >
+                  <Form.Item name="date" label="Deadline" {...config}>
                     <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
                   </Form.Item>
                 </div>
@@ -203,19 +193,12 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
                     Submit
                   </RoundedBtn>
                 </Form.Item>
-                <Form.Item name="date" label="Deadline" {...config}>
-                  <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
-                </Form.Item>
-              </div>
-              <Form.Item>
-                <RoundedBtn color="#3c3c3c" style={{ width: "100%" }}>
-                  Submit
-                </RoundedBtn>
-              </Form.Item>
-            </Form>
-          </Modal>
-        </div>
-
+              </Form>
+            </Modal>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
