@@ -13,7 +13,7 @@ function FormRequest({ status, setStatus }) {
   const [option, setOption] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  console.log(id);
+  // console.log(id);
   const onFinish = async () => {
     try {
       const response = await api.post("/sendOrderRequest", {
@@ -30,7 +30,7 @@ function FormRequest({ status, setStatus }) {
       setTitle("");
       setDescription("");
     } catch (e) {
-      alertFail("loi");
+      alertFail(e.message);
     }
   };
   return (

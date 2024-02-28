@@ -45,6 +45,7 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
         id: data.id,
         dateEnd: values.date,
         price: values.number,
+        status: "ACTIVE",
       });
       setNewData(res.data.data);
       setData(res.data.data);
@@ -110,10 +111,7 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
           className="request-order-detail__detail__description"
         >
           <h3>Job Description: </h3>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adip elit. Phasellus non est
-            ipsum. Aliquam a ante dui.{" "}
-          </p>
+          <p>{newData.description}</p>
         </div>
         {newData.status == "PENDING" ? (
           <div className="request-order-detail__detail__confirm">
