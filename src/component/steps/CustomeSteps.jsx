@@ -5,7 +5,7 @@ import "./CustomeSteps.scss";
 function CustomeSteps(state) {
   console.log(state.state);
   const description = "This is a description.";
-  const [statee, setStatee] = useState(state.state);
+  const [statee, setStatee] = useState(state.statelogo);
   useEffect(() => {
     setStatee(state.state);
   }, [state]);

@@ -1,6 +1,6 @@
-import { Button, Form, Input, Modal, Radio, Select } from "antd";
+import { Button, Form, Input, Modal } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React, { useState } from "react";
+import { useState } from "react";
 import "./FormRequest.scss";
 import { WarningFilled } from "@ant-design/icons";
 import api from "../../config/axios";

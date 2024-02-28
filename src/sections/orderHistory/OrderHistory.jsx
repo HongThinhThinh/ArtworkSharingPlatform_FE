@@ -1,27 +1,37 @@
 import { Collapse } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./OrderHistory.scss";
 import Order from "../../component/order/Order";
 import ViewOrderDetail from "../../component/requestOrderDetail/ViewOrderDetail";
+import api from "../../config/axios";
+import { alertFail } from "../../assets/hook/useNotification";
+import { useNavigate } from "react-router-dom";
+import Loading from "../../component/loading/Loading";
 
 function OrderHistory() {
-  const [isShowDetail, setIsShowDetail] = useState(false);
+  const [check, setCheck] = useState([]);
+  const [state, setState] = useState(true);
+
+  useEffect(() => {
+    const isLoading = setTimeout(() => setState(false), 500);
+    return () => clearTimeout(isLoading);
+  }, []);
   return (
     <>
-      {isShowDetail ? (
-        <div className="order-history__wrapper">
-          <ViewOrderDetail choice={isShowDetail} setChoice={setIsShowDetail} />
-        </div>
-      ) : (
-        <div className="order-history">
-          <h1>Order History</h1>
-          <p>
-            Check the status of recent orders, manage , and discover similar
-            products.
-          </p>
-          <Order setShow={setIsShowDetail} />
-        </div>
-      )}
+      <div className="order-history">
+        {!state && check.length != 0 ? (
+          <>
+            <h1>Order History</h1>
+            <p>
+              Check the status of recent orders, manage , and discover similar
+              products.
+            </p>
+          </>
+        ) : null}
+        {state && <Loading />}
+      </div>
+
+      <Order check={check} setCheck={setCheck} />
     </>
   );
 }
