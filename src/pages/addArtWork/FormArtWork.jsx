@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button, Form, Input, Row } from "antd";
+import { Button, Form, Input, Row, Switch } from "antd";
 
 const { TextArea } = Input;
 import Tags from "../../component/tags/Tag";
@@ -34,6 +34,7 @@ const MyFormItemGroup = ({ prefix, children }) => {
 };
 
 function FormArtwork() {
+  const [isSell, setIsSell] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { theme } = useStateValue();
   const [URL, setURL] = useState(image1);
@@ -44,6 +45,10 @@ function FormArtwork() {
     URL = await uploadFile(file);
     setURL(URL);
     setImageUploaded(true); // Set imageUploaded to true after uploading the image
+  };
+
+  const onChange = (checked) => {
+    setIsSell(checked);
   };
 
   const [selectedTags, setSelectedTags] = useState([]);
@@ -117,7 +122,28 @@ function FormArtwork() {
                     selectedTags={selectedTags}
                   />
                 </Form.Item>
+                <Form.Item>
+                  <Switch onChange={onChange} />
+                  <h5>I want to sell this artwork</h5>
+                </Form.Item>
+                {isSell && (
+                  <Form.Item
+                    label="Price"
+                    name="price"
+                    className="login__form__container__namepass__group-form"
+                    rules={[
+                      {
+                        required: true,
+                        message:
+                          "Please input your expect price for this artwork!",
+                      },
+                    ]}
+                  >
+                    <Input className="login__form__container__namepass__group-form__input" />
+                  </Form.Item>
+                )}
               </MyFormItemGroup>
+
               <Button
                 className="login__form__container__namepass__submit"
                 style={!imageUploaded && { color: "white" }}
@@ -129,6 +155,9 @@ function FormArtwork() {
             </Form>
           </div>
           <div className="FormArtWork--image">
+            <div className="FormArtWork--image__remain-posts">
+              Post times remain: <span>1</span>
+            </div>
             <ImgPreview src={URL} />
             <div
               onChange={(e) => {

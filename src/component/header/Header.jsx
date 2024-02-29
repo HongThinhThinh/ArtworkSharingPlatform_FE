@@ -88,8 +88,8 @@ function Header() {
         <Row>
           <Col xl={6} lg={5}></Col>
           <Col
-            xl={9}
-            lg={9}
+            xl={user ? 12 : 10}
+            lg={user ? 12 : 10}
             style={{
               display: "flex",
               alignItems: "center",
@@ -98,7 +98,7 @@ function Header() {
           >
             <StyledSearch />
           </Col>
-          <Col xl={9} lg={10}>
+          <Col xl={user ? 6 : 8} lg={user ? 7 : 9}>
             {user != null ? <Account /> : <SignInUp />}
           </Col>
         </Row>

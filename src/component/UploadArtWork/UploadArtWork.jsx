@@ -80,7 +80,9 @@ const UploadArtWork = ({ content, setUpload}) => {
             )}
           >
             {fileList.length < 1 && (
-              <Button icon={<UploadOutlined />}>{content}</Button>
+              <Button icon={<UploadOutlined />} className="upload-btn">
+                {content}
+              </Button>
             )}
           </Upload>
         </SortableContext>

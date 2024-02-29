@@ -1,31 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./SignInUp.scss";
-import { Avatar } from "antd";
+import { Avatar, Button, Divider, Popover } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../redux/features/counterSlice";
+import { DownCircleTwoTone } from "@ant-design/icons";
 
 function Account() {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  return (
-    <div className="signInUp">
-      {/* <Link className="signInUp__login" to="/login">
-        Log in
-      </Link> */}
-      <Avatar
-        onClick={() => navigate("/profile")}
-        style={{
-          height: "3em",
-          width: "3em",
-          transform: "translateX(-2em)",
-          cursor: "pointer",
-        }}
-        src={user.avt}
-      />
+  const content = (
+    <div className="account-popup">
+      <Divider style={{ margin: "0 0 7px 0" }} />
+      <h3>Swicth Account</h3>
+      <div className="switch-account">
+        <Avatar
+          style={{
+            height: "3.5em",
+            width: "3.5em",
+            cursor: "pointer",
+          }}
+          src={user.avt}
+        />
+        <h3>Olala</h3>
+      </div>
+      <Link to="/profile/orders">Your Orders</Link>
       <Link
-        className="signInUp__signup"
         to="/"
         onClick={() => {
           localStorage.removeItem("token");
@@ -35,6 +36,50 @@ function Account() {
       >
         Logout
       </Link>
+    </div>
+  );
+  return (
+    <div className="signInUp">
+      <div className="signInUp__active">
+        <Popover
+          placement="bottomRight"
+          title={
+            <div
+              className="current-account"
+              onClick={() => navigate("/profile")}
+            >
+              <Avatar
+                style={{
+                  height: "3.5em",
+                  width: "3.5em",
+                  cursor: "pointer",
+                }}
+                src={user.avt}
+              />
+              <h3>{user.name}</h3>
+            </div>
+          }
+          content={content}
+        >
+          <div
+            className="signInUp__active__current-account"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            <Avatar
+              style={{
+                height: "3.8em",
+                width: "3.8em",
+                cursor: "pointer",
+              }}
+              src={user.avt}
+            />
+            <DownCircleTwoTone
+              twoToneColor="#8c2db4"
+              className="signInUp__active__current-account__dropdown"
+            />
+          </div>
+        </Popover>
+      </div>
     </div>
   );
 }
