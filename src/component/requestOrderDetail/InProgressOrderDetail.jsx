@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./RequestOrderDetail.scss";
 import { Avatar, Button } from "antd";
 import { AiFillMessage } from "react-icons/ai";
@@ -6,8 +6,11 @@ import { useMediaQuery } from "react-responsive";
 import { ExclamationCircleTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
 import CustomeSteps from "../steps/CustomeSteps";
 import UploadDemo from "../uploadDemo/UploadDemo";
+import ImgPreview from "../../pages/Image/Image";
+import DemoWithComment from "../demoWithComment/DemoWithComment";
 
 function InProgressOrderDetail({ choice, setChoice }) {
+  const [listDemo, setListDemo] = useState([]);
   const isMobile = useMediaQuery({ maxWidth: 785 });
   return (
     <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
@@ -69,6 +72,14 @@ function InProgressOrderDetail({ choice, setChoice }) {
         </div>
         <div className="request-order-detail__upload-demo__upload">
           <UploadDemo />
+          <DemoWithComment imageUrl="https://cdn.dribbble.com/userupload/13051915/file/original-da459e012420f125b7a1089a404ad185.png?resize=400x300&vertical=center" />
+          <DemoWithComment imageUrl="https://cdn.dribbble.com/userupload/8915426/file/original-a31d3c9d2ed7e66c62fa3ace7d7413c8.jpg?resize=400x300&vertical=center" />
+          <DemoWithComment imageUrl="https://cdn.dribbble.com/userupload/4475106/file/original-2a7a23385ae7f4ccc3c0863566362404.png?resize=400x300&vertical=center" />
+          <DemoWithComment imageUrl="https://cdn.dribbble.com/userupload/13274862/file/original-c7e83e91bc8b40659b0eeb3d1e25ec41.png?resize=400x300&vertical=center" />
+
+          {listDemo.map((url) => (
+            <img src={url} />
+          ))}
         </div>
       </div>
     </div>
