@@ -72,10 +72,12 @@ function CreatorPage() {
       <Content
         width={isChangeLayout ? "100%" : "75%"}
         className={styles.contentStyle}
-        
       >
         <ChangeTabCreator />
-        <CreatorWorkart list={data.artworks} style={{paddingLeft:"2em",paddingBottom:"3em"}}/>
+        <CreatorWorkart
+          list={data.artworks}
+          style={{ paddingLeft: "2em", paddingBottom: "3em" }}
+        />
       </Content>
     </Layout>
   );

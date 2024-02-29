@@ -3,7 +3,11 @@ import "./RequestOrderDetail.scss";
 import { Avatar, Button, Form, InputNumber, Modal } from "antd";
 import { AiFillMessage } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
-import { ExclamationCircleFilled, LeftCircleTwoTone } from "@ant-design/icons";
+import {
+  ExclamationCircleFilled,
+  ExclamationCircleTwoTone,
+  LeftCircleTwoTone,
+} from "@ant-design/icons";
 import CustomeSteps from "../steps/CustomeSteps";
 import TextArea from "antd/es/input/TextArea";
 import { ConfigProvider, DatePicker } from "antd";
@@ -11,6 +15,7 @@ import RoundedBtn from "../rounded-button/RoundedButton";
 import { getDifTime } from "../../assets/hook/useGetTime";
 import api from "../../config/axios";
 import { alertSuccess } from "../../assets/hook/useNotification";
+import UploadDemo from "../uploadDemo/UploadDemo";
 
 function RequestOrderDetail({ choice, setChoice, data, setData }) {
   const [reason, setReason] = useState("");
@@ -194,6 +199,26 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
               </Form>
             </Modal>
           </div>
+        ) : (
+          ""
+        )}
+
+        {newData.status === "PROCESSING" ? (
+          <>
+            <div className="request-order-detail__upload-demo">
+              <div className="request-order-detail__upload-demo__content">
+                <h3>Upload Demo:</h3>
+                <p>
+                  <ExclamationCircleTwoTone twoToneColor="#B42D81" /> Please add
+                  at least <strong>ONE</strong> demo during “Processing”
+                  progress for moving to the next steps
+                </p>
+              </div>
+              <div className="request-order-detail__upload-demo__upload">
+                <UploadDemo />
+              </div>
+            </div>
+          </>
         ) : (
           ""
         )}

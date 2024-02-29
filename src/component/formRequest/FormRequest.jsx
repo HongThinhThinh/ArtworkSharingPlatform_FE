@@ -1,6 +1,6 @@
-import { Button, Form, Input, Modal, Radio, Select } from "antd";
+import { Button, Form, Input, Modal } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import React, { useState } from "react";
+import { useState } from "react";
 import "./FormRequest.scss";
 import { WarningFilled } from "@ant-design/icons";
 import api from "../../config/axios";
@@ -15,6 +15,7 @@ function FormRequest({ status, setStatus }) {
   const [description, setDescription] = useState("");
   // console.log(id);
   const onFinish = async () => {
+    console.log("sadsklnlllllllnlnlnlnlnlnlnln");
     try {
       const response = await api.post("/sendOrderRequest", {
         userID: id,
@@ -31,6 +32,7 @@ function FormRequest({ status, setStatus }) {
       setDescription("");
     } catch (e) {
       alertFail(e.message);
+      console.log("sadsklnlllllllnlnlnlnlnlnlnln");
     }
   };
   return (

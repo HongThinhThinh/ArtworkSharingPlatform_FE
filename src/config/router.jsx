@@ -41,6 +41,7 @@ import JobsPage from "../pages/jobsPage/JobsPage";
 import OrderHistory from "../sections/orderHistory/OrderHistory";
 import Checkout from "../pages/checkout/Checkout";
 import OptionUpgrate from "../component/optionUpgrade/OptionUpgrate";
+import ViewOrderDetail from "../component/requestOrderDetail/ViewOrderDetail";
 
 export const router = createBrowserRouter([
   {
@@ -174,6 +175,10 @@ export const router = createBrowserRouter([
           {
             path: "/profile/orders",
             element: <OrderHistory />,
+          },
+          {
+            path: "/profile/orderDetail/:id",
+            element: <ViewOrderDetail />,
           },
         ],
       },
