@@ -49,6 +49,7 @@ const EditProfile = ({ user }) => {
   const [file, setFile] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [url, setUrl] = useState("");
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -83,26 +84,34 @@ const EditProfile = ({ user }) => {
     },
   };
 
-  const handleEditProfile = async () => {
-    const response = await api.put(`/editProfile`, {
-      status: "active",
-    });
-    setReload(response);
-    alertSuccess("Edit sucessfully");
-  };
-
-  const getLink = async(file) => {
+  const getLink = async (file) => {
     const URL = await uploadFile(file);
     setUrl(URL);
-  }
+  };
 
-  const onFinish = (e) => {
-    if (e.name == user.name && e.email == user.email && url.length == 0){
+  const onFinish = async (e) => {
+    if (e.name == user.name && e.email == user.email && url.length == 0) {
       alertFail("You didn't change any information!");
-    }  
-      
-  }
-  
+    }
+    try {
+      const response = await api.put("/editProfile", {
+        name: e.name,
+        avt: url,
+        email: e.email,
+      });
+      // setFile(url);
+      setReload(response);
+      alertSuccess("Edit sucessfully");
+    } catch (error) {
+      alertFail("Update fail");
+    }
+    console.log(e.name);
+    console.log(e.email);
+    console.log(url);
+  };
+
+
+
   return (
     <div className="editProfileCreator">
       <Space>
@@ -127,16 +136,20 @@ const EditProfile = ({ user }) => {
         <div className="ChangeProfileInfo">
           <div className="changeAvt">
             <div className="changeAvt--img">
-              <img src={url.length == 0 ? user.avt: url} alt="" />
-        <div >
-<div onChange={(e) => getLink(e.target.files[0])}>
-        <UploadArtWork content="Upload New Avatar" />
-        </div>
-        </div>
+              <img src={url.length == 0 ? user.avt : url} alt="" />
+              <div>
+                <div onChange={(e) => getLink(e.target.files[0])}>
+                  <UploadArtWork content="Upload New Avatar" />
+                </div>
               </div>
+            </div>
           </div>
           <div className="changeUsername">
-            <Form className="login__form__container__namepass__group-form" onFinish={onFinish}>
+            <Form
+              className="login__form__container__namepass__group-form"
+              onFinish={onFinish}
+       
+            >
               <Form.Item
                 label="Name"
                 name="name"
