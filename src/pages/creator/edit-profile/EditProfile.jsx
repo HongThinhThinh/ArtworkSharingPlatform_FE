@@ -14,9 +14,12 @@ import UploadArtWork from "../../../component/UploadArtWork/UploadArtWork";
 import RoundedBtn from "../../../component/rounded-button/RoundedButton";
 import { WarningFilled } from "@ant-design/icons";
 import useNotification from "antd/es/notification/useNotification";
-import { alertFail } from "../../../assets/hook/useNotification";
-import { useSelector } from "react-redux";
+import { alertFail, alertSuccess } from "../../../assets/hook/useNotification";
+import { useDispatch, useSelector } from "react-redux";
 import uploadFile from "../../../assets/hook/useUpload";
+import api from "../../../config/axios";
+import { login, logout } from "../../../redux/features/counterSlice";
+import { useNavigate, useNavigation } from "react-router-dom";
 const useStyle = createStyles(({ token }) => ({
   "my-drawer-body": {
     background: "white",
@@ -48,8 +51,9 @@ const MyFormItemGroup = ({ prefix, children }) => {
 const EditProfile = ({ user }) => {
   const [file, setFile] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [url, setUrl] = useState("");
-
+  const [url, setUrl] = useState(user?.avt);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -86,12 +90,15 @@ const EditProfile = ({ user }) => {
 
   const getLink = async (file) => {
     const URL = await uploadFile(file);
+    console.log(URL);
+    console.log(user.avt);
+    if (URL === "") setUrl(user.avt);
     setUrl(URL);
   };
-
   const onFinish = async (e) => {
-    if (e.name == user.name && e.email == user.email && url.length == 0) {
+    if (e.name == user?.name && e.email == user?.email && url?.length == 0) {
       alertFail("You didn't change any information!");
+      return;
     }
     try {
       const response = await api.put("/editProfile", {
@@ -100,17 +107,29 @@ const EditProfile = ({ user }) => {
         email: e.email,
       });
       // setFile(url);
-      setReload(response);
+      // setReload(response)
+      // console(e.email != user.email);
+
+      console.log(e.email);
+      console.log(user.email);
+
+      if (e.email != user.email) {
+        console.log(e.email);
+        console.log(user.email);
+        navigate("/login");
+        alertSuccess("Please verify your new email ");
+        dispatch(logout());
+        return;
+      }
       alertSuccess("Edit sucessfully");
+      dispatch(login(response.data.data));
     } catch (error) {
-      alertFail("Update fail");
+      // alertFail("Update fail");
+      console.log(e.email != user.email);
+      alertFail(error.response.data);
+      console.log(error);
     }
-    console.log(e.name);
-    console.log(e.email);
-    console.log(url);
   };
-
-
 
   return (
     <div className="editProfileCreator">
@@ -136,7 +155,7 @@ const EditProfile = ({ user }) => {
         <div className="ChangeProfileInfo">
           <div className="changeAvt">
             <div className="changeAvt--img">
-              <img src={url.length == 0 ? user.avt : url} alt="" />
+              <img src={url?.length == 0 ? user?.avt : url} alt="" />
               <div>
                 <div onChange={(e) => getLink(e.target.files[0])}>
                   <UploadArtWork content="Upload New Avatar" />
@@ -148,12 +167,11 @@ const EditProfile = ({ user }) => {
             <Form
               className="login__form__container__namepass__group-form"
               onFinish={onFinish}
-       
             >
               <Form.Item
                 label="Name"
                 name="name"
-                initialValue={user.name}
+                initialValue={user?.name}
                 className="login__form__container__namepass__group-form"
                 rules={[
                   {
@@ -167,7 +185,7 @@ const EditProfile = ({ user }) => {
                 ]}
               >
                 <Input
-                  defaultValue={user.name}
+                  defaultValue={user?.name}
                   className="login__form__container__namepass__group-form__input"
                 />
               </Form.Item>
@@ -175,7 +193,7 @@ const EditProfile = ({ user }) => {
               <Form.Item
                 label="Email"
                 name="email"
-                initialValue={user.email}
+                initialValue={user?.email}
                 className="login__form__container__namepass__group-form"
                 rules={[
                   {
@@ -197,7 +215,7 @@ const EditProfile = ({ user }) => {
                 ]}
               >
                 <Input
-                  defaultValue={user.email}
+                  defaultValue={user?.email}
                   className="login__form__container__namepass__group-form__input"
                 />
               </Form.Item>

@@ -40,8 +40,6 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
 
       <div className="requestOrderList__tabs">
         {list.map((item, index) => {
-          console.log(item.dateStart);
-
           return (
             <RequestOrderTab
               onClick={() => {
@@ -57,7 +55,6 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
           );
         })}
       </div>
-
     </div>
   );
 }
