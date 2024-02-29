@@ -91,12 +91,11 @@ const EditProfile = ({ user }) => {
   const getLink = async (file) => {
     const URL = await uploadFile(file);
     console.log(URL);
-    console.log(user.avt);
     if (URL === "") setUrl(user.avt);
     setUrl(URL);
   };
   const onFinish = async (e) => {
-    if (e.name == user?.name && e.email == user?.email && url?.length == 0) {
+    if (e.name == user?.name && e.email == user?.email && url === user.avt) {
       alertFail("You didn't change any information!");
       return;
     }
@@ -110,12 +109,15 @@ const EditProfile = ({ user }) => {
       // setReload(response)
       // console(e.email != user.email);
 
+      console.log(e.name);
+      console.log(user.name);
+
       console.log(e.email);
       console.log(user.email);
 
+      console.log(url.length == 0);
+
       if (e.email != user.email) {
-        console.log(e.email);
-        console.log(user.email);
         navigate("/login");
         alertSuccess("Please verify your new email ");
         dispatch(logout());
