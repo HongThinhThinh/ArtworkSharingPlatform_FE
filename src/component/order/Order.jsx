@@ -50,11 +50,11 @@ function Order({ check, setCheck }) {
             <div className="order__detail">
               <div className="order__detail__creator">
                 <Avatar
-                  src={item.creator.avt}
+                  src={item.creator?.avt}
                   className="order__detail__creator__avatar"
                 />
                 <div className="order__detail__creator__info">
-                  <h3>{item.creator.name}</h3>
+                  <h3>{item.creator?.name}</h3>
                 </div>
               </div>
               <h3 className="order__detail__title">{item.title}</h3>
