@@ -12,17 +12,15 @@ function AudienceProfile() {
   const navigate = useNavigate();
   const user = useSelector(selectUser);
 
-  
-
   return (
     <div className="audience-profile">
       <div className="creator-profilee">
         <div className="creator-profilee__img">
-          <ImgPreview src={user.avt} />
+          <ImgPreview src={user?.avt} />
         </div>
         <div className="creator-profilee__info">
           <div className="creator-profilee__info__name">
-            <h2>{user.name}</h2>
+            <h2>{user?.name}</h2>
             <div className="creator-profilee__editprofile">
               <EditProfile user={user} />
             </div>

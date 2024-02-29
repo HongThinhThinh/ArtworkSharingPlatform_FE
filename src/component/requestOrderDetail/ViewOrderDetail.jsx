@@ -12,11 +12,13 @@ import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 function ViewOrderDetail({ choice }) {
   const navigate = useNavigate();
   const [data, setData] = useState();
-  const [newData, setNewData] = useState([]);
+  const [newData, setNewData] = useState({});
   const { id } = useParams();
   const [demoRequest, setDemoRequest] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
+      console.log(id);
       try {
         const response = await api.get(`/getOrderRequestDetail/${id}`);
         setData(response.data.data);
@@ -43,7 +45,7 @@ function ViewOrderDetail({ choice }) {
       console.log(e);
     }
   };
-
+  console.log(data);
   return (
     <>
       {data != null ? (
@@ -93,7 +95,7 @@ function ViewOrderDetail({ choice }) {
                 className="request-order-detail__detail__payment"
               >
                 <h3>Payment:</h3>
-                <h3>45 $</h3>
+                <h3>{data.price} $</h3>
               </div>
             )}
 
@@ -154,7 +156,7 @@ function ViewOrderDetail({ choice }) {
           </div>
         </div>
       ) : (
-        "cccccccccccccccc"
+        ""
       )}
     </>
   );

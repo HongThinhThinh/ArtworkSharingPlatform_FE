@@ -40,10 +40,14 @@ function Order({ check, setCheck }) {
                   <h3>Date Placed</h3>
                   <p>{item.dateStart}</p>
                 </div>
-                <div className="order__top__right__total">
-                  <h3>Total Amount</h3>
-                  <p>$160.00</p>
-                </div>
+                {item.status != "PENDING" ? (
+                  <div className="order__top__right__total">
+                    <h3>Total Amount</h3>
+                    <p>{item.price}</p>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="order__top__left">{item.status}</div>
             </div>

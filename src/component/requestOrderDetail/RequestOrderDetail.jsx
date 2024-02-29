@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./RequestOrderDetail.scss";
-import { Avatar, Button, Form, Input, InputNumber, Modal, Select } from "antd";
+import { Avatar, Button, Form, InputNumber, Modal } from "antd";
 import { AiFillMessage } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
 import {
@@ -38,7 +38,6 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
   }, [data]);
 
   const onFinish = async (fieldsValue) => {
-    console.log(fieldsValue);
     const rangeValue = fieldsValue["range-picker"];
     const rangeTimeValue = fieldsValue["range-time-picker"];
     const values = {
@@ -61,16 +60,6 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
     }
     setModal2Open(false);
   };
-  const selectAfter = (
-    <Form.Item name="unit" noStyle initialValue="hours">
-      <Select initialValue="hours">
-        <Option value="hours">hours</Option>
-        <Option value="days">days</Option>
-        <Option value="months">months</Option>
-        <Option value="years">years</Option>
-      </Select>
-    </Form.Item>
-  );
 
   return (
     <div className={`request-order-detail ${choice != -1 ? "active" : ""}`}>
@@ -193,10 +182,13 @@ function RequestOrderDetail({ choice, setChoice, data, setData }) {
                     >
                       <InputNumber />
                     </Form.Item>
+                    <span className="ant-form-text" style={{ marginLeft: 8 }}>
+                      $
+                    </span>
                   </Form.Item>
 
-                  <Form.Item name="date" label="Deadline">
-                    <InputNumber addonAfter={selectAfter} />
+                  <Form.Item name="date" label="Deadline" {...config}>
+                    <DatePicker showTime format="YYYY-MM-DD HH:mm:ss" />
                   </Form.Item>
                 </div>
                 <Form.Item>
