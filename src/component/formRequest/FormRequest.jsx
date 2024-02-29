@@ -15,7 +15,6 @@ function FormRequest({ status, setStatus }) {
   const [description, setDescription] = useState("");
   // console.log(id);
   const onFinish = async () => {
-    console.log("sadsklnlllllllnlnlnlnlnlnlnln");
     try {
       const response = await api.post("/sendOrderRequest", {
         userID: id,
@@ -31,8 +30,7 @@ function FormRequest({ status, setStatus }) {
       setTitle("");
       setDescription("");
     } catch (e) {
-      alertFail(e.message);
-      console.log("sadsklnlllllllnlnlnlnlnlnlnln");
+      alertFail(e.response.data);
     }
   };
   return (

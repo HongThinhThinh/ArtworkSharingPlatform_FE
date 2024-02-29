@@ -9,6 +9,9 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import FormRequest from "../formRequest/FormRequest";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
 
 function CreatorInfo({
   avatar,
@@ -21,6 +24,9 @@ function CreatorInfo({
   position,
 }) {
   const [status, setStatus] = useState(false);
+  const { id } = useParams();
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
   const items = [
     {
       label: (
@@ -78,26 +84,39 @@ function CreatorInfo({
             likes={likes}
           />
 
-          <div className="creator-info__contact">
-            <Button
-              className="creator-info__contact__getInTouch"
-              onClick={() => setStatus(!status)}
-            >
-              Get In Touch
-            </Button>
-            <FormRequest status={status} setStatus={() => setStatus(!status)} />
-            <Button className="creator-info__contact__follow">Follow</Button>
+          {user.id != id ? (
+            <div className="creator-info__contact">
+              <Button
+                className="creator-info__contact__getInTouch"
+                onClick={() => setStatus(!status)}
+              >
+                Get In Touch
+              </Button>
+              <FormRequest
+                status={status}
+                setStatus={() => setStatus(!status)}
+              />
+              <Button className="creator-info__contact__follow">Follow</Button>
 
-            <Dropdown
-              className="creator-info__contact__dropdownCreator"
-              menu={{
-                items,
-              }}
-              trigger={["click"]}
+              <Dropdown
+                className="creator-info__contact__dropdownCreator"
+                menu={{
+                  items,
+                }}
+                trigger={["click"]}
+              >
+                <Button>...</Button>
+              </Dropdown>
+            </div>
+          ) : (
+            <Button
+              style={{ marginTop: "17px" }}
+              className="creator-info__contact__getInTouch "
+              onClick={() => navigate("/creator-manage/artworks")}
             >
-              <Button>...</Button>
-            </Dropdown>
-          </div>
+              Manage Your Profile
+            </Button>
+          )}
         </div>
       </div>
       <div className="creator-info__position">
