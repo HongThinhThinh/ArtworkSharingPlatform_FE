@@ -11,6 +11,9 @@ function AudienceProfile() {
   const [selectedLayout, setSelectedLayout] = useState("");
   const navigate = useNavigate();
   const user = useSelector(selectUser);
+
+  
+
   return (
     <div className="audience-profile">
       <div className="creator-profilee">

@@ -43,7 +43,7 @@ const DraggableUploadListItem = ({ originNode, file }) => {
   );
 };
 // eslint-disable-next-line react/prop-types
-const UploadArtWork = ({ content }) => {
+const UploadArtWork = ({ content, setUpload}) => {
   const [fileList, setFileList] = useState([]);
   const sensor = useSensor(PointerSensor, {
     activationConstraint: {
@@ -61,6 +61,8 @@ const UploadArtWork = ({ content }) => {
   };
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
+
+    
   };
   return (
     <div className="wrapUpload">
