@@ -1,0 +1,15 @@
+.demo {
+  display: flex;
+  &__icon {
+    height: fit-content;
+    transform: translateY(10.5em) translateX(-1.5em);
+    background-color: gray;
+    border-radius: 100%;
+    padding: 0.5em;
+    border: 3px solid white;
+    svg {
+      font-size: 1.5em;
+      color: white;
+    }
+  }
+}

@@ -5,6 +5,8 @@
   flex-direction: column;
   border-right: 1px solid #e9e9e9;
   padding: 25px 0px;
+  position: sticky;
+  top: 0;
 
   &__title {
     h1 {
