@@ -3,38 +3,39 @@
   align-items: center;
   justify-content: center;
   margin-top: 20px;
-  .ant-upload-list-item-name{
+  .ant-upload-list-item-name {
     color: rgb(167, 165, 165) !important;
   }
-  .anticon{
+  .anticon {
     color: rgb(167, 165, 165) !important;
-
   }
-  
+  .upload-btn {
+    span {
+      color: rgb(167, 165, 165) !important;
+    }
+  }
 }
-div.ant-tooltip.css-dev-only-do-not-override-1qhpsh8.ant-tooltip-placement-top{
+div.ant-tooltip.css-dev-only-do-not-override-1qhpsh8.ant-tooltip-placement-top {
   display: node !important;
   z-index: 9999;
-  &:where(.css-dev-only-do-not-override-1qhpsh8).ant-tooltip-hidden{
+  &:where(.css-dev-only-do-not-override-1qhpsh8).ant-tooltip-hidden {
     display: none !important;
     z-index: 99999;
   }
-  &:where(.css-dev-only-do-not-override-1qhpsh8).ant-tooltip{
+  &:where(.css-dev-only-do-not-override-1qhpsh8).ant-tooltip {
     display: none !important;
   }
 }
 
-div.ant-image.css-dev-only-do-not-override-1qhpsh8{
+div.ant-image.css-dev-only-do-not-override-1qhpsh8 {
   border: #b42d81 1px solid;
 }
-div.ant-image.css-1qhpsh8{
+div.ant-image.css-1qhpsh8 {
   border: #b42d81 1px solid;
 }
-
 
 @media only screen and (max-width: 546px) {
   .wrapUpload {
     margin-top: 30px;
   }
-
 }

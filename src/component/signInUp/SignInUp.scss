@@ -23,6 +23,62 @@
     border-radius: 100px;
     text-wrap: nowrap;
   }
+
+  &__active {
+    &__current-account {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+
+      &__dropdown {
+        border-radius: 100px;
+        border: 2px solid white;
+        transform: translateX(-1.4em) translateY(1.2em);
+      }
+    }
+    &__options-box {
+      position: relative;
+      top: 10em;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+.current-account,
+.switch-account {
+  display: flex;
+  align-items: center;
+  padding: 2px 7px;
+  border-radius: 10px;
+  cursor: pointer;
+  h3 {
+    margin-left: 0.5em;
+    font-family: "MediumCereal";
+    width: 75%;
+    text-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+.current-account:hover,
+.switch-account:hover {
+  background-color: #8c2db411;
+}
+.account-popup {
+  display: flex;
+  flex-direction: column;
+  h3,
+  a {
+    font-family: "MediumCereal";
+  }
+  h3 {
+    padding: 4px 0;
+  }
+  a {
+    padding-top: 12px;
+  }
 }
 
 @media only screen and (max-width: 562px) {
