@@ -14,12 +14,14 @@ function ViewOrderDetail({ choice }) {
   const [data, setData] = useState();
   const [newData, setNewData] = useState([]);
   const { id } = useParams();
+  const [demoRequest, setDemoRequest] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await api.get(`/getOrderRequestDetail/${id}`);
         setData(response.data.data);
-        console.log(response.data.data.demoRequests);
+        setDemoRequest(response.data.data.demoRequests);
+        console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -126,7 +128,7 @@ function ViewOrderDetail({ choice }) {
           </div>
 
           <div className="request-order-detail__demo">
-            {/* {demoRequest.length == 0 ? (
+            {demoRequest.length == 0 ? (
               ""
             ) : (
               <>
@@ -137,18 +139,22 @@ function ViewOrderDetail({ choice }) {
                     are some demo of your order which are uploaded by creator
                   </p>
                 </div>
-                <div className="request-order-detail__demo__upload">
-                  <img src={data.demoRequests[0].image} alt="" />
-                </div>
-                <div className="request-order-detail__demo__upload">
-                  <img src={data.demoRequests[1].image} alt="" />
-                </div>
+
+                {demoRequest.map((item) => {
+                  return (
+                    <>
+                      <div className="request-order-detail__demo__upload">
+                        <img src={item.image} alt="" />
+                      </div>
+                    </>
+                  );
+                })}
               </>
-            )} */}
+            )}
           </div>
         </div>
       ) : (
-        ""
+        "cccccccccccccccc"
       )}
     </>
   );

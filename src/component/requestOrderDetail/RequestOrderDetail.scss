@@ -182,7 +182,7 @@
 
 @media only screen and (max-width: 785px) {
   .request-order-detail {
-    display: none;
+    display: block;
     &__demo {
       &__upload {
         justify-content: center;
