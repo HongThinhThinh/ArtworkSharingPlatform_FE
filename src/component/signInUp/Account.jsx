@@ -12,19 +12,26 @@ function Account() {
   const navigate = useNavigate();
   const content = (
     <div className="account-popup">
-      <Divider style={{ margin: "0 0 7px 0" }} />
-      <h3>Swicth to Creator</h3>
-      <Link to="/creator-manage/artworks" className="switch-account">
-        <Avatar
-          style={{
-            height: "3.5em",
-            width: "3.5em",
-            cursor: "pointer",
-          }}
-          src={user.avt}
-        />
-        <h3>Creator</h3>
-      </Link>
+      {user.role === "CREATOR" ? (
+        <>
+          <Divider style={{ margin: "0 0 7px 0" }} />
+          <h3>Swicth to Creator</h3>
+          <Link to="/creator-manage/artworks" className="switch-account">
+            <Avatar
+              style={{
+                height: "3.5em",
+                width: "3.5em",
+                cursor: "pointer",
+              }}
+              src={user.avt}
+            />
+            <h3>Creator</h3>
+          </Link>
+        </>
+      ) : (
+        ""
+      )}
+
       <Link to="/profile/orders">Your Orders</Link>
       <Link
         to="/"
