@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import { Link } from "react-router-dom";
 import Navigator from "../navigator/Navigator";
-import Logo from "../Logo/Logo";
+import Logo from "../logo/Logo";
 import "./Footer.scss";
 import {
   FaTwitter,
