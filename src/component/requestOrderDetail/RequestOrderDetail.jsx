@@ -299,7 +299,7 @@ function RequestOrderDetail() {
                         </div>
                         <TextArea
                           onChange={(e) => setValue(e.target.value)}
-                          placeholder="Do you want to send your customers a thank you note?"
+                          placeholder="Let's send your customers a thank you note!"
                           autoSize={{ minRows: 3, maxRows: 5 }}
                           style={{ margin: "1em 0" }}
                         />
