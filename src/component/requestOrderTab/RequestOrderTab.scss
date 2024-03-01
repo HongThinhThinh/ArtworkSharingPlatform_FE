@@ -1,4 +1,5 @@
 .request-order-tab {
+  width: 100%;
   cursor: pointer;
   padding: 1.2em 2em;
   border-bottom: 1px solid #eee;
@@ -25,6 +26,11 @@
     }
   }
   &__content {
+    width: 100%;
+    text-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-family: "BookCereal";
     font-size: 0.9em;
   }

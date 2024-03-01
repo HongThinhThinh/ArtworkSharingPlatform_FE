@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./RequestOrder.scss";
-import RequestOrderDetail from "../../component/RequestOrderDetail/RequestOrderDetail";
 import RequestOrderList from "../../component/requestOrderList/RequestOrderList";
-import InProgressOrderDetail from "../../component/requestOrderDetail/InProgressOrderDetail";
 import api from "../../config/axios";
+import { Outlet } from "react-router-dom";
+import { useMediaQuery } from "react-responsive";
 
 function RequestOrder() {
   const [choice, setChoice] = useState(-1);
+  const isMobile = useMediaQuery({ maxWidth: 785 });
   const [list, setList] = useState([]);
   const [data, setData] = useState({});
 
@@ -23,7 +24,7 @@ function RequestOrder() {
   }, [data]);
 
   return (
-    <div className="requestOrder">
+    <div className={`requestOrder ${isMobile ? "active" : ""}`}>
       <>
         <RequestOrderList
           setData={setData}
@@ -31,17 +32,7 @@ function RequestOrder() {
           choice={choice}
           setChoice={setChoice}
         />
-        {choice == -1 ? (
-          ""
-        ) : (
-          <RequestOrderDetail
-            data={data}
-            setData={setData}
-            choice={choice}
-            setChoice={setChoice}
-          />
-        )}
-        {/* <InProgressOrderDetail choice={choice} setChoice={setChoice} /> */}
+        <Outlet />
       </>
     </div>
   );
