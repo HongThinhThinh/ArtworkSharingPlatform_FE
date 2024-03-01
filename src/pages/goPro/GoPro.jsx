@@ -1,10 +1,8 @@
-import {
-  CheckOutlined,
-  InboxOutlined,
-  PictureOutlined,
-} from "@ant-design/icons";
-import Dragger from "antd/es/upload/Dragger";
-import RoundedBtn from "../../component/rounded-button/RoundedButton";
+import { CheckOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Form } from "antd";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import "./GoPro.scss";
 
 const includedFeatures = [
   "Find jobs on all over server",
@@ -14,6 +12,12 @@ const includedFeatures = [
 ];
 
 export default function GoPro() {
+  const [checked, setChecked] = useState(false);
+
+  const onFinish = async () => {};
+  const onChange = (e) => {
+    setChecked(e.target.checked);
+  };
   const props = {
     name: "file",
     multiple: true,
@@ -34,8 +38,8 @@ export default function GoPro() {
     },
   };
   return (
-    <div className="bg-white py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="go-pro bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-6xl px-6 lg:px-24">
         <div className="mx-auto max-w-2xl sm:text-center">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Let's become a creator
@@ -46,7 +50,7 @@ export default function GoPro() {
             distribution.
           </p>
         </div>
-        <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none">
+        <div className="mx-auto mt-16 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-20 lg:mx-0 lg:flex lg:max-w-none ">
           <div className="p-8 sm:p-10 lg:flex-auto">
             <h3 className="text-2xl font-bold tracking-tight text-gray-900"></h3>
             <p className="mt-6 text-base leading-7 text-gray-600">
@@ -54,7 +58,7 @@ export default function GoPro() {
               about uploading your first artwork in Cremo!
             </p>
             <div className="mt-10 flex items-center gap-x-4">
-              <h4 className="flex-none text-sm font-semibold leading-6 text-indigo-600">
+              <h4 className="flex-none text-sm font-semibold leading-6 text-sky-600">
                 What’s included if you become to Cremo's creator
               </h4>
               <div className="h-px flex-auto bg-gray-100" />
@@ -71,22 +75,44 @@ export default function GoPro() {
               ))}
             </ul>
           </div>
-          <div className="-mt-2 p-2 lg:mt-0 lg:w-full lg:max-w-md lg:flex-shrink-0">
-            <Dragger {...props}>
-              <p className="ant-upload-drag-icon">
-                <PictureOutlined />
-              </p>
-              <p className="ant-upload-text">
-                Click or drag image to this area to upload
-              </p>
-              <p className="ant-upload-hint">
-                Please give us your masterpiece.
-              </p>
-            </Dragger>
-          </div>
         </div>
         <div className="mx-auto max-w-2xl sm:text-center">
-          <RoundedBtn color="#6365E7">Send</RoundedBtn>
+          <Form
+            className="form"
+            name="form_item_path"
+            layout="vertical"
+            onFinish={onFinish}
+          >
+            <Checkbox onChange={onChange}>
+              I agree with Cremo{" "}
+              <Link to="" className="about__detail">
+                Terms of Service
+              </Link>
+              ,{" "}
+              <Link to="" className="about__detail">
+                Privacy Policy
+              </Link>
+              , and our default{" "}
+              <Link to="" className="about__detail">
+                Notification Settings
+              </Link>
+            </Checkbox>
+
+            <Button
+              className="form__submit"
+              htmlType="submit"
+              disabled={!checked}
+              enable={checked}
+              style={
+                checked && {
+                  backgroundColor: "rgb(0, 105, 167)",
+                  color: "white",
+                }
+              }
+            >
+              Become to Creator
+            </Button>
+          </Form>
         </div>
       </div>
     </div>

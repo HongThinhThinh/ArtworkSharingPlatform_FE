@@ -1,0 +1,17 @@
+.go-pro {
+  font-family: "MediumCereal";
+
+  label {
+    font-family: "MediumCereal";
+  }
+  .form {
+    margin: 3em 0;
+    &__submit {
+      margin-top: 3em;
+      font-family: "MediumCereal";
+      height: 4em;
+      width: 100%;
+      border-radius: 100px;
+    }
+  }
+}

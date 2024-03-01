@@ -4,9 +4,11 @@ import { Avatar, Button, Form, InputNumber, Modal } from "antd";
 import { AiFillMessage } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
 import {
+  CheckCircleTwoTone,
   ExclamationCircleFilled,
   ExclamationCircleTwoTone,
   LeftCircleTwoTone,
+  SendOutlined,
 } from "@ant-design/icons";
 import CustomeSteps from "../steps/CustomeSteps";
 import TextArea from "antd/es/input/TextArea";
@@ -17,6 +19,10 @@ import api from "../../config/axios";
 import { alertSuccess } from "../../assets/hook/useNotification";
 import UploadDemo from "../uploadDemo/UploadDemo";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import ImgPreview from "../../pages/Image/Image";
+import image1 from "../../assets/CremoBackground.png";
+import UploadArtWork from "../UploadArtWork/UploadArtWork";
+import uploadFile from "../../assets/hook/useUpload";
 
 function RequestOrderDetail() {
   const isActive = useLocation().pathname == "/creator-manage/requestOrder";
@@ -25,6 +31,28 @@ function RequestOrderDetail() {
   const [reason, setReason] = useState("");
   const [modal1Open, setModal1Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const [URL, setURL] = useState(image1);
+  const [imageUploaded, setImageUploaded] = useState(false); // State to track if image is uploaded
+  const getLink = async (file) => {
+    let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
+    setURL(URL);
+    URL = await uploadFile(file);
+    setURL(URL);
+
+    setImageUploaded(true);
+    console.log(URL);
+  };
   const isMobile = useMediaQuery({ maxWidth: 785 });
   const [newData, setNewData] = useState();
   const config = {
@@ -233,16 +261,72 @@ function RequestOrderDetail() {
               <>
                 <div className="request-order-detail__upload-demo">
                   <div className="request-order-detail__upload-demo__content">
-                    <h3>Upload Demo:</h3>
-                    <p>
-                      <ExclamationCircleTwoTone twoToneColor="#B42D81" /> Please
-                      add at least <strong>ONE</strong> demo during “Processing”
-                      progress for moving to the next steps
-                    </p>
+                    <div className="request-order-detail__upload-demo__content__left">
+                      <h3>Upload Demo:</h3>
+                      <p>
+                        <ExclamationCircleTwoTone twoToneColor="#B42D81" />{" "}
+                        Please add at least <strong>ONE</strong> demo during
+                        “Processing” progress
+                      </p>
+                    </div>
+                    <div className="request-order-detail__upload-demo__content__right">
+                      <Modal
+                        title={
+                          <h1 style={{ fontFamily: "MediumCereal" }}>
+                            Send Complete Result
+                          </h1>
+                        }
+                        open={isModalOpen}
+                        footer={null}
+                        onCancel={handleCancel}
+                        className="completeModal"
+                      >
+                        <ImgPreview
+                          src={URL}
+                          width="100%"
+                          height="100%"
+                          style={{
+                            margin: "1em 0",
+                            objectFit: "cover",
+                          }}
+                        />
+                        <div
+                          onChange={(e) => {
+                            getLink(e.target.files[0]);
+                          }}
+                        >
+                          <UploadArtWork content="Upload new Artwork" />
+                        </div>
+                        <TextArea
+                          onChange={(e) => setValue(e.target.value)}
+                          placeholder="Do you want to send your customers a thank you note?"
+                          autoSize={{ minRows: 3, maxRows: 5 }}
+                          style={{ margin: "1em 0" }}
+                        />
+                        <Button
+                          style={{
+                            backgroundColor: "#3c3c3c",
+                            color: "white",
+                            fontFamily: "MediumCereal",
+                            height: "3.5em",
+                            width: "100%",
+                          }}
+                        >
+                          Send Result
+                        </Button>
+                      </Modal>
+                      <button className="confirm" onClick={showModal}>
+                        <CheckCircleTwoTone twoToneColor="#5CB154" /> Confirm to
+                        complete
+                      </button>
+                    </div>
                   </div>
                   <div className="request-order-detail__upload-demo__upload">
                     <UploadDemo />
                   </div>
+                  <Button className="send">
+                    Send <SendOutlined />
+                  </Button>
                 </div>
               </>
             ) : (
