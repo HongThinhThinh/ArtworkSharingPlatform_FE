@@ -1,12 +1,15 @@
 import { Button, Card, Col, Input, Row } from "antd";
-import React from "react";
+import React, { useState } from "react";
 import "./JobsPage.scss";
 import JobsView from "../../component/jobsview/JobsView";
 import CategorySlider from "../../sections/categorySlider/CategorySlider";
 import { SearchOutlined } from "@ant-design/icons";
 import { IoAdd } from "react-icons/io5";
+import PostJob from "../../component/postJob/PostJob";
+import FormRequest from "../../component/formRequest/FormRequest";
 
 function JobsPage() {
+  const [status, setStatus] = useState(false);
   return (
     <div className="jobspage">
       <div className="jobspage__hero">
@@ -18,9 +21,14 @@ function JobsPage() {
           Cremo is the heart of the design community and the best resource to
           discover <br /> and connect with designers and jobs worldwide.
         </h5>
-        <Button className="jobspage__hero__submit">
+        <Button
+          className="jobspage__hero__submit"
+          onClick={() => setStatus(!status)}
+        >
           <IoAdd /> Post a jobs
         </Button>
+
+        <PostJob status={status} setStatus={() => setStatus(!status)} />
       </div>
       <div className="jobspage__hero-banner">
         <div style={{ display: "flex" }}>

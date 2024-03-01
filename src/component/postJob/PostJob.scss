@@ -1,0 +1,60 @@
+.post {
+  &__header {
+    display: flex;
+    width: 100%;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 100px;
+    }
+    h4 {
+      padding-left: 0.5em;
+      font-size: 1.2em;
+      font-family: BoldMonaSans;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    h4 {
+      text-decoration-line: underline;
+      margin-top: 1em;
+      color: #c5c5c5;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    &__button {
+      margin: 0.3em 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: black !important;
+      color: white;
+      text-decoration: none;
+      height: 3.3em;
+      width: 9em;
+      border-radius: 100px;
+      text-wrap: nowrap;
+    }
+  }
+  &__container {
+    padding: 0 3em;
+
+    &__details {
+      width: 100%;
+
+      p {
+        font-size: 1.1em;
+        font-weight: 400;
+        font-family: "BoldMonaSans";
+        padding: 0.2em 0;
+      }
+      &__input {
+        height: 3.3em;
+      }
+    }
+  }
+}
