@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
+
+import React from 'react'
 import "./RequestOrder.scss"
 import RequestOrderDetail from '../../component/requestOrderDetail/RequestOrderDetail'
 import RequestOrderList from '../../component/requestOrderList/RequestOrderList'
+import React, { useEffect, useState } from "react";
 import InProgressOrderDetail from "../../component/requestOrderDetail/InProgressOrderDetail";
 import api from "../../config/axios";
+
 
 function RequestOrder() {
   const [choice, setChoice] = useState(-1);
