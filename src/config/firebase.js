@@ -28,15 +28,14 @@ export const messaging = getMessaging();
 async function requestPermission() {
   console.log("Requesting permission...");
   await Notification.requestPermission();
-  return getKey();
+  return await getKey();
 }
 
 const getKey = async () => {
   const token = await getToken(messaging, {
     vapidKey:
-      "BOwbfM6evRixiJL4zQjwJifRjQAWYSApFfwAWRVR1zBwIOzGbblQNqJ495LcPlb-sPtNrn4QD3qQF3cCbuNhDuQ",
+      "BFitWxFCMseFg-EEdVCo1hRiLEeLMYfOkzQRxcCPywHKofsre7HlpjM8Pb7oAJB6t4gkHLnGA2q2bLCyKhjES0U",
   });
-
   return token;
 };
 

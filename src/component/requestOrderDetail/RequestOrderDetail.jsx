@@ -16,7 +16,7 @@ import { ConfigProvider, DatePicker } from "antd";
 import RoundedBtn from "../rounded-button/RoundedButton";
 import { getDifTime } from "../../assets/hook/useGetTime";
 import api from "../../config/axios";
-import { alertSuccess } from "../../assets/hook/useNotification";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import UploadDemo from "../uploadDemo/UploadDemo";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ImgPreview from "../../pages/Image/Image";
@@ -32,6 +32,7 @@ function RequestOrderDetail() {
   const [modal1Open, setModal1Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [audience, setAudience] = useState({});
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -41,9 +42,26 @@ function RequestOrderDetail() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
-
+  const handleSendProduct = async () => {
+    console.log(URL);
+    console.log(description);
+    try {
+      const response = await api.post("/sendProduct", {
+        id: id,
+        userID: audience.id,
+        productImage: URL,
+        productMessage: description,
+      });
+      alertSuccess("Send Product Successfully");
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      alertFail(error.response.data);
+    }
+  };
   const [URL, setURL] = useState(image1);
-  const [imageUploaded, setImageUploaded] = useState(false); // State to track if image is uploaded
+  const [imageUploaded, setImageUploaded] = useState(false);
+  const [description, setDescription] = useState(false);
   const getLink = async (file) => {
     let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
     setURL(URL);
@@ -69,7 +87,7 @@ function RequestOrderDetail() {
     const fetchData = async () => {
       try {
         const response = await api.get(`/getOrderRequestDetail/${id}`);
-
+        setAudience(response.data.data.audience);
         setNewData(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -136,7 +154,7 @@ function RequestOrderDetail() {
             <div className="request-order-detail__detail__creator">
               <div className="request-order-detail__detail__creator__right">
                 <Avatar
-                  src="https://cdn.dribbble.com/users/5746/avatars/normal/e52950dff35a8a8671c8151e2efd95b6.jpg?1673376793"
+                  src={newData?.audience?.avt}
                   className="request-order-detail__detail__creator__right__avatar"
                 />
                 <div className="request-order-detail__detail__creator__right__info">
@@ -298,12 +316,13 @@ function RequestOrderDetail() {
                           <UploadArtWork content="Upload new Artwork" />
                         </div>
                         <TextArea
-                          onChange={(e) => setValue(e.target.value)}
+                          onChange={(e) => setDescription(e.target.value)}
                           placeholder="Let's send your customers a thank you note!"
                           autoSize={{ minRows: 3, maxRows: 5 }}
                           style={{ margin: "1em 0" }}
                         />
                         <Button
+                          onClick={handleSendProduct}
                           style={{
                             backgroundColor: "#3c3c3c",
                             color: "white",
