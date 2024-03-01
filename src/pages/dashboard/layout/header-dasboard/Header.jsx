@@ -25,7 +25,7 @@ import NavDashboard from "../../../../component/nav-dashboard/NavDashboard";
 import SearchDashboard from "../../../../component/search-dashboard/SearchDashboard";
 import Notification from "../../../../component/notification/Notification";
 import AdminAccount from "../../../../component/admin-account/AdminAccount";
-import SideNav from "../side-nav/Sidenav";
+import SideNav from "../side-nav/SideNav";
 
 const data = [
   {

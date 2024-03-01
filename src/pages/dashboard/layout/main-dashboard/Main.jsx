@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Layout, Drawer, Affix } from "antd";
-import SideNav from "../side-nav/Sidenav";
+import SideNav from "../side-nav/SideNav";
 import Header from "../header-dasboard/Header";
 import "./Main.scss";
 import { LeftCircleFilled, LeftCircleTwoTone } from "@ant-design/icons";

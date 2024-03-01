@@ -1,6 +1,6 @@
 import React from 'react'
 import "./RequestOrder.scss"
-import RequestOrderDetail from '../../component/RequestOrderDetail/RequestOrderDetail'
+import RequestOrderDetail from '../../component/requestOrderDetail/RequestOrderDetail'
 import RequestOrderList from '../../component/requestOrderList/RequestOrderList'
 
 function RequestOrder() {

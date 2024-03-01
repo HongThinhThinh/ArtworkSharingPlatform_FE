@@ -1,7 +1,7 @@
 import { Col, Row } from "antd";
 import React, { useEffect, useState } from "react";
 import Workart from "../../component/workart/Workart";
-import "./WorkartSection.scss";
+import "./Workartsection.scss";
 import api from "../../config/axios";
 
 function WorkartSection() {

@@ -5,7 +5,7 @@ import { FaFacebookMessenger } from "react-icons/fa";
 import { AiOutlineSetting } from "react-icons/ai";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { FaSun } from "react-icons/fa";
-import "./layoutLeft.scss";
+import "./LayoutLeft.scss";
 import { useNavigate } from "react-router-dom";
 import { useStateValue } from "../../Context/StateProvider";
 function LayoutLeft() {
