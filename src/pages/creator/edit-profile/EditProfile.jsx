@@ -13,13 +13,13 @@ import "./EditProfile.scss";
 import UploadArtWork from "../../../component/UploadArtWork/UploadArtWork";
 import RoundedBtn from "../../../component/rounded-button/RoundedButton";
 import { WarningFilled } from "@ant-design/icons";
-import useNotification from "antd/es/notification/useNotification";
 import { alertFail, alertSuccess } from "../../../assets/hook/useNotification";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import uploadFile from "../../../assets/hook/useUpload";
 import api from "../../../config/axios";
 import { login, logout } from "../../../redux/features/counterSlice";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "antd/es/form/Form";
 const useStyle = createStyles(({ token }) => ({
   "my-drawer-body": {
     background: "white",
@@ -28,11 +28,9 @@ const useStyle = createStyles(({ token }) => ({
     color: token.colorPrimary,
   },
 }));
-
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
 }
-
 const MyFormItemContext = React.createContext([]);
 
 const MyFormItemGroup = ({ prefix, children }) => {
@@ -49,7 +47,8 @@ const MyFormItemGroup = ({ prefix, children }) => {
 };
 
 const EditProfile = ({ user }) => {
-  const [file, setFile] = useState(null);
+  const [form] = useForm();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [url, setUrl] = useState(user?.avt);
   const dispatch = useDispatch();
@@ -58,7 +57,7 @@ const EditProfile = ({ user }) => {
     setIsModalOpen(true);
   };
   const handleOk = () => {
-    setIsModalOpen(false);
+    form.submit(); // Gửi form và kích hoạt sự kiện onFinish
   };
   const handleCancel = () => {
     setIsModalOpen(false);
@@ -88,12 +87,34 @@ const EditProfile = ({ user }) => {
     },
   };
 
+  const updatePassword = async (values) => {
+    console.log(values);
+    if (values.newpassword !== values.repassword) {
+      alertFail("Re passwords do not match");
+      return;
+    }
+    if (values.oldPassword !== values.newPassword) {
+      alertFail("old password and new password are the same");
+      return;
+    }
+    try {
+      const response = await api.put("/editPassword", {
+        oldPassword: values.oldpassword,
+        newPassword: values.newpassword,
+      });
+      setIsModalOpen(false);
+      alertSuccess(response.data.message);
+    } catch (e) {
+      alertFail(e.response.data);
+    }
+  };
+
   const getLink = async (file) => {
     const URL = await uploadFile(file);
-    console.log(URL);
     if (URL === "") setUrl(user.avt);
     setUrl(URL);
   };
+
   const onFinish = async (e) => {
     if (e.name == user?.name && e.email == user?.email && url === user.avt) {
       alertFail("You didn't change any information!");
@@ -105,17 +126,6 @@ const EditProfile = ({ user }) => {
         avt: url,
         email: e.email,
       });
-      // setFile(url);
-      // setReload(response)
-      // console(e.email != user.email);
-
-      console.log(e.name);
-      console.log(user.name);
-
-      console.log(e.email);
-      console.log(user.email);
-
-      console.log(url.length == 0);
 
       if (e.email != user.email) {
         navigate("/login");
@@ -127,9 +137,7 @@ const EditProfile = ({ user }) => {
       dispatch(login(response.data.data));
     } catch (error) {
       // alertFail("Update fail");
-      console.log(e.email != user.email);
       alertFail(error.response.data);
-      console.log(error);
     }
   };
 
@@ -221,13 +229,6 @@ const EditProfile = ({ user }) => {
                   className="login__form__container__namepass__group-form__input"
                 />
               </Form.Item>
-              <RoundedBtn
-                style={{ width: "100%", border: "#b42d805d 3px solid" }}
-                color="#FDF9FC"
-                onClick={showModal}
-              >
-                Change Password
-              </RoundedBtn>
 
               <Button
                 className="login__form__container__namepass__submit"
@@ -237,6 +238,13 @@ const EditProfile = ({ user }) => {
                 Submit
               </Button>
             </Form>
+            <RoundedBtn
+              style={{ width: "100%", border: "#b42d805d 3px solid" }}
+              color="#FDF9FC"
+              onClick={showModal}
+            >
+              Change Password
+            </RoundedBtn>
           </div>
         </div>
       </Drawer>
@@ -244,11 +252,13 @@ const EditProfile = ({ user }) => {
         title={<h2 style={{ fontFamily: "BoldCereal" }}>Basic Modal</h2>}
         open={isModalOpen}
         onCancel={handleCancel}
+        onOk={handleOk}
       >
         <Form
+          form={form}
           name="form_item_path"
           layout="vertical"
-          // onFinish={}
+          onFinish={updatePassword}
         >
           <MyFormItemGroup>
             <Form.Item
@@ -260,10 +270,32 @@ const EditProfile = ({ user }) => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <p>Password</p>
+                  <p>Old Password</p>
                 </label>
               }
-              name="password"
+              name="oldpassword"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+            <Form.Item
+              label={
+                <label
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <p>New Password</p>
+                </label>
+              }
+              name="newpassword"
               rules={[
                 {
                   required: true,
@@ -285,7 +317,7 @@ const EditProfile = ({ user }) => {
                   <p>Re-password</p>
                 </label>
               }
-              name="re-password"
+              name="repassword"
               rules={[
                 {
                   required: true,
