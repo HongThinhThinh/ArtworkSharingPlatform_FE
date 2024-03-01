@@ -6,13 +6,16 @@ import RequestOrderTab from "../requestOrderTab/RequestOrderTab";
 import { list } from "firebase/storage";
 import moment from "moment";
 import { getDifTime } from "../../assets/hook/useGetTime";
+import { useNavigate, useParams } from "react-router-dom";
 
 function RequestOrderList({ choice, setChoice, list, setData }) {
+  const { id } = useParams();
+  const navigate = useNavigate();
   const [option, setOption] = useState(0);
   const listOption = ["Offer", "My Jobs", "History"];
 
   return (
-    <div className={`requestOrderList ${choice != -1 ? "" : "active"}`}>
+    <div className={`requestOrderList ${id ? "" : "active"}`}>
       <div className="requestOrderList__title">
         <h1>Offer</h1>
       </div>
@@ -43,14 +46,17 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
           return (
             <RequestOrderTab
               onClick={() => {
-                setChoice(index);
                 setData(item);
+                setChoice(item.id);
+                navigate(
+                  `/creator-manage/requestOrder/requestOrderDetail/${item.id}`
+                );
               }}
               key={index}
               title={item.title}
               time={getDifTime(item.dateStart)}
               content={item.description}
-              status={index === choice}
+              status={item.id === choice}
             />
           );
         })}

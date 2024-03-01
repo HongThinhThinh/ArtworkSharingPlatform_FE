@@ -42,6 +42,8 @@ import OrderHistory from "../sections/orderHistory/OrderHistory";
 import Checkout from "../pages/checkout/Checkout";
 import OptionUpgrate from "../component/optionUpgrade/OptionUpgrate";
 import ViewOrderDetail from "../component/requestOrderDetail/ViewOrderDetail";
+import RequestOrderDetail from "../component/RequestOrderDetail/RequestOrderDetail";
+import InProgressOrderDetail from "../component/requestOrderDetail/InProgressOrderDetail";
 
 export const router = createBrowserRouter([
   {
@@ -125,6 +127,12 @@ export const router = createBrowserRouter([
       {
         path: "/creator-manage/requestOrder",
         element: <RequestOrder />,
+        children: [
+          {
+            path: "/creator-manage/requestOrder/requestOrderDetail/:id",
+            element: <RequestOrderDetail />,
+          },
+        ],
       },
       {
         path: "/creator-manage/settings",

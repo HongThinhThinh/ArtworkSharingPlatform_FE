@@ -2,3 +2,6 @@
   display: flex;
   overflow-y: scroll;
 }
+.requestOrder.active {
+  overflow-y: hidden;
+}
