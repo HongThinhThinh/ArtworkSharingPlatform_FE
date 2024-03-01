@@ -10,10 +10,35 @@ import { useMediaQuery } from "react-responsive";
 import ImgPreview from "../../pages/Image/Image";
 import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
-function ListFeedback({ title, description, avt, name, id }) {
+import { EllipsisOutlined } from "@ant-design/icons";
+import { Button, Popover } from "antd";
+function ListFeedback({
+  title,
+  description,
+  avt,
+  name,
+  id,
+  setOpenUpdate,
+  setOpenDelete,
+}) {
   const isMobile = useMediaQuery({ maxWidth: "550px" });
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+  const showModal = () => {
+    setOpenUpdate(true);
+  };
+
+  const showModalDelete = () => {
+    setOpenDelete(true);
+  };
+
+  const content = (
+    <div className="edit-artwork-popup">
+      <Button onClick={showModal}>Update</Button>
+      <Button onClick={showModalDelete}>Delete</Button>
+    </div>
+  );
+
   useEffect(() => {
     console.log(isOpen);
     const close = document.querySelector(".listFeedback--interact__close");
@@ -33,6 +58,19 @@ function ListFeedback({ title, description, avt, name, id }) {
           icon={<FaRegCircle />}
         />
       </div>
+      <Popover placement="bottomRight" content={content}>
+        <EllipsisOutlined
+          style={{
+            float: "right",
+            transform: "translateY(-2.6em) translateX(-1em)",
+            padding: "1px",
+            cursor: "pointer",
+            zIndex: 10,
+            borderRadius: "100px",
+            border: "2px solid black",
+          }}
+        />
+      </Popover>
       <div className="listFeedback--contentt">
         <h2>{title}</h2>
         <p>{description}</p>
