@@ -1,8 +1,12 @@
 import { CheckOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./GoPro.scss";
+import api from "../../config/axios";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/features/counterSlice";
 
 const includedFeatures = [
   "Find jobs on all over server",
@@ -12,9 +16,21 @@ const includedFeatures = [
 ];
 
 export default function GoPro() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const goCreator = async () => {
+    try {
+      const response = await api.put("/goCreator", {});
+      console.log(response.data.data);
+      dispatch(login(response.data.data));
+      alertSuccess("You are now a creator!");
+      navigate("/creator-manage/artworks");
+    } catch (err) {
+      alertFail(err.response.data);
+    }
+  };
   const [checked, setChecked] = useState(false);
 
-  const onFinish = async () => {};
   const onChange = (e) => {
     setChecked(e.target.checked);
   };
@@ -81,7 +97,7 @@ export default function GoPro() {
             className="form"
             name="form_item_path"
             layout="vertical"
-            onFinish={onFinish}
+            onFinish={goCreator}
           >
             <Checkbox onChange={onChange}>
               I agree with Cremo{" "}

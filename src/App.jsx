@@ -7,7 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { StateProvider } from "./Context/StateProvider";
 import { useEffect } from "react";
-import { requestPermission } from "./config/firebase";
+import { listen, requestPermission } from "./config/firebase";
 
 AOS.init({
   // initialise with other settings
@@ -20,6 +20,7 @@ function App() {
       console.log(key);
     };
     getKey();
+    listen();
   }, []);
 
   return (

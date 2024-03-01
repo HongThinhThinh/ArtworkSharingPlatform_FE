@@ -112,7 +112,7 @@ function ViewOrderDetail({ choice }) {
                   Cancel Offer
                 </Button>
               </div>
-            ) : data.status == "PROCESSING" ? (
+            ) : data.status !== "ACTIVE" ? (
               ""
             ) : (
               <div className="request-order-detail__detail__confirm">
