@@ -84,7 +84,7 @@ function CreatorInfo({
             likes={likes}
           />
 
-          {user.id != id ? (
+          {user?.id != id ? (
             <div className="creator-info__contact">
               <Button
                 className="creator-info__contact__getInTouch"

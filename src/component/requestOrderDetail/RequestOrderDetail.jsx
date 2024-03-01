@@ -60,13 +60,13 @@ function RequestOrderDetail() {
 
     try {
       const res = await api.put("/updateOrderRequest-creator", {
-        id: data.id,
+        id: newData.id,
         dateEnd: values.date,
         price: values.number,
         status: "ACTIVE",
       });
       setNewData(res.data.data);
-      setData(res.data.data);
+      // setData(res.data.data);
       alertSuccess("Please waiting for audience acept");
     } catch (e) {
       console.log(e);
@@ -94,11 +94,11 @@ function RequestOrderDetail() {
           ) : null}
           <div className="request-order-detail__head">
             <div className="request-order-detail__head__title">
-              {newData.title}
+              {newData?.title}
             </div>
-            {newData.status !== "PENDING" ? (
+            {newData?.status !== "PENDING" ? (
               <div className="request-order-detail__head__deadline">
-                Deadline: {newData.dateEnd}
+                Deadline: {newData?.dateEnd}
               </div>
             ) : (
               ""
@@ -112,22 +112,22 @@ function RequestOrderDetail() {
                   className="request-order-detail__detail__creator__right__avatar"
                 />
                 <div className="request-order-detail__detail__creator__right__info">
-                  <h3>{newData.audience.name}</h3>
-                  <span>{getDifTime(newData.dateStart)}</span>
+                  <h3>{newData?.audience?.name}</h3>
+                  <span>{getDifTime(newData?.dateStart)}</span>
                 </div>
               </div>
               <div className="request-order-detail__detail__creator__left">
                 <AiFillMessage />
               </div>
             </div>
-            <CustomeSteps state={newData.status} />
-            {newData.status != "PENDING" ? (
+            <CustomeSteps state={newData?.status} />
+            {newData?.status != "PENDING" ? (
               <div
                 style={{ marginBottom: "-15px" }}
                 className="request-order-detail__detail__payment"
               >
                 <h3>Payment:</h3>
-                <h3>{newData.price}</h3>
+                <h3>{newData?.price}</h3>
               </div>
             ) : (
               ""
@@ -137,9 +137,9 @@ function RequestOrderDetail() {
               className="request-order-detail__detail__description"
             >
               <h3>Job Description: </h3>
-              <p>{newData.description}</p>
+              <p>{newData?.description}</p>
             </div>
-            {newData.status == "PENDING" ? (
+            {newData?.status == "PENDING" ? (
               <div className="request-order-detail__detail__confirm">
                 <Button
                   className="request-order-detail__detail__confirm__cancel"
