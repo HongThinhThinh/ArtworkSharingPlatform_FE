@@ -109,6 +109,8 @@
   }
   &__upload-demo {
     &__content {
+      display: flex;
+      justify-content: space-between;
       margin-bottom: 2em;
       h3 {
         font-family: "BoldCereal";
@@ -117,6 +119,41 @@
         margin-top: 1em;
         font-family: "BookCereal";
       }
+      &__right {
+        button {
+          height: 3em;
+          padding: 0 1em;
+          display: flex;
+          align-items: center;
+          background-color: #f4fff3;
+          border: 2px solid #5cb154;
+          font-family: "BoldCereal";
+          color: #5cb154;
+          font-size: 1em;
+          border-radius: 100px;
+          text-wrap: nowrap;
+          svg {
+            font-size: 1.2em;
+            margin-right: 0.3em;
+          }
+        }
+        button:hover {
+          transition: all 0.5s ease;
+          background-color: #5cb154;
+          color: white;
+        }
+      }
+    }
+
+    .send {
+      background-color: #1a1a1a;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 3em;
+      font-family: "MediumCereal";
+      margin-top: 2em;
     }
     &__upload {
       display: flex;
