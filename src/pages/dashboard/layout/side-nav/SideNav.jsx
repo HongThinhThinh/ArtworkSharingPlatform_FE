@@ -1,6 +1,6 @@
 import { Menu } from "antd";
 import { useLocation, useNavigate } from "react-router-dom";
-import Logo from "../../../../component/Logo/Logo";
+import Logo from "../../../../component/logo/Logo";
 import "./SideNav.scss";
 import navDashboardConfig, {
   navpath,
