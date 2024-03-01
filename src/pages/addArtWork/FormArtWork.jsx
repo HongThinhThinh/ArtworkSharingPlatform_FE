@@ -3,7 +3,7 @@ import { Button, Form, Input, Row, Switch } from "antd";
 
 const { TextArea } = Input;
 import Tags from "../../component/tags/Tag";
-import "./FormArtwork.scss";
+import "./FormArtWork.scss";
 import ImgPreview from "../Image/Image";
 import uploadFile from "../../assets/hook/useUpload";
 import image1 from "../../assets/CremoBackground.png";

@@ -3,7 +3,7 @@ import "./ChatDetail.scss";
 import { Button, message } from "antd";
 import { LiaFacebookMessenger } from "react-icons/lia";
 import { useStateValue } from "../../Context/StateProvider";
-import RoomChatDetail from "../roomchatDetail/RoomChatDetail";
+import RoomChatDetail from "../roomChatDetail/RoomChatDetail";
 
 
 function ChatDetail() {

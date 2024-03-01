@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./RequestOrder.scss";
-import RequestOrderDetail from "../../component/RequestOrderDetail/RequestOrderDetail";
-import RequestOrderList from "../../component/requestOrderList/RequestOrderList";
+import "./RequestOrder.scss"
+import RequestOrderDetail from '../../component/requestOrderDetail/RequestOrderDetail'
+import RequestOrderList from '../../component/requestOrderList/RequestOrderList'
 import InProgressOrderDetail from "../../component/requestOrderDetail/InProgressOrderDetail";
 import api from "../../config/axios";
 

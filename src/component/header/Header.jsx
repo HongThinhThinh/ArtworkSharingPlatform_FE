@@ -1,5 +1,5 @@
 import { Col, Row } from "antd";
-import Logo from "../Logo/Logo";
+import Logo from "../logo/Logo";
 import SignInUp from "../signInUp/SignInUp";
 import Navigator from "../navigator/Navigator";
 import "./Header.scss";
