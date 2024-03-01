@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./RequestOrder.scss"
-import RequestOrderDetail from '../../component/requestOrderDetail/RequestOrderDetail'
-import RequestOrderList from '../../component/requestOrderList/RequestOrderList'
+import "./RequestOrder.scss";
+import RequestOrderList from "../../component/requestOrderList/RequestOrderList";
 import InProgressOrderDetail from "../../component/requestOrderDetail/InProgressOrderDetail";
 import api from "../../config/axios";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 function RequestOrder() {
+  const isActive = useLocation().pathname == "/creator-manage/requestOrder";
   const [choice, setChoice] = useState(-1);
   const isMobile = useMediaQuery({ maxWidth: 785 });
   const [list, setList] = useState([]);
@@ -26,7 +26,7 @@ function RequestOrder() {
   }, [data]);
 
   return (
-    <div className={`requestOrder ${isMobile ? "active" : ""}`}>
+    <div className={`requestOrder ${isMobile && isActive ? "active" : ""}`}>
       <>
         <RequestOrderList
           setData={setData}
