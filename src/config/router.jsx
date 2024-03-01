@@ -42,7 +42,7 @@ import OrderHistory from "../sections/orderHistory/OrderHistory";
 import Checkout from "../pages/checkout/Checkout";
 import OptionUpgrate from "../component/optionUpgrade/OptionUpgrate";
 import ViewOrderDetail from "../component/requestOrderDetail/ViewOrderDetail";
-import RequestOrderDetail from "../component/RequestOrderDetail/RequestOrderDetail";
+import RequestOrderDetail from "../component/requestOrderDetail/RequestOrderDetail";
 import InProgressOrderDetail from "../component/requestOrderDetail/InProgressOrderDetail";
 
 export const router = createBrowserRouter([

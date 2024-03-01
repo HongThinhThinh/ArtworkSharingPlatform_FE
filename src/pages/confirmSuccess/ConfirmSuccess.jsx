@@ -9,12 +9,16 @@ function ConfirmSuccess() {
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const myParam = params.get("id");
+  const id = params.get("id");
+  const email = params.get("email");
 
   useEffect(() => {
     const getVerify = async () => {
       try {
-        await api.put(`/verify-account?id=${myParam}`, {});
+        await api.put(`/verify-account`, {
+          id: id,
+          email: email
+        });
       } catch (e) {
         console.log(e);
       }
