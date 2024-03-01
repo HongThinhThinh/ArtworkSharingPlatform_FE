@@ -1,0 +1,25 @@
+.contentStyle {
+  background-color: #ffffff;
+  overflow-y: scroll;
+  padding-bottom: 7em;
+}
+
+.siderStyle {
+  background: #f9f9f9 !important;
+  border: 1px solid #e8e8e8 !important;
+  margin: 3em 1em 1em 1em;
+  padding: 1.5em;
+  border-radius: 10px;
+}
+
+.layoutStyle {
+  background-color: #ffffff;
+  display: flex;
+  height: 86vh;
+}
+
+@media only screen and (max-width: 1467px) {
+  .contentStyle {
+    overflow-y: inherit;
+  }
+}

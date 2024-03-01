@@ -1,0 +1,137 @@
+.order {
+  border-radius: 10px;
+  border: 1px solid rgb(173, 173, 173);
+  padding: 1.5em;
+  background-color: rgba(247, 220, 235, 0.164);
+  margin: 2em 0;
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(180, 180, 180, 0.482);
+    padding-bottom: 1em;
+    &__right {
+      display: flex;
+      width: 35%;
+      align-items: center;
+      justify-content: space-between;
+      &__order-id,
+      &__date-placed,
+      &__total {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        h3 {
+          font-family: "MediumCereal";
+        }
+        p {
+          font-family: "BookCereal";
+        }
+      }
+    }
+    &__left {
+      cursor: pointer;
+      border-radius: 100px;
+      font-size: 0.8em;
+      color: white;
+      background-color: #b42d81;
+      padding: 5px 10px;
+      letter-spacing: 0.5px;
+      font-family: "MediumCereal";
+      svg {
+        color: #585858;
+        font-size: 1.5em;
+      }
+    }
+  }
+  &__detail {
+    font-size: 1em;
+    &__creator {
+      display: flex;
+      align-items: center;
+      margin-top: 1em;
+      &__avatar {
+        height: 3em;
+        width: 3em;
+        margin-right: 0.7em;
+      }
+      &__info {
+        h3 {
+          font-size: 1em;
+          font-family: "MediumCereal";
+        }
+      }
+    }
+    h3 {
+      font-family: "MediumCereal";
+      margin: 0.5em 0;
+    }
+    p {
+      font-family: "BookCereal";
+      margin-bottom: 1em;
+    }
+  }
+  &__view {
+    display: flex;
+    justify-content: flex-end;
+    &__btn {
+      font-family: "BoldCereal";
+      background-color: rgb(61, 61, 61) !important;
+      padding: 0 2em;
+      height: 3em;
+      color: white;
+    }
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .order {
+    &__top {
+      &__right {
+        width: 40%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1020px) {
+  .order {
+    &__top {
+      &__right {
+        width: 50%;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 850px) {
+  .order {
+    &__top {
+      &__right {
+        width: 60%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .order {
+    &__top {
+      &__right {
+        width: 70%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .order {
+    &__top {
+      flex-direction: column;
+      align-items: flex-start;
+      &__right {
+        width: 100%;
+        margin-bottom: 1em;
+      }
+    }
+  }
+}

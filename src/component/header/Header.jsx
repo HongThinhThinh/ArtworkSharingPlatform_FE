@@ -6,12 +6,14 @@ import "./Header.scss";
 import StyledSearch from "../Search/Search";
 import Account from "../signInUp/Account";
 import { useMediaQuery } from "react-responsive";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
 
 function Header() {
   const isFold = useMediaQuery({ maxWidth: 281 });
   const isMobile = useMediaQuery({ maxWidth: 920 });
   const isIPad = useMediaQuery({ maxWidth: 1024, minWidth: 921 });
-
+  const user = useSelector(selectUser);
   return isIPad ? (
     <Row container className="header">
       <Col xl={4} lg={4} className="header__logo">
@@ -36,7 +38,7 @@ function Header() {
             <StyledSearch />
           </Col>
           <Col xl={9} lg={10}>
-            {localStorage.getItem("role") != null ? <Account /> : <SignInUp />}
+            {user != null ? <Account /> : <SignInUp />}
           </Col>
         </Row>
       </Col>
@@ -70,9 +72,7 @@ function Header() {
           >
             <StyledSearch />
           </Col>
-          <Col lg={10}>
-            {localStorage.getItem("role") != null ? <Account /> : <SignInUp />}
-          </Col>
+          <Col lg={10}>{user != null ? <Account /> : <SignInUp />}</Col>
         </Row>
       </Col>
     </Row>
@@ -88,8 +88,8 @@ function Header() {
         <Row>
           <Col xl={6} lg={5}></Col>
           <Col
-            xl={9}
-            lg={9}
+            xl={user ? 12 : 10}
+            lg={user ? 12 : 10}
             style={{
               display: "flex",
               alignItems: "center",
@@ -98,8 +98,8 @@ function Header() {
           >
             <StyledSearch />
           </Col>
-          <Col xl={9} lg={10}>
-            {localStorage.getItem("role") != null ? <Account /> : <SignInUp />}
+          <Col xl={user ? 6 : 8} lg={user ? 7 : 9}>
+            {user != null ? <Account /> : <SignInUp />}
           </Col>
         </Row>
       </Col>

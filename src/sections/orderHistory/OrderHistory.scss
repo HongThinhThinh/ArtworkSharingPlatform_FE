@@ -1,0 +1,23 @@
+.order-history {
+  width: 80%;
+  margin: 0 10%;
+  h1 {
+    font-family: "BlackCereal";
+    font-size: 2em;
+    margin-top: 1em;
+  }
+  p {
+    font-family: "MediumCereal";
+    font-size: 1em;
+    color: rgb(77, 77, 77);
+  }
+  &__wrapper {
+  }
+}
+
+@media only screen and (max-width: 1353px) {
+  .order-history {
+    width: 100%;
+    margin: 0;
+  }
+}

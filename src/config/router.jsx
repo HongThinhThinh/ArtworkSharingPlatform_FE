@@ -10,11 +10,9 @@ import CreatorPage from "../pages/creator/CreatorPage";
 import CreatorWorkart from "../sections/creatorWorkart/CreatorWorkart";
 import CreatorCollection from "../sections/creatorCollection/CreatorCollection";
 
-import Test from "../test";
 import CreatorManage from "../pages/creator/creator-manage/CreatorManage";
 import RoomChat from "../pages/RoomChat/RoomChat";
 import CreatorProduct from "../pages/creator/creator-product/CreatorProduct";
-import CreatorProfile from "../pages/creator/creator-profile/CreatorProfile";
 import CreatorSetting from "../pages/creator/creator-setting/CreatorSetting";
 import FormArtwork from "../pages/addArtWork/FormArtWork";
 
@@ -33,20 +31,30 @@ import AudienceProfile from "../pages/audienceProfile/AudienceProfile";
 
 import RequestOrder from "../pages/requestOrder/RequestOrder";
 
-import WorkartMedia from "../component/workartMedia/WorkartMedia";
-import WorkartSection from "../sections/workartSection/WorkartSection";
-import WorkartInfo from "../component/workartInfo/WorkartInfo";
-import Workart from "../component/workart/Workart";
+import ConfirmSuccess from "../pages/confirmSuccess/ConfirmSuccess";
 
+import FormRequest from "../component/formRequest/FormRequest";
+
+import PostView from "../component/postView/PostView";
+import GoPro from "../pages/goPro/GoPro";
+import JobsPage from "../pages/jobsPage/JobsPage";
+import OrderHistory from "../sections/orderHistory/OrderHistory";
+import Checkout from "../pages/checkout/Checkout";
+import OptionUpgrate from "../component/optionUpgrade/OptionUpgrate";
+import ViewOrderDetail from "../component/requestOrderDetail/ViewOrderDetail";
 
 export const router = createBrowserRouter([
   {
     path: "/test",
-    element: <Test />,
+    element: <OptionUpgrate />,
   },
   {
     path: "login",
     element: <Login />,
+  },
+  {
+    path: "confirm-success",
+    element: <ConfirmSuccess />,
   },
   {
     path: "register",
@@ -59,6 +67,14 @@ export const router = createBrowserRouter([
   {
     path: "/account/unverified",
     element: <OTP />,
+  },
+  {
+    path: "/go-pro",
+    element: <GoPro />,
+  },
+  {
+    path: "/checkout",
+    element: <Checkout />,
   },
   {
     path: "/dashboard",
@@ -121,7 +137,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "artworkDetails",
+    path: "/artworkDetails/:id",
     element: (
       <div>
         <ArtworkDetails />,
@@ -145,6 +161,10 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: "/jobs",
+        element: <JobsPage />,
+      },
+      {
         path: "/profile",
         element: <AudienceProfile />,
         children: [
@@ -154,7 +174,11 @@ export const router = createBrowserRouter([
           },
           {
             path: "/profile/orders",
-            element: <CreatorCollection />,
+            element: <OrderHistory />,
+          },
+          {
+            path: "/profile/orderDetail/:id",
+            element: <ViewOrderDetail />,
           },
         ],
       },
@@ -162,7 +186,7 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: "/creator",
+    path: "/creator/:id",
     element: (
       <div>
         <Header />
@@ -171,15 +195,11 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "",
+        path: "/creator/:id/work",
         element: <CreatorWorkart />,
       },
       {
-        path: "/creator/work",
-        element: <CreatorWorkart />,
-      },
-      {
-        path: "/creator/collections",
+        path: "/creator/:id/collections",
         element: <CreatorCollection />,
       },
     ],

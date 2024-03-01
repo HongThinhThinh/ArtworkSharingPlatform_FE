@@ -27,6 +27,7 @@
   }
   &__contact {
     display: flex;
+    margin-top: -1.5em;
     &__getInTouch,
     &__follow,
     &__dropdownCreator {
@@ -48,7 +49,7 @@
       width: fit-content;
     }
     &__getInTouch {
-      background-color: #0d0c22;
+      background-color: #0d0c22 !important;
       color: white;
     }
     &__follow,
@@ -61,7 +62,7 @@
     }
   }
   &__position {
-    margin-top: 1em;
+    margin: 2em;
     border-radius: 7px;
     background: linear-gradient(
       180deg,
@@ -98,6 +99,7 @@
       display: flex;
       flex-wrap: wrap;
       &__tag {
+        cursor: pointer;
         font-size: 0.8em;
         border-radius: 4px;
         padding: 0.5em;
@@ -106,6 +108,48 @@
         border: 1px solid rgba(0, 0, 0, 0.568);
         font-family: "MediumMonaSans";
       }
+    }
+  }
+}
+
+@media only screen and (max-width: 2000px) {
+  .creator-info {
+  .creator-info-res {
+    display: flex;
+    flex-direction: column;
+  }
+}
+}
+
+@media only screen and (max-width: 1510px) {
+  .creator-info {
+    margin-top: 2em;
+    &__name,
+    &__skill__title {
+      font-size: 0.8em;
+    }
+    &__openLine {
+      font-size: 1.3em;
+    }
+    .creator-info-res {
+      display: flex;
+      flex-direction: row;
+      margin-top: 6em;
+      margin-left: 2em;
+    }
+  }
+}
+@media only screen and (max-width: 500px) {
+  .creator-info {
+    &__name,
+    &__skill__title {
+      font-size: 0.8em;
+    }
+    &__openLine {
+      font-size: 1.3em;
+    }
+    .creator-info-res {
+      flex-direction: column;
     }
   }
 }

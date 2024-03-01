@@ -1,27 +1,69 @@
 import React, { useState } from "react";
-import { Button, ConfigProvider, Drawer, Form, Input, Space } from "antd";
+import {
+  Button,
+  ConfigProvider,
+  Drawer,
+  Form,
+  Input,
+  Modal,
+  Space,
+} from "antd";
 import { createStyles, useTheme } from "antd-style";
 import "./EditProfile.scss";
 import UploadArtWork from "../../../component/UploadArtWork/UploadArtWork";
+import RoundedBtn from "../../../component/rounded-button/RoundedButton";
+import { WarningFilled } from "@ant-design/icons";
+import useNotification from "antd/es/notification/useNotification";
+import { alertFail, alertSuccess } from "../../../assets/hook/useNotification";
+import { useDispatch, useSelector } from "react-redux";
+import uploadFile from "../../../assets/hook/useUpload";
+import api from "../../../config/axios";
+import { login, logout } from "../../../redux/features/counterSlice";
+import { useNavigate, useNavigation } from "react-router-dom";
 const useStyle = createStyles(({ token }) => ({
   "my-drawer-body": {
-    background: token.blue1,
-  },
-  "my-drawer-mask": {
-    boxShadow: `inset 0 0 15px #fff`,
-  },
-  "my-drawer-header": {
-    background: token.green1,
+    background: "white",
   },
   "my-drawer-footer": {
     color: token.colorPrimary,
   },
-  "my-drawer-content": {
-    borderLeft: "2px dotted #333",
-  },
 }));
 
-const EditProfile = () => {
+function toArr(str) {
+  return Array.isArray(str) ? str : [str];
+}
+
+const MyFormItemContext = React.createContext([]);
+
+const MyFormItemGroup = ({ prefix, children }) => {
+  const prefixPath = React.useContext(MyFormItemContext);
+  const concatPath = React.useMemo(
+    () => [...prefixPath, ...toArr(prefix)],
+    [prefixPath, prefix]
+  );
+  return (
+    <MyFormItemContext.Provider value={concatPath}>
+      {children}
+    </MyFormItemContext.Provider>
+  );
+};
+
+const EditProfile = ({ user }) => {
+  const [file, setFile] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [url, setUrl] = useState(user?.avt);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   const [open, setOpen] = useState([false, false]);
   const { styles } = useStyle();
   const token = useTheme();
@@ -41,16 +83,56 @@ const EditProfile = () => {
     mask: {
       backdropFilter: "blur(10px)",
     },
-    content: {
-      boxShadow: "-10px 0 10px #666",
-    },
-    header: {
-      borderBottom: `1px solid ${token.colorPrimary}`,
-    },
     body: {
       fontSize: token.fontSizeLG,
     },
   };
+
+  const getLink = async (file) => {
+    const URL = await uploadFile(file);
+    console.log(URL);
+    if (URL === "") setUrl(user.avt);
+    setUrl(URL);
+  };
+  const onFinish = async (e) => {
+    if (e.name == user?.name && e.email == user?.email && url === user.avt) {
+      alertFail("You didn't change any information!");
+      return;
+    }
+    try {
+      const response = await api.put("/editProfile", {
+        name: e.name,
+        avt: url,
+        email: e.email,
+      });
+      // setFile(url);
+      // setReload(response)
+      // console(e.email != user.email);
+
+      console.log(e.name);
+      console.log(user.name);
+
+      console.log(e.email);
+      console.log(user.email);
+
+      console.log(url.length == 0);
+
+      if (e.email != user.email) {
+        navigate("/login");
+        alertSuccess("Please verify your new email ");
+        dispatch(logout());
+        return;
+      }
+      alertSuccess("Edit sucessfully");
+      dispatch(login(response.data.data));
+    } catch (error) {
+      // alertFail("Update fail");
+      console.log(e.email != user.email);
+      alertFail(error.response.data);
+      console.log(error);
+    }
+  };
+
   return (
     <div className="editProfileCreator">
       <Space>
@@ -58,7 +140,6 @@ const EditProfile = () => {
           size="middle"
           className="login__form__container__namepass__submit"
           htmlType="submit"
-          // style={{backgroundColor: theme?"#1677ff":""}}
           onClick={() => toggleDrawer(0, true)}
         >
           Edit Profile
@@ -76,23 +157,37 @@ const EditProfile = () => {
         <div className="ChangeProfileInfo">
           <div className="changeAvt">
             <div className="changeAvt--img">
-              <img
-                src="https://scontent.fsgn8-4.fna.fbcdn.net/v/t39.30808-6/405464790_1297996437578088_4420355434371338161_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=z3RtPzDl3R0AX_DswY0&_nc_ht=scontent.fsgn8-4.fna&oh=00_AfBBdE3sw4uS12qiTZhDzsfsUhEeupdvbyTCHLcd-scDMQ&oe=65C888F1"
-                alt=""
-              />
-              <UploadArtWork content="Upload New Avatar" />
+              <img src={url?.length == 0 ? user?.avt : url} alt="" />
+              <div>
+                <div onChange={(e) => getLink(e.target.files[0])}>
+                  <UploadArtWork content="Upload New Avatar" />
+                </div>
+              </div>
             </div>
           </div>
           <div className="changeUsername">
-            <Form className="login__form__container__namepass__group-form">
+            <Form
+              className="login__form__container__namepass__group-form"
+              onFinish={onFinish}
+            >
               <Form.Item
-                label="UserName"
-                name="userName"
+                label="Name"
+                name="name"
+                initialValue={user?.name}
                 className="login__form__container__namepass__group-form"
-                rules={[{}]}
+                rules={[
+                  {
+                    required: true,
+                    message: (
+                      <div>
+                        <WarningFilled /> Please input your Name!
+                      </div>
+                    ),
+                  },
+                ]}
               >
                 <Input
-                  defaultValue="Hong Thinh"
+                  defaultValue={user?.name}
                   className="login__form__container__namepass__group-form__input"
                 />
               </Form.Item>
@@ -100,36 +195,40 @@ const EditProfile = () => {
               <Form.Item
                 label="Email"
                 name="email"
+                initialValue={user?.email}
                 className="login__form__container__namepass__group-form"
-                rules={[{}]}
+                rules={[
+                  {
+                    type: "email",
+                    message: (
+                      <div>
+                        <WarningFilled /> Email is not valid!
+                      </div>
+                    ),
+                  },
+                  {
+                    required: true,
+                    message: (
+                      <div>
+                        <WarningFilled /> Please input your email!
+                      </div>
+                    ),
+                  },
+                ]}
               >
                 <Input
-                  defaultValue="thinhnhse171708@fpt.edu.vn"
+                  defaultValue={user?.email}
                   className="login__form__container__namepass__group-form__input"
                 />
               </Form.Item>
-              <Form.Item
-                label="Old Password"
-                name="OldPassword"
-                className="login__form__container__namepass__group-form"
-                rules={[{}]}
+              <RoundedBtn
+                style={{ width: "100%", border: "#b42d805d 3px solid" }}
+                color="#FDF9FC"
+                onClick={showModal}
               >
-                <Input
-                  defaultValue="thinhnhse171708@fpt.edu.vn"
-                  className="login__form__container__namepass__group-form__input"
-                />
-              </Form.Item>
-              <Form.Item
-                label="New Password"
-                name="NewPassword"
-                className="login__form__container__namepass__group-form"
-                rules={[{}]}
-              >
-                <Input
-                  defaultValue="thinhnhse171708@fpt.edu.vn"
-                  className="login__form__container__namepass__group-form__input"
-                />
-              </Form.Item>
+                Change Password
+              </RoundedBtn>
+
               <Button
                 className="login__form__container__namepass__submit"
                 htmlType="submit"
@@ -141,23 +240,64 @@ const EditProfile = () => {
           </div>
         </div>
       </Drawer>
-      <ConfigProvider
-        drawer={{
-          classNames,
-          styles: drawerStyles,
-        }}
+      <Modal
+        title={<h2 style={{ fontFamily: "BoldCereal" }}>Basic Modal</h2>}
+        open={isModalOpen}
+        onCancel={handleCancel}
       >
-        <Drawer
-          title="Edit your profile"
-          placement="right"
-          onClose={() => toggleDrawer(1, false)}
-          open={open[1]}
+        <Form
+          name="form_item_path"
+          layout="vertical"
+          // onFinish={}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Drawer>
-      </ConfigProvider>
+          <MyFormItemGroup>
+            <Form.Item
+              label={
+                <label
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <p>Password</p>
+                </label>
+              }
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+            <Form.Item
+              label={
+                <label
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <p>Re-password</p>
+                </label>
+              }
+              name="re-password"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+          </MyFormItemGroup>
+        </Form>
+      </Modal>
     </div>
   );
 };

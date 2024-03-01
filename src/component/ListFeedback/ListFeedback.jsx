@@ -9,9 +9,11 @@ import { FaRegCircle } from "react-icons/fa6";
 import { useMediaQuery } from "react-responsive";
 import ImgPreview from "../../pages/Image/Image";
 import { IoMdClose } from "react-icons/io";
-function ListFeedback() {
+import { useNavigate } from "react-router-dom";
+function ListFeedback({ title, description, avt, name, id }) {
   const isMobile = useMediaQuery({ maxWidth: "550px" });
   const [isOpen, setIsOpen] = useState(true);
+  const navigate = useNavigate();
   useEffect(() => {
     console.log(isOpen);
     const close = document.querySelector(".listFeedback--interact__close");
@@ -23,15 +25,17 @@ function ListFeedback() {
   }, [isOpen]);
   return (
     <div className="listFeedback">
-      <RoomMessage
-        avt="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/405274365_1295058761205189_4884784238252082746_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=dd5e9f&_nc_ohc=SfSAh7w5UUIAX9VNPky&_nc_ht=scontent.fsgn5-9.fna&oh=00_AfAEoxvG68QbPMPmLHwG7NtiT4P8toTZmBnknMPgiRMvBg&oe=65C11307"
-        name="HongThinh"
-        lastMessage="Available for working"
-        icon={<FaRegCircle />}
-      />
+      <div onClick={() => navigate(`/creator/${id}`)}>
+        <RoomMessage
+          avt={avt || "abc"}
+          name={name}
+          lastMessage="Available for working"
+          icon={<FaRegCircle />}
+        />
+      </div>
       <div className="listFeedback--contentt">
-        <h2>The mushroom</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia</p>
+        <h2>{title}</h2>
+        <p>{description}</p>
       </div>
       {isMobile ? (
         <div className="artworkInfo--img__image">
@@ -75,8 +79,8 @@ function ListFeedback() {
             <div className="listFeedback--comments__detail">
               <RoomMessage
                 avt="https://st3.depositphotos.com/3431221/13621/v/450/depositphotos_136216036-stock-illustration-man-avatar-icon-hipster-character.jpg"
-                name="HungLd"
-                lastMessage="Em nghĩ vậy nhưng thực tế nó không có vậy !"
+                name="Mr.HungLd"
+                lastMessage="10 điểm bao ra hội đồng"
               />
             </div>
             <div className="listFeedback--comments__detail">
@@ -88,42 +92,29 @@ function ListFeedback() {
             </div>
             <div className="listFeedback--comments__detail">
               <RoomMessage
-                avt="https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-1/378272785_1735223410243611_1995810556604592067_n.jpg?stp=dst-jpg_p200x200&_nc_cat=104&ccb=1-7&_nc_sid=5740b7&_nc_ohc=HR6lQ_-0E2UAX-bvoYQ&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfCEyLGqRf3Vu7BuaCW34dq5iFdAG0GZ2OMfC7-ALXWqRw&oe=65C27403"
+                avt="https://i.pinimg.com/564x/1b/24/ac/1b24ac6dfd3fc14f2365eb93da2f84c2.jpg"
                 name="Đỗ Minh"
                 lastMessage="Tuyet voi"
               />
             </div>
             <div className="listFeedback--comments__detail">
               <RoomMessage
-                avt="https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/371952770_1687598791653005_2818414484473798316_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=ECtr5jGSdyUAX9IYALo&_nc_ht=scontent.fsgn2-9.fna&oh=00_AfBM2KOEYtma3BZXdhj-rzmrnLWuC2yQ1lFVWjjwn3H25A&oe=65C161DC"
+                avt="https://i.pinimg.com/564x/bf/c1/5f/bfc15f7f42a5ff420eb00fe54c0e0b1c.jpg"
                 name="Nhi Nguyễn"
                 lastMessage="Kìn chá nà"
               />
             </div>
+
             <div className="listFeedback--comments__detail">
               <RoomMessage
-                avt="https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/371952770_1687598791653005_2818414484473798316_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=ECtr5jGSdyUAX9IYALo&_nc_ht=scontent.fsgn2-9.fna&oh=00_AfBM2KOEYtma3BZXdhj-rzmrnLWuC2yQ1lFVWjjwn3H25A&oe=65C161DC"
-                name="Nhi Nguyễn"
-                lastMessage="Kìn chá nà"
+                avt="https://i.pinimg.com/564x/72/22/73/7222736f4512fc88ca0e475c2269f8d8.jpg"
+                name="Thinh"
+                lastMessage="hok dep "
               />
             </div>
             <div className="listFeedback--comments__detail">
               <RoomMessage
-                avt="https://scontent.fsgn2-9.fna.fbcdn.net/v/t39.30808-6/371952770_1687598791653005_2818414484473798316_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=ECtr5jGSdyUAX9IYALo&_nc_ht=scontent.fsgn2-9.fna&oh=00_AfBM2KOEYtma3BZXdhj-rzmrnLWuC2yQ1lFVWjjwn3H25A&oe=65C161DC"
-                name="Nhi Nguyễn"
-                lastMessage="Kìn chá nà"
-              />
-            </div>
-            <div className="listFeedback--comments__detail">
-              <RoomMessage
-                avt="https://png.pngtree.com/png-clipart/20220902/ourmid/pngtree-cute-crab-png-image_6134682.png"
-                name="Trân Nguyễn( chúa tể testing )"
-                lastMessage="Bên bạn cần mình test dùm cái web hok?"
-              />
-            </div>
-            <div className="listFeedback--comments__detail">
-              <RoomMessage
-                avt="https://scontent.fsgn2-3.fna.fbcdn.net/v/t39.30808-6/294230453_1016043015773433_1076043979386053547_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9c7eae&_nc_ohc=DmO1N4VSn7YAX_pErxY&_nc_ht=scontent.fsgn2-3.fna&oh=00_AfCE6oF8cU5nUAVVOflRhcGTTy27wq2VPdfrBNApcuWWVw&oe=65C24A80"
+                avt="https://i.pinimg.com/564x/72/22/73/7222736f4512fc88ca0e475c2269f8d8.jpg"
                 name="Thinh"
                 lastMessage="hok dep "
               />

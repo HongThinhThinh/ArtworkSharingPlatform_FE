@@ -54,13 +54,14 @@
 }
 
 .PopUpRight {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
   background-color: transparent !important;
   border: none !important;
-  box-shadow: rgb(91 91 91 / 82%) -7px 4px 12px 3px;
+  label {
+    font-family: "MediumCereal";
+  }
   .ant-drawer {
     &-header {
+      font-family: "BoldCereal";
       background-color: rgb(32, 32, 32) !important;
       > * {
         color: white !important;

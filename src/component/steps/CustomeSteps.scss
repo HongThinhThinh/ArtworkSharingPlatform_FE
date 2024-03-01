@@ -1,0 +1,35 @@
+.custome-steps {
+  .ant-steps-item-finish {
+    .ant-steps-item-icon {
+      background-color: #ebb2e0 !important;
+      border: 1px solid #cf69bb !important;
+      span {
+        color: white !important;
+      }
+    }
+
+    .ant-steps-item-tail::after,
+    .ant-steps-item-title::after {
+      background-color: #d395bb !important;
+    }
+  }
+  .ant-steps-item-process {
+    .ant-steps-item-icon {
+      background-color: #b42d81 !important;
+      border: 1px solid #b42d81 !important;
+    }
+  }
+  .ant-steps-item-content {
+    .ant-steps-item-title {
+      font-family: "MediumCereal";
+    }
+    .ant-steps-item-description {
+      font-family: "BookCereal";
+    }
+  }
+  .ant-steps-item {
+    span {
+      font-family: "MediumCereal";
+    }
+  }
+}
