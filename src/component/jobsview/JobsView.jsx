@@ -5,7 +5,9 @@ import Tag from "../tags/Tag";
 import RoundedBtn from "../rounded-button/RoundedButton";
 import api from "../../config/axios";
 import { getDifTime } from "../../assets/hook/useGetTime";
-function JobsView({ title, description, price, date }) {
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
+function JobsView({ title, description, price, date,avt }) {
   const data = ["web", "mobile", "animation"];
   const tags = data.map((tag) => {
     return { tag };
@@ -16,7 +18,7 @@ function JobsView({ title, description, price, date }) {
       <Card className="jobsview__cart" bordered={false}>
         <h1>{title}</h1>
         <div className="jobsview__cart__info">
-          <img src="https://cdn.dribbble.com/users/13307/avatars/normal/Mike3.jpg?1382537343" />
+          <img src={avt} />
           <p>Posted {getDifTime(date)}</p>
         </div>
         <div className="jobsview__cart__info-details">

@@ -63,7 +63,7 @@ function JobsPage() {
       <Row container style={{ margin: "2em" }}>
         {newdata?.map((data) => (
           <Col sm={24} md={24} lg={12}>
-            <JobsView title={data.title} description={data.description} price={data.price} date={data.dateStart} />
+            <JobsView title={data.title} description={data.description} price={data.price} date={data.dateStart} avt={data.audience.avt} />
           </Col>
         ))}
       </Row>

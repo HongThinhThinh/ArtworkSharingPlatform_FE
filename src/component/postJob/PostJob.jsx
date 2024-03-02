@@ -9,11 +9,14 @@ import { Button, DatePicker, Form, Input, InputNumber, Modal } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import Tag from "../tags/Tag";
 import { CornerDownLeft } from "lucide-react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
 
 function PostJob({ status, setStatus }) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const user = useSelector(selectUser)
 
   const config = {
     rules: [
@@ -36,6 +39,9 @@ function PostJob({ status, setStatus }) {
    
     const newValue = { ...values, tags: selectedTags };
     console.log(newValue);
+    
+    
+
     try {
       const response = await api.post("/sendOrderRequestGlobal", {
         title: values.title,
@@ -44,6 +50,7 @@ function PostJob({ status, setStatus }) {
         dateStart: getCurrentDateTime(),
         endStart: values.date,
       });
+     
       alertSuccess("Post new job successfully");
     } catch (error) {
       alertFail("Post new job fail");
@@ -60,7 +67,7 @@ function PostJob({ status, setStatus }) {
         onCancel={setStatus}
         title={
           <div className="post__header">
-            <img src="https://cdn.dribbble.com/users/1290912/screenshots/18070049/media/e197215b0ae2cd3eda124be41a3e04bf.png?resize=320x240&vertical=center" />
+            <img src={user.avt} />
             <h4>Post a job on Cremo</h4>
           </div>
         }
