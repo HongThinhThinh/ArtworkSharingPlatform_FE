@@ -10,6 +10,8 @@ import TextArea from "antd/es/input/TextArea";
 import Tag from "../tags/Tag";
 
 function PostJob({ status, setStatus }) {
+  const [selectedTags, setSelectedTags] = useState([]);
+
   const config = {
     rules: [
       {
@@ -23,7 +25,9 @@ function PostJob({ status, setStatus }) {
     <div className="post">
       <Modal
         open={status}
-        onOk={setStatus}
+        onOk={() => {
+          setStatus;
+        }}
         onCancel={setStatus}
         title={
           <div className="post__header">
@@ -128,8 +132,7 @@ function PostJob({ status, setStatus }) {
             />
           </Form.Item>
         </div>
-        <Tag selectedTags="art"/>
-        
+        <Tag setSelectedTags={setSelectedTags} selectedTags={selectedTags} />
       </Modal>
     </div>
   );
