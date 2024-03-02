@@ -1,6 +1,7 @@
-.request-order-detail {
+.request-order-detail,
+.view-order-detail {
   height: 100vh;
-  width: 85%;
+
   &__head {
     z-index: 5;
     padding: 2em 2em 1em 2em;
@@ -193,6 +194,13 @@
   display: block;
 }
 
+.request-order-detail {
+  width: 85%;
+}
+.view-order-detail {
+  width: 100%;
+}
+
 .ant-modal {
   form {
     label {
@@ -277,6 +285,47 @@
     }
     &__detail {
       transform: translateY(-3em);
+      &__creator {
+        &__right {
+          &__avatar {
+            margin-right: 1em;
+          }
+          &__info {
+          }
+        }
+      }
+      &__confirm {
+        &__cancel,
+        &__accept {
+          padding: 0 1em;
+        }
+      }
+    }
+  }
+  .request-order-detail.active {
+    display: block;
+    z-index: 10;
+
+    width: 100%;
+  }
+
+  .view-order-detail {
+    height: fit-content;
+    width: 100%;
+    display: block;
+    &__demo {
+      &__upload {
+        justify-content: center;
+      }
+    }
+    &__head {
+      flex-direction: column;
+      &__deadline {
+        margin-top: 1em;
+        width: fit-content;
+      }
+    }
+    &__detail {
       &__creator {
         &__right {
           &__avatar {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./RequestOrderDetail.scss";
-import { Avatar, Button, Form, InputNumber, Modal } from "antd";
+import { Avatar, Button, Form, InputNumber, Modal, Popconfirm } from "antd";
 import { AiFillMessage } from "react-icons/ai";
 import { useMediaQuery } from "react-responsive";
 import {
@@ -41,6 +41,17 @@ function RequestOrderDetail() {
   };
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const confirm = (e) => {
+    if (reason.trim().length == 0) {
+      alertFail("Please give us a reason for this!", "Fail to Cancel");
+    } else {
+      cancelOrder();
+    }
+  };
+  const cancel = (e) => {
+    setModal1Open(false);
   };
   const handleSendProduct = async () => {
     console.log(URL);
@@ -248,14 +259,25 @@ function RequestOrderDetail() {
                       height: 200,
                       resize: "none",
                     }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input!",
+                      },
+                    ]}
                   />
-                  <RoundedBtn
-                    color="#3c3c3c"
-                    style={{ width: "100%" }}
-                    onClick={cancelOrder}
+                  <Popconfirm
+                    title="Cancel the offer"
+                    description="Are you sure to cancel this offer?"
+                    onConfirm={confirm}
+                    onCancel={cancel}
+                    okText="Yes"
+                    cancelText="No"
                   >
-                    Submit
-                  </RoundedBtn>
+                    <RoundedBtn color="#3c3c3c" style={{ width: "100%" }}>
+                      Submit
+                    </RoundedBtn>
+                  </Popconfirm>
                 </Modal>
 
                 <Button

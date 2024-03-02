@@ -49,7 +49,7 @@ function ViewOrderDetail({ choice }) {
   return (
     <>
       {data != null ? (
-        <div className={`request-order-detail ${choice ? "view" : ""}`}>
+        <div className={`view-order-detail ${choice ? "view" : ""}`}>
           <LeftCircleTwoTone
             twoToneColor="#b42d81"
             style={{
@@ -59,27 +59,25 @@ function ViewOrderDetail({ choice }) {
             }}
             onClick={() => navigate("/profile/orders")}
           />
-          <div className="request-order-detail__head">
-            <div className="request-order-detail__head__title">
-              {data.title}
-            </div>
-            <div className="request-order-detail__head__deadline">
+          <div className="view-order-detail__head">
+            <div className="view-order-detail__head__title">{data.title}</div>
+            <div className="view-order-detail__head__deadline">
               Deadline Response: {data.dateEnd}
             </div>
           </div>
-          <div className="request-order-detail__detail in-progress">
-            <div className="request-order-detail__detail__creator">
-              <div className="request-order-detail__detail__creator__right">
+          <div className="view-order-detail__detail in-progress">
+            <div className="view-order-detail__detail__creator">
+              <div className="view-order-detail__detail__creator__right">
                 <Avatar
                   src={data.creator.avt}
-                  className="request-order-detail__detail__creator__right__avatar"
+                  className="view-order-detail__detail__creator__right__avatar"
                 />
-                <div className="request-order-detail__detail__creator__right__info">
+                <div className="view-order-detail__detail__creator__right__info">
                   <h3>{data.creator.name}</h3>
                   <span>{data.dateStart}</span>
                 </div>
               </div>
-              <div className="request-order-detail__detail__creator__left">
+              <div className="view-order-detail__detail__creator__left">
                 <AiFillMessage />
               </div>
             </div>
@@ -93,7 +91,7 @@ function ViewOrderDetail({ choice }) {
               }
               reason={data.reasonRejectCreator || data.reasonRejectAudience}
             />
-            <h3 className="request-order-detail__detail__request">
+            <h3 className="view-order-detail__detail__view">
               {data.description}
             </h3>
 
@@ -104,7 +102,7 @@ function ViewOrderDetail({ choice }) {
                 <>
                   <div
                     // style={{ marginBottom: "-20px" }}
-                    className="request-order-detail__detail__payment"
+                    className="view-order-detail__detail__payment"
                   >
                     <h3>Payment:</h3>
                     <h3>{data.price} $</h3>
@@ -116,27 +114,27 @@ function ViewOrderDetail({ choice }) {
             )}
             <div
               style={{ marginTop: "20px" }}
-              className="request-order-detail__detail__description"
+              className="view-order-detail__detail__description"
             >
               <h3>Deadline </h3>
               <p>{data.dateEnd}</p>
             </div>
             {data.status == "PENDING" ? (
-              <div className="request-order-detail__detail__confirm">
-                <Button className="request-order-detail__detail__confirm__cancel">
+              <div className="view-order-detail__detail__confirm">
+                <Button className="view-order-detail__detail__confirm__cancel">
                   Cancel Offer
                 </Button>
               </div>
             ) : data.status !== "ACTIVE" ? (
               ""
             ) : (
-              <div className="request-order-detail__detail__confirm">
-                <Button className="request-order-detail__detail__confirm__cancel">
+              <div className="view-order-detail__detail__confirm">
+                <Button className="view-order-detail__detail__confirm__cancel">
                   Cancel Offer
                 </Button>
                 <Button
                   onClick={acpOrder}
-                  className="request-order-detail__detail__confirm__accept"
+                  className="view-order-detail__detail__confirm__accept"
                 >
                   Accept Offer
                 </Button>
@@ -144,12 +142,12 @@ function ViewOrderDetail({ choice }) {
             )}
           </div>
 
-          <div className="request-order-detail__demo">
+          <div className="view-order-detail__demo">
             {demoRequest.length == 0 ? (
               ""
             ) : (
               <>
-                <div className="request-order-detail__demo__content">
+                <div className="view-order-detail__demo__content">
                   <h3>Demo:</h3>
                   <p>
                     <ExclamationCircleTwoTone twoToneColor="#B42D81" /> These
@@ -160,7 +158,7 @@ function ViewOrderDetail({ choice }) {
                 {demoRequest.map((item) => {
                   return (
                     <>
-                      <div className="request-order-detail__demo__upload">
+                      <div className="view-order-detail__demo__upload">
                         <img src={item.image} alt="" />
                       </div>
                     </>
