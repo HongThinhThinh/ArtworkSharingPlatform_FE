@@ -1,40 +1,60 @@
 import React, { useEffect, useState } from "react";
 import { Steps } from "antd";
 import "./CustomeSteps.scss";
+import { LoadingOutlined } from "@ant-design/icons";
 
-function CustomeSteps(state) {
-  console.log(state.state);
-  const description = "This is a description.";
-  const [statee, setStatee] = useState(state.statelogo);
+function CustomeSteps(props) {
+  const { state, reason } = props; // Destructure props to access state and reason
+  console.log(reason);
+  console.log(state);
+  const [statee, setStatee] = useState(state);
   useEffect(() => {
-    setStatee(state.state);
+    setStatee(state);
   }, [state]);
+
   let currentStep;
-  if (statee == "PENDING") currentStep = 0;
-  if (statee == "ACTIVE") currentStep = 1;
-  if (statee == "PROCESSING") currentStep = 2;
-  if (statee == "DONE") currentStep = 3;
+  if (statee === "PENDING") currentStep = 0;
+  else if (statee === "ACTIVE") currentStep = 1;
+  else if (statee === "PROCESSING") currentStep = 2;
+  else if (statee === "DONE") currentStep = 3;
+  else if (statee === "REJECTCREATOR") currentStep = 0;
+  else if (statee === "REJECTAUDIENCE") currentStep = 1;
+
+  let status;
+  let reasonRejectCreator = "";
+  let reasonRejectAudience = "";
+  if (statee === "REJECTCREATOR" || statee === "REJECTAUDIENCE")
+    status = "error";
+  if (statee == "REJECTCREATOR") {
+    reasonRejectCreator = reason;
+  }
+  if (statee == "REJECTAUDIENCE") {
+    reasonRejectAudience = reason;
+  }
   return (
     <Steps
       className="custome-steps"
       current={currentStep}
+      status={status}
       items={[
         {
           title: "Watting for Creator Accept ",
-          description,
+          description: reasonRejectCreator,
         },
         {
           title: "Waiting for Audience Accept",
-          description,
+          description: reasonRejectAudience,
           // subTitle: "Left 00:00:08",
         },
         {
-          title: "In Progressing",
-          description,
+          title: "In Progressing ",
+          // description,
+          // status: "process",
+          // icon: <LoadingOutlined />,
         },
         {
           title: "Done",
-          description,
+          // description,
         },
       ]}
     />
