@@ -53,6 +53,7 @@ function ViewOrderDetail({ choice }) {
           <LeftCircleTwoTone
             twoToneColor="#b42d81"
             style={{
+              marginBottom: "2em",
               transform: "translateY(2em) translateX(1.5em)",
               fontSize: "1.4em",
             }}

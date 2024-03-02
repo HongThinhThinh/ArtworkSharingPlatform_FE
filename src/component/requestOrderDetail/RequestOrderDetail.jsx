@@ -130,6 +130,7 @@ function RequestOrderDetail() {
               style={{
                 transform: "translateX(1.5em)",
                 margin: "2em 0",
+                marginBottom: "4em",
                 fontSize: "1.4em",
                 zIndex: 10,
               }}
