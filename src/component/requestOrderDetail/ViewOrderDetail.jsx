@@ -82,23 +82,37 @@ function ViewOrderDetail({ choice }) {
                 <AiFillMessage />
               </div>
             </div>
-            <CustomeSteps state={data.status} />
+            <CustomeSteps
+              state={
+                data?.status === "REJECT"
+                  ? data.reasonRejectCreator
+                    ? "REJECTCREATOR"
+                    : "REJECTAUDIENCE"
+                  : data?.status
+              }
+              reason={data.reasonRejectCreator || data.reasonRejectAudience}
+            />
             <h3 className="request-order-detail__detail__request">
               {data.description}
             </h3>
 
-            {data.status == "PENDING" ? (
-              ""
+            {data.status != "PENDING" ? (
+              data.reasonRejectCreator ? (
+                ""
+              ) : (
+                <>
+                  <div
+                    // style={{ marginBottom: "-20px" }}
+                    className="request-order-detail__detail__payment"
+                  >
+                    <h3>Payment:</h3>
+                    <h3>{data.price} $</h3>
+                  </div>
+                </>
+              )
             ) : (
-              <div
-                // style={{ marginBottom: "-20px" }}
-                className="request-order-detail__detail__payment"
-              >
-                <h3>Payment:</h3>
-                <h3>{data.price} $</h3>
-              </div>
+              ""
             )}
-
             <div
               style={{ marginTop: "20px" }}
               className="request-order-detail__detail__description"
