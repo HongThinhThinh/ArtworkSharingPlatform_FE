@@ -286,7 +286,7 @@ function RequestOrderDetail() {
                             },
                           ]}
                         >
-                          <InputNumber min={1}/>
+                          <InputNumber min={1} />
                         </Form.Item>
                         <span
                           className="ant-form-text"
@@ -392,17 +392,19 @@ function RequestOrderDetail() {
                   className="request-order-detail__detail__description"
                 >
                   <h3>Message: </h3>
-                  <p>{newData?.productMessage}</p>
+                  <p>{newData ? newData.productMessage : null}</p>
                 </div>
-                <ImgPreview
-                  src={newData.productImage}
-                  width="50%"
-                  height="50%"
-                  style={{
-                    margin: "1em 0",
-                    objectFit: "cover",
-                  }}
-                />
+                <div className="request-order-detail__upload-demo__upload">
+                  <ImgPreview
+                    src={newData.productImage}
+                    width="50%"
+                    height="50%"
+                    style={{
+                      margin: "1em 0",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
               </div>
             ) : (
               ""

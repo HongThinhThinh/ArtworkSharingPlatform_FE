@@ -1,7 +1,6 @@
 .request-order-detail {
-  flex-grow: 1;
   height: 100vh;
-
+  width: 85%;
   &__head {
     z-index: 5;
     padding: 2em 2em 1em 2em;
@@ -201,9 +200,9 @@
     }
   }
 }
-
-@media only screen and (max-width: 1353px) {
+@media only screen and (max-width: 2000px) {
   .request-order-detail {
+    width: 82%;
     &__upload-demo {
       &__upload {
         justify-content: center;
@@ -212,8 +211,48 @@
   }
 }
 
+@media only screen and (max-width: 1700px) {
+  .request-order-detail {
+    width: 78%;
+    &__upload-demo {
+      &__upload {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1500px) {
+  .request-order-detail {
+    width: 75%;
+    &__upload-demo {
+      &__upload {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1353px) {
+  .request-order-detail {
+    width: 72%;
+    &__upload-demo {
+      &__upload {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .request-order-detail {
+    width: 67%;
+  }
+}
+
 @media only screen and (max-width: 1000px) {
   .request-order-detail {
+    width: 65%;
     &__head {
       flex-direction: column;
       &__deadline {
@@ -226,17 +265,21 @@
 
 @media only screen and (max-width: 785px) {
   .request-order-detail {
+    width: 100%;
     display: block;
     &__demo {
       &__upload {
         justify-content: center;
       }
     }
+    &__head {
+      transform: translateY(-3em);
+    }
     &__detail {
+      transform: translateY(-3em);
       &__creator {
         &__right {
           &__avatar {
-            height: 45px;
             margin-right: 1em;
           }
           &__info {
