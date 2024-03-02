@@ -16,7 +16,7 @@ function PostJob({ status, setStatus }) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const user = useSelector(selectUser)
+  const user = useSelector(selectUser);
 
   const config = {
     rules: [
@@ -35,12 +35,9 @@ function PostJob({ status, setStatus }) {
       ...e,
       date: e["date"].format("MMMM Do YYYY, h:mm:ss a"),
     };
-   
-   
+
     const newValue = { ...values, tags: selectedTags };
     console.log(newValue);
-    
-    
 
     try {
       const response = await api.post("/sendOrderRequestGlobal", {
@@ -48,9 +45,10 @@ function PostJob({ status, setStatus }) {
         description: values.description,
         price: values.price,
         dateStart: getCurrentDateTime(),
-        endStart: values.date,
+        dateEnd: values.date,
       });
-     
+      console.log(values.date);
+
       alertSuccess("Post new job successfully");
     } catch (error) {
       alertFail("Post new job fail");

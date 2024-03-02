@@ -18,13 +18,13 @@ function JobsPage() {
       try {
         const response = await api.get("/getOrderRequestAudience-global");
         setNewData(response.data.data);
-        console.log(response.data.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
   }, []);
+
   return (
     <div className="jobspage">
       <div className="jobspage__hero">
@@ -62,8 +62,15 @@ function JobsPage() {
       </div>
       <Row container style={{ margin: "2em" }}>
         {newdata?.map((data) => (
-          <Col sm={24} md={24} lg={12}>
-            <JobsView title={data.title} description={data.description} price={data.price} date={data.dateStart} avt={data.audience.avt} />
+          <Col sm={24} md={24} lg={12} key={data.id}>
+            <JobsView
+              title={data.title}
+              description={data.description}
+              price={data.price}
+              date={data.dateStart}
+              avt={data.audience.avt}
+              dateEnd={data.dateEnd}
+            />
           </Col>
         ))}
       </Row>
