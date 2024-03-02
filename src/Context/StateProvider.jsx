@@ -3,11 +3,7 @@ import React, { createContext, useContext, useState } from "react";
 const StateContext = createContext();
 
 export const StateProvider = ({ children }) => {
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") != null
-      ? localStorage.getItem("theme")
-      : false
-  );
+  const [theme, setTheme] = useState(false);
   const [idRoomChat, setIdRoomChat] = useState(null);
   const [showSearchFriends, setShowSearchFriends] = useState(false);
   const [showChatList, setShowChatList] = useState(true);

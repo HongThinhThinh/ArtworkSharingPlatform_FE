@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Steps } from "antd";
 import "./CustomeSteps.scss";
-import { LoadingOutlined } from "@ant-design/icons";
+import { useStateValue } from "../../Context/StateProvider";
 
 function CustomeSteps(props) {
   const { state, reason } = props; // Destructure props to access state and reason
@@ -31,13 +31,16 @@ function CustomeSteps(props) {
   if (statee == "REJECTAUDIENCE") {
     reasonRejectAudience = reason;
   }
+
+  const { theme } = useStateValue();
   return (
     <Steps
-      className="custome-steps"
+      className={`custome-steps ${theme ? "active" : ""}`}
       current={currentStep}
       status={status}
       items={[
         {
+          style: { color: "blue " },
           title: "Watting for Creator Accept ",
           description: reasonRejectCreator,
         },

@@ -23,8 +23,10 @@ import ImgPreview from "../../pages/Image/Image";
 import image1 from "../../assets/CremoBackground.png";
 import UploadArtWork from "../UploadArtWork/UploadArtWork";
 import uploadFile from "../../assets/hook/useUpload";
+import { useStateValue } from "../../Context/StateProvider";
 
 function RequestOrderDetail() {
+  const { theme } = useStateValue();
   const isActive = useLocation().pathname == "/creator-manage/requestOrder";
   const { id } = useParams();
   const navigate = useNavigate();
@@ -205,6 +207,7 @@ function RequestOrderDetail() {
                   <div
                     // style={{ marginBottom: "-20px" }}
                     className="request-order-detail__detail__payment"
+                    style={{ color: theme ? "#fff" : "" }}
                   >
                     <h3>Payment:</h3>
                     <h3>{newData.price} $</h3>
@@ -214,6 +217,7 @@ function RequestOrderDetail() {
             ) : (
               ""
             )}
+
             <div
               style={{ marginTop: "30px" }}
               className="request-order-detail__detail__description"

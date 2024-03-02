@@ -5,6 +5,7 @@ import InProgressOrderDetail from "../../component/requestOrderDetail/InProgress
 import api from "../../config/axios";
 import { Outlet, useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
+import { useStateValue } from "../../Context/StateProvider";
 
 function RequestOrder() {
   const isActive = useLocation().pathname == "/creator-manage/requestOrder";
@@ -24,9 +25,16 @@ function RequestOrder() {
     };
     fetchData();
   }, [data]);
+  const { theme } = useStateValue();
 
   return (
-    <div className={`requestOrder ${isMobile && isActive ? "active" : ""}`}>
+    <div
+      style={{
+        backgroundColor: theme ? "#202020" : "",
+        color: theme ? "#fff" : "",
+      }}
+      className={`requestOrder ${isMobile && isActive ? "active" : ""}`}
+    >
       <>
         <RequestOrderList
           setData={setData}

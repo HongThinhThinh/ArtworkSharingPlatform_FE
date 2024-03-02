@@ -8,6 +8,8 @@ import { useState } from "react";
 function PostView({ img, title, avatar, name, description, id, setReload }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reason, setReason] = useState("");
+
+  
   const handleApproveArtWork = async () => {
     const response = await api.put(`/artwork-approve/${id}`, {
       status: "active",
