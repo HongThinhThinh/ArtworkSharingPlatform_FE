@@ -41,6 +41,21 @@
       font-family: "RegularMonaSans";
       line-height: 1.5em;
     }
+    &__tag {
+      width: fit-content;
+      text-wrap: nowrap;
+      border-radius: 100px;
+      background-color: #C9A6D0 !important;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "SemiBoldMonaSans";
+      padding: 10px;
+      border: 1px solid rgb(201, 200, 200);
+      margin-right: 0.6em;
+      cursor: default;
+    }
     &__submit {
       margin-top: 1em;
       width: max-content;

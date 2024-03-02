@@ -289,7 +289,7 @@ function RequestOrderDetail() {
                             },
                           ]}
                         >
-                          <InputNumber />
+                          <InputNumber min={1}/>
                         </Form.Item>
                         <span
                           className="ant-form-text"
