@@ -1,5 +1,5 @@
 import { Button, Card, Col, Input, Row } from "antd";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./JobsPage.scss";
 import JobsView from "../../component/jobsview/JobsView";
 import CategorySlider from "../../sections/categorySlider/CategorySlider";
@@ -7,9 +7,24 @@ import { SearchOutlined } from "@ant-design/icons";
 import { IoAdd } from "react-icons/io5";
 import PostJob from "../../component/postJob/PostJob";
 import FormRequest from "../../component/formRequest/FormRequest";
+import api from "../../config/axios";
 
 function JobsPage() {
   const [status, setStatus] = useState(false);
+  const [newdata, setNewData] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await api.get("/getOrderRequestAudience-global");
+        setNewData(response.data.data);
+        console.log(response.data.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div className="jobspage">
       <div className="jobspage__hero">
@@ -46,12 +61,11 @@ function JobsPage() {
         <p>2 new opportunities posted today!</p>
       </div>
       <Row container style={{ margin: "2em" }}>
-        <Col sm={24} md={24} lg={12}>
-          <JobsView />
-        </Col>
-        <Col sm={24} md={24} lg={12}>
-          <JobsView />
-        </Col>
+        {newdata?.map((data) => (
+          <Col sm={24} md={24} lg={12}>
+            <JobsView title={data.title} description={data.description} price={data.price} date={data.dateStart} avt={data.audience.avt} />
+          </Col>
+        ))}
       </Row>
       <CategorySlider />
     </div>

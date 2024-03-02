@@ -13,7 +13,6 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
   const navigate = useNavigate();
   const [option, setOption] = useState(0);
   const listOption = ["Offer", "My Jobs", "History"];
-
   return (
     <div className={`requestOrderList ${id ? "" : "active"}`}>
       <div className="requestOrderList__title">

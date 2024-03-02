@@ -7,21 +7,21 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { StateProvider } from "./Context/StateProvider";
 import { useEffect } from "react";
-import { listen, requestPermission } from "./config/firebase";
+// import { listen, requestPermission } from "./config/firebase";
 
 AOS.init({
   // initialise with other settings
   duration: 1000,
 });
 function App() {
-  useEffect(() => {
-    const getKey = async () => {
-      const key = await requestPermission();
-      console.log(key);
-    };
-    getKey();
-    listen();
-  }, []);
+  // useEffect(() => {
+  //   const getKey = async () => {
+  //     const key = await requestPermission();
+  //     console.log(key);
+  //   };
+  //   getKey();
+  //   listen();
+  // }, []);
 
   return (
     <>

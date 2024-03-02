@@ -52,7 +52,9 @@ function RequestOrderDetail() {
         productImage: URL,
         productMessage: description,
       });
+      setNewData(response.data.data);
       alertSuccess("Send Product Successfully");
+      console.log(response.data.data);
       setIsModalOpen(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -60,19 +62,35 @@ function RequestOrderDetail() {
     }
   };
   const [URL, setURL] = useState(image1);
-  const [imageUploaded, setImageUploaded] = useState(false);
+  // const [imageUploaded, setImageUploaded] = useState(false);
   const [description, setDescription] = useState(false);
   const getLink = async (file) => {
     let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
     setURL(URL);
     URL = await uploadFile(file);
     setURL(URL);
-
     setImageUploaded(true);
     console.log(URL);
   };
   const isMobile = useMediaQuery({ maxWidth: 785 });
   const [newData, setNewData] = useState();
+
+  const cancelOrder = async () => {
+    try {
+      const res = await api.put("/updateOrderRequest-creator", {
+        id: id,
+        status: "Reject",
+        reasonRejectCreator: reason,
+      });
+      console.log(res);
+      setNewData(res.data.data);
+      setModal1Open(false);
+      alertSuccess("Reject successfully");
+    } catch (e) {
+      // alertFail("Failed to load");
+      console.log(e);
+    }
+  };
   const config = {
     rules: [
       {
@@ -119,7 +137,7 @@ function RequestOrderDetail() {
     }
     setModal2Open(false);
   };
-
+  console.log(newData);
   return (
     <>
       {newData && (
@@ -167,15 +185,33 @@ function RequestOrderDetail() {
                 <AiFillMessage />
               </div>
             </div>
-            <CustomeSteps state={newData?.status} />
-            {newData?.status != "PENDING" ? (
-              <div
-                style={{ marginBottom: "-15px" }}
-                className="request-order-detail__detail__payment"
-              >
-                <h3>Payment:</h3>
-                <h3>{newData?.price}</h3>
-              </div>
+            <CustomeSteps
+              state={
+                newData?.status === "REJECT"
+                  ? newData.reasonRejectCreator
+                    ? "REJECTCREATOR"
+                    : "REJECTAUDIENCE"
+                  : newData?.status
+              }
+              reason={
+                newData.reasonRejectCreator || newData.reasonRejectAudience
+              }
+            />
+
+            {newData.status != "PENDING" ? (
+              newData.reasonRejectCreator ? (
+                ""
+              ) : (
+                <>
+                  <div
+                    // style={{ marginBottom: "-20px" }}
+                    className="request-order-detail__detail__payment"
+                  >
+                    <h3>Payment:</h3>
+                    <h3>{newData.price} $</h3>
+                  </div>
+                </>
+              )
             ) : (
               ""
             )}
@@ -202,7 +238,7 @@ function RequestOrderDetail() {
                   footer={null}
                 >
                   <TextArea
-                    onChange={(e) => setReason(e)}
+                    onChange={(e) => setReason(e.target.value)}
                     showCount
                     maxLength={100}
                     placeholder="Please give us the reason"
@@ -216,7 +252,7 @@ function RequestOrderDetail() {
                   <RoundedBtn
                     color="#3c3c3c"
                     style={{ width: "100%" }}
-                    onClick={() => alert(reason)}
+                    onClick={cancelOrder}
                   >
                     Submit
                   </RoundedBtn>
@@ -250,7 +286,7 @@ function RequestOrderDetail() {
                             },
                           ]}
                         >
-                          <InputNumber />
+                          <InputNumber min={1}/>
                         </Form.Item>
                         <span
                           className="ant-form-text"
@@ -349,6 +385,25 @@ function RequestOrderDetail() {
                   </Button>
                 </div>
               </>
+            ) : newData.status === "DONE" ? (
+              <div className="request-order-detail__upload-demo__content__right">
+                <div
+                  style={{ marginTop: "30px" }}
+                  className="request-order-detail__detail__description"
+                >
+                  <h3>Message: </h3>
+                  <p>{newData?.productMessage}</p>
+                </div>
+                <ImgPreview
+                  src={newData.productImage}
+                  width="50%"
+                  height="50%"
+                  style={{
+                    margin: "1em 0",
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
             ) : (
               ""
             )}
