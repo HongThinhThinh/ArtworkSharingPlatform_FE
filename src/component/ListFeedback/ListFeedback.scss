@@ -166,15 +166,6 @@
   }
 }
 
-.edit-artwork-popup {
-  display: flex;
-  flex-direction: column;
-  button {
-    font-family: "MediumCereal";
-    border: none;
-  }
-}
-
 @media only screen and (max-width: 550px) {
   .listFeedback {
     height: fit-content;
