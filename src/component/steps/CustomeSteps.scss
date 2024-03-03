@@ -33,3 +33,22 @@
     }
   }
 }
+
+.active {
+  .ant-steps-item-icon {
+    background-color: #7b5d75 !important;
+    border: 1px solid #cf69bb !important;
+    span {
+      color: white !important;
+    }
+  }
+  .ant-steps-item-title {
+    color: rgb(160, 151, 151) !important;
+    &::after {
+    }
+  }
+  .ant-steps-item-tail::after,
+  .ant-steps-item-title::after {
+    background-color: #f1d8ec !important;
+  }
+}

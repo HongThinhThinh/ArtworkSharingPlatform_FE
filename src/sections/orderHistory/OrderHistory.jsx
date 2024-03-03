@@ -52,7 +52,7 @@ function OrderHistory() {
                 ? setupColor.All
                 : selectedValue == "PENDING"
                 ? setupColor.Pending
-                : selectedValue == "IN PROGRESS"
+                : selectedValue == "PROCESSING"
                 ? setupColor.InProgress
                 : selectedValue == "REJECT"
                 ? setupColor.Deny
@@ -63,7 +63,7 @@ function OrderHistory() {
         >
           <option value="ALL">ALL</option>
           <option value="PENDING">PENDING</option>
-          <option value="IN PROGRESS">IN PROGRESS</option>
+          <option value="PROCESSING">IN PROCESSING</option>
           <option value="REJECT">REJECT</option>
           <option value="DONE">DONE</option>
         </select>

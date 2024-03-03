@@ -7,33 +7,13 @@ import { list } from "firebase/storage";
 import moment from "moment";
 import { getDifTime } from "../../assets/hook/useGetTime";
 import { useNavigate, useParams } from "react-router-dom";
+import { useStateValue } from "../../Context/StateProvider";
 
-function RequestOrderList({ choice, setChoice, list, setData }) {
-  const [filter, setFilter] = useState("Offer");
+function RequestOrderList({ choice, setChoice, list, setData, setFilter }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [option, setOption] = useState(0);
   const listOption = ["Offer", "Pending", "My Jobs", "History"];
-  const [newList, setNewList] = useState([]);
-
-  useEffect(() => {
-    if (filter == "Offer") {
-      setNewList(list.filter((item) => item.status == "PENDING"));
-    } else if (filter == "Pending") {
-      setNewList(list.filter((item) => item.status == "ACTIVE"));
-    } else if (filter == "My Jobs") {
-      setNewList(list.filter((item) => item.status == "PROCESSING"));
-    } else if (filter == "History") {
-      setNewList(
-        list.filter(
-          (item) =>
-            item.status == "REJECTCREATOR" ||
-            item.status == "REJECTCREATOR" ||
-            item.status == "DONE"
-        )
-      );
-    }
-  }, [filter]);
 
   return (
     <div className={`requestOrderList ${id ? "" : "active"}`}>
@@ -66,13 +46,12 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
       </div>
 
       <div className="requestOrderList__tabs">
-        {newList.length > 0 ? (
-          newList.map((item, index) => {
+        {list.length > 0 ? (
+          list.map((item, index) => {
             return (
               <RequestOrderTab
                 onClick={() => {
                   setData(item);
-
                   setChoice(item.id);
                   navigate(
                     `/creator-manage/requestOrder/requestOrderDetail/${item.id}`
