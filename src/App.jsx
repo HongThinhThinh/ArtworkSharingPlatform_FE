@@ -7,6 +7,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { StateProvider } from "./Context/StateProvider";
 import { useEffect } from "react";
+import useRealtime from "./assets/hook/useRealTime";
 // import { listen, requestPermission } from "./config/firebase";
 
 AOS.init({
@@ -23,6 +24,9 @@ function App() {
   //   listen();
   // }, []);
 
+  useRealtime((data) => {
+    console.log(data);
+  });
   return (
     <>
       <Provider store={store}>
