@@ -67,16 +67,16 @@ function ViewOrderDetail({ choice }) {
           </div>
           <div className="view-order-detail__detail in-progress">
             <div className="view-order-detail__detail__creator">
-              <div className="view-order-detail__detail__creator__right">
+            {data.status == "GLOBAL"?<span>{data.dateStart}</span>:  <div className="view-order-detail__detail__creator__right">
                 <Avatar
-                  src={data.creator.avt}
+                  src={data.creator?.avt}
                   className="view-order-detail__detail__creator__right__avatar"
                 />
                 <div className="view-order-detail__detail__creator__right__info">
-                  <h3>{data.creator.name}</h3>
+                  <h3>{data.creator?.name}</h3>
                   <span>{data.dateStart}</span>
                 </div>
-              </div>
+              </div>}
               <div className="view-order-detail__detail__creator__left">
                 <AiFillMessage />
               </div>
@@ -91,7 +91,7 @@ function ViewOrderDetail({ choice }) {
               }
               reason={data.reasonRejectCreator || data.reasonRejectAudience}
             />
-            <h3 className="view-order-detail__detail__view">
+            <h3 style={{marginTop:"20px"}} className="view-order-detail__detail__view">
               {data.description}
             </h3>
 

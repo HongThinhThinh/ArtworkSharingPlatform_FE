@@ -18,7 +18,13 @@ function Order({ check, setCheck, filter }) {
         console.log(res.data.data);
         setData(res.data.data);
         if (filter != "ALL") {
-          setNewData(res.data.data.filter((item) => item.status == filter));
+          if(filter == "PENDING"){
+            setNewData(res.data.data.filter((item) => ["PENDING","GLOBAL"].includes(item.status)));
+            
+          }else{
+            setNewData(res.data.data.filter((item) => item.status == filter));
+          }
+          
         } else {
           setNewData(res.data.data);
         }
@@ -34,7 +40,7 @@ function Order({ check, setCheck, filter }) {
     <>
       {newData.length > 0 ? (
         newData.map((item) =>
-          item.status == filter || filter == "ALL" ? (
+          // item.status == filter || filter == "ALL" ? (
             <div className="order" key={item.id}>
               <div className="order__top">
                 <div className="order__top__right">
@@ -58,7 +64,7 @@ function Order({ check, setCheck, filter }) {
                 <div className="order__top__left">{item.status}</div>
               </div>
               <div className="order__detail">
-                <div className="order__detail__creator">
+               {item.status == "GLOBAL"?"": <div className="order__detail__creator">
                   <Avatar
                     src={item.creator?.avt}
                     className="order__detail__creator__avatar"
@@ -66,7 +72,7 @@ function Order({ check, setCheck, filter }) {
                   <div className="order__detail__creator__info">
                     <h3>{item.creator?.name}</h3>
                   </div>
-                </div>
+                </div>}
                 <h3 className="order__detail__title">{item.title}</h3>
                 <p className="order__detail__title">{item.description}</p>
               </div>
@@ -81,7 +87,7 @@ function Order({ check, setCheck, filter }) {
                 </Button>
               </div>
             </div>
-          ) : null
+          // ) : null
         )
       ) : (
         <p>You don't have any order with this type of filter</p>
