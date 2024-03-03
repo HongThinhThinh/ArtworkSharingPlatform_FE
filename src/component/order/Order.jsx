@@ -17,7 +17,6 @@ function Order({ check, setCheck, filter }) {
         const res = await api.get("/getAllOrderRequestAudience");
         console.log(res.data.data);
         setData(res.data.data);
-
         if (filter != "ALL") {
           setNewData(res.data.data.filter((item) => item.status == filter));
         } else {
@@ -28,7 +27,6 @@ function Order({ check, setCheck, filter }) {
         // alertFail("Fail to load");
       }
     };
-
     fetch();
   }, [filter]);
 

@@ -12,22 +12,47 @@ function RequestOrder() {
   const [choice, setChoice] = useState(-1);
   const isMobile = useMediaQuery({ maxWidth: 785 });
   const [list, setList] = useState([]);
+  const [listFilter, setListFilter] = useState([]);
   const [data, setData] = useState({});
+  const { theme, changeSection } = useStateValue();
+  const [filter, setFilter] = useState("Offer");
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/getAllOrderRequestCreator");
-        setList(response.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
     fetchData();
-  }, [data]);
-  const { theme } = useStateValue();
 
-  console.log(choice);
+    // getFilter();
+  }, [filter]);
+
+  const fetchData = async () => {
+    console.log("GET DATA Lan 1");
+    try {
+      const response = await api.get("/getAllOrderRequestCreator");
+      setList(response.data.data);
+      setListFilter(
+        response.data.data.filter((item) =>
+          getFilter(filter).includes(item.status)
+        )
+      );
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  console.log(filter);
+  console.log(list);
+
+  const getFilter = (status) => {
+    console.log(list);
+    if (status === "Offer") {
+      return ["PENDING"];
+    } else if (status == "Pending") {
+      return ["ACTIVE"];
+    } else if (status == "My Jobs") {
+      return ["PROCESSING"];
+    } else if (status == "History") {
+      return ["DONE", "REJECTCREATOR", "REJECTAUDIENCE", "<REJECT></REJECT>"];
+    }
+  };
 
   return (
     <div
@@ -40,11 +65,12 @@ function RequestOrder() {
       <>
         <RequestOrderList
           setData={setData}
-          list={list}
+          setFilter={setFilter}
+          list={listFilter}
           choice={choice}
           setChoice={setChoice}
         />
-        <Outlet />
+        <Outlet context={fetchData} />
       </>
     </div>
   );

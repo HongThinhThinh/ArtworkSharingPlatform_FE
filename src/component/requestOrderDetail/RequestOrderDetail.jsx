@@ -18,7 +18,12 @@ import { getDifTime } from "../../assets/hook/useGetTime";
 import api from "../../config/axios";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import UploadDemo from "../uploadDemo/UploadDemo";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  useLocation,
+  useNavigate,
+  useOutletContext,
+  useParams,
+} from "react-router-dom";
 import ImgPreview from "../../pages/Image/Image";
 import image1 from "../../assets/CremoBackground.png";
 import UploadArtWork from "../UploadArtWork/UploadArtWork";
@@ -26,6 +31,7 @@ import uploadFile from "../../assets/hook/useUpload";
 import { useStateValue } from "../../Context/StateProvider";
 
 function RequestOrderDetail() {
+  const fetchData = useOutletContext();
   const { theme } = useStateValue();
   const isActive = useLocation().pathname == "/creator-manage/requestOrder";
   const { id } = useParams();
@@ -35,6 +41,7 @@ function RequestOrderDetail() {
   const [modal2Open, setModal2Open] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [audience, setAudience] = useState({});
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -66,6 +73,8 @@ function RequestOrderDetail() {
         productMessage: description,
       });
       setNewData(response.data.data);
+      // setChangeSection(response.data.data);
+      fetchData();
       alertSuccess("Send Product Successfully");
       console.log(response.data.data);
       setIsModalOpen(false);
@@ -82,7 +91,6 @@ function RequestOrderDetail() {
     setURL(URL);
     URL = await uploadFile(file);
     setURL(URL);
-    setImageUploaded(true);
     console.log(URL);
   };
   const isMobile = useMediaQuery({ maxWidth: 785 });
@@ -97,6 +105,8 @@ function RequestOrderDetail() {
       });
       console.log(res);
       setNewData(res.data.data);
+      // setChangeSection(res.data.data);
+      fetchData();
       setModal1Open(false);
       alertSuccess("Reject successfully");
     } catch (e) {
@@ -144,6 +154,8 @@ function RequestOrderDetail() {
       });
       setNewData(res.data.data);
       // setData(res.data.data);
+      fetchData();
+      // setChangeSection(res.data.data);
       alertSuccess("Please waiting for audience acept");
     } catch (e) {
       console.log(e);

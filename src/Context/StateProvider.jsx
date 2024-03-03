@@ -9,6 +9,7 @@ export const StateProvider = ({ children }) => {
   const [showChatList, setShowChatList] = useState(true);
   const [active, setActive] = useState(0);
   const [creatorDetail, setCreatorDetail] = useState({});
+  const [changeSection, setChangeSection] = useState("");
 
   const state = {
     theme,
@@ -23,6 +24,8 @@ export const StateProvider = ({ children }) => {
     setActive,
     creatorDetail,
     setCreatorDetail,
+    changeSection,
+    setChangeSection,
   };
 
   return (
