@@ -63,6 +63,7 @@ function OrderHistory() {
         >
           <option value="ALL">ALL</option>
           <option value="PENDING">PENDING</option>
+          <option value="ACTIVE">ACTIVE</option>
           <option value="PROCESSING">IN PROCESSING</option>
           <option value="REJECT">REJECT</option>
           <option value="DONE">DONE</option>

@@ -12,6 +12,7 @@ import api from "../../config/axios";
 function JobsPage() {
   const [status, setStatus] = useState(false);
   const [newdata, setNewData] = useState();
+  const [render, setRender] = useState(true);
 
   const fetchData = async () => {
     try {
@@ -24,7 +25,7 @@ function JobsPage() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [render]);
 
 
 
@@ -46,7 +47,7 @@ function JobsPage() {
           <IoAdd /> Post a jobs
         </Button>
 
-        <PostJob status={status} setStatus={() => setStatus(!status)} />
+        <PostJob render={render} setRender={setRender} status={status} setStatus={() => setStatus(!status)} />
       </div>
       <div className="jobspage__hero-banner">
         <div style={{ display: "flex" }}>
