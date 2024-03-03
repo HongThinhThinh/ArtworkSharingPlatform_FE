@@ -7,12 +7,13 @@ import api from "../../config/axios";
 import { getDifTime } from "../../assets/hook/useGetTime";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
-function JobsView({ title, description, price, date,avt }) {
+function JobsView({ title, description, price, date, avt, dateEnd}) {
   const data = ["web", "mobile", "animation"];
   const tags = data.map((tag) => {
     return { tag };
   });
-  console.log(date);
+  
+
   return (
     <div className="jobsview">
       <Card className="jobsview__cart" bordered={false}>
@@ -23,7 +24,7 @@ function JobsView({ title, description, price, date,avt }) {
         </div>
         <div className="jobsview__cart__info-details">
           <p>${price}</p>
-          <p>Experience level</p>
+          <p>Deadline: {dateEnd}</p>
         </div>
         <div className="jobsview__cart__description">
           <p>{description}</p>
@@ -34,7 +35,7 @@ function JobsView({ title, description, price, date,avt }) {
           })}
         </div>
 
-        <Button className="jobsview__cart__submit">Approve</Button>
+        <Button className="jobsview__cart__submit" >Approve</Button>
       </Card>
     </div>
   );
