@@ -50,7 +50,7 @@ function RequestOrder() {
     } else if (status == "My Jobs") {
       return ["PROCESSING"];
     } else if (status == "History") {
-      return ["DONE", "REJECTCREATOR", "REJECTAUDIENCE", "<REJECT></REJECT>"];
+      return ["DONE", "REJECT"];
     }
   };
 
