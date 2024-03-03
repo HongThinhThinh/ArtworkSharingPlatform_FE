@@ -6,7 +6,7 @@ import { useStateValue } from "../../Context/StateProvider";
 function CreatorWorkart({ list = [] }) {
   console.log(list.id);
   return (
-    <Row gutter={30} style={{ marginLeft: "5%", width: "90%" }}>
+    <Row gutter={30} style={{ marginLeft: "5%", width: "90%", padding: "4em" }}>
       {list.map((item) => {
         return (
           <Col key={item.id} xs={24} sm={12} lg={8}>

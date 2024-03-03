@@ -25,6 +25,8 @@ function RequestOrder() {
     fetchData();
   }, [data]);
 
+  console.log(choice);
+
   return (
     <div className={`requestOrder ${isMobile && isActive ? "active" : ""}`}>
       <>
