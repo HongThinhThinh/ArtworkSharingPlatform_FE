@@ -19,7 +19,7 @@ function Account() {
           <Link to="/creator-manage/artworks" className="switch-account">
             <Avatar
               style={{
-                height: "3.5em",
+                height: "3.3em",
                 width: "3.5em",
                 cursor: "pointer",
               }}
@@ -57,7 +57,7 @@ function Account() {
             >
               <Avatar
                 style={{
-                  height: "3.5em",
+                  height: "3.3em",
                   width: "3.5em",
                   cursor: "pointer",
                 }}

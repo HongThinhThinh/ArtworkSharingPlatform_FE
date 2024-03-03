@@ -27,6 +27,8 @@ function RequestOrder() {
   }, [data]);
   const { theme } = useStateValue();
 
+  console.log(choice);
+
   return (
     <div
       style={{

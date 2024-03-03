@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 import "./RequestOrderList.scss";
 import { Button } from "antd";
@@ -9,10 +9,32 @@ import { getDifTime } from "../../assets/hook/useGetTime";
 import { useNavigate, useParams } from "react-router-dom";
 
 function RequestOrderList({ choice, setChoice, list, setData }) {
+  const [filter, setFilter] = useState("Offer");
   const { id } = useParams();
   const navigate = useNavigate();
   const [option, setOption] = useState(0);
-  const listOption = ["Offer", "My Jobs", "History"];
+  const listOption = ["Offer", "Pending", "My Jobs", "History"];
+  const [newList, setNewList] = useState([]);
+
+  useEffect(() => {
+    if (filter == "Offer") {
+      setNewList(list.filter((item) => item.status == "PENDING"));
+    } else if (filter == "Pending") {
+      setNewList(list.filter((item) => item.status == "ACTIVE"));
+    } else if (filter == "My Jobs") {
+      setNewList(list.filter((item) => item.status == "PROCESSING"));
+    } else if (filter == "History") {
+      setNewList(
+        list.filter(
+          (item) =>
+            item.status == "REJECTCREATOR" ||
+            item.status == "REJECTCREATOR" ||
+            item.status == "DONE"
+        )
+      );
+    }
+  }, [filter]);
+
   return (
     <div className={`requestOrderList ${id ? "" : "active"}`}>
       <div className="requestOrderList__title">
@@ -33,7 +55,10 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
               option == index ? "active" : ""
             }`}
             key={index}
-            onClick={() => setOption(index)}
+            onClick={() => {
+              setOption(index);
+              setFilter(item);
+            }}
           >
             {item}
           </Button>
@@ -41,24 +66,31 @@ function RequestOrderList({ choice, setChoice, list, setData }) {
       </div>
 
       <div className="requestOrderList__tabs">
-        {list.map((item, index) => {
-          return (
-            <RequestOrderTab
-              onClick={() => {
-                setData(item);
-                setChoice(item.id);
-                navigate(
-                  `/creator-manage/requestOrder/requestOrderDetail/${item.id}`
-                );
-              }}
-              key={index}
-              title={item.title}
-              time={getDifTime(item.dateStart)}
-              content={item.description}
-              status={item.id === choice}
-            />
-          );
-        })}
+        {newList.length > 0 ? (
+          newList.map((item, index) => {
+            return (
+              <RequestOrderTab
+                onClick={() => {
+                  setData(item);
+
+                  setChoice(item.id);
+                  navigate(
+                    `/creator-manage/requestOrder/requestOrderDetail/${item.id}`
+                  );
+                }}
+                key={index}
+                title={item.title}
+                time={getDifTime(item.dateStart)}
+                content={item.description}
+                status={item.id === choice}
+              />
+            );
+          })
+        ) : (
+          <p style={{ textAlign: "center", fontFamily: "MediumCereal" }}>
+            It's empty!
+          </p>
+        )}
       </div>
     </div>
   );

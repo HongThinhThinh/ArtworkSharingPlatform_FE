@@ -81,6 +81,7 @@
   }
   &__tabs {
     overflow-y: scroll;
+    height: calc(100vh - 16em);
   }
 }
 
@@ -94,7 +95,7 @@
   .requestOrderList {
     display: none;
   }
-  .requestOrderList.active {
+  .active.requestOrderList {
     display: block;
     width: 100%;
   }
