@@ -12,6 +12,8 @@ import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { EllipsisOutlined } from "@ant-design/icons";
 import { Button, Popover } from "antd";
+import {  useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
 function ListFeedback({
   title,
   description,
@@ -24,6 +26,7 @@ function ListFeedback({
   const isMobile = useMediaQuery({ maxWidth: "550px" });
   const [isOpen, setIsOpen] = useState(true);
   const navigate = useNavigate();
+  const user = useSelector(selectUser);
   const showModal = () => {
     setOpenUpdate(true);
   };
@@ -58,7 +61,8 @@ function ListFeedback({
           icon={<FaRegCircle />}
         />
       </div>
-      <Popover placement="bottomRight" content={content}>
+      { id == user.id ?
+        <Popover placement="bottomRight" content={content}>
         <EllipsisOutlined
           style={{
             float: "right",
@@ -70,7 +74,9 @@ function ListFeedback({
             border: "2px solid black",
           }}
         />
-      </Popover>
+      </Popover>:""
+      }
+     
       <div className="listFeedback--contentt">
         <h2>{title}</h2>
         <p>{description}</p>

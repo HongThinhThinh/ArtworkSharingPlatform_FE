@@ -119,7 +119,7 @@ function ViewOrderDetail({ choice }) {
               <h3>Deadline </h3>
               <p>{data.dateEnd}</p>
             </div>
-            {data.status == "PENDING" ? (
+            {data.status == "PENDING" || data.status == "GLOBAL" ? (
               <div className="view-order-detail__detail__confirm">
                 <Button className="view-order-detail__detail__confirm__cancel">
                   Cancel Offer

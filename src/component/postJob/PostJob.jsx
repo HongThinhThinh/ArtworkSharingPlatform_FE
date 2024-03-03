@@ -12,7 +12,7 @@ import { CornerDownLeft } from "lucide-react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 
-function PostJob({ status, setStatus }) {
+function PostJob({ render, status, setStatus,setRender }) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -48,7 +48,8 @@ function PostJob({ status, setStatus }) {
         dateEnd: values.date,
       });
       console.log(values.date);
-
+      setStatus();
+      setRender(!render)
       alertSuccess("Post new job successfully");
     } catch (error) {
       alertFail("Post new job fail");
