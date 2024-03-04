@@ -61,7 +61,7 @@ function ListFeedback({
           icon={<FaRegCircle />}
         />
       </div>
-      { id == user.id ?
+      { id == user?.id ?
         <Popover placement="bottomRight" content={content}>
         <EllipsisOutlined
           style={{
