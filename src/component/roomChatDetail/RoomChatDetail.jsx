@@ -20,14 +20,11 @@ function RoomChatDetail() {
   const [message, setMessage] = useState("");
   const user = useSelector(selectUser);
   const params = useParams();
-
+  const idRef = useRef(params.id);
   const [typing, setTyping] = useState("");
-  const messageEnd = useRef();
   useRealtime(async (body) => {
     if (body.body === "New message") {
       await fetch();
-      messagesContainerRef.current.scrollBot =
-        messagesContainerRef.current.scrollHeight;
     } else {
       setTyping(body.body);
       setTimeout(() => {
@@ -35,14 +32,20 @@ function RoomChatDetail() {
       }, 2000);
     }
   });
+
+  useEffect(() => {
+    console.log(params.id);
+    idRef.current = params.id;
+  }, [params.id]);
+
   useEffect(() => {
     messagesContainerRef.current.scrollTop =
       messagesContainerRef.current.scrollHeight;
-  }, []);
+  }, [data.messages]);
 
   const fetch = async () => {
     try {
-      const res = await api.get(`/chat/detail/${params.id}`);
+      const res = await api.get(`/chat/detail/${idRef.current}`);
       console.log(res.data);
       // console.log(res.data.users);
       setData(res.data);
@@ -53,18 +56,12 @@ function RoomChatDetail() {
   useEffect(() => {
     fetch();
   }, [params.id]);
-  useEffect(() => {
-    // Scroll to the bottom when the messages update
-    console.log(messageEnd.current);
-    if (messageEnd.current) {
-      messageEnd.current.scrollIntoView({ behavior: "smooth" });
-    }
-    console.log(data.messages);
-  }, [data.messages]);
+
   const sendMessage = async () => {
-    const res = await api.post(`/chat/send/${params.id}`, {
+    const res = await api.post(`/chat/send/${idRef.current}`, {
       message: message,
     });
+    setMessage("");
     console.log(res.data);
   };
   return (
@@ -98,26 +95,22 @@ function RoomChatDetail() {
         {/* <Message />
         <Message me="me" /> */}
 
-        {data?.messages?.map((item, index) => (
-          <div
-            key={item.id}
-            ref={index === data?.messages?.length - 1 ? messageEnd : null}
-          >
-            <Message
-              ref={index === data?.messages?.length - 1 ? messageEnd : null}
-              text={item.message}
-              me={item.user.id === user.id ? "me" : ""}
-            />
-          </div>
+        {data?.messages?.map((item) => (
+          <Message
+            key={item.user.id}
+            text={item.message}
+            me={item.user.id === user.id ? "me" : ""}
+          />
         ))}
       </div>
       {typing}
       <div className="chat-detail__input">
         <TextArea
+          value={message}
           onChange={(e) => setMessage(e.target.value)}
           onInput={async () => {
             const response = await api.post(
-              `/chat/typing/${params.id}/${user.name}`
+              `/chat/typing/${idRef.current}/${user.name}`
             );
           }}
           placeholder="Type a message"

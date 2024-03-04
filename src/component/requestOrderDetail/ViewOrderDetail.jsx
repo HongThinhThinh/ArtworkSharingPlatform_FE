@@ -24,7 +24,8 @@ function ViewOrderDetail({ choice }) {
         members: [data.creator.id, user.id],
       });
       console.log(res.data);
-      navigate(`/test/${res.data.roomID}`);
+      user.role === "CREATOR"? navigate(`/creator-manage/room/${res.data.roomID}`):navigate(`/test/${res.data.roomID}`);
+      
     } catch (err) {
       alertFail(err);
     }

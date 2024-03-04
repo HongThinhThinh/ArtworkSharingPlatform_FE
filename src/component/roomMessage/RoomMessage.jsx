@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useStateValue } from "../../Context/StateProvider";
 import "./RoomMessage.scss";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
 // eslint-disable-next-line react/prop-types
 function RoomMessage({
   room,
@@ -15,14 +17,16 @@ function RoomMessage({
   const { setIdRoomChat, setShowSearchFriends, setShowChatList } =
     useStateValue();
   const navigate = useNavigate();
-  console.log(room);
+  const user = useSelector(selectUser);
 
   const setShow = () => {
     setIdRoomChat(room);
     setShowSearchFriends(false);
     setActive(room);
     setShowChatList(false);
-    navigate(`/test/${room}`);
+    user.role === "CREATOR"
+      ? navigate(`/creator-manage/room/${room}`)
+      : navigate(`/test/${room}`);
   };
 
   return (
