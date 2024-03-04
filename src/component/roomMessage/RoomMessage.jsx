@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useStateValue } from "../../Context/StateProvider";
 import "./RoomMessage.scss";
+import { useNavigate } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 function RoomMessage({
   room,
@@ -13,12 +14,15 @@ function RoomMessage({
 }) {
   const { setIdRoomChat, setShowSearchFriends, setShowChatList } =
     useStateValue();
+  const navigate = useNavigate();
+  console.log(room);
 
   const setShow = () => {
     setIdRoomChat(room);
     setShowSearchFriends(false);
     setActive(room);
     setShowChatList(false);
+    navigate(`/test/${room}`);
   };
 
   return (

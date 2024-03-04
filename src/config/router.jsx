@@ -44,11 +44,19 @@ import OptionUpgrate from "../component/optionUpgrade/OptionUpgrate";
 import ViewOrderDetail from "../component/requestOrderDetail/ViewOrderDetail";
 import RequestOrderDetail from "../component/requestOrderDetail/RequestOrderDetail";
 import InProgressOrderDetail from "../component/requestOrderDetail/InProgressOrderDetail";
+import ChatDetail from "../component/chatDetail/ChatDetail";
 
 export const router = createBrowserRouter([
   {
     path: "/test",
-    element: <OptionUpgrate />,
+    element: <RoomChat />,
+    children: [
+      {
+        path: ":id",
+        element: <ChatDetail />,
+
+      },
+    ],
   },
   {
     path: "login",

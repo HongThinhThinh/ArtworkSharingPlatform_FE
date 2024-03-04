@@ -72,6 +72,7 @@ function Login() {
       const user = response.data.data;
       console.log(user);
       localStorage.setItem("token", response.data.data.token);
+      localStorage.setItem("accountId", response.data.data.id);
       //save redux
       dispatch(login(user));
       if (role === "ADMIN") {

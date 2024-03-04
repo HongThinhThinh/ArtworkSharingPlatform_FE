@@ -8,6 +8,8 @@ import UploadDemo from "../uploadDemo/UploadDemo";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../config/axios";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
 
 function ViewOrderDetail({ choice }) {
   const navigate = useNavigate();
@@ -15,6 +17,18 @@ function ViewOrderDetail({ choice }) {
   const [newData, setNewData] = useState({});
   const { id } = useParams();
   const [demoRequest, setDemoRequest] = useState([]);
+  const user = useSelector(selectUser);
+  const createRoom = async () => {
+    try {
+      const res = await api.post("/chat", {
+        members: [data.creator.id, user.id],
+      });
+      console.log(res.data);
+      navigate(`/test/${res.data.roomID}`);
+    } catch (err) {
+      alertFail(err);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -67,17 +81,24 @@ function ViewOrderDetail({ choice }) {
           </div>
           <div className="view-order-detail__detail in-progress">
             <div className="view-order-detail__detail__creator">
-            {data.status == "GLOBAL"?<span>{data.dateStart}</span>:  <div className="view-order-detail__detail__creator__right">
-                <Avatar
-                  src={data.creator?.avt}
-                  className="view-order-detail__detail__creator__right__avatar"
-                />
-                <div className="view-order-detail__detail__creator__right__info">
-                  <h3>{data.creator?.name}</h3>
-                  <span>{data.dateStart}</span>
+              {data.status == "GLOBAL" ? (
+                <span>{data.dateStart}</span>
+              ) : (
+                <div className="view-order-detail__detail__creator__right">
+                  <Avatar
+                    src={data.creator?.avt}
+                    className="view-order-detail__detail__creator__right__avatar"
+                  />
+                  <div className="view-order-detail__detail__creator__right__info">
+                    <h3>{data.creator?.name}</h3>
+                    <span>{data.dateStart}</span>
+                  </div>
                 </div>
-              </div>}
-              <div className="view-order-detail__detail__creator__left">
+              )}
+              <div
+                className="view-order-detail__detail__creator__left"
+                onClick={createRoom}
+              >
                 <AiFillMessage />
               </div>
             </div>
@@ -91,7 +112,10 @@ function ViewOrderDetail({ choice }) {
               }
               reason={data.reasonRejectCreator || data.reasonRejectAudience}
             />
-            <h3 style={{marginTop:"20px"}} className="view-order-detail__detail__view">
+            <h3
+              style={{ marginTop: "20px" }}
+              className="view-order-detail__detail__view"
+            >
               {data.description}
             </h3>
 
