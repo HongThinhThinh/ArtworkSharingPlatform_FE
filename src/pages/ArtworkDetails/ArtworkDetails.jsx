@@ -8,6 +8,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import { Button, Form, Input, Modal } from "antd";
 import RoundedBtn from "../../component/rounded-button/RoundedButton";
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 
 function ArtworkDetails() {
   const [open, setOpen] = useState(false);
@@ -46,6 +47,27 @@ function ArtworkDetails() {
 
     fetchData();
   }, [id]);
+  const update = async (e) => {
+    try {
+      const res = await api.put(`/updateArtwork/${id}`, {
+        title: e.title,
+        description: e.description,
+      });
+      alertSuccess("Update artwork successfully");
+    } catch (error) {
+      alertFail("Update artwork fail");
+    }
+  };
+
+  const deleteArtwork = async () => {
+    try {
+      const res = await api.put(`/deleteArtwork/${id}`);
+      alertSuccess("Delete artwork successfully");
+    } catch (error) {
+      alertFail("Delete artwork fail");
+    }
+    console.log(id);
+  };
   return (
     <>
       <div className="artworkDetails">
@@ -71,9 +93,7 @@ function ArtworkDetails() {
           onCancel={handleCancel}
           footer={null}
         >
-          <Form
-          //onFinish={onFinish}
-          >
+          <Form onFinish={update}>
             <div style={{ fontFamily: "MediumCereal", marginTop: "3em" }}>
               <Form.Item>
                 <h3
@@ -123,6 +143,7 @@ function ArtworkDetails() {
               <RoundedBtn
                 color="#2C547F"
                 style={{ width: "100%", transform: "translateY(1em)" }}
+                htmlType="submit"
               >
                 Submit
               </RoundedBtn>
@@ -140,10 +161,16 @@ function ArtworkDetails() {
           onCancel={handleCancelDelete}
           footer={
             <>
-              <Button onClick={handleCancelDelete}>Cancel</Button>
-              <Button type="primary" onClick={confirmDelete}>
-                Confirm
-              </Button>
+              <Form onFinish={deleteArtwork}>
+                <Button onClick={handleCancelDelete}>Cancel</Button>{" "}
+                <Button
+                  type="primary"
+                  onClick={confirmDelete}
+                  htmlType="submit"
+                >
+                  Confirm
+                </Button>
+              </Form>
             </>
           }
         >
