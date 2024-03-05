@@ -15,6 +15,11 @@ function FormRequest({ status, setStatus }) {
   const [description, setDescription] = useState("");
   // console.log(id);
   const onFinish = async () => {
+    console.log(id);
+    console.log(title);
+    console.log(option);
+    console.log(description);
+
     try {
       const response = await api.post("/sendOrderRequest", {
         userID: id,

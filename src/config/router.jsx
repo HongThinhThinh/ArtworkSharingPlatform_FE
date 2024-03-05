@@ -54,7 +54,6 @@ export const router = createBrowserRouter([
       {
         path: ":id",
         element: <ChatDetail />,
-
       },
     ],
   },
@@ -127,6 +126,12 @@ export const router = createBrowserRouter([
       {
         path: "/creator-manage/room",
         element: <RoomChat />,
+        children: [
+          {
+            path: "/creator-manage/room/:id",
+            element: <ChatDetail />,
+          },
+        ],
       },
       {
         path: "/creator-manage/addArtWork",

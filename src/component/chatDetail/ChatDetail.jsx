@@ -4,8 +4,8 @@ import { Button, message } from "antd";
 import { LiaFacebookMessenger } from "react-icons/lia";
 import { useStateValue } from "../../Context/StateProvider";
 import RoomChatDetail from "../roomChatDetail/RoomChatDetail";
-import { useParams } from "react-router-dom";
 import api from "../../config/axios";
+import { useParams } from "react-router-dom";
 
 function ChatDetail() {
   const { setShowSearchFriends, theme } = useStateValue();
@@ -32,13 +32,13 @@ function ChatDetail() {
           </div>
           <h4>Your message</h4>
           <p>Send photos and private messages to friends</p>
-          <Button
+          {/* <Button
             type="primary"
             onClick={() => setShowSearchFriends(true)}
             style={{ marginTop: "15px" }}
           >
             Send Message
-          </Button>
+          </Button> */}
         </div>
       )}
     </>

@@ -7,6 +7,7 @@ import api from "../../config/axios";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 import { useNavigate, useParams } from "react-router-dom";
+import useRealtime from "../../assets/hook/useRealTime";
 
 function ChatList() {
   const { theme, setShowSearchFriends, active, setActive } = useStateValue();
@@ -14,17 +15,27 @@ function ChatList() {
   // const [user, setUser] = useState([]);
   const user = useSelector(selectUser);
   const { id } = useParams();
+
+  useRealtime(async (body) => {
+    if (body.body === "New message") {
+      await fetch();
+    } 
+  });
+
+  const fetch = async () => {
+    try {
+      const res = await api.get("/chat");
+      console.log(res.data);
+      // console.log(res.data.users);
+      setData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
   useEffect(() => {
-    const fetch = async () => {
-      try {
-        const res = await api.get("/chat");
-        console.log(res.data);
-        // console.log(res.data.users);
-        setData(res.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+   
     fetch();
   }, []);
 
@@ -37,7 +48,7 @@ function ChatList() {
               src="https://demoda.vn/wp-content/uploads/2022/01/anh-dai-dien-avt-anime-nen-xanh-la-553x600.jpg"
               alt=""
             />
-            <span>Đỗ Minh</span>
+            <span>{user.name}</span>
           </div>
           <div
             className="chat-list__information__right"
@@ -59,15 +70,6 @@ function ChatList() {
               lastMessage={room.lastMessage}
             />
           ))}
-
-          {/* <RoomMessage
-            room={1}
-            active={active}
-            setActive={setActive}
-            avt="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
-            name="Đỗ Minh"
-            lastMessage="lorem sadas asdosw s aos sad vpssanf uaysgd ausgyd auysgd aysgdai sd yiag diag diasgdidia gdiagdiasgdi gi"
-          /> */}
         </div>
       </div>
     </>
