@@ -48,11 +48,11 @@ const MyFormItemGroup = ({ prefix, children }) => {
 
 const EditProfile = ({ user }) => {
   const [form] = useForm();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [url, setUrl] = useState(user?.avt);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
   const showModal = () => {
     setIsModalOpen(true);
   };
