@@ -1,7 +1,7 @@
 export const navHeaderConfig = [
   {
     title: "Find talent",
-    path: "/hiring",
+    path: "/room-messages",
   },
   {
     title: "Inspiration",

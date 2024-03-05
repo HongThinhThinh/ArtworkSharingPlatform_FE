@@ -26,7 +26,7 @@ function RoomMessage({
     setShowChatList(false);
     user.role === "CREATOR"
       ? navigate(`/creator-manage/room/${room}`)
-      : navigate(`/test/${room}`);
+      : navigate(`/room-messages/${room}`);
   };
 
   return (

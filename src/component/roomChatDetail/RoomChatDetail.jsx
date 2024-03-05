@@ -22,6 +22,7 @@ function RoomChatDetail() {
   const params = useParams();
   const idRef = useRef(params.id);
   const [typing, setTyping] = useState("");
+
   const fetch = async () => {
     try {
       const res = await api.get(`/chat/detail/${idRef.current}`);
@@ -32,6 +33,7 @@ function RoomChatDetail() {
       console.log(err);
     }
   };
+
   useRealtime(async (body) => {
     if (body.body === "New message") {
       await fetch();

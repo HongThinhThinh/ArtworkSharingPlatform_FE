@@ -51,7 +51,7 @@ function ChatList({ setFetchRoom }) {
               src="https://demoda.vn/wp-content/uploads/2022/01/anh-dai-dien-avt-anime-nen-xanh-la-553x600.jpg"
               alt=""
             />
-            <span>{user.name}</span>
+            <span>{user?.name}</span>
           </div>
           <div
             className="chat-list__information__right"
