@@ -6,7 +6,7 @@ import "./RoomChatDetail.scss";
 import { BsImageFill } from "react-icons/bs";
 import { IoIosArrowBack } from "react-icons/io";
 import { useStateValue } from "../../Context/StateProvider";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import api from "../../config/axios";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
@@ -14,7 +14,7 @@ import useRealtime from "../../assets/hook/useRealTime";
 const { TextArea } = Input;
 
 function RoomChatDetail() {
-  const { theme, setShowChatList, setActive } = useStateValue();
+  const { theme, setShowChatList, setActive, setRealtime } = useStateValue();
   const messagesContainerRef = useRef();
   const [data, setData] = useState([]);
   const [message, setMessage] = useState("");
@@ -22,15 +22,28 @@ function RoomChatDetail() {
   const params = useParams();
   const idRef = useRef(params.id);
   const [typing, setTyping] = useState("");
-  
+
+  const fetch = async () => {
+    try {
+      const res = await api.get(`/chat/detail/${idRef.current}`);
+      console.log(res.data);
+      // console.log(res.data.users);
+      setData(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useRealtime(async (body) => {
     if (body.body === "New message") {
       await fetch();
     } else {
-      setTyping(body.body);
-      setTimeout(() => {
-        setTyping("");
-      }, 2000);
+      if (!body.body.includes(user.name)) {
+        setTyping(body.body);
+        setTimeout(() => {
+          setTyping("");
+        }, 2000);
+      }
     }
   });
 
@@ -44,16 +57,6 @@ function RoomChatDetail() {
       messagesContainerRef.current.scrollHeight;
   }, [data.messages]);
 
-  const fetch = async () => {
-    try {
-      const res = await api.get(`/chat/detail/${idRef.current}`);
-      console.log(res.data);
-      // console.log(res.data.users);
-      setData(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
   useEffect(() => {
     fetch();
   }, [params.id]);
@@ -63,6 +66,9 @@ function RoomChatDetail() {
       message: message,
     });
     setMessage("");
+    fetch();
+    setRealtime(res);
+    // fetchRoom();
     console.log(res.data);
   };
   return (
