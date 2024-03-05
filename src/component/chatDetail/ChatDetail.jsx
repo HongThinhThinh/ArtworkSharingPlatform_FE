@@ -8,12 +8,15 @@ import api from "../../config/axios";
 import { useParams } from "react-router-dom";
 
 function ChatDetail() {
-  const { setShowSearchFriends, theme } = useStateValue();
+  const { setShowSearchFriends, theme, realtime } = useStateValue();
   const params = useParams();
 
   const sendMessage = () => {
     console.log("send");
   };
+
+
+
 
   return (
     <>

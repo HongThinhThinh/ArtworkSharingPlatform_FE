@@ -9,9 +9,11 @@ import { selectUser } from "../../redux/features/counterSlice";
 import { useNavigate, useParams } from "react-router-dom";
 import useRealtime from "../../assets/hook/useRealTime";
 
-function ChatList() {
-  const { theme, setShowSearchFriends, active, setActive } = useStateValue();
+function ChatList({ setFetchRoom }) {
+  const { theme, setShowSearchFriends, active, setActive, realtime } =
+    useStateValue();
   const [data, setData] = useState([]);
+  const [isSet, setIsSet] = useState(false);
   // const [user, setUser] = useState([]);
   const user = useSelector(selectUser);
   const { id } = useParams();
@@ -19,9 +21,8 @@ function ChatList() {
   useRealtime(async (body) => {
     if (body.body === "New message") {
       await fetch();
-    } 
+    }
   });
-
   const fetch = async () => {
     try {
       const res = await api.get("/chat");
@@ -33,9 +34,11 @@ function ChatList() {
     }
   };
 
+  useEffect(() => {
+    fetch();
+  }, [realtime]);
 
   useEffect(() => {
-   
     fetch();
   }, []);
 

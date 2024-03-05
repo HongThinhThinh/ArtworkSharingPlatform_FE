@@ -10,6 +10,7 @@ export const StateProvider = ({ children }) => {
   const [active, setActive] = useState(0);
   const [creatorDetail, setCreatorDetail] = useState({});
   const [changeSection, setChangeSection] = useState("");
+  const [realtime, setRealtime] = useState("");
 
   const state = {
     theme,
@@ -26,6 +27,8 @@ export const StateProvider = ({ children }) => {
     setCreatorDetail,
     changeSection,
     setChangeSection,
+    realtime,
+    setRealtime,
   };
 
   return (
