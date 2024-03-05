@@ -48,7 +48,7 @@ import ChatDetail from "../component/chatDetail/ChatDetail";
 
 export const router = createBrowserRouter([
   {
-    path: "/test",
+    path: "/room-messages",
     element: <RoomChat />,
     children: [
       {
