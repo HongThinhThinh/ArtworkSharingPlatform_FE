@@ -44,7 +44,7 @@ function Header() {
       </Col>
     </Row>
   ) : isMobile ? (
-    <Row className="header animate__hinge">
+    <Row className="header ">
       <Col sm={2} className="header__bar">
         <Navigator />
       </Col>
