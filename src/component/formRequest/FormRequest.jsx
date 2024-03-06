@@ -15,10 +15,7 @@ function FormRequest({ status, setStatus }) {
   const [description, setDescription] = useState("");
   // console.log(id);
   const onFinish = async () => {
-    console.log(id);
-    console.log(title);
-    console.log(option);
-    console.log(description);
+
 
     try {
       const response = await api.post("/sendOrderRequest", {
@@ -46,7 +43,7 @@ function FormRequest({ status, setStatus }) {
         onCancel={setStatus}
         title={
           <div className="form__header">
-            <img src="https://cdn.dribbble.com/userupload/13160510/file/original-57ed6d83e8919f069a08973b01db421d.jpg?resize=1200x496&vertical=center" />
+            <img src="https://cdn.dribbble.com/userupload/13189939/file/original-17e6568a9162bb6b51733fb45c5772f4.jpg?resize=450x338&vertical=center" />
             <h4>Let's get your request ready to send</h4>
           </div>
         }
