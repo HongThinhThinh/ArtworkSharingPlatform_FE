@@ -8,11 +8,16 @@ import { IoAdd } from "react-icons/io5";
 import PostJob from "../../component/postJob/PostJob";
 import FormRequest from "../../component/formRequest/FormRequest";
 import api from "../../config/axios";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
+import { useNavigate } from "react-router-dom";
 
 function JobsPage() {
   const [status, setStatus] = useState(false);
   const [newdata, setNewData] = useState();
   const [render, setRender] = useState(true);
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
 
   const fetchData = async () => {
     try {
@@ -27,6 +32,10 @@ function JobsPage() {
     fetchData();
   }, [render]);
 
+  const onFinish = () =>{
+    if (user == null || user == undefined) navigate("/login");
+     else setStatus(!status);
+  }
 
 
   return (
@@ -42,7 +51,8 @@ function JobsPage() {
         </h5>
         <Button
           className="jobspage__hero__submit"
-          onClick={() => setStatus(!status)}
+          onClick={onFinish}
+
         >
           <IoAdd /> Post a jobs
         </Button>
@@ -68,12 +78,8 @@ function JobsPage() {
         {newdata?.map((data) => (
           <Col sm={24} md={24} lg={12} key={data.id}>
             <JobsView
-              title={data.title}
-              description={data.description}
-              price={data.price}
-              date={data.dateStart}
-              avt={data.audience.avt}
-              dateEnd={data.dateEnd}
+           
+              data = {data}
             />
           </Col>
         ))}

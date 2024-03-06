@@ -7,35 +7,73 @@ import api from "../../config/axios";
 import { getDifTime } from "../../assets/hook/useGetTime";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
-function JobsView({ title, description, price, date, avt, dateEnd}) {
-  const data = ["web", "mobile", "animation"];
-  const tags = data.map((tag) => {
+import { Form, useNavigate } from "react-router-dom";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
+function JobsView({ data }) {
+  const data1 = ["web", "mobile", "animation"];
+  const navigate = useNavigate();
+  const tags = data1.map((tag) => {
     return { tag };
   });
-  
+  const user = useSelector(selectUser);
+
+  const onFinish = async (e) => {
+    if (user.role === "AUDIENCE") navigate("/go-pro");
+    else {
+      try {
+        const response = await api.put("/updateOrderRequestGlobal", {
+          id: e,
+        });
+        navigate(`/creator-manage/requestOrder/requestOrderDetail/${e}`);
+        alertSuccess("Approve this job successfully");
+      } catch (error) {
+        alertFail(error.response.data);
+        // console.log(error);
+      }
+    }
+  };
+
+  console.log(data.audience.id);
 
   return (
     <div className="jobsview">
-      <Card className="jobsview__cart" bordered={false}>
-        <h1>{title}</h1>
+      <Card
+        className="jobsview__cart"
+        bordered={false}
+        style={{
+          width: 550,
+          height: 320,
+        }}
+      >
+        <h1>{data.title}</h1>
         <div className="jobsview__cart__info">
-          <img src={avt} />
-          <p>Posted {getDifTime(date)}</p>
+          <img src={data.audience.avt} />
+          <p>Posted {getDifTime(data.dateStart)}</p>
         </div>
         <div className="jobsview__cart__info-details">
-          <p>${price}</p>
-          <p>Deadline: {dateEnd}</p>
+          <p>${data.price}</p>
+          <p>Deadline: {data.dateEnd}</p>
         </div>
         <div className="jobsview__cart__description">
-          <p>{description}</p>
+          <p>{data.description}</p>
         </div>
         <div style={{ display: "flex", marginTop: "1em" }}>
-          {data.map((tag) => {
+          {data1.map((tag) => {
             return <Button className="jobsview__cart__tag">{tag}</Button>;
           })}
         </div>
 
-        <Button className="jobsview__cart__submit" >Approve</Button>
+        {user.id != data?.audience?.id ? (
+          <Button
+            className="jobsview__cart__submit"
+            htmlType="submit"
+            onClick={() => onFinish(data.id)}
+          >
+            Approve
+          </Button>
+        ) : (
+          ""
+        )}
       </Card>
     </div>
   );

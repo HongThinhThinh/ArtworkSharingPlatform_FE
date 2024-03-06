@@ -77,10 +77,7 @@ export const router = createBrowserRouter([
     path: "/account/unverified",
     element: <OTP />,
   },
-  {
-    path: "/go-pro",
-    element: <GoPro />,
-  },
+
   {
     path: "/checkout",
     element: <Checkout />,
@@ -184,6 +181,10 @@ export const router = createBrowserRouter([
       {
         path: "/jobs",
         element: <JobsPage />,
+      },
+      {
+        path: "/go-pro",
+        element: <GoPro />,
       },
       {
         path: "/profile",

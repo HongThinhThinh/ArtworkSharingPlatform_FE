@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./PostJob.scss";
 import { WarningFilled } from "@ant-design/icons";
 import api from "../../config/axios";
@@ -11,13 +11,15 @@ import Tag from "../tags/Tag";
 import { CornerDownLeft } from "lucide-react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
+import Logo from "../logo/Logo";
 
-function PostJob({ render, status, setStatus,setRender }) {
+function PostJob({ render, status, setStatus, setRender }) {
   const [selectedTags, setSelectedTags] = useState([]);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const user = useSelector(selectUser);
-
+  const formRef = useRef();
+ 
   const config = {
     rules: [
       {
@@ -47,15 +49,22 @@ function PostJob({ render, status, setStatus,setRender }) {
         dateStart: getCurrentDateTime(),
         dateEnd: values.date,
       });
-      console.log(values.date);
+      // console.log(values.date);
+      setDescription("");
+      setTitle("");
       setStatus();
-      setRender(!render)
+      setRender(!render);
+      formRef.current.resetFields();
       alertSuccess("Post new job successfully");
+      
     } catch (error) {
       alertFail("Post new job fail");
     }
   };
 
+
+  // console.log(description)
+  // console.log(title)
   return (
     <div className="post">
       <Modal
@@ -66,7 +75,8 @@ function PostJob({ render, status, setStatus,setRender }) {
         onCancel={setStatus}
         title={
           <div className="post__header">
-            <img src={user.avt} />
+            {/* <img src={user.avt} /> */}
+            <Logo />
             <h4>Post a job on Cremo</h4>
           </div>
         }
@@ -82,7 +92,7 @@ function PostJob({ render, status, setStatus,setRender }) {
         className="post-container"
       >
         <div className="post__container__details">
-          <Form onFinish={onFinish}>
+          <Form onFinish={onFinish} ref={formRef}>
             <p>
               {" "}
               Job title <span style={{ color: "red" }}>*</span>
@@ -103,11 +113,13 @@ function PostJob({ render, status, setStatus,setRender }) {
               ]}
             >
               <Input
+                
                 onInput={(e) => setTitle(e.target.value)}
                 placeholder="e.g. landing page, iOS icon"
                 maxLength={70}
                 showCount
                 className="post__container__details__input"
+                
               />
             </Form.Item>
             <p>
@@ -167,10 +179,10 @@ function PostJob({ render, status, setStatus,setRender }) {
             >
               <TextArea
                 onInput={(e) => setDescription(e.target.value)}
-                maxLength={1000}
-                rows={8}
                 placeholder="Looking to add another landing page to my current Webflow site..."
                 className="post__container__details__input"
+                maxLength={250}
+                showCount
               />
             </Form.Item>
 
