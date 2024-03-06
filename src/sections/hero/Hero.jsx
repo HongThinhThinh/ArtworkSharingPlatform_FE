@@ -5,9 +5,9 @@ import { Link } from "react-router-dom";
 
 function Hero() {
   return (
-    <div className="hero">
+    <div className="hero  ">
       <RandomColor>Over 8 billion ready-to-work creatives!</RandomColor>
-      <h1 className="hero__title">
+      <h1 className="hero__title ">
         Where creativity meets
         <br />
         mosaic of art

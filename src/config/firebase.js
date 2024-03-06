@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+// import { getMessaging, getToken, onMessage } from "firebase/messaging";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -23,28 +23,28 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth();
 export const storage = getStorage();
 export const db = getFirestore();
-export const messaging = getMessaging();
+// export const messaging = getMessaging();
 
-async function requestPermission() {
-  console.log("Requesting permission...");
-  await Notification.requestPermission();
-  return await getKey();
-}
+// async function requestPermission() {
+//   console.log("Requesting permission...");
+//   await Notification.requestPermission();
+//   return await getKey();
+// }
 
-const getKey = async () => {
-  const token = await getToken(messaging, {
-    vapidKey:
-      "BFitWxFCMseFg-EEdVCo1hRiLEeLMYfOkzQRxcCPywHKofsre7HlpjM8Pb7oAJB6t4gkHLnGA2q2bLCyKhjES0U",
-  });
-  return token;
-};
+// const getKey = async () => {
+//   const token = await getToken(messaging, {
+//     vapidKey:
+//       "BFitWxFCMseFg-EEdVCo1hRiLEeLMYfOkzQRxcCPywHKofsre7HlpjM8Pb7oAJB6t4gkHLnGA2q2bLCyKhjES0U",
+//   });
+//   return token;
+// };
 
-const listen = () => {
-  console.log("listening");
-  onMessage(messaging, (payload) => {
-    console.log("Message received. ", payload);
-    // ...
-  });
-};
+// const listen = () => {
+//   console.log("listening");
+//   onMessage(messaging, (payload) => {
+//     console.log("Message received. ", payload);
+//     // ...
+//   });
+// };
 
-export { requestPermission, listen };
+// export { requestPermission, listen };
