@@ -33,7 +33,7 @@ function JobsView({ data }) {
     }
   };
 
-  console.log(data.audience.id);
+
 
   return (
     <div className="jobsview">
@@ -63,7 +63,7 @@ function JobsView({ data }) {
           })}
         </div>
 
-        {user.id != data?.audience?.id ? (
+        {user?.id != data?.audience?.id ? (
           <Button
             className="jobsview__cart__submit"
             htmlType="submit"
