@@ -1,7 +1,8 @@
+
 export const navHeaderConfig = [
   {
-    title: "Find talent",
-    path: "/room-messages",
+    title: "Message",
+    path: "/room-messages", 
   },
   {
     title: "Inspiration",

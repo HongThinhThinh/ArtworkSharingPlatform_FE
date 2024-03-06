@@ -5,8 +5,11 @@ import { navFooterConfig, navHeaderConfig } from "./config";
 import { useMediaQuery } from "react-responsive";
 import { Button, Drawer, Space } from "antd";
 import { AlignLeftOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
 
 function Navigator({ status }) {
+  const user = useSelector(selectUser);
   const [isOpen, setIsOpen] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 920 });
   const navList = status == "footer" ? navFooterConfig : navHeaderConfig;
@@ -60,9 +63,10 @@ function Navigator({ status }) {
           </Drawer>
         </nav>
       ) : (
-        navList.map((nav) => (
-          <Link className="navigator__nav" to={nav.path} key={nav.title}>
-            {nav.title}
+        navList.map((nav) => 
+        (
+          <Link className="navigator__nav" to={nav.path === "/room-messages" ? user?.role === "CREATOR"? "/creator-manage/room":"/room-messages": nav.path} key={nav.title}>
+            {nav.title === "Message" ? user === null ? "" : nav.title: nav.title === "Go Pro" ? user?.role === "CREATOR" ? "" : nav.title : nav.title }
           </Link>
         ))
       )}
