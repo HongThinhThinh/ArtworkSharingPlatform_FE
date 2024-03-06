@@ -9,9 +9,12 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 import { Form, useNavigate } from "react-router-dom";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
+import { useMediaQuery } from "react-responsive";
+
 function JobsView({ data }) {
   const data1 = ["web", "mobile", "animation"];
   const navigate = useNavigate();
+  const isMobile = useMediaQuery({ maxWidth: "550px" });
   const tags = data1.map((tag) => {
     return { tag };
   });
@@ -33,17 +36,18 @@ function JobsView({ data }) {
     }
   };
 
-
-
   return (
     <div className="jobsview">
       <Card
         className="jobsview__cart"
         bordered={false}
-        style={{
-          width: 550,
-          height: 320,
-        }}
+        style={
+          isMobile
+            ? {
+                height: "auto",
+              }
+            : { height: "360px" }
+        }
       >
         <h1>{data.title}</h1>
         <div className="jobsview__cart__info">
