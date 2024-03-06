@@ -62,14 +62,19 @@ function RoomChatDetail() {
   }, [params.id]);
 
   const sendMessage = async () => {
-    const res = await api.post(`/chat/send/${idRef.current}`, {
-      message: message,
-    });
-    setMessage("");
-    fetch();
-    setRealtime(res);
-    // fetchRoom();
-    console.log(res.data);
+   
+    if(message.length !== 0){
+      console.log("asdasd");
+      const res = await api.post(`/chat/send/${idRef.current}`, {
+        message: message,
+      });
+      setMessage("");
+      fetch();
+      setRealtime(res);
+      // fetchRoom();
+      console.log(res.data);
+    }
+   
   };
   return (
     <div className="chat-detail">
@@ -104,9 +109,10 @@ function RoomChatDetail() {
 
         {data?.messages?.map((item) => (
           <Message
-            key={item.user.id}
-            text={item.message}
-            me={item.user.id === user.id ? "me" : ""}
+            key={item.user?.id}
+            text={item?.message}
+            me={item.user?.id === user?.id ? "me" : ""}
+            avt={item.user.avt}
           />
         ))}
       </div>
@@ -141,9 +147,10 @@ function RoomChatDetail() {
           <label htmlFor="file">
             <BsImageFill fontSize={"25px"} cursor={"pointer"} />
           </label>
-          <button onClick={sendMessage}>
+          {message.length === 0 || (<button onClick={sendMessage}>
             <IoSend color={theme ? "#fff" : "#000"} fontSize={"25px"} />
-          </button>
+          </button>)}
+          
         </div>
       </div>
     </div>
