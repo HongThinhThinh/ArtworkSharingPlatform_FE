@@ -47,10 +47,7 @@ function ChatList({ setFetchRoom }) {
       <div className="chat-list">
         <div className="chat-list__information">
           <div className="chat-list__information__left">
-            <img
-              src="https://demoda.vn/wp-content/uploads/2022/01/anh-dai-dien-avt-anime-nen-xanh-la-553x600.jpg"
-              alt=""
-            />
+            <img src={user?.avt} alt="" />
             <span>{user?.name}</span>
           </div>
           <div
