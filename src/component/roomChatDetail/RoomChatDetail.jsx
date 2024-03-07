@@ -47,6 +47,12 @@ function RoomChatDetail() {
     }
   });
 
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  }
+
   useEffect(() => {
     console.log(params.id);
     idRef.current = params.id;
@@ -62,8 +68,7 @@ function RoomChatDetail() {
   }, [params.id]);
 
   const sendMessage = async () => {
-   
-    if(message.length !== 0){
+    if (message.length !== 0) {
       console.log("asdasd");
       const res = await api.post(`/chat/send/${idRef.current}`, {
         message: message,
@@ -74,7 +79,6 @@ function RoomChatDetail() {
       // fetchRoom();
       console.log(res.data);
     }
-   
   };
   return (
     <div className="chat-detail">
@@ -118,7 +122,8 @@ function RoomChatDetail() {
       </div>
       {typing}
       <div className="chat-detail__input">
-        <TextArea
+        <Input
+          onKeyDown={handleKeyDown}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           onInput={async () => {
@@ -147,10 +152,11 @@ function RoomChatDetail() {
           <label htmlFor="file">
             <BsImageFill fontSize={"25px"} cursor={"pointer"} />
           </label>
-          {message.length === 0 || (<button onClick={sendMessage}>
-            <IoSend color={theme ? "#fff" : "#000"} fontSize={"25px"} />
-          </button>)}
-          
+          {message.length === 0 || (
+            <button onClick={sendMessage}>
+              <IoSend color={theme ? "#fff" : "#000"} fontSize={"25px"} />
+            </button>
+          )}
         </div>
       </div>
     </div>
