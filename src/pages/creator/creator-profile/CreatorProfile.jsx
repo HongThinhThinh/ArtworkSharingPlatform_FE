@@ -10,7 +10,7 @@ function CreatorProfile() {
   const user = useSelector(selectUser);
   // console.log(user);
   return (
-    <div className="wrap-creatorProfile">
+    <div className="wrap-creatorProfile ">
       <div className="header-noti">
         <Notification />
       </div>

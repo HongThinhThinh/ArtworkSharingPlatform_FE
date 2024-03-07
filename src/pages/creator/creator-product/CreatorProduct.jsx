@@ -25,7 +25,7 @@ function CreatorProduct() {
         color: theme ? "#fff" : "#202020",
       }}
     >
-      <CreatorProfile />
+      <CreatorProfile  />
       <div className="listArtWork">
         <div className="list-drop">
           <span className="DropDownTop--span">Artwork</span>

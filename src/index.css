@@ -8,27 +8,40 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  animation-fill-mode: none !important;
 }
 
 *::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
+
 *::-webkit-scrollbar-track {
   border-radius: 100px;
   background: rgba(0, 0, 0, 0.1);
 }
+
 *::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.2);
 }
+
 *::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.4);
 }
+
 *::-webkit-scrollbar-thumb:active {
   background: rgba(0, 0, 0, 0.9);
 }
 
 .swal2-popup {
   font-family: "MediumCereal";
+}
+
+
+@media (print),
+(prefers-reduced-motion: reduce) {
+  .motionless__banner {
+    display: block;
+  }
 }

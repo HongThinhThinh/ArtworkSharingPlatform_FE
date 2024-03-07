@@ -21,7 +21,7 @@ function LayoutLeft() {
     localStorage.setItem("theme", !theme);
   };
   return (
-    <div className="layoutLeft">
+    <div className="layoutLeft ">
       <img
         style={{ cursor: "pointer" }}
         onClick={() => navigate("/")}
