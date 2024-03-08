@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./RequestOrderDetail.scss";
 import { Avatar, Button } from "antd";
 import { AiFillMessage } from "react-icons/ai";
@@ -18,13 +18,28 @@ function ViewOrderDetail({ choice }) {
   const { id } = useParams();
   const [demoRequest, setDemoRequest] = useState([]);
   const user = useSelector(selectUser);
+  const scrollRef = useRef(null); // Tham chiếu đến phần tử cần cuộn đến
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      const element = scrollRef.current;
+      const elementHeight = element.clientHeight;
+      window.scrollTo({
+        top: element.offsetTop - window.innerHeight / 2 + elementHeight / 2,
+        behavior: "smooth",
+      });
+    }
+  }, [data]);
+
   const createRoom = async () => {
     try {
       const res = await api.post("/chat", {
         members: [data.creator.id, user.id],
       });
       console.log(res.data);
-      user.role === "CREATOR"? navigate(`/creator-manage/room/${res.data.roomID}`):navigate(`/room-messages/${res.data.roomID}`);
+      user.role === "CREATOR"
+        ? navigate(`/creator-manage/room/${res.data.roomID}`)
+        : navigate(`/room-messages/${res.data.roomID}`);
     } catch (err) {
       alertFail(err);
     }
@@ -63,7 +78,12 @@ function ViewOrderDetail({ choice }) {
   return (
     <>
       {data != null ? (
-        <div className={`view-order-detail ${choice ? "view" : ""}`}>
+        <div
+          ref={scrollRef}
+          className={`view-order-detail animate__animated  animate__backInDown  ${
+            choice ? "view" : ""
+          }`}
+        >
           <LeftCircleTwoTone
             twoToneColor="#b42d81"
             style={{

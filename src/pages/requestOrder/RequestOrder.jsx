@@ -6,6 +6,7 @@ import api from "../../config/axios";
 import { Outlet, useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 import { useStateValue } from "../../Context/StateProvider";
+import moment from "moment";
 
 function RequestOrder() {
   const isActive = useLocation().pathname == "/creator-manage/requestOrder";
@@ -24,10 +25,15 @@ function RequestOrder() {
   }, [filter]);
 
   const fetchData = async () => {
-    console.log("GET DATA Lan 1");
     try {
       const response = await api.get("/getAllOrderRequestCreator");
-      setList(response.data.data);
+      let fetchedData = response.data.data;
+      fetchedData.sort((a, b) => {
+        const dateA = moment(a.dateStart, "MMMM Do YYYY, h:mm:ss a");
+        const dateB = moment(b.dateStart, "MMMM Do YYYY, h:mm:ss a");
+        return dateB.diff(dateA); // So sánh và sắp xếp theo thứ tự giảm dần
+      });
+      setList(fetchedData);
       setListFilter(
         response.data.data.filter((item) =>
           getFilter(filter).includes(item.status)
@@ -37,9 +43,6 @@ function RequestOrder() {
       console.error("Error fetching data:", error);
     }
   };
-
-  console.log(filter);
-  console.log(list);
 
   const getFilter = (status) => {
     console.log(list);

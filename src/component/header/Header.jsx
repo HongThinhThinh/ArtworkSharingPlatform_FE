@@ -16,7 +16,11 @@ function Header() {
   const user = useSelector(selectUser);
   return isIPad ? (
     <Row container className="header">
-      <Col xl={4} lg={4} className="header__logo">
+      <Col
+        xl={4}
+        lg={4}
+        className="header__logo  animate__animated animate__bounce animate__zoomInLeft"
+      >
         <Logo />
       </Col>
       <Col xl={10} lg={9} className="header__bar">
@@ -50,7 +54,7 @@ function Header() {
       </Col>
       <Col
         sm={3}
-        className="header__logo "
+        className="header__logo  animate__animated animate__bounce animate__zoomInLeft"
         style={{ display: "flex", justifyContent: "start" }}
       >
         <Logo />
@@ -81,7 +85,11 @@ function Header() {
       <Col xl={10} lg={9} className="header__bar">
         <Navigator />
       </Col>
-      <Col xl={4} lg={4} className="header__logo ">
+      <Col
+        xl={4}
+        lg={4}
+        className="header__logo  animate__animated animate__bounce animate__zoomInLeft"
+      >
         <Logo />
       </Col>
       <Col xl={10} lg={11} className="header__action">

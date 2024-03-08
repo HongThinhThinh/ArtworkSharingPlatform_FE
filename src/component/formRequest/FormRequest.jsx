@@ -6,7 +6,7 @@ import { WarningFilled } from "@ant-design/icons";
 import api from "../../config/axios";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import { getCurrentDateTime } from "../../assets/hook/useGetTime";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function FormRequest({ status, setStatus }) {
   const { id } = useParams();
@@ -14,9 +14,8 @@ function FormRequest({ status, setStatus }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   // console.log(id);
+  const navigate = useNavigate();
   const onFinish = async () => {
-
-
     try {
       const response = await api.post("/sendOrderRequest", {
         userID: id,
@@ -31,6 +30,7 @@ function FormRequest({ status, setStatus }) {
       setStatus(false);
       setTitle("");
       setDescription("");
+      navigate("/profile/orders");
     } catch (e) {
       alertFail(e.response.data);
     }

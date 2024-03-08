@@ -19,7 +19,7 @@ function WorkartSection() {
   }, []);
   return (
     <div className="workart-section">
-      <h2 className="workart-section__title" data-aos="fade-">
+      <h2 className="workart-section__title " data-aos="fade-">
         Explore inspiring designs
       </h2>
       <Row container gutter={32}>
