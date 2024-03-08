@@ -10,19 +10,12 @@ import { useEffect } from "react";
 import useRealtime from "./assets/hook/useRealTime";
 
 // import { listen, requestPermission } from "./config/firebase";
-import WOW from "wowjs";
 
 AOS.init({
   // initialise with other settings
   duration: 1000,
 });
 function App() {
-  useEffect(() => {
-    const newWOW = () => {
-      new WOW.WOW({ live: false }).init();
-    };
-    newWOW();
-  }, []);
   // useEffect(() => {
   //   const getKey = async () => {
   //     const key = await requestPermission();
