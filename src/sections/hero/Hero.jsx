@@ -2,6 +2,7 @@ import React from "react";
 import RandomColor from "../../component/randomColor/RandomColor";
 import "./Hero.scss";
 import { Link } from "react-router-dom";
+
 function Hero() {
   return (
     <div className="hero    ">
@@ -11,11 +12,11 @@ function Hero() {
         <br />
         mosaic of art
       </h1>
-      <h5 className="hero__subtitle ">
+      <h5 className="hero__subtitle  animate__backInDown">
         Get inspired by the work of millions of top-rated designers & agencies
         around the world.
       </h5>
-      <Link className="hero__getStarted animate__hinge">Get started</Link>
+      <Link className="hero__getStarted ">Get started</Link>
     </div>
   );
 }

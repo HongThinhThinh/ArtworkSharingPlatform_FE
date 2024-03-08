@@ -8,6 +8,7 @@ import "aos/dist/aos.css";
 import { StateProvider } from "./Context/StateProvider";
 import { useEffect } from "react";
 import useRealtime from "./assets/hook/useRealTime";
+
 // import { listen, requestPermission } from "./config/firebase";
 
 AOS.init({

@@ -6,6 +6,8 @@ import api from "../../config/axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
+import { getDifTime } from "../../assets/hook/useGetTime";
+import moment from "moment";
 
 function Order({ check, setCheck, filter }) {
   const [newData, setNewData] = useState([]);
@@ -15,19 +17,30 @@ function Order({ check, setCheck, filter }) {
     const fetch = async () => {
       try {
         const res = await api.get("/getAllOrderRequestAudience");
-        console.log(res.data.data);
         setData(res.data.data);
-        if (filter != "ALL") {
-          if(filter == "PENDING"){
-            setNewData(res.data.data.filter((item) => ["PENDING","GLOBAL"].includes(item.status)));
-            
-          }else{
-            setNewData(res.data.data.filter((item) => item.status == filter));
+        let filteredData = res.data.data;
+        console.log(filteredData);
+        // Sắp xếp lại theo ngày giảm dần
+        filteredData.sort((a, b) => {
+          const dateA = moment(a.dateStart, "MMMM Do YYYY, h:mm:ss a");
+          const dateB = moment(b.dateStart, "MMMM Do YYYY, h:mm:ss a");
+          return dateB.diff(dateA);
+        });
+
+        // Lọc dữ liệu dựa trên bộ lọc
+        if (filter !== "ALL") {
+          if (filter === "PENDING") {
+            filteredData = filteredData.filter((item) =>
+              ["PENDING", "GLOBAL"].includes(item.status)
+            );
+          } else {
+            filteredData = filteredData.filter(
+              (item) => item.status === filter
+            );
           }
-          
-        } else {
-          setNewData(res.data.data);
         }
+
+        setNewData(filteredData);
         setCheck(res.data.data);
       } catch (e) {
         // alertFail("Fail to load");
@@ -39,8 +52,9 @@ function Order({ check, setCheck, filter }) {
   return (
     <>
       {newData.length > 0 ? (
-        newData.map((item) =>
-          // item.status == filter || filter == "ALL" ? (
+        newData.map(
+          (item) => (
+            // item.status == filter || filter == "ALL" ? (
             <div className="order" key={item.id}>
               <div className="order__top">
                 <div className="order__top__right">
@@ -64,15 +78,19 @@ function Order({ check, setCheck, filter }) {
                 <div className="order__top__left">{item.status}</div>
               </div>
               <div className="order__detail">
-               {item.status == "GLOBAL"?"": <div className="order__detail__creator">
-                  <Avatar
-                    src={item.creator?.avt}
-                    className="order__detail__creator__avatar"
-                  />
-                  <div className="order__detail__creator__info">
-                    <h3>{item.creator?.name}</h3>
+                {item.status == "GLOBAL" ? (
+                  ""
+                ) : (
+                  <div className="order__detail__creator">
+                    <Avatar
+                      src={item.creator?.avt}
+                      className="order__detail__creator__avatar"
+                    />
+                    <div className="order__detail__creator__info">
+                      <h3>{item.creator?.name}</h3>
+                    </div>
                   </div>
-                </div>}
+                )}
                 <h3 className="order__detail__title">{item.title}</h3>
                 <p className="order__detail__title">{item.description}</p>
               </div>
@@ -87,6 +105,7 @@ function Order({ check, setCheck, filter }) {
                 </Button>
               </div>
             </div>
+          )
           // ) : null
         )
       ) : (

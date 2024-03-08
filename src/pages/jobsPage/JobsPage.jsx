@@ -32,15 +32,14 @@ function JobsPage() {
     fetchData();
   }, [render]);
 
-  const onFinish = () =>{
+  const onFinish = () => {
     if (user == null || user == undefined) navigate("/login");
-     else setStatus(!status);
-  }
-
+    else setStatus(!status);
+  };
 
   return (
     <div className="jobspage">
-      <div className="jobspage__hero">
+      <div className="jobspage__hero animate__animated animate__bounce animate__rubberBand ">
         <h1>
           The #1 job board for <br />
           graphic design jobs
@@ -49,15 +48,16 @@ function JobsPage() {
           Cremo is the heart of the design community and the best resource to
           discover <br /> and connect with designers and jobs worldwide.
         </h5>
-        <Button
-          className="jobspage__hero__submit"
-          onClick={onFinish}
-
-        >
+        <Button className="jobspage__hero__submit" onClick={onFinish}>
           <IoAdd /> Post a jobs
         </Button>
 
-        <PostJob render={render} setRender={setRender} status={status} setStatus={() => setStatus(!status)} />
+        <PostJob
+          render={render}
+          setRender={setRender}
+          status={status}
+          setStatus={() => setStatus(!status)}
+        />
       </div>
       <div className="jobspage__hero-banner">
         <div style={{ display: "flex" }}>
@@ -77,10 +77,7 @@ function JobsPage() {
       <Row container style={{ margin: "2em" }}>
         {newdata?.map((data) => (
           <Col sm={24} md={24} lg={12} key={data.id}>
-            <JobsView
-           
-              data = {data}
-            />
+            <JobsView data={data} />
           </Col>
         ))}
       </Row>
