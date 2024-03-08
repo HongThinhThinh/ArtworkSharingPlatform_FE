@@ -49,7 +49,7 @@ function JobsPage() {
           discover <br /> and connect with designers and jobs worldwide.
         </h5>
         <Button className="jobspage__hero__submit" onClick={onFinish}>
-          <IoAdd /> Post a jobs
+          <IoAdd /> Post a job
         </Button>
 
         <PostJob
