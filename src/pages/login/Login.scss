@@ -142,6 +142,9 @@ label.ant-form-item-required {
   .login {
     &__form {
       &__container {
+        &__gg-btn {
+          color:white;
+        }
         &__linkToSignUp {
           font-size: 1em;
         }

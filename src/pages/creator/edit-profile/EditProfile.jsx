@@ -277,7 +277,7 @@ const EditProfile = ({ user }) => {
               rules={[
                 {
                   required: true,
-                  message: "Please input your password!",
+                  message: <div><WarningFilled /> Please input your password!</div>,
                 },
               ]}
             >
@@ -298,8 +298,22 @@ const EditProfile = ({ user }) => {
               name="newpassword"
               rules={[
                 {
+                  min: 6,
+                  max:6,
+                  message: (
+                    <div>
+                      <WarningFilled /> Password must be at least 6
+                      characters!
+                    </div>
+                  ),
+                },
+                {
                   required: true,
-                  message: "Please input your password!",
+                  message: (
+                    <div>
+                      <WarningFilled /> Please input your new password!
+                    </div>
+                  ),
                 },
               ]}
             >
@@ -320,8 +334,22 @@ const EditProfile = ({ user }) => {
               name="repassword"
               rules={[
                 {
+                  min: 6,
+                  max:6,
+                  message: (
+                    <div>
+                      <WarningFilled /> Password must be at least 6
+                      characters!
+                    </div>
+                  ),
+                },
+                {
                   required: true,
-                  message: "Please input your password!",
+                  message: (
+                    <div>
+                      <WarningFilled /> Please input your re-password!
+                    </div>
+                  ),
                 },
               ]}
             >

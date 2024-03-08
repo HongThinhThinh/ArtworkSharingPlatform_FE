@@ -10,6 +10,7 @@ import api from "../../config/axios";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
+import ImgPreview from "../../pages/Image/Image";
 
 function ViewOrderDetail({ choice }) {
   const navigate = useNavigate();
@@ -83,6 +84,7 @@ function ViewOrderDetail({ choice }) {
           className={`view-order-detail animate__animated  animate__backInDown  ${
             choice ? "view" : ""
           }`}
+          style={{height:"auto"}}
         >
           <LeftCircleTwoTone
             twoToneColor="#b42d81"
@@ -183,6 +185,31 @@ function ViewOrderDetail({ choice }) {
                   Accept Offer
                 </Button>
               </div>
+            )}
+
+            {data.status === "DONE" ? (
+              <div className="request-order-detail__upload-demo__content__right">
+                <div
+                  style={{ marginTop: "30px" }}
+                  className="request-order-detail__detail__description"
+                >
+                  <h3>Message: </h3>
+                  <p>{newData ? newData.productMessage : null}</p>
+                </div>
+                <div className="request-order-detail__upload-demo__upload">
+                  <ImgPreview
+                    src={data.productImage}
+                    width="50%"
+                    height="50%"
+                    style={{
+                      margin: "1em 0",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+              </div>
+            ) : (
+              ""
             )}
           </div>
 
