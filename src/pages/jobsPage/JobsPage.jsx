@@ -11,6 +11,7 @@ import api from "../../config/axios";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 function JobsPage() {
   const [status, setStatus] = useState(false);
@@ -22,7 +23,13 @@ function JobsPage() {
   const fetchData = async () => {
     try {
       const response = await api.get("/getAllOrderRequest-global");
-      setNewData(response.data.data);
+      let filterData = response.data.data;
+      filterData.sort((a, b) => {
+        const dateA = moment(a.dateStart, "MMMM Do YYYY, h:mm:ss a");
+        const dateB = moment(b.dateStart, "MMMM Do YYYY, h:mm:ss a");
+        return dateB.diff(dateA);
+      });
+      setNewData(filterData);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
