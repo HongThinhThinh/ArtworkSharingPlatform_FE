@@ -14,6 +14,7 @@ function RoomMessage({
   lastMessage,
   icon,
 }) {
+
   const { setIdRoomChat, setShowSearchFriends, setShowChatList } =
     useStateValue();
   const navigate = useNavigate();

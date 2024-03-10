@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ListFeedback.scss";
 import { FaHeart } from "react-icons/fa6";
 import { AiOutlineComment } from "react-icons/ai";
@@ -12,9 +12,13 @@ import { IoMdClose } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { EllipsisOutlined } from "@ant-design/icons";
 import { Button, Popover } from "antd";
-import {  useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
+import api from "../../config/axios";
+import { getCurrentDateTime } from "../../assets/hook/useGetTime";
+
 function ListFeedback({
+  idArtwork,
   title,
   description,
   avt,
@@ -22,11 +26,22 @@ function ListFeedback({
   id,
   setOpenUpdate,
   setOpenDelete,
+  countLike,
+  countComment,
+  interactionLike,
+  interactionComment,
 }) {
   const isMobile = useMediaQuery({ maxWidth: "550px" });
   const [isOpen, setIsOpen] = useState(true);
+  const [comment, setComment] = useState("");
+  const [dataComment, setDataComment] = useState({});
+  const [like, setLike] = useState(false);
+
+  const commentRef = useRef();
+
   const navigate = useNavigate();
   const user = useSelector(selectUser);
+
   const showModal = () => {
     setOpenUpdate(true);
   };
@@ -34,6 +49,61 @@ function ListFeedback({
   const showModalDelete = () => {
     setOpenDelete(true);
   };
+
+  const sendComment = async () => {
+    if(comment !== ""){
+      try {
+        const res = await api.post("/send-interaction", {
+          content: comment,
+          createDate: getCurrentDateTime(),
+          type: "comment",
+          artworkId: idArtwork,
+        });
+        setComment("");
+        setDataComment(res.data.data);
+      } catch (e) {}
+    }
+  };
+
+  const sendLike = async () => {
+    try {
+      const res = await api.post("/send-interaction", {
+        createDate: getCurrentDateTime(),
+        type: "like",
+        artworkId: idArtwork,
+      });
+    } catch (e) {
+      if(e.response.data === "Expired Token!"){
+        navigate(`/login`)
+      }
+      if(e.response.data === "dislike"){
+        const res123 = await api.put("/disLike", {
+          artworkId: idArtwork,
+        });
+      }
+    }
+  };
+
+  function handleKeyDown(event) {
+    if (event.key === "Enter") {
+      sendComment();
+    }
+  }
+
+  useEffect(() => {
+      const check = interactionLike.filter((item) => item.user?.id === user?.id)[0]
+       if(check !== undefined){
+        setLike(true)
+       }else{
+        setLike(false)
+
+       }
+  }, [interactionLike]);
+
+
+  useEffect(() => {
+    commentRef.current.scrollTop = commentRef.current.scrollHeight;
+  }, [interactionComment]);
 
   const content = (
     <div className="edit-artwork-popup">
@@ -43,7 +113,6 @@ function ListFeedback({
   );
 
   useEffect(() => {
-    console.log(isOpen);
     const close = document.querySelector(".listFeedback--interact__close");
     if (isOpen == true) {
       close.style.display = "block";
@@ -61,22 +130,24 @@ function ListFeedback({
           icon={<FaRegCircle />}
         />
       </div>
-      { id == user?.id ?
+      {id == user?.id ? (
         <Popover placement="bottomRight" content={content}>
-        <EllipsisOutlined
-          style={{
-            float: "right",
-            transform: "translateY(-2.6em) translateX(-1em)",
-            padding: "1px",
-            cursor: "pointer",
-            zIndex: 10,
-            borderRadius: "100px",
-            border: "2px solid black",
-          }}
-        />
-      </Popover>:""
-      }
-     
+          <EllipsisOutlined
+            style={{
+              float: "right",
+              transform: "translateY(-2.6em) translateX(-1em)",
+              padding: "1px",
+              cursor: "pointer",
+              zIndex: 10,
+              borderRadius: "100px",
+              border: "2px solid black",
+            }}
+          />
+        </Popover>
+      ) : (
+        ""
+      )}
+
       <div className="listFeedback--contentt">
         <h2>{title}</h2>
         <p>{description}</p>
@@ -87,15 +158,15 @@ function ListFeedback({
         </div>
       ) : null}
       <div className="listFeedback--interact">
-        <div className="listFeedback--interact__like">
-          <FaHeart /> 123k
+        <div onClick={sendLike} className="listFeedback--interact__like">
+          {like ? <FaHeart color="red"/> : <FaHeart />}  {countLike}
         </div>
         {isMobile ? (
           <div
             className="listFeedback--interact__cmt"
             onClick={() => setIsOpen(!isOpen)}
           >
-            <AiOutlineComment /> 120
+            <AiOutlineComment /> {countComment}
             <div
               className="listFeedback--interact__close"
               onClick={() => setIsOpen(!isOpen)}
@@ -106,7 +177,7 @@ function ListFeedback({
         ) : (
           <>
             <div className="listFeedback--interact__cmt">
-              <AiOutlineComment /> 120
+              <AiOutlineComment /> {countComment}
               <div className="listFeedback--interact__close">
                 {/* <IoMdClose /> */}
               </div>
@@ -119,50 +190,20 @@ function ListFeedback({
       </div>
       <div className="wrapListfeedback">
         {isOpen && (
-          <div className="listFeedback--comments" style={{ height: "420px" }}>
-            <div className="listFeedback--comments__detail">
-              <RoomMessage
-                avt="https://st3.depositphotos.com/3431221/13621/v/450/depositphotos_136216036-stock-illustration-man-avatar-icon-hipster-character.jpg"
-                name="Mr.HungLd"
-                lastMessage="10 điểm bao ra hội đồng"
-              />
-            </div>
-            <div className="listFeedback--comments__detail">
-              <RoomMessage
-                avt="https://i.pinimg.com/736x/4e/41/80/4e41806d170438330304b85351eda597.jpg"
-                name="HuongNTC"
-                lastMessage="10diem ko noi nhieu~"
-              />
-            </div>
-            <div className="listFeedback--comments__detail">
-              <RoomMessage
-                avt="https://i.pinimg.com/564x/1b/24/ac/1b24ac6dfd3fc14f2365eb93da2f84c2.jpg"
-                name="Đỗ Minh"
-                lastMessage="Tuyet voi"
-              />
-            </div>
-            <div className="listFeedback--comments__detail">
-              <RoomMessage
-                avt="https://i.pinimg.com/564x/bf/c1/5f/bfc15f7f42a5ff420eb00fe54c0e0b1c.jpg"
-                name="Nhi Nguyễn"
-                lastMessage="Kìn chá nà"
-              />
-            </div>
-
-            <div className="listFeedback--comments__detail">
-              <RoomMessage
-                avt="https://i.pinimg.com/564x/72/22/73/7222736f4512fc88ca0e475c2269f8d8.jpg"
-                name="Thinh"
-                lastMessage="hok dep "
-              />
-            </div>
-            <div className="listFeedback--comments__detail">
-              <RoomMessage
-                avt="https://i.pinimg.com/564x/72/22/73/7222736f4512fc88ca0e475c2269f8d8.jpg"
-                name="Thinh"
-                lastMessage="hok dep "
-              />
-            </div>
+          <div
+            className="listFeedback--comments"
+            style={{ height: "420px" }}
+            ref={commentRef}
+          >
+            {interactionComment?.map((item) => (
+              <div className="listFeedback--comments__detail">
+                <RoomMessage
+                  avt={item.user?.avt}
+                  name={item.user?.name}
+                  lastMessage={item?.content}
+                />
+              </div>
+            ))}
           </div>
         )}
         <div className="listFeedback--input">
@@ -171,8 +212,17 @@ function ListFeedback({
             alt=""
           />
           <div className="listFeedback--input_wrap">
-            <input type="text" />
-            <div className="listFeedback--input_wrap__send">
+            <input
+              value={comment}
+              onInput={(e) => setComment(e.target.value)}
+              type="text"
+              onKeyDown={handleKeyDown}
+            />
+            <div
+              onClick={sendComment}
+              style={{ cursor: "pointer" }}
+              className="listFeedback--input_wrap__send"
+            >
               <BiSend />
             </div>
           </div>

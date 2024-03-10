@@ -3,7 +3,6 @@ import "./WorkartMedia.scss";
 import { useNavigate } from "react-router-dom";
 
 function WorkartMedia({ image, id }) {
-  console.log(id);
   const navigate = useNavigate();
   return (
     <div

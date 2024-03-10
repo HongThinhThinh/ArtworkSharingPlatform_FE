@@ -11,15 +11,25 @@ import { ExclamationCircleTwoTone } from "@ant-design/icons";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import LoadingDelete from "../../component/loadingDelete/LoadingDelete";
 import Rocket from "../../component/loadingDelete/Rocket";
+import useRealtime from "../../assets/hook/useRealTime";
+import moment from "moment";
 
 function ArtworkDetails() {
   const [open, setOpen] = useState(false);
   const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
   const [data, setData] = useState({});
   const [user, setUser] = useState({});
+  const [interactionLike, setInteractionLike] = useState([]);
+  const [interactionComment, setInteractionComment] = useState([]);
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
+
+  useRealtime(async (body) => {
+    if (body.body === "interaction") {
+      await fetchData();
+    }
+  });
 
   const handleCancel = () => {
     setOpen(false);
@@ -40,10 +50,20 @@ function ArtworkDetails() {
   useEffect(() => {
     fetchData();
   }, [id]);
+
+
   const fetchData = async () => {
     try {
       const response = await api.get(`/artwork-detail/${id}`);
       const { data } = response.data;
+      setInteractionLike(data.interactionLike)
+      const listComment = data.interactionComment
+      listComment.sort((a, b) => {
+        const dateA = moment(a.createDate, "MMMM Do YYYY, h:mm:ss a");
+        const dateB = moment(b.createDate, "MMMM Do YYYY, h:mm:ss a");
+        return dateA.diff(dateB); 
+      });
+      setInteractionComment(listComment)
       setUser(data.user || {});
       setData(data || {});
       console.log(data);
@@ -51,6 +71,7 @@ function ArtworkDetails() {
       console.error("Error fetching artwork details:", error);
     }
   };
+
   const update = async (e) => {
     setShow(true);
     try {
@@ -66,6 +87,7 @@ function ArtworkDetails() {
     }
     setShow(false);
   };
+
 
   const deleteArtwork = async () => {
     setShow(true);
@@ -97,6 +119,7 @@ function ArtworkDetails() {
                 </div>
                 <div className="artworkDetails--right">
                   <ListFeedback
+                  idArtwork={data?.id}
                     id={user.id}
                     title={data.title}
                     description={data.description}
@@ -104,6 +127,10 @@ function ArtworkDetails() {
                     name={user.name}
                     setOpenUpdate={setOpen}
                     setOpenDelete={setOpenConfirmDelete}
+                    countLike={data.countLike}
+                    countComment={data.countComment}
+                    interactionLike={interactionLike}
+                    interactionComment={interactionComment}
                   />
                 </div>
                 <Modal
