@@ -3,11 +3,19 @@ import "./Workart.scss";
 import WorkartInfo from "../workartInfo/WorkartInfo";
 import WorkartMedia from "../workartMedia/WorkartMedia";
 
-function Workart({ image, name, avatar }) {
+function Workart({idArtwork,idCreator, image, name, avatar, countLike, countComment ,interactionLike}) {
   return (
     <div data-aos="fade-up">
-      <WorkartMedia image={image} />
-      <WorkartInfo name={name} avatar={avatar} />
+      <WorkartMedia  image={image} id={idArtwork}/>
+      <WorkartInfo
+      interactionLike={interactionLike}
+      idArtwork={idArtwork}
+        idCreator={idCreator}
+        name={name}
+        avatar={avatar}
+        countLike={countLike}
+        countComment={countComment}
+      />
     </div>
   );
 }

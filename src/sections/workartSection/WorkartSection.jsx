@@ -7,13 +7,14 @@ import { useNavigate, useParams } from "react-router-dom";
 
 function WorkartSection() {
   const [data, setData] = useState([]);
-  const navigate = useNavigate();
+
+
   const { id } = useParams();
   useEffect(() => {
     const getAll = async () => {
       const response = await api.get("/artworks");
-      console.log(response);
       setData(response.data.data);
+     
     };
     getAll();
   }, []);
@@ -26,7 +27,6 @@ function WorkartSection() {
         {data.map((artwork, index) => (
           <Col
             style={{ cursor: "pointer" }}
-            onClick={() => navigate(`/artworkDetails/${artwork.id}`)}
             xs={24}
             sm={12}
             lg={8}
@@ -35,9 +35,14 @@ function WorkartSection() {
             key={index}
           >
             <Workart
+              idArtwork={artwork?.id}
+              idCreator={artwork.user.id}
               image={artwork.image}
               name={artwork.user.name}
               avatar={artwork.user.avt}
+              countLike={artwork.countLike}
+              countComment={artwork.countComment}
+              interactionLike={artwork.interactionLike}
             />
           </Col>
         ))}
