@@ -40,8 +40,8 @@ import Checkout from "../pages/checkout/Checkout";
 import OptionUpgrate from "../component/optionUpgrade/OptionUpgrate";
 import ViewOrderDetail from "../component/requestOrderDetail/ViewOrderDetail";
 import RequestOrderDetail from "../component/requestOrderDetail/RequestOrderDetail";
-import InProgressOrderDetail from "../component/requestOrderDetail/InProgressOrderDetail";
 import ChatDetail from "../component/chatDetail/ChatDetail";
+import WalletPage from "../pages/WalletPage/WalletPage";
 
 export const router = createBrowserRouter([
   {
@@ -179,6 +179,11 @@ export const router = createBrowserRouter([
         path: "/jobs",
         element: <JobsPage />,
       },
+
+      {
+        path: "/buyPosts",
+        element: <OptionUpgrate />,
+      },
       {
         path: "/go-pro",
         element: <GoPro />,
@@ -194,6 +199,10 @@ export const router = createBrowserRouter([
           {
             path: "/profile/orders",
             element: <OrderHistory />,
+          },
+          {
+            path: "/profile/wallet",
+            element: <WalletPage />,
           },
           {
             path: "/profile/orderDetail/:id",

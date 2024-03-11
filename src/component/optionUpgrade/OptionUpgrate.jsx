@@ -1,7 +1,22 @@
 import React from "react";
 import RoundedBtn from "../rounded-button/RoundedButton";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
+import api from "../../config/axios";
 
 function OptionUpgrate() {
+  const buyPost = async (Money, post, des) => {
+    try {
+      const res = await api.post("/buyPost", {
+        money: Money,
+        quantity: post,
+        description: des,
+      });
+      console.log(res.data.data);
+      alertSuccess("Buy post successfully!!!");
+    } catch (err) {
+      alertFail(err.response.data);
+    }
+  };
   return (
     <section
       className="bg-white dark:bg-gray-900"
@@ -27,8 +42,8 @@ function OptionUpgrate() {
               features to showcase your work.
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">$8</span>
-              <span className="text-gray-500 dark:text-gray-400">/month</span>
+              <span className="mr-2 text-5xl font-extrabold">1$</span>
+              <span className="text-gray-500 dark:text-gray-400">/post</span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -110,7 +125,9 @@ function OptionUpgrate() {
             </ul>
 
             <div className=" max-w-2xl sm:text-center">
-              <RoundedBtn color="black"> Get started </RoundedBtn>
+              <RoundedBtn onClick={() => buyPost(1, 1, "basic")} color="black">
+                Buy
+              </RoundedBtn>
             </div>
             <p className="font-light text-gray-400 dark:text-gray-300">
               *Pros who post over 1 shots per month get 10x more views on
@@ -125,8 +142,8 @@ function OptionUpgrate() {
               features to showcase your work.
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">$29</span>
-              <span className="text-gray-500 dark:text-gray-400">/month</span>
+              <span className="mr-2 text-5xl font-extrabold">$3</span>
+              <span className="text-gray-500 dark:text-gray-400">/5 Post</span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -238,7 +255,9 @@ function OptionUpgrate() {
             </ul>
 
             <div className=" max-w-2xl sm:text-center">
-              <RoundedBtn color="black"> Get started </RoundedBtn>
+              <RoundedBtn color="black" onClick={() => buyPost(3, 5, "Pro")}>
+                Buy
+              </RoundedBtn>
             </div>
             <p className="font-light text-gray-400 dark:text-gray-300">
               *Vip pro who post over 10 shots per month get 10x more views on
@@ -253,8 +272,8 @@ function OptionUpgrate() {
               features to showcase your work.
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">$15</span>
-              <span className="text-gray-500 dark:text-gray-400">/month</span>
+              <span className="mr-2 text-5xl font-extrabold">5$</span>
+              <span className="text-gray-500 dark:text-gray-400">/10Post</span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -350,7 +369,9 @@ function OptionUpgrate() {
               </li>
             </ul>
             <div className=" max-w-2xl sm:text-center">
-              <RoundedBtn color="black"> Get started </RoundedBtn>
+              <RoundedBtn color="black" onClick={() => buyPost(5, 10, "Vip")}>
+                Buy
+              </RoundedBtn>
             </div>
             <p className="font-light text-gray-400 dark:text-gray-300">
               *Pro who post over 5 shots per month get 10x more views on average
