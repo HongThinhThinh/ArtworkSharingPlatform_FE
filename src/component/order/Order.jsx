@@ -19,7 +19,7 @@ function Order({ check, setCheck, filter }) {
         const res = await api.get("/getAllOrderRequestAudience");
         setData(res.data.data);
         let filteredData = res.data.data;
-        console.log(filteredData);
+        console.table(filteredData);
         // Sắp xếp lại theo ngày giảm dần
         filteredData.sort((a, b) => {
           const dateA = moment(a.dateStart, "MMMM Do YYYY, h:mm:ss a");

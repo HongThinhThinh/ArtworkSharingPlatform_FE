@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Col,
@@ -19,18 +19,85 @@ import {
 
 import { Avatar, Card } from "antd";
 import RoundedBtn from "../../component/rounded-button/RoundedButton";
+import axios from "axios";
+import api from "../../config/axios";
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
+import { alertSuccess } from "../../assets/hook/useNotification";
 
 const { Meta } = Card;
 function WalletPage() {
   const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   const [number, setNumber] = useState(1);
+  const [number2, setNumber2] = useState(1);
+  const [check, setCheck] = useState({});
+  const [wallet, setWallet] = useState({});
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const id = searchParams.get("id");
+  console.log(id);
+  const user = useSelector(selectUser);
 
   const handleCancel = () => {
     setOpen(false);
   };
+  const handleCancel2 = () => {
+    setOpen2(false);
+  };
 
-  const onFinish = () => {
-    console.log(number);
+  useEffect(() => {
+    if (id) {
+      recharge();
+    }
+  }, [id]);
+
+  useEffect(() => {
+    getWalletDetail();
+  }, []);
+
+  const onFinish = async () => {
+    try {
+      const res = await api.post("/request-recharge-paypal", {
+        amount: number,
+      });
+      console.log(res.data.data);
+      window.location.href = res.data.data;
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const recharge = async () => {
+    try {
+      const res = await api.put(`/recharge/${id}`, {});
+      setWallet(res.data.data);
+      alertSuccess("Recharge Successfully");
+    } catch (e) {
+      console.log(e.response.data == "Reload");
+    }
+  };
+  const getWalletDetail = async () => {
+    try {
+      const res = await api.get(`/walletDetail/${user?.id}`, {});
+      console.log(res.data.data);
+      setWallet(res.data.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const vnPayhandler = async () => {
+    try {
+      const res = await api.post("request-recharge-vnpay", {
+        amount: number2,
+      });
+      console.log(res.data.data);
+      window.location.href = res.data.data;
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <div className="walletPage">
@@ -50,15 +117,61 @@ function WalletPage() {
             <Avatar src="https://banner2.cleanpng.com/20191114/ygp/transparent-cash-icon-money-icon-business-and-trade-icon-5dcde2c791aea7.9075525915737740235967.jpg" />
           }
           title="Your balance "
-          description="1020$"
+          description={wallet?.balance == 0 ? "0 $" : `${wallet?.balance} $`}
         />
         <div
           style={{ marginTop: "20px", display: "flex", gap: "20px" }}
           className="btnPay"
         >
           <div onClick={() => setOpen(true)}>
-            <ButtonPlan />
+            <ButtonPlan content="paypal" />
           </div>
+          <div onClick={() => setOpen2(true)}>
+            <ButtonPlan content="vnpay" />
+          </div>
+
+          <Modal open={open2} onCancel={handleCancel2} footer={null}>
+            <Form onFinish={vnPayhandler}>
+              <div style={{ fontFamily: "MediumCereal", marginBottom: "-2em" }}>
+                <Form.Item name="amount">
+                  <h3
+                    style={{
+                      fontFamily: "MediumCereal",
+                      marginBottom: "1.2em",
+                    }}
+                  >
+                    Amount of money
+                  </h3>
+                  <Form.Item
+                    name="amount"
+                    noStyle
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input!",
+                      },
+                    ]}
+                  >
+                    <InputNumber
+                      addonBefore="+"
+                      addonAfter="$"
+                      defaultValue={number2}
+                      onChange={(e) => setNumber2(e)}
+                    />
+                  </Form.Item>
+                </Form.Item>
+              </div>
+              <Form.Item>
+                <RoundedBtn
+                  color="#2C547F"
+                  style={{ width: "100%", transform: "translateY(1em)" }}
+                  htmlType="submit"
+                >
+                  Submit
+                </RoundedBtn>
+              </Form.Item>
+            </Form>
+          </Modal>
           <Modal open={open} onCancel={handleCancel} footer={null}>
             <Form onFinish={onFinish}>
               <div style={{ fontFamily: "MediumCereal", marginBottom: "-2em" }}>
