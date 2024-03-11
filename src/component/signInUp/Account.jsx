@@ -33,6 +33,7 @@ function Account() {
       )}
 
       <Link to="/profile/orders">Your Orders</Link>
+      <Link to="/wallet">Your wallet</Link>
       <Link
         to="/"
         onClick={() => {

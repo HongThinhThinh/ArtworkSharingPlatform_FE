@@ -7,6 +7,7 @@ import api from "../../config/axios";
 import { getCurrentDateTime } from "../../assets/hook/useGetTime";
 import { selectUser } from "../../redux/features/counterSlice";
 import { useSelector } from "react-redux";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 
 function WorkartInfo({
   idCreator,
@@ -22,19 +23,18 @@ function WorkartInfo({
   const user = useSelector(selectUser);
   const [number, setNumber] = useState(countLike);
 
-
-  useEffect(() => {  
-        const check = interactionLike.filter((item) => item.user?.id === user?.id)[0]
-       if(check !== undefined){
-        setLike(true)
-       }else{
-        setLike(false)
-       }
+  useEffect(() => {
+    const check = interactionLike?.filter(
+      (item) => item.user?.id === user?.id
+    )[0];
+    if (check !== undefined) {
+      setLike(true);
+    } else {
+      setLike(false);
+    }
   }, []);
 
-
   const sendLike = async () => {
- 
     try {
       const res = await api.post("/send-interaction", {
         createDate: getCurrentDateTime(),
@@ -42,17 +42,21 @@ function WorkartInfo({
         artworkId: idArtwork,
       });
       setLike(true);
-      setNumber(countLike+1)
+      setNumber(countLike + 1);
     } catch (e) {
-      if(e.response.data === "Expired Token!"){
-        navigate(`/login`)
+      if (
+        e.response.data === "Expired Token!" ||
+        e.response.data == "Invalid Token!"
+      ) {
+        alertFail("You need to login first");
+        navigate(`/login`);
       }
       if (e.response.data === "dislike") {
         const res123 = await api.put("/disLike", {
           artworkId: idArtwork,
         });
         setLike(false);
-        setNumber(number-1)
+        setNumber(number - 1);
       }
     }
   };

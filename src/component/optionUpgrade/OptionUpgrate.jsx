@@ -27,8 +27,8 @@ function OptionUpgrate() {
               features to showcase your work.
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">$8</span>
-              <span className="text-gray-500 dark:text-gray-400">/month</span>
+              <span className="mr-2 text-5xl font-extrabold">1$</span>
+              <span className="text-gray-500 dark:text-gray-400">/post</span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -125,8 +125,8 @@ function OptionUpgrate() {
               features to showcase your work.
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">$29</span>
-              <span className="text-gray-500 dark:text-gray-400">/month</span>
+              <span className="mr-2 text-5xl font-extrabold">$3</span>
+              <span className="text-gray-500 dark:text-gray-400">/5 Post</span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">
@@ -253,8 +253,8 @@ function OptionUpgrate() {
               features to showcase your work.
             </p>
             <div className="flex justify-center items-baseline my-8">
-              <span className="mr-2 text-5xl font-extrabold">$15</span>
-              <span className="text-gray-500 dark:text-gray-400">/month</span>
+              <span className="mr-2 text-5xl font-extrabold">5$</span>
+              <span className="text-gray-500 dark:text-gray-400">/10Post</span>
             </div>
 
             <ul role="list" className="mb-8 space-y-4 text-left">

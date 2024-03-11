@@ -51,7 +51,7 @@ function ListFeedback({
   };
 
   const sendComment = async () => {
-    if(comment !== ""){
+    if (comment !== "") {
       try {
         const res = await api.post("/send-interaction", {
           content: comment,
@@ -61,7 +61,14 @@ function ListFeedback({
         });
         setComment("");
         setDataComment(res.data.data);
-      } catch (e) {}
+      } catch (e) {
+        if (
+          e.response.data === "Expired Token!" ||
+          e.response.data === "Invalid Token!"
+        ) {
+          navigate(`/login`);
+        }
+      }
     }
   };
 
@@ -73,10 +80,13 @@ function ListFeedback({
         artworkId: idArtwork,
       });
     } catch (e) {
-      if(e.response.data === "Expired Token!"){
-        navigate(`/login`)
+      if (
+        e.response.data === "Expired Token!" ||
+        e.response.data === "Invalid Token!"
+      ) {
+        navigate(`/login`);
       }
-      if(e.response.data === "dislike"){
+      if (e.response.data === "dislike") {
         const res123 = await api.put("/disLike", {
           artworkId: idArtwork,
         });
@@ -91,15 +101,15 @@ function ListFeedback({
   }
 
   useEffect(() => {
-      const check = interactionLike.filter((item) => item.user?.id === user?.id)[0]
-       if(check !== undefined){
-        setLike(true)
-       }else{
-        setLike(false)
-
-       }
+    const check = interactionLike.filter(
+      (item) => item.user?.id === user?.id
+    )[0];
+    if (check !== undefined) {
+      setLike(true);
+    } else {
+      setLike(false);
+    }
   }, [interactionLike]);
-
 
   useEffect(() => {
     commentRef.current.scrollTop = commentRef.current.scrollHeight;
@@ -159,7 +169,7 @@ function ListFeedback({
       ) : null}
       <div className="listFeedback--interact">
         <div onClick={sendLike} className="listFeedback--interact__like">
-          {like ? <FaHeart color="red"/> : <FaHeart />}  {countLike}
+          {like ? <FaHeart color="red" /> : <FaHeart />} {countLike}
         </div>
         {isMobile ? (
           <div
@@ -192,7 +202,7 @@ function ListFeedback({
         {isOpen && (
           <div
             className="listFeedback--comments"
-            style={{ height: "420px" }}
+            style={{ height: "390px" }}
             ref={commentRef}
           >
             {interactionComment?.map((item) => (
@@ -206,27 +216,30 @@ function ListFeedback({
             ))}
           </div>
         )}
-        <div className="listFeedback--input">
-          <img
-            src="https://cdn.sforum.vn/sforum/wp-content/uploads/2023/11/avatar-vo-tri-91.jpg"
-            alt=""
-          />
-          <div className="listFeedback--input_wrap">
-            <input
-              value={comment}
-              onInput={(e) => setComment(e.target.value)}
-              type="text"
-              onKeyDown={handleKeyDown}
-            />
-            <div
-              onClick={sendComment}
-              style={{ cursor: "pointer" }}
-              className="listFeedback--input_wrap__send"
-            >
-              <BiSend />
+        {user == null ? (
+          ""
+        ) : (
+          <>
+            <div className="listFeedback--input">
+              <img src={user?.avt} alt="" />
+              <div className="listFeedback--input_wrap">
+                <input
+                  value={comment}
+                  onInput={(e) => setComment(e.target.value)}
+                  type="text"
+                  onKeyDown={handleKeyDown}
+                />
+                <div
+                  onClick={sendComment}
+                  style={{ cursor: "pointer" }}
+                  className="listFeedback--input_wrap__send"
+                >
+                  <BiSend />
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
