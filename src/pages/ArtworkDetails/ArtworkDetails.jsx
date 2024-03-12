@@ -51,19 +51,18 @@ function ArtworkDetails() {
     fetchData();
   }, [id]);
 
-
   const fetchData = async () => {
     try {
       const response = await api.get(`/artwork-detail/${id}`);
       const { data } = response.data;
-      setInteractionLike(data.interactionLike)
-      const listComment = data.interactionComment
+      setInteractionLike(data.interactionLike);
+      const listComment = data.interactionComment;
       listComment.sort((a, b) => {
         const dateA = moment(a.createDate, "MMMM Do YYYY, h:mm:ss a");
         const dateB = moment(b.createDate, "MMMM Do YYYY, h:mm:ss a");
-        return dateA.diff(dateB); 
+        return dateA.diff(dateB);
       });
-      setInteractionComment(listComment)
+      setInteractionComment(listComment);
       setUser(data.user || {});
       setData(data || {});
       console.log(data);
@@ -87,7 +86,6 @@ function ArtworkDetails() {
     }
     setShow(false);
   };
-
 
   const deleteArtwork = async () => {
     setShow(true);
@@ -119,7 +117,8 @@ function ArtworkDetails() {
                 </div>
                 <div className="artworkDetails--right">
                   <ListFeedback
-                  idArtwork={data?.id}
+                    price={data.price}
+                    idArtwork={data?.id}
                     id={user.id}
                     title={data.title}
                     description={data.description}

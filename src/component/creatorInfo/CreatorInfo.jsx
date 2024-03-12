@@ -90,13 +90,13 @@ function CreatorInfo({
                 className="creator-info__contact__getInTouch"
                 onClick={() => setStatus(!status)}
               >
-                Get In Touch
+                Request Order
               </Button>
               <FormRequest
                 status={status}
                 setStatus={() => setStatus(!status)}
               />
-              <Button className="creator-info__contact__follow">Follow</Button>
+              {/* <Button className="creator-info__contact__follow">Follow</Button> */}
 
               <Dropdown
                 className="creator-info__contact__dropdownCreator"

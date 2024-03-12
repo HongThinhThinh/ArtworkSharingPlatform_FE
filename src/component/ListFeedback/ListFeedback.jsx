@@ -9,13 +9,14 @@ import { FaRegCircle } from "react-icons/fa6";
 import { useMediaQuery } from "react-responsive";
 import ImgPreview from "../../pages/Image/Image";
 import { IoMdClose } from "react-icons/io";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { EllipsisOutlined } from "@ant-design/icons";
 import { Button, Popover } from "antd";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 import api from "../../config/axios";
 import { getCurrentDateTime } from "../../assets/hook/useGetTime";
+import ButtonBuy from "../buttonBuy/ButtonBuy";
 
 function ListFeedback({
   idArtwork,
@@ -30,13 +31,13 @@ function ListFeedback({
   countComment,
   interactionLike,
   interactionComment,
+  price,
 }) {
   const isMobile = useMediaQuery({ maxWidth: "550px" });
   const [isOpen, setIsOpen] = useState(true);
   const [comment, setComment] = useState("");
   const [dataComment, setDataComment] = useState({});
   const [like, setLike] = useState(false);
-
   const commentRef = useRef();
 
   const navigate = useNavigate();
@@ -49,7 +50,8 @@ function ListFeedback({
   const showModalDelete = () => {
     setOpenDelete(true);
   };
-
+  const params = useParams();
+  console.log(params);
   const sendComment = async () => {
     if (comment !== "") {
       try {
@@ -69,6 +71,16 @@ function ListFeedback({
           navigate(`/login`);
         }
       }
+    }
+  };
+  
+  const handleBuy = async () => {
+    try {
+      const res = await api.post(`/buyArtwork/${params.id}`, {});
+      console.log(res.data.data);
+      navigate("/checkout");
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -132,13 +144,33 @@ function ListFeedback({
   }, [isOpen]);
   return (
     <div className="listFeedback">
-      <div onClick={() => navigate(`/creator/${id}`)}>
-        <RoomMessage
-          avt={avt || "abc"}
-          name={name}
-          lastMessage="Available for working"
-          icon={<FaRegCircle />}
-        />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          position: "relative",
+        }}
+      >
+        <div style={{ backgroundColor: "white", width: "100%" }}>
+          <div onClick={() => navigate(`/creator/${id}`)}>
+            <RoomMessage
+              avt={avt || "abc"}
+              name={name}
+              lastMessage="Available for working"
+              icon={<FaRegCircle />}
+            />
+          </div>
+          {price > 0 && id != user?.id ? (
+            <div
+              onClick={handleBuy}
+              style={{ position: "absolute", right: "30px", top: "30px" }}
+            >
+              <ButtonBuy />
+            </div>
+          ) : (
+            ""
+          )}
+        </div>
       </div>
       {id == user?.id ? (
         <Popover placement="bottomRight" content={content}>
@@ -155,10 +187,11 @@ function ListFeedback({
           />
         </Popover>
       ) : (
-        ""
+        " "
       )}
 
       <div className="listFeedback--contentt">
+        {price > 0 ? <h2>{`${price} $`}</h2> : ""}
         <h2>{title}</h2>
         <p>{description}</p>
       </div>

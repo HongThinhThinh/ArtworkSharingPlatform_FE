@@ -8,13 +8,11 @@ import { useNavigate, useParams } from "react-router-dom";
 function WorkartSection() {
   const [data, setData] = useState([]);
 
-
   const { id } = useParams();
   useEffect(() => {
     const getAll = async () => {
       const response = await api.get("/artworks");
       setData(response.data.data);
-     
     };
     getAll();
   }, []);
@@ -35,6 +33,7 @@ function WorkartSection() {
             key={index}
           >
             <Workart
+              price={artwork.price}
               idArtwork={artwork?.id}
               idCreator={artwork.user.id}
               image={artwork.image}
