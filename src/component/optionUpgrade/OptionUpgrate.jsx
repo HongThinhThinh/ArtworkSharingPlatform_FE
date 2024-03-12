@@ -2,8 +2,11 @@ import React from "react";
 import RoundedBtn from "../rounded-button/RoundedButton";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import api from "../../config/axios";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/features/counterSlice";
 
 function OptionUpgrate() {
+  const dispatch = useDispatch();
   const buyPost = async (Money, post, des) => {
     try {
       const res = await api.post("/buyPost", {
@@ -12,6 +15,7 @@ function OptionUpgrate() {
         description: des,
       });
       console.log(res.data.data);
+      dispatch(login(res.data.data));
       alertSuccess("Buy post successfully!!!");
     } catch (err) {
       alertFail(err.response.data);

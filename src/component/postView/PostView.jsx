@@ -5,11 +5,21 @@ import { Button, Modal } from "antd";
 import api from "../../config/axios";
 import { alertSuccess } from "../../assets/hook/useNotification";
 import { useState } from "react";
-function PostView({ img, title, avatar, name, description, id, setReload }) {
+import { getDifTime } from "../../assets/hook/useGetTime";
+function PostView({
+  img,
+  title,
+  avatar,
+  name,
+  description,
+  id,
+  setReload,
+  price,
+  createDate,
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [reason, setReason] = useState("");
 
-  
   const handleApproveArtWork = async () => {
     const response = await api.put(`/artwork-approve/${id}`, {
       status: "active",
@@ -47,10 +57,21 @@ function PostView({ img, title, avatar, name, description, id, setReload }) {
           <img src={avatar} />
 
           <div className="postview__content__info__details">
-            <h4>{name}</h4>
-            <p> 1 hour ago</p>
+            <h4 style={{ display: "flex;" }}>
+              {name}{" "}
+              {price > 0 ? (
+                <>
+                  <div className="info__right__tag">PRO</div>
+                </>
+              ) : (
+                " "
+              )}
+            </h4>
+            <p>{getDifTime(createDate)}</p>
           </div>
         </div>
+
+        <p>{price > 0 ? `${price}$` : " "}</p>
         <h1>{title}</h1>
         <p>{description}</p>
 
