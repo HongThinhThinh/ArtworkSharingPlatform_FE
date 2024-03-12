@@ -73,12 +73,14 @@ function ListFeedback({
       }
     }
   };
-  
+
   const handleBuy = async () => {
     try {
       const res = await api.post(`/buyArtwork/${params.id}`, {});
       console.log(res.data.data);
-      navigate("/checkout");
+      navigate(
+        `/your-bill?idArtwork=${params.id}&transactionId=${res.data.data.transaction.transactionID}`
+      );
     } catch (e) {
       console.log(e);
     }
