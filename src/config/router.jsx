@@ -42,7 +42,11 @@ import ViewOrderDetail from "../component/requestOrderDetail/ViewOrderDetail";
 import RequestOrderDetail from "../component/requestOrderDetail/RequestOrderDetail";
 import ChatDetail from "../component/chatDetail/ChatDetail";
 import WalletPage from "../pages/WalletPage/WalletPage";
+
 import PrintBill from "../pages/PrintBill/PrintBill";
+
+import WatermarkArtwork from "../component/waterMask/WatermarkArtwork";
+
 
 export const router = createBrowserRouter([
   {
@@ -66,6 +70,10 @@ export const router = createBrowserRouter([
   {
     path: "register",
     element: <SignUp />,
+  },
+  {
+    path: "test2",
+    element: <WatermarkArtwork />,
   },
   {
     path: "/password_resets/new",
