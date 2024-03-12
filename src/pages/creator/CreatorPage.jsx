@@ -68,6 +68,7 @@ function CreatorPage() {
           />
         </Sider>
       )}
+      <h1>Artworks</h1>
 
       <Content
         width={isChangeLayout ? "100%" : "75%"}
