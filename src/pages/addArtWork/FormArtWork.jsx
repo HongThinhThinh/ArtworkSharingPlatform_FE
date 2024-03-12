@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Button, Form, Input, Row, Switch } from "antd";
+import React, { useState, useEffect, useRef } from "react";
+import { Button, Divider, Form, Input, Row, Space, Switch, Tour } from "antd";
 
 const { TextArea } = Input;
 import Tags from "../../component/tags/Tag";
@@ -13,6 +13,10 @@ import { getCurrentDateTime } from "../../assets/hook/useGetTime";
 import api from "../../config/axios";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import Loading from "../../component/loading/Loading";
+import { useDispatch, useSelector } from "react-redux";
+import { login, selectUser } from "../../redux/features/counterSlice";
+import { useNavigate } from "react-router-dom";
+import { EllipsisOutlined } from "@ant-design/icons";
 
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
@@ -36,15 +40,29 @@ const MyFormItemGroup = ({ prefix, children }) => {
 function FormArtwork() {
   const [isSell, setIsSell] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [price, setPrice] = useState(false);
   const { theme } = useStateValue();
   const [URL, setURL] = useState(image1);
-  const [imageUploaded, setImageUploaded] = useState(false); // State to track if image is uploaded
+  const [imageUploaded, setImageUploaded] = useState(false);
+  const user = useSelector(selectUser);
+  const navigate = useNavigate();
+  const dispath = useDispatch();
+  const ref1 = useRef(null);
+  const steps = [
+    {
+      title: "You don't have enough posts left",
+      description: "Click here to buy post",
+      target: () => ref1.current,
+    },
+  ];
+  const [open, setOpen] = useState(false);
+  console.log(user);
   const getLink = async (file) => {
     let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
     setURL(URL);
     URL = await uploadFile(file);
     setURL(URL);
-    setImageUploaded(true); // Set imageUploaded to true after uploading the image
+    setImageUploaded(true);
   };
 
   const onChange = (checked) => {
@@ -55,19 +73,34 @@ function FormArtwork() {
 
   const onFinish = async (value) => {
     setIsLoading(true);
+    if (price == 0) {
+      alertFail("Price is greater than zero");
+      setIsLoading(false);
+      return;
+    }
+    if (isSell) {
+      console.log(isSell);
+      if (user?.postQuantity == 0) {
+        setIsLoading(false);
+        setOpen(true);
+        return;
+      }
+    }
     try {
       const response = await api.post("/postArtwork", {
         title: value.title,
         image: URL,
         description: value.description,
-        price: 0,
+        price: isSell ? price : 0,
         createDate: getCurrentDateTime(),
         categoriesName: selectedTags,
       });
-      console.log(response.data);
+      console.log(response.data.data);
+      dispath(login(response.data.data.user));
       alertSuccess(response.data.message);
     } catch (e) {
-      alertFail(e.message);
+      // alertFail(e.message);
+      console.log(e);
     }
     setIsLoading(false);
   };
@@ -128,7 +161,7 @@ function FormArtwork() {
                 </Form.Item>
                 {isSell && (
                   <Form.Item
-                    label="Price"
+                    label="Price $"
                     name="price"
                     className="login__form__container__namepass__group-form"
                     rules={[
@@ -139,7 +172,11 @@ function FormArtwork() {
                       },
                     ]}
                   >
-                    <Input className="login__form__container__namepass__group-form__input" />
+                    <Input
+                      onInput={(e) => setPrice(e.target.value)}
+                      type="number"
+                      className="login__form__container__namepass__group-form__input"
+                    />
                   </Form.Item>
                 )}
               </MyFormItemGroup>
@@ -155,8 +192,17 @@ function FormArtwork() {
             </Form>
           </div>
           <div className="FormArtWork--image">
-            <div className="FormArtWork--image__remain-posts">
-              Post times remain: <span>1</span>
+            <div style={{ display: "flex", gap: "20px" }}>
+              <div className="FormArtWork--image__remain-posts">
+                Post times remain: <span>{user?.postQuantity}</span>
+              </div>
+              <Button
+                style={{ marginTop: "6px" }}
+                onClick={() => navigate("/buyPosts")}
+                ref={ref1}
+              >
+                Buy Post
+              </Button>
             </div>
             <ImgPreview src={URL} />
             <div
@@ -167,6 +213,8 @@ function FormArtwork() {
               <UploadArtWork content="Upload new Artwork" />
             </div>
           </div>
+          <Divider />
+          <Tour steps={steps} open={open} onClose={() => setOpen(false)} />
         </Row>
       )}
     </div>

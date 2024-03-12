@@ -10,7 +10,9 @@
       font-family: "BoldMonaSans";
       font-size: 1.7em;
     }
-
+    h4 {
+      display: flex;
+    }
     p {
       font-family: "RegularMonaSans";
       font-size: 1em;
@@ -80,8 +82,8 @@
   .postview {
     margin: 0em;
     padding: 1em 0;
-     &__image {
+    &__image {
       width: 10% !important;
-     }
+    }
   }
 }
