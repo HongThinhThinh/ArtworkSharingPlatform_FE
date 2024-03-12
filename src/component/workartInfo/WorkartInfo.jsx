@@ -17,12 +17,13 @@ function WorkartInfo({
   countLike,
   countComment,
   interactionLike,
+  price,
 }) {
   const navigate = useNavigate();
   const [like, setLike] = useState(false);
   const user = useSelector(selectUser);
   const [number, setNumber] = useState(countLike);
-
+  console.log(price);
   useEffect(() => {
     const check = interactionLike?.filter(
       (item) => item.user?.id === user?.id
@@ -68,7 +69,7 @@ function WorkartInfo({
       >
         <Avatar style={{ height: "1.7em", width: "1.7em" }} src={avatar} />
         <Typography className="info__right__name">{name}</Typography>
-        <div className="info__right__tag">PRO</div>
+        {price > 0 ? <div className="info__right__tag">PRO</div> : ""}
       </div>
       <div className="info__left">
         <div onClick={() => sendLike()} className="info__left__favorites">
