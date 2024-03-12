@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
 import whiteLogo from "../../assets/Cremo-white.svg";
 import "./PrintBill.scss";
-import { Avatar, Form, Button, Input, Space, Row, Col } from "antd";
+import {
+  Avatar,
+  Form,
+  Button,
+  Input,
+  Space,
+  Row,
+  Col,
+  Modal,
+  Popconfirm,
+} from "antd";
 import ImgPreview from "../Image/Image";
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import api from "../../config/axios";
@@ -55,6 +65,18 @@ function PrintBill() {
     } catch (error) {
       console.error(error.response.data);
     }
+  };
+  const handleOk = async () => {
+    await handleCheckout();
+  };
+
+  const showPopconfirm = () => {
+    setOpen(true);
+  };
+  const [open, setOpen] = useState(false);
+  const handleCancel = () => {
+    console.log("Clicked cancel button");
+    setOpen(false);
   };
   const [form] = Form.useForm();
   return (
@@ -147,10 +169,18 @@ function PrintBill() {
             <span>{data.price}$</span>
           </div>
           <SubmitButton form={form} className="submit">
-            <div onClick={handleCheckout}>Checkout</div>
+            <div onClick={showPopconfirm}>Checkout</div>
           </SubmitButton>
         </div>
       </div>
+      <Modal
+        open={open}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        title="Pop confirmation"
+      >
+        Are you sure to buy this artwork with ${data?.price}$ ?
+      </Modal>
     </div>
   );
 }
