@@ -179,7 +179,7 @@ function PrintBill() {
         onCancel={handleCancel}
         title="Pop confirmation"
       >
-        Are you sure to buy this artwork with ${data?.price}$ ?
+        Are you sure to buy this artwork with {data?.price} $ ?
       </Modal>
     </div>
   );

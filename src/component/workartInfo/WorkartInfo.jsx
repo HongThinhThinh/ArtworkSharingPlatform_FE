@@ -70,6 +70,10 @@ function WorkartInfo({
         <Avatar style={{ height: "1.7em", width: "1.7em" }} src={avatar} />
         <Typography className="info__right__name">{name}</Typography>
         {price > 0 ? <div className="info__right__tag">PRO</div> : ""}
+        <h1 style={{ marginLeft: "20px", fontWeight: "500" }}>
+          {" "}
+          {price > 0 ? price + "$" : ""}
+        </h1>
       </div>
       <div className="info__left">
         <div onClick={() => sendLike()} className="info__left__favorites">
