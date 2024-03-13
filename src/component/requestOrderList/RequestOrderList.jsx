@@ -13,7 +13,7 @@ function RequestOrderList({ choice, setChoice, list, setData, setFilter }) {
   const { id } = useParams();
   const navigate = useNavigate();
   const [option, setOption] = useState(0);
-  const listOption = ["Offer", "Pending", "My Jobs", "History"];
+  const listOption = ["Request", "Pending", "In Progress", "History"];
 
   return (
     <div className={`requestOrderList ${id ? "" : "active"}`}>
