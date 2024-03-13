@@ -32,7 +32,7 @@ function WalletPage() {
   const [open2, setOpen2] = useState(false);
   const [number, setNumber] = useState(1);
   const [number2, setNumber2] = useState(1);
-  const [check, setCheck] = useState({});
+  const [check, setCheck] = useState(false);
   const [wallet, setWallet] = useState({});
 
   const location = useLocation();
@@ -59,6 +59,7 @@ function WalletPage() {
   }, []);
 
   const onFinish = async () => {
+    setCheck(true);
     try {
       const res = await api.post("/request-recharge-paypal", {
         amount: number,
@@ -68,6 +69,7 @@ function WalletPage() {
     } catch (e) {
       console.log(e);
     }
+    setCheck(false);
   };
   const recharge = async () => {
     try {
@@ -167,7 +169,7 @@ function WalletPage() {
                   style={{ width: "100%", transform: "translateY(1em)" }}
                   htmlType="submit"
                 >
-                  Submit
+                  {check == true ? "Loading" : "Submit"}
                 </RoundedBtn>
               </Form.Item>
             </Form>
@@ -209,7 +211,7 @@ function WalletPage() {
                   style={{ width: "100%", transform: "translateY(1em)" }}
                   htmlType="submit"
                 >
-                  Submit
+                  {check == true ? "Loading..." : "Submit"}
                 </RoundedBtn>
               </Form.Item>
             </Form>

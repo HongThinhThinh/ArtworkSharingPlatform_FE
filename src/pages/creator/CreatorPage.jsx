@@ -68,13 +68,13 @@ function CreatorPage() {
           />
         </Sider>
       )}
-      <h1>Artworks</h1>
+      <h1 style={{ fontSize: "20px", fontWeight: "500" }}>Artworks</h1>
 
       <Content
         width={isChangeLayout ? "100%" : "75%"}
         className={styles.contentStyle}
       >
-        <ChangeTabCreator />
+        {/* <ChangeTabCreator /> */}
         <CreatorWorkart
           list={data.artworks}
           style={{ paddingLeft: "2em", paddingBottom: "3em" }}

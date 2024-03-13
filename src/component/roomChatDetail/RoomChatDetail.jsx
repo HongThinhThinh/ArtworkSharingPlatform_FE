@@ -24,6 +24,7 @@ function RoomChatDetail() {
   const [typing, setTyping] = useState("");
 
   const fetch = async () => {
+    setData([]);
     try {
       const res = await api.get(`/chat/detail/${idRef.current}`);
       console.log(res.data);
