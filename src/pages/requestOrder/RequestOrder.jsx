@@ -46,11 +46,11 @@ function RequestOrder() {
 
   const getFilter = (status) => {
     console.log(list);
-    if (status === "Offer") {
+    if (status === "Request") {
       return ["PENDING"];
     } else if (status == "Pending") {
       return ["ACTIVE"];
-    } else if (status == "My Jobs") {
+    } else if (status == "In Progress") {
       return ["PROCESSING"];
     } else if (status == "History") {
       return ["DONE", "REJECT"];
