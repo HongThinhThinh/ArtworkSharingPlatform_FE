@@ -205,28 +205,12 @@ const EditProfile = ({ user }) => {
                 name="email"
                 initialValue={user?.email}
                 className="login__form__container__namepass__group-form"
-                rules={[
-                  {
-                    type: "email",
-                    message: (
-                      <div>
-                        <WarningFilled /> Email is not valid!
-                      </div>
-                    ),
-                  },
-                  {
-                    required: true,
-                    message: (
-                      <div>
-                        <WarningFilled /> Please input your email!
-                      </div>
-                    ),
-                  },
-                ]}
+                
               >
                 <Input
                   defaultValue={user?.email}
                   className="login__form__container__namepass__group-form__input"
+                  readOnly={true}
                 />
               </Form.Item>
 
@@ -249,7 +233,7 @@ const EditProfile = ({ user }) => {
         </div>
       </Drawer>
       <Modal
-        title={<h2 style={{ fontFamily: "BoldCereal" }}>Basic Modal</h2>}
+        title={<h2 style={{ fontFamily: "BoldCereal" }}>Change password</h2>}
         open={isModalOpen}
         onCancel={handleCancel}
         onOk={handleOk}
