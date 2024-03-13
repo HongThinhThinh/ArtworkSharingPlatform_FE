@@ -125,11 +125,20 @@ function WalletPage() {
           style={{ marginTop: "20px", display: "flex", gap: "20px" }}
           className="btnPay"
         >
-          <div onClick={() => setOpen(true)}>
+          <div
+            style={{
+              marginTop: "20px",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            onClick={() => setOpen(true)}
+          >
             <ButtonPlan content="paypal" />
           </div>
           <div onClick={() => setOpen2(true)}>
-            <ButtonPlan content="vnpay" />
+            {/* <ButtonPlan content="vnpay" /> */}
           </div>
 
           <Modal open={open2} onCancel={handleCancel2} footer={null}>

@@ -73,12 +73,13 @@ function FormArtwork() {
 
   const onFinish = async (value) => {
     setIsLoading(true);
-    if (price == 0) {
-      alertFail("Price is greater than zero");
-      setIsLoading(false);
-      return;
-    }
+
     if (isSell) {
+      if (price == 0) {
+        alertFail("Price is greater than zero");
+        setIsLoading(false);
+        return;
+      }
       console.log(isSell);
       if (user?.postQuantity == 0) {
         setIsLoading(false);
