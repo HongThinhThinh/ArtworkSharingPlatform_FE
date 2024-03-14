@@ -20,6 +20,7 @@ import api from "../../../config/axios";
 import { login, logout } from "../../../redux/features/counterSlice";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "antd/es/form/Form";
+import { FaPen } from "react-icons/fa";
 const useStyle = createStyles(({ token }) => ({
   "my-drawer-body": {
     background: "white",
@@ -52,7 +53,7 @@ const EditProfile = ({ user }) => {
   const [url, setUrl] = useState(user?.avt);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -146,11 +147,11 @@ const EditProfile = ({ user }) => {
       <Space>
         <Button
           size="middle"
-          className="login__form__container__namepass__submit"
           htmlType="submit"
+          className="editProfileCreator__btnEdit"
           onClick={() => toggleDrawer(0, true)}
         >
-          Edit Profile
+          Edit Profile <FaPen />
         </Button>{" "}
       </Space>
       <Drawer
@@ -205,7 +206,6 @@ const EditProfile = ({ user }) => {
                 name="email"
                 initialValue={user?.email}
                 className="login__form__container__namepass__group-form"
-                
               >
                 <Input
                   defaultValue={user?.email}
@@ -261,7 +261,11 @@ const EditProfile = ({ user }) => {
               rules={[
                 {
                   required: true,
-                  message: <div><WarningFilled /> Please input your password!</div>,
+                  message: (
+                    <div>
+                      <WarningFilled /> Please input your password!
+                    </div>
+                  ),
                 },
               ]}
             >
@@ -283,11 +287,10 @@ const EditProfile = ({ user }) => {
               rules={[
                 {
                   min: 6,
-                  max:6,
+                  max: 6,
                   message: (
                     <div>
-                      <WarningFilled /> Password must be at least 6
-                      characters!
+                      <WarningFilled /> Password must be at least 6 characters!
                     </div>
                   ),
                 },
@@ -319,11 +322,10 @@ const EditProfile = ({ user }) => {
               rules={[
                 {
                   min: 6,
-                  max:6,
+                  max: 6,
                   message: (
                     <div>
-                      <WarningFilled /> Password must be at least 6
-                      characters!
+                      <WarningFilled /> Password must be at least 6 characters!
                     </div>
                   ),
                 },

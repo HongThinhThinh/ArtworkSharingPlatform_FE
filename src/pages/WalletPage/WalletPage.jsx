@@ -16,6 +16,7 @@ import {
   EllipsisOutlined,
   SettingOutlined,
 } from "@ant-design/icons";
+import card from "../../assets/CardGroup.png";
 
 import { Avatar, Card } from "antd";
 import RoundedBtn from "../../component/rounded-button/RoundedButton";
@@ -34,6 +35,17 @@ function WalletPage() {
   const [number2, setNumber2] = useState(1);
   const [check, setCheck] = useState(false);
   const [wallet, setWallet] = useState({});
+  const [balance, setBalance] = useState(0);
+  useEffect(() => {
+    if (balance <= (wallet?.balance == 0 ? 0 : wallet?.balance) - 1) {
+      const id = setInterval(() => {
+        setBalance(balance + 1);
+      }, 5);
+      return () => {
+        clearInterval(id);
+      };
+    }
+  });
 
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -102,132 +114,67 @@ function WalletPage() {
     }
   };
   return (
-    <div className="walletPage">
-      <Card
-        style={{
-          width: 300,
-        }}
-        cover={
-          <img
-            alt="example"
-            src="https://cdn.dribbble.com/userupload/10907941/file/original-21a052d76d57ad11db8ef1feb285a1a7.png?resize=1200x900"
-          />
-        }
-      >
-        <Meta
-          avatar={
-            <Avatar src="https://banner2.cleanpng.com/20191114/ygp/transparent-cash-icon-money-icon-business-and-trade-icon-5dcde2c791aea7.9075525915737740235967.jpg" />
-          }
-          title="Your balance "
-          description={wallet?.balance == 0 ? "0 $" : `${wallet?.balance} $`}
-        />
-        <div
-          style={{ marginTop: "20px", display: "flex", gap: "20px" }}
-          className="btnPay"
-        >
+    <>
+      <div className="wallet-section">
+        <div className="wallet-section__left">
+          <img src={card} alt="card-group" />
+        </div>
+        <div className="wallet-section__right">
+          <div className="wallet-section__right__top">
+            <h2>Current Balance</h2>
+            <h3>{balance}$</h3>
+          </div>
           <div
-            style={{
-              marginTop: "20px",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            className="wallet-section__right__bottom"
             onClick={() => setOpen(true)}
           >
-            <ButtonPlan content="paypal" />
+            <ButtonPlan content="Deposit more money with Paypal" />
           </div>
-          <div onClick={() => setOpen2(true)}>
-            {/* <ButtonPlan content="vnpay" /> */}
-          </div>
-
-          <Modal open={open2} onCancel={handleCancel2} footer={null}>
-            <Form onFinish={vnPayhandler}>
-              <div style={{ fontFamily: "MediumCereal", marginBottom: "-2em" }}>
-                <Form.Item name="amount">
-                  <h3
-                    style={{
-                      fontFamily: "MediumCereal",
-                      marginBottom: "1.2em",
-                    }}
-                  >
-                    Amount of money
-                  </h3>
-                  <Form.Item
-                    name="amount"
-                    noStyle
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input!",
-                      },
-                    ]}
-                  >
-                    <InputNumber
-                      addonBefore="+"
-                      addonAfter="$"
-                      defaultValue={number2}
-                      onChange={(e) => setNumber2(e)}
-                    />
-                  </Form.Item>
-                </Form.Item>
-              </div>
-              <Form.Item>
-                <RoundedBtn
-                  color="#2C547F"
-                  style={{ width: "100%", transform: "translateY(1em)" }}
-                  htmlType="submit"
-                >
-                  {check == true ? "Loading" : "Submit"}
-                </RoundedBtn>
-              </Form.Item>
-            </Form>
-          </Modal>
-          <Modal open={open} onCancel={handleCancel} footer={null}>
-            <Form onFinish={onFinish}>
-              <div style={{ fontFamily: "MediumCereal", marginBottom: "-2em" }}>
-                <Form.Item name="amount">
-                  <h3
-                    style={{
-                      fontFamily: "MediumCereal",
-                      marginBottom: "1.2em",
-                    }}
-                  >
-                    Amount of money
-                  </h3>
-                  <Form.Item
-                    name="amount"
-                    noStyle
-                    rules={[
-                      {
-                        required: true,
-                        message: "Please input!",
-                      },
-                    ]}
-                  >
-                    <InputNumber
-                      addonBefore="+"
-                      addonAfter="$"
-                      defaultValue={number}
-                      onChange={(e) => setNumber(e)}
-                    />
-                  </Form.Item>
-                </Form.Item>
-              </div>
-              <Form.Item>
-                <RoundedBtn
-                  color="#2C547F"
-                  style={{ width: "100%", transform: "translateY(1em)" }}
-                  htmlType="submit"
-                >
-                  {check == true ? "Loading..." : "Submit"}
-                </RoundedBtn>
-              </Form.Item>
-            </Form>
-          </Modal>
         </div>
-      </Card>
-    </div>
+      </div>
+      <Modal open={open} onCancel={handleCancel} footer={null}>
+        <Form onFinish={onFinish}>
+          <div style={{ fontFamily: "MediumCereal", marginBottom: "-2em" }}>
+            <Form.Item name="amount">
+              <h3
+                style={{
+                  fontFamily: "MediumCereal",
+                  marginBottom: "1.2em",
+                }}
+              >
+                Amount of money
+              </h3>
+              <Form.Item
+                name="amount"
+                noStyle
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input!",
+                  },
+                ]}
+              >
+                <InputNumber
+                  addonBefore="+"
+                  addonAfter="$"
+                  defaultValue={number}
+                  onChange={(e) => setNumber(e)}
+                />
+              </Form.Item>
+            </Form.Item>
+          </div>
+          <Form.Item>
+            <RoundedBtn
+              color="#2C547F"
+              style={{ width: "100%", transform: "translateY(1em)" }}
+              htmlType="submit"
+            >
+              {check == true ? "Loading..." : "Submit"}
+            </RoundedBtn>
+          </Form.Item>
+        </Form>
+      </Modal>
+    </>
   );
 }
 
