@@ -1,5 +1,5 @@
 import CreatorInfo from "../../component/creatorInfo/CreatorInfo";
-import { Layout } from "antd";
+import { Col, Layout, Row } from "antd";
 import Sider from "antd/es/layout/Sider";
 import { Content } from "antd/es/layout/layout";
 import { Outlet, useParams } from "react-router-dom";
@@ -11,12 +11,15 @@ import { useEffect, useState } from "react";
 import { alertFail } from "../../assets/hook/useNotification";
 import { useStateValue } from "../../Context/StateProvider";
 import CreatorWorkart from "../../sections/creatorWorkart/CreatorWorkart";
+import Workart from "../../component/workart/Workart";
 
 function CreatorPage() {
   const isChangeLayout = useMediaQuery({ maxWidth: 1510 });
   const { id } = useParams();
 
   const [data, setData] = useState("");
+  const [artworks, setartworks] = useState([]);
+
   console.log(id);
   useEffect(() => {
     getDetailCreator();
@@ -26,6 +29,8 @@ function CreatorPage() {
     try {
       const response = await api.get(`/getCreator-detail/${id}`);
       setData(response.data.data);
+      setartworks(response.data.data.artworks);
+      // console.log(response.data.data.artworks);
     } catch (e) {
       alertFail("Fail to load");
     }
@@ -75,10 +80,36 @@ function CreatorPage() {
         className={styles.contentStyle}
       >
         {/* <ChangeTabCreator /> */}
-        <CreatorWorkart
+        {/* <CreatorWorkart
           list={data.artworks}
           style={{ paddingLeft: "2em", paddingBottom: "3em" }}
-        />
+        /> */}
+        <Row x container gutter={32}>
+        {artworks.map((artwork, index) => (
+          <Col
+            style={{ cursor: "pointer" }}
+            xs={24}
+            sm={12}
+            lg={8}
+            xl={8}
+            xxl={8}
+            // span={8}
+            key={index}
+          >
+            <Workart
+              price={artwork.price}
+              idArtwork={artwork?.id}
+              idCreator={artwork.user.id}
+              image={artwork.image}
+              name={artwork.user.name}
+              avatar={artwork.user.avt}
+              countLike={artwork.countLike}
+              countComment={artwork.countComment}
+              interactionLike={artwork.interactionLike}
+            />
+          </Col>
+        ))}
+      </Row>
       </Content>
     </Layout>
   );

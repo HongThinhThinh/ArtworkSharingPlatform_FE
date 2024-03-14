@@ -18,22 +18,22 @@ const beforeUpload = (file) => {
   }
   return isJpgOrPng && isLt2M;
 };
-const UploadDemo = () => {
+const UploadDemo = ({URLDemo}) => {
   const [loading, setLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState();
-  const handleChange = (info) => {
-    if (info.file.status === "uploading") {
-      setLoading(true);
-      return;
-    }
-    if (info.file.status === "done") {
-      // Get this url from response in real world.
-      getBase64(info.file.originFileObj, (url) => {
-        setLoading(false);
-        setImageUrl(url);
-      });
-    }
-  };
+  // const handleChange = (info) => {
+  //   if (info.file.status === "uploading") {
+  //     setLoading(true);
+  //     return;
+  //   }
+  //   if (info.file.status === "done") {
+  //     // Get this url from response in real world.
+  //     getBase64(info.file.originFileObj, (url) => {
+  //       // setLoading(false);
+  //       setImageUrl(url);
+  //     });
+  //   }
+  // };
   const uploadButton = (
     <button
       style={{
@@ -58,11 +58,11 @@ const UploadDemo = () => {
         showUploadList={false}
         action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
         beforeUpload={beforeUpload}
-        onChange={handleChange}
+        // onChange={handleChange}
       >
-        {imageUrl ? (
+        {URLDemo ? (
           <img
-            src={imageUrl}
+            src={URLDemo}
             alt="demo"
             style={{
               width: "100%",

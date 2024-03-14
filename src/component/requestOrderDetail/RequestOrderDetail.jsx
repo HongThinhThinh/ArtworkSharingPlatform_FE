@@ -32,7 +32,7 @@ import { useStateValue } from "../../Context/StateProvider";
 
 function RequestOrderDetail() {
   const fetchData = useOutletContext();
-  const { theme } = useStateValue();
+  const { theme,demo } = useStateValue();
   const isActive = useLocation().pathname == "/creator-manage/requestOrder";
   const { id } = useParams();
   const navigate = useNavigate();
@@ -84,6 +84,9 @@ function RequestOrderDetail() {
     }
   };
   const [URL, setURL] = useState(image1);
+  let [URLDemo, setURLDemo] = useState();
+  const [productDemo, setProductDemo] = useState([]);
+
   // const [imageUploaded, setImageUploaded] = useState(false);
   const [description, setDescription] = useState(false);
   const getLink = async (file) => {
@@ -92,6 +95,12 @@ function RequestOrderDetail() {
     URL = await uploadFile(file);
     setURL(URL);
     console.log(URL);
+  };
+  const getLink2 = async (file) => {
+    let URLDemo = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
+    setURLDemo(URLDemo);
+    URLDemo = await uploadFile(file);
+    setURLDemo(URLDemo);
   };
   const isMobile = useMediaQuery({ maxWidth: 785 });
   const [newData, setNewData] = useState();
@@ -114,6 +123,22 @@ function RequestOrderDetail() {
       console.log(e);
     }
   };
+  
+
+  const handeSendDemo = async () => {
+    try {
+      const res = await api.put("/demoOrdeRequest", {
+        image: URLDemo,
+        orderId: id
+      });
+      
+      console.log(res.data.data)
+      setProductDemo(res.data.data.demoRequests) 
+      fetchDataDetail()
+    } catch (error) {
+      console.log(error)
+    }
+  };
   const config = {
     rules: [
       {
@@ -123,18 +148,20 @@ function RequestOrderDetail() {
       },
     ],
   };
+  const fetchDataDetail = async () => {
+    try {
+      const response = await api.get(`/getOrderRequestDetail/${id}`);
+      setAudience(response.data.data.audience);
+      setNewData(response.data.data);
+      setProductDemo(response.data.data.demoRequests)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get(`/getOrderRequestDetail/${id}`);
-        setAudience(response.data.data.audience);
-        setNewData(response.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
+ 
+    fetchDataDetail();
   }, [id]);
 
   const onFinish = async (fieldsValue) => {
@@ -162,7 +189,7 @@ function RequestOrderDetail() {
     }
     setModal2Open(false);
   };
-  console.log(newData);
+  
   return (
     <>
       {newData && (
@@ -415,13 +442,36 @@ function RequestOrderDetail() {
                       </button>
                     </div>
                   </div>
-                  <div className="request-order-detail__upload-demo__upload">
-                    <UploadDemo />
+                  <div
+                    className="request-order-detail__upload-demo__upload"
+                    onChange={(e) => {
+                      getLink2(e.target.files[0]);
+                    }}
+                  >
+                    <UploadDemo URLDemo={URLDemo} />
+                    {productDemo.length > 0 ? (
+  <>
+    {productDemo.map(item => (
+      <ImgPreview
+        src={item.image}
+        width="50%"
+        height="50%"
+        style={{
+          margin: "1em 0",
+          objectFit: "cover",
+        }}
+      />
+    ))}
+  </>
+) : ""}
+                 
+         
                   </div>
-                  <Button className="send">
+                  <Button className="send" onClick={handeSendDemo}>
                     Send <SendOutlined />
                   </Button>
                 </div>
+                
               </>
             ) : newData.status === "DONE" ? (
               <div className="request-order-detail__upload-demo__content__right">
