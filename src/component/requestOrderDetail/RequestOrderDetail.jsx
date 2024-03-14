@@ -35,6 +35,7 @@ function RequestOrderDetail() {
   const { theme,demo } = useStateValue();
   const isActive = useLocation().pathname == "/creator-manage/requestOrder";
   const { id } = useParams();
+
   const navigate = useNavigate();
   const [reason, setReason] = useState("");
   const [modal1Open, setModal1Open] = useState(false);
@@ -185,7 +186,7 @@ function RequestOrderDetail() {
       // setChangeSection(res.data.data);
       alertSuccess("Please waiting for audience acept");
     } catch (e) {
-      console.log(e);
+      alertFail("Please purchase more", e.response.data);
     }
     setModal2Open(false);
   };

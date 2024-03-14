@@ -1,76 +1,35 @@
-.creator-profilee {
+.wrap-creatorProfile {
+  height: 300px;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 30vh;
-  border-bottom: 1px solid rgb(148, 141, 141);
-  width: 80%;
-  margin: 0 auto;
-  padding-bottom: 40px;
-  margin-bottom: 20px;
-  &__editprofile {
-    // background-color: red;
-  }
-  &__info {
-    // display: flex;
-    // align-items: center;
-    // justify-content: center;
-    // flex-direction: column;
-
-    &__name {
-      h2 {
-        font-family: "BoldCereal";
-        text-wrap: nowrap;
-        margin-right: 20px;
-      }
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &__follower {
-      margin-top: 30px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      font-family: "LightCereal";
-    }
-  }
-  gap: 100px;
-  &__img {
-    width: 100px !important;
-    height: 100px !important;
-    .imgPreview {
-      .ant-image-mask {
-        background-color: none;
-        border-radius: 50%;
-        width: 150px;
-        height: 150px;
-      }
-      .ant-image {
-        border: none;
-        border-radius: 50%;
-        width: 100px;
-        > * {
-        }
-        img {
-          width: 150px;
-          height: 150px !important;
-          height: fit-content;
-          object-fit: cover;
-          border-radius: 50%;
-        }
-      }
-    }
-  }
+  background-image: url("../../../assets/headerBg.png");
+  background-size: cover;
+  margin: 0 4em;
+  border-radius: 0 0 10px 10px;
 }
-.header-noti {
+.wrap-creatorProfile-bottom {
   display: flex;
-  justify-content: flex-end;
-  padding-top: 20px;
-  margin-right: 30px;
-  svg {
-    font-size: 30px;
+  margin: 0 8em;
+  transform: translateY(-1em);
+
+  .wallet,
+  .order-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(2.5em);
+    height: 2.8em;
+    font-family: "MediumCereal";
+    background-color: white !important;
+    gap: 1em;
+    border: 1px solid rgb(205, 205, 205);
+    text-wrap: nowrap;
+    border-radius: 5px;
+    padding: 0.3em 0.7em;
+    font-size: 0.9em;
+  }
+  .wallet {
+    transform: translateY(2.5em) translateX(-1em);
   }
 }
 

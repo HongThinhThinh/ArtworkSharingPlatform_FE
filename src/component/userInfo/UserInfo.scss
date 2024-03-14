@@ -1,0 +1,59 @@
+.creator-profilee {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+
+  &__info {
+    padding-top: 2em;
+    &__name {
+      h2 {
+        font-family: "BoldCereal";
+        text-wrap: nowrap;
+        font-size: 1.5em;
+        margin-right: 20px;
+      }
+      display: flex;
+      align-items: center;
+    }
+
+    &__follower {
+      margin-top: 1em;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      color: gray;
+      font-family: "MediumCereal";
+    }
+  }
+  gap: 90px;
+  &__img {
+    transform: translateY(-3.5em);
+    width: 120px !important;
+    height: 120px !important;
+
+    .imgPreview {
+      .ant-image-mask {
+        background-color: none;
+        border-radius: 50%;
+        width: 180px;
+        height: 180px;
+      }
+      .ant-image {
+        border: none;
+        border-radius: 50%;
+        width: 100px;
+        > * {
+        }
+        img {
+          width: 180px;
+          height: 180px !important;
+          outline: 0.5em solid white;
+          height: fit-content;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

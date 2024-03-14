@@ -3,6 +3,16 @@
   .ant-space {
     width: fit-content;
   }
+  &__btnEdit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    font-family: "MediumCereal";
+    padding: 1.3em 1em;
+    transform: translateY(0.2em);
+    background-color: white !important;
+  }
 }
 
 .ChangeProfileInfo {

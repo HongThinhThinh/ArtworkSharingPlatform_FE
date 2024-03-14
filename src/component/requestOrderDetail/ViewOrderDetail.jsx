@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./RequestOrderDetail.scss";
-import { Avatar, Button } from "antd";
+import { Avatar, Button, Form, Input, Modal, Popconfirm } from "antd";
 import { AiFillMessage } from "react-icons/ai";
 import { ExclamationCircleTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
 import CustomeSteps from "../steps/CustomeSteps";
@@ -11,6 +11,8 @@ import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 import ImgPreview from "../../pages/Image/Image";
+import RoundedBtn from "../rounded-button/RoundedButton";
+import TextArea from "antd/es/input/TextArea";
 
 function ViewOrderDetail({ choice }) {
   const navigate = useNavigate();
@@ -20,7 +22,13 @@ function ViewOrderDetail({ choice }) {
   const [demoRequest, setDemoRequest] = useState([]);
   const user = useSelector(selectUser);
   const scrollRef = useRef(null); // Tham chiếu đến phần tử cần cuộn đến
+  const [modal2Open, setModal2Open] = useState(false);
+  const [reason, setReason] = useState("");
+  const [check, setCheck] = useState("");
 
+  const closeModal = () => {
+    setModal2Open(false);
+  };
   useEffect(() => {
     if (scrollRef.current) {
       const element = scrollRef.current;
@@ -45,22 +53,39 @@ function ViewOrderDetail({ choice }) {
       alertFail(err);
     }
   };
-
+  const confirm = async () => {
+    try {
+      const res = await api.put("/rejectOrderRequest-audience", {
+        id: id,
+        status: "Reject",
+        reasonRejectAudience: reason,
+      });
+      console.log(res);
+      setNewData(res.data.data);
+      // setChangeSection(res.data.data);
+      console.log(res.data.data);
+      fetchData();
+      setModal2Open(false);
+      alertSuccess("Reject successfully");
+    } catch (e) {
+      // alertFail("Failed to load");
+      console.log(e);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
-      console.log(id);
-      try {
-        const response = await api.get(`/getOrderRequestDetail/${id}`);
-        setData(response.data.data);
-        setDemoRequest(response.data.data.demoRequests);
-        console.log(response.data.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
     fetchData();
   }, [newData]);
-  // console.log(data.creator);
+  const fetchData = async () => {
+    console.log(id);
+    try {
+      const response = await api.get(`/getOrderRequestDetail/${id}`);
+      setData(response.data.data);
+      setDemoRequest(response.data.data.demoRequests);
+      console.log(response.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const acpOrder = async () => {
     try {
@@ -71,8 +96,7 @@ function ViewOrderDetail({ choice }) {
       setNewData(res.data.data);
       alertSuccess("Acp order successfully ");
     } catch (e) {
-      // alertFail("Failed to load");
-      console.log(e);
+      alertFail("Please purchase more", e.response.data);
     }
   };
   console.log(data);
@@ -84,7 +108,7 @@ function ViewOrderDetail({ choice }) {
           className={`view-order-detail animate__animated  animate__backInDown  ${
             choice ? "view" : ""
           }`}
-          style={{height:"auto"}}
+          style={{ height: "auto" }}
         >
           <LeftCircleTwoTone
             twoToneColor="#b42d81"
@@ -167,7 +191,48 @@ function ViewOrderDetail({ choice }) {
             </div>
             {data.status == "PENDING" || data.status == "GLOBAL" ? (
               <div className="view-order-detail__detail__confirm">
-                <Button className="view-order-detail__detail__confirm__cancel">
+                <Modal
+                  title="Are you sure to cancel this job oppoturnity?"
+                  centered
+                  open={modal2Open}
+                  onCancel={() => setModal2Open(false)}
+                  footer={null}
+                >
+                  <TextArea
+                    onChange={(e) => setReason(e.target.value)}
+                    showCount
+                    maxLength={100}
+                    placeholder="Please give us the reason"
+                    style={{
+                      margin: "1em",
+                      transform: "translateX(-1em)",
+                      height: 200,
+                      resize: "none",
+                    }}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input!",
+                      },
+                    ]}
+                  />
+                  <Popconfirm
+                    title="Cancel the offer"
+                    description="Are you sure to cancel this offer?"
+                    onConfirm={confirm}
+                    onCancel={closeModal}
+                    okText="Yes"
+                    cancelText="No"
+                  >
+                    <RoundedBtn color="#3c3c3c" style={{ width: "100%" }}>
+                      Submit
+                    </RoundedBtn>
+                  </Popconfirm>
+                </Modal>
+                <Button
+                  onClick={() => setModal2Open(true)}
+                  className="view-order-detail__detail__confirm__cancel"
+                >
                   Cancel Offer
                 </Button>
               </div>
@@ -175,7 +240,10 @@ function ViewOrderDetail({ choice }) {
               ""
             ) : (
               <div className="view-order-detail__detail__confirm">
-                <Button className="view-order-detail__detail__confirm__cancel">
+                <Button
+                  onClick={() => setModal2Open(true)}
+                  className="view-order-detail__detail__confirm__cancel"
+                >
                   Cancel Offer
                 </Button>
                 <Button

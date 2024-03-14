@@ -6,35 +6,27 @@ import { useNavigate } from "react-router";
 import EditProfile from "../edit-profile/EditProfile";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../redux/features/counterSlice";
+import { Button } from "antd";
+import { FaWallet } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaBox } from "react-icons/fa";
+import UserInfo from "../../../component/userInfo/UserInfo";
 function CreatorProfile() {
   const user = useSelector(selectUser);
   // console.log(user);
   return (
-    <div className="wrap-creatorProfile ">
-      <div className="header-noti">
-        <Notification />
+    <>
+      <div className="wrap-creatorProfile "></div>
+      <div className="wrap-creatorProfile-bottom">
+        <UserInfo user={user} />
+        <Link className="wallet" to="/creator-manage/wallet">
+          Your Wallet <FaWallet />
+        </Link>
+        <Link className="order-btn" to="/creator-manage/orders">
+          Your Order <FaBox />
+        </Link>
       </div>
-      <div className="creator-profilee">
-        <div className="creator-profilee__img">
-          <ImgPreview src={user.avt} />
-        </div>
-        <div className="creator-profilee__info">
-          <div className="creator-profilee__info__name">
-            <h2>{user.name}</h2>
-            <div className="creator-profilee__editprofile">
-              <EditProfile user={user} />
-            </div>
-          </div>
-          <div className="creator-profilee__info__follower">
-            <h4>20 Post </h4>
-            <span>|</span>
-            <h4>200 follower</h4>
-            <span>|</span>
-            <h4>200 follower</h4>
-          </div>
-        </div>
-      </div>
-    </div>
+    </>
   );
 }
 

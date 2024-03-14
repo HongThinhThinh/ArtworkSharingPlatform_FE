@@ -47,7 +47,6 @@ import PrintBill from "../pages/PrintBill/PrintBill";
 
 import WatermarkArtwork from "../component/waterMask/WatermarkArtwork";
 
-
 export const router = createBrowserRouter([
   {
     path: "/room-messages",
@@ -85,7 +84,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/your-bill",
-    element: <PrintBill/>,
+    element: <PrintBill />,
   },
 
   {
@@ -161,6 +160,18 @@ export const router = createBrowserRouter([
       {
         path: "/creator-manage/edit",
         element: <EditProfile />,
+      },
+      {
+        path: "/creator-manage/wallet",
+        element: <WalletPage />,
+      },
+      {
+        path: "/creator-manage/orders",
+        element: <OrderHistory />,
+      },
+      {
+        path: "/creator-manage/orderDetail/:id",
+        element: <ViewOrderDetail />,
       },
     ],
   },
