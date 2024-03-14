@@ -193,10 +193,17 @@ function ListFeedback({
       )}
 
       <div className="listFeedback--contentt">
-        {price > 0 ? <h2>{`${price} $`}</h2> : ""}
-        <h2>{title}</h2>
-        <p>{description}</p>
+        <h2> Title: {title}</h2>
+        <p>Description: {description}</p>
+        {price > 0 ? (
+          <h2 style={{ fontSize: "17px" }}>
+            price :<span style={{ color: "#3eac4e" }}>{` ${price} $`}</span>
+          </h2>
+        ) : (
+          ""
+        )}
       </div>
+
       {isMobile ? (
         <div className="artworkInfo--img__image">
           <ImgPreview src="https://images.unsplash.com/photo-1706650079705-160f2c07c913?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
