@@ -12,6 +12,7 @@ function WorkartMedia({ image, id }) {
       style={{
         cursor: "pointer",
         backgroundImage: `url(${image})`,
+        
       }}
       className="workart-media"
     />
