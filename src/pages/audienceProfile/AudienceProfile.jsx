@@ -7,6 +7,7 @@ import "./AudienceProfile.scss";
 import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
+import UserInfo from "../../component/userInfo/UserInfo";
 function AudienceProfile() {
   const [selectedLayout, setSelectedLayout] = useState("");
   const navigate = useNavigate();
@@ -14,8 +15,8 @@ function AudienceProfile() {
 
   return (
     <div className="audience-profile">
-      <div className="creator-profilee">
-        <div className="creator-profilee__img">
+      <div className="audience-profile__profilee">
+        {/* <div className="creator-profilee__img">
           <ImgPreview src={user?.avt} />
         </div>
         <div className="creator-profilee__info">
@@ -25,7 +26,9 @@ function AudienceProfile() {
               <EditProfile user={user} />
             </div>
           </div>
-        </div>
+        </div> */}
+
+        <UserInfo user={user} />
       </div>
       <div className="profileA">
         <div className="profileA--navigate">
