@@ -1,3 +1,0 @@
-link postman : https://documenter.getpostman.com/view/33351167/2sA2xh3YT1
-src FE : https://github.com/HongThinhThinh/ArtworkSharingPlatform_FE
-src BE :https://github.com/HongThinhThinh/ArtworkSharingPlatform_BE
