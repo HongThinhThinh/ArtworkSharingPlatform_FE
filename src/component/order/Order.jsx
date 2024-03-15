@@ -10,6 +10,7 @@ import { getDifTime } from "../../assets/hook/useGetTime";
 import moment from "moment";
 
 function Order({ check, setCheck, filter }) {
+  const user = useSelector(selectUser);
   const [newData, setNewData] = useState([]);
   const [data, setData] = useState([]);
   const navigate = useNavigate();
@@ -98,7 +99,9 @@ function Order({ check, setCheck, filter }) {
                 <Button
                   className="order__view__btn"
                   onClick={() => {
-                    navigate(`/profile/orderDetail/${item.id}`);
+                    user?.role == "CREATOR"
+                      ? navigate(`/creator-manage/orderDetail/${item.id}`)
+                      : navigate(`/profile/orderDetail/${item.id}`);
                   }}
                 >
                   View Detail

@@ -162,12 +162,12 @@
       align-items: center;
       justify-content: last baseline;
       width: 100%;
-      img {
-        border-radius: 10px;
-        flex: 0 0 12em;
-        height: 12em;
-        width: 12em;
-        object-fit: cover;
+      .ant-image-mask {
+        // border-radius: 10px;
+        // height: 14em;
+        // width: 14em;
+        // transform: translateX(1em) translateY(1em);
+        // object-fit: cover;
       }
     }
   }
@@ -180,7 +180,7 @@
       align-items: center;
       justify-content: last baseline;
       width: 100%;
-      img {
+      .img {
         margin: 2em 0;
         height: 200px !important;
         width: 200px;

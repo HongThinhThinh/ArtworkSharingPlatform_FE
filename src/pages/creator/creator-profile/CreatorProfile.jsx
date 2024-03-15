@@ -10,7 +10,9 @@ import { Button } from "antd";
 import { FaWallet } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { FaBox } from "react-icons/fa";
+import { BiSolidPurchaseTagAlt } from "react-icons/bi";
 import UserInfo from "../../../component/userInfo/UserInfo";
+import { HeartTwoTone } from "@ant-design/icons";
 function CreatorProfile() {
   const user = useSelector(selectUser);
   // console.log(user);
@@ -19,11 +21,17 @@ function CreatorProfile() {
       <div className="wrap-creatorProfile "></div>
       <div className="wrap-creatorProfile-bottom">
         <UserInfo user={user} />
+        <Link className="wallet" to="/creator-manage/purchase-history">
+          Purchase History <BiSolidPurchaseTagAlt />
+        </Link>
         <Link className="wallet" to="/creator-manage/wallet">
           Your Wallet <FaWallet />
         </Link>
         <Link className="order-btn" to="/creator-manage/orders">
           Your Order <FaBox />
+        </Link>
+        <Link className="heart" to="/creator-manage/likedShots">
+          <HeartTwoTone twoToneColor="#C5547A" />
         </Link>
       </div>
     </>

@@ -1,6 +1,6 @@
 .chat-list {
-//   background-color: #202020;
-// color: #fff;
+  //   background-color: #202020;
+  // color: #fff;
 
   height: 100%;
   // width: 23.5%;
@@ -8,7 +8,6 @@
   padding: 20px 0px;
   display: flex;
   flex-direction: column;
-  
 
   &__information {
     display: flex;
@@ -56,44 +55,40 @@
     }
 
     &::-webkit-scrollbar-thumb {
-      background-color: #b2b2b2;
+      background-color: #75757573;
       /* Màu sắc của "nút cuộn" */
       border-radius: 10px; /* Độ cong của "nút cuộn" */
     }
 
     &::-webkit-scrollbar-track {
-      background-color: #202020; /* Màu sắc của phần nền thanh cuộn */
+      background-color: #e6e6e6; /* Màu sắc của phần nền thanh cuộn */
     }
-
   }
 }
 
-@media only  screen and (max-width: 1050px) {
-    .chat-list{
-        width: 200px;
+@media only screen and (max-width: 1050px) {
+  .chat-list {
+    width: 200px;
 
-       &__information{
-        padding: 0px 10px;
-       }
-
-       
+    &__information {
+      padding: 0px 10px;
     }
+  }
 }
 
-@media only  screen and (max-width: 800px){
-  .chat-list{
+@media only screen and (max-width: 800px) {
+  .chat-list {
     width: 100%;
-    &__information{
+    &__information {
       padding: 0px 25px;
-     }
-     &__items{
+    }
+    &__items {
       .item {
-          
-          img {
-              width: 50px;
-              height: 50px;
-          }
+        img {
+          width: 50px;
+          height: 50px;
+        }
       }
-  }
+    }
   }
 }

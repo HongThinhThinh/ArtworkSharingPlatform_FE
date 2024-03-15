@@ -46,6 +46,9 @@ import WalletPage from "../pages/WalletPage/WalletPage";
 import PrintBill from "../pages/PrintBill/PrintBill";
 
 import WatermarkArtwork from "../component/waterMask/WatermarkArtwork";
+import PurchaseHistoryCard from "../component/purchase-history-card/PurchaseHistoryCard";
+import PurchaseHistory from "../pages/PurchaseHistory/PurchaseHistory";
+import LikedShots from "../sections/LikedShots/LikedShots";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +72,10 @@ export const router = createBrowserRouter([
   {
     path: "register",
     element: <SignUp />,
+  },
+  {
+    path: "test",
+    element: <PurchaseHistory />,
   },
   {
     path: "test2",
@@ -173,6 +180,14 @@ export const router = createBrowserRouter([
         path: "/creator-manage/orderDetail/:id",
         element: <ViewOrderDetail />,
       },
+      {
+        path: "/creator-manage/likedShots",
+        element: <LikedShots />,
+      },
+      {
+        path: "/creator-manage/purchase-history",
+        element: <PurchaseHistory />,
+      },
     ],
   },
   {
@@ -227,6 +242,10 @@ export const router = createBrowserRouter([
           {
             path: "/profile/wallet",
             element: <WalletPage />,
+          },
+          {
+            path: "/profile/purchase-history",
+            element: <PurchaseHistory />,
           },
           {
             path: "/profile/orderDetail/:id",

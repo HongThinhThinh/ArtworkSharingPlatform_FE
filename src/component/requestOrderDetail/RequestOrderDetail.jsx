@@ -32,7 +32,7 @@ import { useStateValue } from "../../Context/StateProvider";
 
 function RequestOrderDetail() {
   const fetchData = useOutletContext();
-  const { theme,demo } = useStateValue();
+  const { theme, demo } = useStateValue();
   const isActive = useLocation().pathname == "/creator-manage/requestOrder";
   const { id } = useParams();
 
@@ -124,20 +124,19 @@ function RequestOrderDetail() {
       console.log(e);
     }
   };
-  
 
   const handeSendDemo = async () => {
     try {
       const res = await api.put("/demoOrdeRequest", {
         image: URLDemo,
-        orderId: id
+        orderId: id,
       });
-      
-      console.log(res.data.data)
-      setProductDemo(res.data.data.demoRequests) 
-      fetchDataDetail()
+
+      console.log(res.data.data);
+      setProductDemo(res.data.data.demoRequests);
+      fetchDataDetail();
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
   const config = {
@@ -154,14 +153,13 @@ function RequestOrderDetail() {
       const response = await api.get(`/getOrderRequestDetail/${id}`);
       setAudience(response.data.data.audience);
       setNewData(response.data.data);
-      setProductDemo(response.data.data.demoRequests)
+      setProductDemo(response.data.data.demoRequests);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
 
   useEffect(() => {
- 
     fetchDataDetail();
   }, [id]);
 
@@ -190,7 +188,7 @@ function RequestOrderDetail() {
     }
     setModal2Open(false);
   };
-  
+
   return (
     <>
       {newData && (
@@ -451,28 +449,28 @@ function RequestOrderDetail() {
                   >
                     <UploadDemo URLDemo={URLDemo} />
                     {productDemo.length > 0 ? (
-  <>
-    {productDemo.map(item => (
-      <ImgPreview
-        src={item.image}
-        width="50%"
-        height="50%"
-        style={{
-          margin: "1em 0",
-          objectFit: "cover",
-        }}
-      />
-    ))}
-  </>
-) : ""}
-                 
-         
+                      <>
+                        {productDemo.map((item) => (
+                          <ImgPreview
+                            src={item.image}
+                            width="16em"
+                            height="16em"
+                            style={{
+                              borderRadius: "25px",
+                              padding: "1em",
+                              objectFit: "cover",
+                            }}
+                          />
+                        ))}
+                      </>
+                    ) : (
+                      ""
+                    )}
                   </div>
                   <Button className="send" onClick={handeSendDemo}>
                     Send <SendOutlined />
                   </Button>
                 </div>
-                
               </>
             ) : newData.status === "DONE" ? (
               <div className="request-order-detail__upload-demo__content__right">
@@ -486,10 +484,11 @@ function RequestOrderDetail() {
                 <div className="request-order-detail__upload-demo__upload">
                   <ImgPreview
                     src={newData.productImage}
-                    width="50%"
-                    height="50%"
+                    width="16em"
+                    height="16em"
                     style={{
-                      margin: "1em 0",
+                      borderRadius: "25px",
+                      padding: "1em",
                       objectFit: "cover",
                     }}
                   />

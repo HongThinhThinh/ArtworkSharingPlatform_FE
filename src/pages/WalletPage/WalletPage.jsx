@@ -14,6 +14,7 @@ import "./WalletPage.scss";
 import {
   EditOutlined,
   EllipsisOutlined,
+  LeftCircleTwoTone,
   SettingOutlined,
 } from "@ant-design/icons";
 import card from "../../assets/CardGroup.png";
@@ -22,10 +23,11 @@ import { Avatar, Card } from "antd";
 import RoundedBtn from "../../component/rounded-button/RoundedButton";
 import axios from "axios";
 import api from "../../config/axios";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 import { alertSuccess } from "../../assets/hook/useNotification";
+import TransactionHistory from "../../component/transaction-history/TransactionHistory";
 
 const { Meta } = Card;
 function WalletPage() {
@@ -40,7 +42,7 @@ function WalletPage() {
     if (balance <= (wallet?.balance == 0 ? 0 : wallet?.balance) - 1) {
       const id = setInterval(() => {
         setBalance(balance + 1);
-      }, 5);
+      }, 0.5);
       return () => {
         clearInterval(id);
       };
@@ -113,8 +115,24 @@ function WalletPage() {
       console.log(e);
     }
   };
+  console.log(user);
   return (
-    <>
+    <div className="wallet-section-wrapper">
+      {user?.role == "CREATOR" ? (
+        <div className="your-wallet-head">
+          <Link to="/creator-manage/artworks">
+            <LeftCircleTwoTone
+              twoToneColor="#BBBBBB"
+              style={{
+                fontSize: "1.8em",
+                cursor: "pointer",
+              }}
+            />
+          </Link>
+          <h1>Your Wallet</h1>
+        </div>
+      ) : null}
+
       <div className="wallet-section">
         <div className="wallet-section__left">
           <img src={card} alt="card-group" />
@@ -132,6 +150,7 @@ function WalletPage() {
           </div>
         </div>
       </div>
+      <TransactionHistory />
       <Modal open={open} onCancel={handleCancel} footer={null}>
         <Form onFinish={onFinish}>
           <div style={{ fontFamily: "MediumCereal", marginBottom: "-2em" }}>
@@ -174,7 +193,7 @@ function WalletPage() {
           </Form.Item>
         </Form>
       </Modal>
-    </>
+    </div>
   );
 }
 

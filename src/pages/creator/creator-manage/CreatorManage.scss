@@ -6,7 +6,9 @@
   }
   &--right {
     flex: 1;
-    overflow: hidden;
+    height: 100vh;
+    overflow-y: scroll;
+    width: auto;
     &__header {
       display: none;
     }

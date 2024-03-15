@@ -1,0 +1,49 @@
+.purchase-hi-card {
+  margin: 1.5em 0;
+  padding: 1em;
+  display: flex;
+  background-image: url("../../assets/pattern.png");
+  background-size: cover;
+  border: 3px solid rgba(84, 84, 84, 0.3);
+  border-radius: 10px;
+  &__left {
+    width: calc(100% - (1em + 300px));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h1 {
+      font-family: "BoldCereal";
+      font-size: 1.3em;
+    }
+    h3 {
+      background-color: #eaf93f;
+      width: fit-content;
+      font-size: 0.9em;
+      padding: 5px 8px;
+      border-radius: 5px;
+      margin: 0.5em 0 3em 0;
+      font-family: "MediumCereal";
+    }
+    p {
+      width: 80%;
+      text-wrap: wrap;
+      font-family: "BookCereal";
+      margin-bottom: 2em;
+    }
+    button {
+      background-color: #2c2c2c;
+      font-family: "MediumCereal";
+      height: 3em;
+      color: white;
+      width: fit-content;
+    }
+  }
+  &__right {
+    width: calc(2em + 300px);
+    display: flex;
+    justify-content: flex-end;
+    .ant-image-mask {
+      border-radius: 10px;
+    }
+  }
+}

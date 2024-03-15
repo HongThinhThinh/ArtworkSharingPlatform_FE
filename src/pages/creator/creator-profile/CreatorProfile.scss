@@ -13,7 +13,8 @@
   transform: translateY(-1em);
 
   .wallet,
-  .order-btn {
+  .order-btn,
+  .heart {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,8 +29,10 @@
     padding: 0.3em 0.7em;
     font-size: 0.9em;
   }
-  .wallet {
-    transform: translateY(2.5em) translateX(-1em);
+  .wallet,
+  .order-btn {
+    transform: translateY(2.5em);
+    margin-right: 1em;
   }
 }
 

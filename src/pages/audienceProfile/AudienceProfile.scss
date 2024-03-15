@@ -9,10 +9,9 @@
     border-bottom: none;
   }
   .profileA {
-    margin: 0 auto;
-    width: 90%;
     // margin-bottom: 200px;
     &--navigate {
+      margin: 0 4em;
       border-bottom: 2px solid rgba(220, 220, 223, 0.773);
       padding-bottom: 35px;
       display: flex;
