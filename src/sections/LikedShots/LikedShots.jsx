@@ -8,8 +8,9 @@ import { selectUser } from "../../redux/features/counterSlice";
 import { Link } from "react-router-dom";
 import { HeartTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
 
-function CreatorWorkart({ list = [] }) {
+function LikedShots({ list = [] }) {
   const [data, setData] = useState([]);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     const getAll = async () => {
@@ -22,6 +23,28 @@ function CreatorWorkart({ list = [] }) {
 
   return (
     <>
+      {user?.role == "CREATOR" ? (
+        <div className="your-wallet-head">
+          <Link to="/creator-manage/artworks">
+            <LeftCircleTwoTone
+              twoToneColor="#BBBBBB"
+              style={{
+                fontSize: "1.8em",
+                cursor: "pointer",
+              }}
+            />
+          </Link>
+          <h1>
+            Liked Shots{" "}
+            <HeartTwoTone
+              twoToneColor="pink"
+              style={{
+                marginLeft: "0.5em",
+              }}
+            />
+          </h1>
+        </div>
+      ) : null}
       <Row
         gutter={30}
         style={{ marginLeft: "5%", width: "90%", padding: "4em" }}
@@ -46,7 +69,7 @@ function CreatorWorkart({ list = [] }) {
   );
 }
 
-export default CreatorWorkart;
+export default LikedShots;
 
 // <Col  xs={24} sm={12} lg={8}>
 

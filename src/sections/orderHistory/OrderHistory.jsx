@@ -5,13 +5,17 @@ import Order from "../../component/order/Order";
 import ViewOrderDetail from "../../component/requestOrderDetail/ViewOrderDetail";
 import api from "../../config/axios";
 import { alertFail } from "../../assets/hook/useNotification";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Loading from "../../component/loading/Loading";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../redux/features/counterSlice";
+import { LeftCircleTwoTone } from "@ant-design/icons";
 
 function OrderHistory() {
   const [selectedValue, setSelectedValue] = useState("ALL");
   const [check, setCheck] = useState([]);
   const [state, setState] = useState(true);
+  const user = useSelector(selectUser);
 
   const setupColor = {
     All: "#D9C6EC",
@@ -26,7 +30,19 @@ function OrderHistory() {
     return () => clearTimeout(isLoading);
   }, []);
   return (
-    <>
+    <div className="order-history-wrapper">
+      {user?.role == "CREATOR" ? (
+        <Link to="/creator-manage/artworks">
+          <LeftCircleTwoTone
+            twoToneColor="#BBBBBB"
+            style={{
+              fontSize: "1.8em",
+              cursor: "pointer",
+              margin: "0 0 1em 0",
+            }}
+          />
+        </Link>
+      ) : null}
       {state && <Loading />}
       <div className="order-audience">
         <div className="order-history">
@@ -71,7 +87,7 @@ function OrderHistory() {
       </div>
 
       <Order check={check} setCheck={setCheck} filter={selectedValue} />
-    </>
+    </div>
   );
 }
 

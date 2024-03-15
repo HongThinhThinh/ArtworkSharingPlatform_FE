@@ -65,6 +65,17 @@ function AudienceProfile() {
           >
             Wallet
           </div>
+          <div
+            className={`"profileA--navigate__orders ${
+              selectedLayout === "purchases" ? "active_button " : ""
+            }`}
+            onClick={() => {
+              setSelectedLayout("purchases");
+              navigate("/profile/purchase-history");
+            }}
+          >
+            Purchase History
+          </div>
         </div>
         <Outlet />
       </div>

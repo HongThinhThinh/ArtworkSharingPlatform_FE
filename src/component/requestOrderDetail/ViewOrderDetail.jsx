@@ -117,7 +117,11 @@ function ViewOrderDetail({ choice }) {
               transform: "translateY(2em) translateX(1.5em)",
               fontSize: "1.4em",
             }}
-            onClick={() => navigate("/profile/orders")}
+            onClick={() =>
+              user?.role == "CREATOR"
+                ? navigate("/creator-manage/orders")
+                : navigate("/profile/orders")
+            }
           />
           <div className="view-order-detail__head">
             <div className="view-order-detail__head__title">{data.title}</div>
