@@ -17,6 +17,7 @@ import { selectUser } from "../../redux/features/counterSlice";
 import api from "../../config/axios";
 import { getCurrentDateTime } from "../../assets/hook/useGetTime";
 import ButtonBuy from "../buttonBuy/ButtonBuy";
+import { MdOutlineReportProblem } from "react-icons/md";
 
 function ListFeedback({
   idArtwork,
@@ -27,6 +28,7 @@ function ListFeedback({
   id,
   setOpenUpdate,
   setOpenDelete,
+  setOpenReport,
   countLike,
   countComment,
   interactionLike,
@@ -50,6 +52,9 @@ function ListFeedback({
   const showModalDelete = () => {
     setOpenDelete(true);
   };
+  const showModalReport = () =>{
+    setOpenReport(true);
+  }
   const params = useParams();
   console.log(params);
   const sendComment = async () => {
@@ -236,8 +241,8 @@ function ListFeedback({
             </div>
           </>
         )}
-        <div className="listFeedback--interact__share">
-          <MdOutlineIosShare /> 20
+        <div className="listFeedback--interact__share" onClick={showModalReport} >
+          <MdOutlineReportProblem  />
         </div>
       </div>
       <div className="wrapListfeedback">

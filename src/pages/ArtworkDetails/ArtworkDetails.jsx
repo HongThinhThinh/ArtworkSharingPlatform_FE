@@ -17,6 +17,7 @@ import moment from "moment";
 function ArtworkDetails() {
   const [open, setOpen] = useState(false);
   const [openConfirmDelete, setOpenConfirmDelete] = useState(false);
+  const [openReport, setOpenReport] = useState(false);
   const [data, setData] = useState({});
   const [user, setUser] = useState({});
   const [interactionLike, setInteractionLike] = useState([]);
@@ -40,6 +41,10 @@ function ArtworkDetails() {
 
   const confirmDelete = () => {
     setOpenConfirmDelete(false);
+  };
+
+  const handleCancelReport = () => {
+    setOpenReport(false);
   };
 
   useLayoutEffect(() => {
@@ -70,6 +75,10 @@ function ArtworkDetails() {
       console.error("Error fetching artwork details:", error);
     }
   };
+
+  const report = (e) =>{
+    console.log(e);
+  }
 
   const update = async (e) => {
     setShow(true);
@@ -126,12 +135,84 @@ function ArtworkDetails() {
                     name={user.name}
                     setOpenUpdate={setOpen}
                     setOpenDelete={setOpenConfirmDelete}
+                    setOpenReport={setOpenReport}
                     countLike={data.countLike}
                     countComment={data.countComment}
                     interactionLike={interactionLike}
                     interactionComment={interactionComment}
                   />
                 </div>
+                <Modal
+                  title={
+                    <>
+                      <ExclamationCircleTwoTone twoToneColor="red" /> Report
+                      this artwork
+                    </>
+                  }
+                  open={openReport}
+                  footer={null}
+                  onCancel={handleCancelReport}
+                >
+                   <Form onFinish={report}>
+                    <div
+                      style={{ fontFamily: "MediumCereal", marginTop: "3em" }}
+                    >
+                      <Form.Item>
+                        <h3
+                          style={{
+                            fontFamily: "MediumCereal",
+                          }}
+                        >
+                          Title
+                        </h3>
+                        <Form.Item
+                          name="title"
+                          noStyle
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input!",
+                            },
+                          ]}
+                        >
+                          <Input style={{ height: "3em" }} />
+                        </Form.Item>
+                      </Form.Item>
+
+                      <Form.Item name="reason">
+                        <h3
+                          style={{
+                            fontFamily: "MediumCereal",
+                          }}
+                        >
+                          Reason
+                        </h3>
+                        <Form.Item
+                          name="reason"
+                          noStyle
+                          rules={[
+                            {
+                              required: true,
+                              message: "Please input!",
+                            },
+                          ]}
+                        >
+                          <Input style={{ height: "3em" }} />
+                        </Form.Item>
+                      </Form.Item>
+                    </div>
+                    <Form.Item>
+                      <RoundedBtn
+                        color="#2C547F"
+                        style={{ width: "100%", transform: "translateY(1em)" }}
+                        htmlType="submit"
+                      >
+                        Send
+                      </RoundedBtn>
+                    </Form.Item>
+                  </Form>
+                  
+                </Modal>
                 <Modal
                   open={open}
                   title="Change Content Artwork"
