@@ -15,7 +15,7 @@ function Workart({
   price,
 }) {
   return (
-    <div data-aos="fade-up">
+    <div>
       <WorkartMedia image={image} id={idArtwork} />
       <WorkartInfo
         price={price}
