@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 import { Link } from "react-router-dom";
 import { HeartTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
+import Workart from "../../component/workart/Workart";
 
 function LikedShots({ list = [] }) {
   const [data, setData] = useState([]);
@@ -60,7 +61,17 @@ function LikedShots({ list = [] }) {
         {data?.map((item) => {
           return (
             <Col key={item.id} xs={24} sm={12} lg={8}>
-              <WorkartMedia id={item.artwork.id} image={item.artwork.image} />
+              <Workart
+              price={item.artwork.price}
+              idArtwork={item.artwork?.id}
+              idCreator={item.artwork.user.id}
+              image={item.artwork.image}
+              name={item.artwork.user.name}
+              avatar={item.artwork.user.avt}
+              countLike={item.artwork.countLike}
+              countComment={item.artwork.countComment}
+              interactionLike={item.artwork.interactionLike}
+            />
             </Col>
           );
         })}
