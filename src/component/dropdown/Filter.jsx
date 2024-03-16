@@ -5,24 +5,34 @@ import { AiFillEye } from "react-icons/ai";
 import { useState } from "react";
 import { IoFilterSharp } from "react-icons/io5";
 import { CiCalendarDate } from "react-icons/ci";
-function Filter() {
+import { FcCancel } from "react-icons/fc";
+import { MdOutlinePendingActions } from "react-icons/md";
+import { TiTick } from "react-icons/ti";
+function Filter({ setStatus }) {
   const [selected, setSelected] = useState("Filter");
 
   const handleMenuClick = (e) => {
     message.info("Click on menu item.");
     console.log("click", e.key);
+    setStatus(e.key)
     setSelected(e.key);
   };
   const items = [
     {
-      label: "Sort by date",
-      key: "Date",
-      icon: <CiCalendarDate />,
+      label: "Reject",
+      key: "reject",
+      icon: <FcCancel />,
     },
     {
-      label: "Sort by price",
-      key: "Price",
-      icon: <TbPremiumRights />,
+      label: "Pending",
+      key: "pending",
+      icon: <MdOutlinePendingActions />,
+      info: true,
+    },
+    {
+      label: "Active",
+      key: "active",
+      icon: <TiTick />,
       info: true,
     },
   ];
@@ -30,6 +40,7 @@ function Filter() {
     items,
     onClick: handleMenuClick,
   };
+
   return (
     <Space wrap>
       <Dropdown menu={menuProps}>

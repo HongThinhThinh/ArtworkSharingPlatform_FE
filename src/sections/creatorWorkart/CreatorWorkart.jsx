@@ -9,17 +9,20 @@ import { Link } from "react-router-dom";
 import { HeartTwoTone, LeftCircleTwoTone } from "@ant-design/icons";
 import Workart from "../../component/workart/Workart";
 
-function CreatorWorkart({ list = [] }) {
+function CreatorWorkart({ status}) {
   const [data, setData] = useState([]);
+
 
   useEffect(() => {
     const getAll = async () => {
-      const response = await api.get("/likeShot");
+      const response = await api.get(`/artworkByCreator-${status}`);
       setData(response.data.data);
       console.log(response.data.data);
     };
     getAll();
-  }, []);
+  }, [status]);
+
+
 
   return (
     <>
@@ -39,15 +42,15 @@ function CreatorWorkart({ list = [] }) {
           return (
             <Col key={item.id} xs={24} sm={12} lg={8}>
                <Workart
-              price={item.artwork.price}
-              idArtwork={item.artwork?.id}
-              idCreator={item.artwork.user.id}
-              image={item.artwork.image}
-              name={item.artwork.user.name}
-              avatar={item.artwork.user.avt}
-              countLike={item.artwork.countLike}
-              countComment={item.artwork.countComment}
-              interactionLike={item.artwork.interactionLike}
+              price={item.price}
+              idArtwork={item?.id}
+              idCreator={item.user.id}
+              image={item.image}
+              name={item.user.name}
+              avatar={item.user.avt}
+              countLike={item.countLike}
+              countComment={item.countComment}
+              interactionLike={item.interactionLike}
             />
             </Col>
           );
