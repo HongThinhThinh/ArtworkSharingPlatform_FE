@@ -12,11 +12,14 @@ import { selectUser } from "../../../redux/features/counterSlice";
 import Workart from "../../../component/workart/Workart";
 import WorkartInfo from "../../../component/workartInfo/WorkartInfo";
 import WorkartMedia from "../../../component/workartMedia/WorkartMedia";
+import { useState } from "react";
 
 function CreatorProduct() {
   const { theme } = useStateValue();
   const user = useSelector(selectUser);
   console.log(user);
+  const [status, setStatus] = useState("active");
+
   return (
     <div
       className="creator-product"
@@ -31,11 +34,11 @@ function CreatorProduct() {
           <span className="DropDownTop--span">Artwork</span>
           <div className="filter">
             <DropdownTop />
-            <Filter />
+            <Filter setStatus={setStatus}/>
           </div>
         </div>
         <div className="listArtWork--items">
-          <CreatorWorkart list={user.artworks} />
+          <CreatorWorkart status={status}/>
         </div>
       </div>
     </div>
