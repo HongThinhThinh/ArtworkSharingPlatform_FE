@@ -49,6 +49,7 @@ import WatermarkArtwork from "../component/waterMask/WatermarkArtwork";
 import PurchaseHistoryCard from "../component/purchase-history-card/PurchaseHistoryCard";
 import PurchaseHistory from "../pages/PurchaseHistory/PurchaseHistory";
 import LikedShots from "../sections/LikedShots/LikedShots";
+import FormSignupMod from "../component/formSignupMod/FormSignupMod";
 
 export const router = createBrowserRouter([
   {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
   {
     path: "test",
     element: <PurchaseHistory />,
+  },
+  {
+    path: "test01",
+    element: <FormSignupMod/>
   },
   {
     path: "test2",
