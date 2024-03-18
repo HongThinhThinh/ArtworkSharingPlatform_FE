@@ -10,6 +10,7 @@ import LogoWhite from "../../component/logoWhite/LogoWhite";
 import { alertFail } from "../../assets/hook/useNotification";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectUser } from "../../redux/features/counterSlice";
+import { WarningFilled } from "@ant-design/icons";
 const provider = new GoogleAuthProvider();
 
 function toArr(str) {
@@ -154,7 +155,26 @@ function Login() {
                 rules={[
                   {
                     required: true,
-                    message: "Please input your username!",
+                    message: (
+                      <div>
+                        <WarningFilled /> Please input your username!
+                      </div>
+                    ),
+                  },
+                  {
+                    validator: (_, value) => {
+                      if (!/^[a-zA-Z0-9_]*$/.test(value)) {
+                        return Promise.reject(
+                          <div>
+                            <WarningFilled /> Username must contain only
+                            English characters, numbers, and underscores
+                            NOT whitespace
+                          </div>
+                        );
+                      }
+
+                      return Promise.resolve();
+                    },
                   },
                 ]}
               >
@@ -188,8 +208,26 @@ function Login() {
                 className="login__form__container__namepass__group-form"
                 rules={[
                   {
+                    validator: (_, value) => {
+                      if (/\s/.test(value)) {
+                        return Promise.reject(
+                          <div>
+                            <WarningFilled /> Password must not contain
+                            whitespace
+                          </div>
+                        );
+                      }
+                      return Promise.resolve();
+                    },
+                  },
+                
+                  {
                     required: true,
-                    message: "Please input your password!",
+                    message: (
+                      <div>
+                        <WarningFilled /> Please input your password!
+                      </div>
+                    ),
                   },
                 ]}
               >

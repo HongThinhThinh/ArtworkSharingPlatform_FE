@@ -112,6 +112,19 @@ function SignUp() {
                             </div>
                           ),
                         },
+                        {
+                          validator: (_, value) => {
+                            if (!value || /^\s/.test(value)) {
+                              return Promise.reject(
+                                <div>
+                                  <WarningFilled /> Name must not start with
+                                  whitespace
+                                </div>
+                              );
+                            }
+                            return Promise.resolve();
+                          },
+                        },
                       ]}
                     >
                       <Input
@@ -132,6 +145,21 @@ function SignUp() {
                               <WarningFilled /> Please input your username!
                             </div>
                           ),
+                        },
+                        {
+                          validator: (_, value) => {
+                            if (!/^[a-zA-Z0-9_]*$/.test(value)) {
+                              return Promise.reject(
+                                <div>
+                                  <WarningFilled /> Username must contain only
+                                  English characters, numbers, and underscores
+                                  NOT whitespace
+                                </div>
+                              );
+                            }
+
+                            return Promise.resolve();
+                          },
                         },
                       ]}
                     >
@@ -179,6 +207,19 @@ function SignUp() {
                       name="password"
                       rules={[
                         {
+                          validator: (_, value) => {
+                            if (/\s/.test(value)) {
+                              return Promise.reject(
+                                <div>
+                                  <WarningFilled /> Password must not contain
+                                  whitespace
+                                </div>
+                              );
+                            }
+                            return Promise.resolve();
+                          },
+                        },
+                        {
                           min: 6,
                           message: (
                             <div>
@@ -224,6 +265,19 @@ function SignUp() {
                               <WarningFilled /> Please input your password!
                             </div>
                           ),
+                        },
+                        {
+                          validator: (_, value) => {
+                            if (/\s/.test(value)) {
+                              return Promise.reject(
+                                <div>
+                                  <WarningFilled /> Password must not contain
+                                  whitespace
+                                </div>
+                              );
+                            }
+                            return Promise.resolve();
+                          },
                         },
                       ]}
                       className="signUp__form__container__group-form__label"
