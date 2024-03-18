@@ -135,6 +135,14 @@ function FormArtwork() {
                       required: true,
                       message: "Please input your title!",
                     },
+                    {
+                      validator: (_, value) => {
+                        if (!value || /^\s/.test(value)) {
+                          return Promise.reject('Name must not start with whitespace');
+                        }
+                        return Promise.resolve();
+                      },
+                    },
                   ]}
                 >
                   <Input className="login__form__container__namepass__group-form__input" />
@@ -144,12 +152,17 @@ function FormArtwork() {
                   name="description"
                   className="login__form__container__namepass__group-form"
                 >
-                  <TextArea rows={4} />
+                  <TextArea
+                    rows={4}
+                    maxLength={250}
+                    placeholder="maxLength is 250 character"
+                  />
                 </Form.Item>
                 <Form.Item
                   label="Tags"
                   name="title"
                   className="login__form__container__namepass__group-form"
+                 
                 >
                   <Tags
                     setSelectedTags={setSelectedTags}
@@ -171,6 +184,13 @@ function FormArtwork() {
                         message:
                           "Please input your expect price for this artwork!",
                       },
+                      { validator: (_, value) => {
+                        if (parseFloat(value) <= 0) {
+                          return Promise.reject('Price must be greater than 0');
+                        }
+                        return Promise.resolve();
+                      }
+                    },
                     ]}
                   >
                     <Input
