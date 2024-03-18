@@ -49,20 +49,31 @@ function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const handleLoginGoogle = () => {
+  const handleLoginGoogle = async () => {
     const auth = getAuth();
-    signInWithPopup(auth, provider).then((result) => {
-      console.log(result);
-      // This gives you a Google Access Token. You can use it to access the Google API.
-      const token = result.user.accessToken;
-      console.log(token);
-      api.post("/login-gg", { token }).then((data) => {
-        if (data) {
-          localStorage.setItem("role", data);
-          navigate("/creator");
-        }
-      });
-    });
+    const result = await signInWithPopup(auth, provider);
+    console.log(result);
+    const token = result.user.accessToken;
+    console.log(token);
+    // api.post("/login-gg", { token }).then((data) => {
+    //   if (data) {
+    //     localStorage.setItem("role", data);
+    //     navigate("/creator");
+    //   }
+    // });
+
+    const res = await api.post("/login-gg", { token });
+    console.log(res.data);
+    localStorage.setItem("token", token);
+    localStorage.setItem("accountId", res.id);
+    //save redux
+    dispatch(login(res.data));
+    if (res.data.role === "CREATOR") {
+      navigate("/creator-manage/artworks");
+    }
+    if (res.data.role === "AUDIENCE") {
+      navigate("/profile");
+    }
   };
 
   const onFinish = async (value) => {
