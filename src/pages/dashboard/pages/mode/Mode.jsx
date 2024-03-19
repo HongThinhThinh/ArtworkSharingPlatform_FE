@@ -71,7 +71,7 @@ function Mode() {
       dataIndex: "role",
       key: "role",
     },
-
+  
     {
       title: "Deactive",
       dataIndex: "deActive",

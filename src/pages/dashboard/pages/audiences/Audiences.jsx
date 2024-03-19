@@ -7,6 +7,8 @@ import {
   alertFail,
   alertSuccess,
 } from "../../../../assets/hook/useNotification";
+import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
+import { GoDotFill } from "react-icons/go";
 
 function Audiences() {
   const navigate = useNavigate();
@@ -30,7 +32,7 @@ function Audiences() {
           id: id,
           reasonDeActive: reason,
         });
-        
+
         setModal2Open(false);
         alertSuccess("Deactive " + name + " successfully!");
         getAllByRole();
@@ -59,10 +61,22 @@ function Audiences() {
       hidden: true,
     },
     {
-      title: "Avt",
+      title: "Avatar",
       dataIndex: "avt",
       key: "avt",
-      render: (avt) => <img src={avt} alt="Avatar" style={{ width: "3em",height:"3em", borderRadius: "50%" }} />,
+      render: (avt) => (
+        <img
+          src={avt}
+          alt="Avatar"
+          style={{ width: "3em", height: "3em", borderRadius: "50%" }}
+        />
+      ),
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      render: (text) => <a>{text}</a>,
     },
     {
       title: "Username",
@@ -82,15 +96,26 @@ function Audiences() {
     },
 
     {
-      title: "Deactive",
+      title: "Status",
       dataIndex: "deActive",
       key: "deActive",
-      hidden: true,
+
+      render: (active) => (
+        <div>
+          <GoDotFill style={{ color: active ? "red" : "green" }} />
+        </div>
+      ),
     },
 
     {
       title: "Action",
       key: "action",
+      filters: [
+        { text: "Active", value: false },
+        { text: "Deactive", value: true },
+      ],
+      onFilter: (value, record) => record.deActive === value,
+
       render: (_, record) => {
         return (
           <Space size="middle">
@@ -157,7 +182,7 @@ function Audiences() {
   console.log();
 
   return (
-    <div className="audience" style={{ padding: "2em" }}>
+    <div className="audience" style={{ padding: "1.5em" }}>
       <Table
         columns={columns}
         dataSource={allUsers}
