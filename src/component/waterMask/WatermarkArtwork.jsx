@@ -1,24 +1,66 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Watermark } from "antd";
-import ImgPreview from "../../pages/Image/Image";
-const WatermarkArtwork = () => (
-  <Watermark
-    height={30}
-    width={130}
-    content="Ant Design"
-    image="https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*lkAoRbywo0oAAAAAAAAAAAAADrJ8AQ/original"
-  >
+import { useNavigate } from "react-router-dom";
+
+function WatermarkArtwork({ url, id }) {
+  useEffect(() => {
+    var canvas = document.getElementById("viewport");
+    var ctx = canvas.getContext("2d");
+    var cw = canvas.width;
+    var ch = canvas.height;
+
+    var img = new Image();
+
+    img.onload = start;
+    img.src = url;
+
+    let rate = img.height / img.width;
+    let newWidth = 335;
+    let newHeight = newWidth * rate;
+    img.height = newHeight;
+    img.width = newWidth;
+    function start() {
+      canvas.width = 335;
+      canvas.height = 252;
+
+      ctx.drawImage(img, 0, 0, 335, 252);
+      var dataURL = watermarkedDataURL(canvas, "Cremo");
+    }
+
+    function watermarkedDataURL(canvas, text) {
+      var tempCanvas = document.createElement("canvas");
+      var tempCtx = tempCanvas.getContext("2d");
+      var cw, ch;
+      cw = tempCanvas.width = canvas.width;
+      ch = tempCanvas.height = canvas.height;
+      tempCtx.drawImage(canvas, 0, 0);
+      tempCtx.font = "24px MediumCereal";
+      var textWidth = tempCtx.measureText(text).width;
+      tempCtx.globalAlpha = 0.5;
+      tempCtx.fillStyle = "white";
+      tempCtx.fillText(text, cw - textWidth - 10, ch - 20);
+      tempCtx.fillStyle = "black";
+      tempCtx.fillText(text, cw - textWidth - 10 + 2, ch - 20 + 2);
+      // just testing by adding tempCanvas to document
+      document.getElementById("viewport").replaceWith(tempCanvas);
+      return tempCanvas.toDataURL();
+    }
+  }, [url]);
+
+  const navigate = useNavigate();
+  return (
     <div
       style={{
-        height: 500,
+        borderRadius: "10px !important",
+        marginTop: "50px !important",
+      }}
+      onClick={() => {
+        navigate(`/artworkDetails/${id}`);
       }}
     >
-      <img
-        width={"500px"}
-        height={"500px"}
-        src="https://firebasestorage.googleapis.com/v0/b/swp-asp.appspot.com/o/IMG_7997.jpeg?alt=media&token=a3787d13-6be1-4aa9-8b28-79746cb16040"
-      />
+      {url && <canvas id="viewport"></canvas>}
     </div>
-  </Watermark>
-);
+  );
+}
+
 export default WatermarkArtwork;

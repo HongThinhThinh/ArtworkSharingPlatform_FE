@@ -4,7 +4,7 @@
   align-items: center;
   padding-right: 1em;
   border-radius: 100px;
-  background-color: #1f1f1f;
+  background-color: #e4e4e4;
   margin-left: 1em;
   &__avatar {
     height: 55px !important;
@@ -12,20 +12,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(240, 157, 171);
+    background-color: rgb(133, 71, 148);
   }
   &__info {
     padding: 0 1em;
     h3 {
-      font-family: "BookCereal";
+      font-family: "MediumCereal";
       font-size: medium;
+      color: black;
     }
     p {
-      font-family: "LightCereal";
+      font-family: "BookCereal";
       font-size: smaller;
-      color: rgba(255, 255, 255, 0.733);
+      color: rgba(28, 28, 28, 0.733);
       text-wrap: nowrap;
     }
+  }
+  &__pop-down {
+    color: black;
   }
 }
 

@@ -5,8 +5,11 @@
     text-align: center;
     transform: translateX(2em) translateY(2em);
   }
+  text {
+    fill: rgb(0, 0, 0) !important;
+  }
   span {
-    color: black !important;
+    color: rgb(0, 0, 0) !important;
     font-family: "BookCereal" !important;
   }
 }

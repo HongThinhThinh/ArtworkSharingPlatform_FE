@@ -3,21 +3,21 @@
   font-family: "MediumCereal";
   border-radius: 100px;
   height: fit-content;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   width: min-content;
   background-color: transparent;
   transition: all 0.5s ease;
-  border: 1px solid rgba(255, 255, 255, 0.489);
+  border: 1px solid rgba(78, 78, 78, 0.489);
   margin: 1em;
-  padding: 12px 5px 12px 15px;
+  padding: 12px 7px 12px 15px;
 }
 .ant-input {
   font-family: "MediumCereal" !important;
 }
 .search-dashboard.active {
-  background-color: #1f1f1f;
+  background-color: #ffffff;
   width: 40%;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 @media only screen and (max-width: 1160px) {

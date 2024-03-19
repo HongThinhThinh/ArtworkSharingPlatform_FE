@@ -32,7 +32,7 @@ const MyResponsivePie = ({ data, title, y }) => (
           id: "dots",
           type: "patternDots",
           background: "inherit",
-          color: "rgba(255, 255, 255, 0.3)",
+          color: "rgba(255, 255, 255, 0.9)",
           size: 4,
           padding: 1,
           stagger: true,
@@ -71,7 +71,7 @@ const MyResponsivePie = ({ data, title, y }) => (
           itemsSpacing: 0,
           itemWidth: 100,
           itemHeight: 18,
-          itemTextColor: "#999",
+          itemTextColor: "#000",
           itemDirection: "left-to-right",
           itemOpacity: 1,
           symbolSize: 18,
@@ -80,7 +80,7 @@ const MyResponsivePie = ({ data, title, y }) => (
             {
               on: "hover",
               style: {
-                itemTextColor: "#fff",
+                itemTextColor: "#000",
               },
             },
           ],
@@ -91,11 +91,12 @@ const MyResponsivePie = ({ data, title, y }) => (
           fontSize: "1.2em",
           fontFamily: "BoldCereal",
         },
-        annotations: { text: { fontSize: "1.5em" } },
+        annotations: { text: { fontSize: "1.5em", color: "black" } },
         legends: {
           text: {
             fontSize: "1.2em",
             fontFamily: "BoldCereal",
+            color: "#000000 !important",
           },
         },
       }}
