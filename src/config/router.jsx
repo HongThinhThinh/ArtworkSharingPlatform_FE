@@ -51,6 +51,7 @@ import PurchaseHistory from "../pages/PurchaseHistory/PurchaseHistory";
 import LikedShots from "../sections/LikedShots/LikedShots";
 import FormSignupMod from "../component/formSignupMod/FormSignupMod";
 import SearchResult from "../pages/searchResult/SearchResult";
+import SearchUser from "../pages/dashboard/pages/searchUser/SearchUser";
 
 export const router = createBrowserRouter([
   {
@@ -112,6 +113,11 @@ export const router = createBrowserRouter([
         path: "/dashboard/overview",
         element: <Overview />,
       },
+      {
+        path: "/dashboard/search?",
+        element: <SearchUser />,
+      },
+
       {
         path: "/dashboard/modes",
         element: <Mode />,

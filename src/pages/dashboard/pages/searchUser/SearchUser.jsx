@@ -1,19 +1,28 @@
-import { Button, Drawer, Input, Modal, Space, Table, Tag } from "antd";
 import React, { useEffect, useState } from "react";
-import { Form, Link, useNavigate } from "react-router-dom";
-import api from "../../../../config/axios";
-import TextArea from "antd/es/input/TextArea";
-import { FaFilter } from "react-icons/fa";
-import {
-  alertFail,
-  alertSuccess,
-} from "../../../../assets/hook/useNotification";
 import { GoDotFill } from "react-icons/go";
-function Creators() {
-  const navigate = useNavigate();
+import { useLocation } from "react-router-dom";
+import api from "../../../../config/axios";
+import { Button, Form, Input, Modal, Space, Table } from "antd";
+import TextArea from "antd/es/input/TextArea";
+
+function SearchUser() {
+  const [data, setData] = useState([]);
+
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const search = searchParams.get("search");
+  useEffect(() => {
+    const getAll = async () => {
+      const response = await api.get(`/searchUser?search=${search}`);
+      setAllUsers(response.data.data);
+    };
+    getAll();
+  }, [search]);
+  console.log(search);
+  console.log(data);
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [status, setStatus] = useState(false);
+
   const [allUsers, setAllUsers] = useState(false);
   const [modal1Open, setModal1Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
@@ -31,6 +40,7 @@ function Creators() {
           id: id,
           reasonDeActive: reason,
         });
+
         setModal2Open(false);
         alertSuccess("Deactive " + name + " successfully!");
         getAllByRole();
@@ -97,23 +107,13 @@ function Creators() {
       title: "Status",
       dataIndex: "deActive",
       key: "deActive",
-      filters: [
-        { text: "Active", value: true },
-        { text: "Deactive", value: false },
-      ],
-      onFilter: (value, record) => record.active === value,
+
       render: (active) => (
         <div>
           <GoDotFill style={{ color: active ? "red" : "green" }} />
         </div>
       ),
     },
-    // {
-    //   title: "Deactive",
-    //   dataIndex: "deActive",
-    //   key: "deActive",
-    //   hidden: true,
-    // },
 
     {
       title: "Action",
@@ -170,28 +170,10 @@ function Creators() {
     },
   ].filter((item) => !item.hidden);
 
-  const getAllByRole = async () => {
-    try {
-      const response = await api.get("/usersRole", {
-        params: {
-          role: "CREATOR",
-        },
-      });
-      setAllUsers(response.data.data);
-      // console.log(response.data.data)
-    } catch (e) {
-      alertFail("Fail to load");
-    }
-  };
-
-  useEffect(() => {
-    getAllByRole();
-  }, [allUsers]);
-
   console.log();
 
   return (
-    <div className="audience" style={{ padding: "1.5em" }}>
+    <div style={{ padding: "3em" }}>
       <Table
         columns={columns}
         dataSource={allUsers}
@@ -257,4 +239,4 @@ function Creators() {
   );
 }
 
-export default Creators;
+export default SearchUser;
