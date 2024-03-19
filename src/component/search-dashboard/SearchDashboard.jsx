@@ -6,7 +6,7 @@ import "./SearchDashboard.scss";
 function SearchDashboard() {
   const prefix = (
     <SearchOutlined
-      style={{ color: "white", fontSize: "1.3em", paddingRight: "0.2em" }}
+      style={{ color: "grey", fontSize: "1.3em", paddingRight: "0.2em" }}
       onClick={() => {
         setIsopen(!isOpen);
       }}

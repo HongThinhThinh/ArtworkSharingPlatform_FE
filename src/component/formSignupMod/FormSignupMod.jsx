@@ -15,16 +15,12 @@ function FormSignupMod({ status, setStatus }) {
     setFormData(e);
     setCheck(true);
   };
-  console.log(formData);
 
   const createMod = async () => {
     try {
       const response = await api.post("/signupMod", {
         userName: formData.username,
-        name: formData.name,
         password: formData.password,
-        email: formData.email,
-        phone: formData.phone,
       });
       console.log(response);
       alertSuccess("Successfully create new mod!");
@@ -49,9 +45,10 @@ function FormSignupMod({ status, setStatus }) {
               fontFamily: "MediumCereal",
               fontSize: "1.7em",
               textAlign: "center",
+              margin: "0.5em 0",
             }}
           >
-            Create new mod
+            Create new moderator account
           </h2>
         </div>
       }
@@ -105,61 +102,6 @@ function FormSignupMod({ status, setStatus }) {
             className="form-signup-mod__container__input"
             placeholder="6+ characters"
           />
-        </Form.Item>
-        <Form.Item
-          label="Name"
-          name="name"
-          className="form-signup-mod__container__label"
-          rules={[
-            {
-              required: true,
-              message: (
-                <div>
-                  <WarningFilled /> Please input your name!
-                </div>
-              ),
-            },
-          ]}
-        >
-          <Input className="form-signup-mod__container__input" />
-        </Form.Item>
-        <Form.Item
-          label="Email"
-          name="email"
-          className="form-signup-mod__container__label"
-          rules={[
-            {
-              type: "email",
-              message: (
-                <div>
-                  <WarningFilled /> Email is not valid!
-                </div>
-              ),
-            },
-            {
-              required: true,
-              message: (
-                <div>
-                  <WarningFilled /> Please input your email!
-                </div>
-              ),
-            },
-          ]}
-        >
-          <Input className="form-signup-mod__container__input" />
-        </Form.Item>
-        <Form.Item
-          label="Phone"
-          name="phone"
-          className="form-signup-mod__container__label"
-          rules={[
-            {
-              required: true,
-              message: "Please input your username!",
-            },
-          ]}
-        >
-          <Input className="form-signup-mod__container__input" />
         </Form.Item>
 
         <Button
