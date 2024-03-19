@@ -50,6 +50,7 @@ import PurchaseHistoryCard from "../component/purchase-history-card/PurchaseHist
 import PurchaseHistory from "../pages/PurchaseHistory/PurchaseHistory";
 import LikedShots from "../sections/LikedShots/LikedShots";
 import FormSignupMod from "../component/formSignupMod/FormSignupMod";
+import SearchResult from "../pages/searchResult/SearchResult";
 
 export const router = createBrowserRouter([
   {
@@ -80,7 +81,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "test01",
-    element: <FormSignupMod/>
+    element: <FormSignupMod />,
   },
   {
     path: "test2",
@@ -231,6 +232,10 @@ export const router = createBrowserRouter([
       {
         path: "/go-pro",
         element: <GoPro />,
+      },
+      {
+        path: "/search?",
+        element: <SearchResult />,
       },
       {
         path: "/profile",
