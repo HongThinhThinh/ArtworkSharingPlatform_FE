@@ -2,8 +2,9 @@
   background: none;
 }
 .layout-dashboard {
-  height: 100vh;
-  background: #0d0d0d !important;
+  height: 100vh !important;
+  overflow-y: scroll;
+  background: #f7f7f7 !important;
   color: white;
   .ant-layout-sider-children {
     background-color: #1f1f1f !important;
@@ -18,11 +19,11 @@
 
 .expand-icon {
   border-radius: 100px;
-  outline: #0d0d0d 7px solid;
-  color: pink;
+  border: #f7f7f7 7px solid;
+  color: rgb(195, 148, 207);
   font-size: 1.8em;
   position: relative;
-  left: 285px;
+  left: 286.5px;
   top: 4em;
   z-index: 1;
   box-shadow: inset;

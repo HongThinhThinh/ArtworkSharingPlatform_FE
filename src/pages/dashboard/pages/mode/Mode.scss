@@ -3,16 +3,16 @@
   padding: 2em;
 
   &__createMod {
-    width: 20%;
     border-radius: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: white !important;
     color: black;
-    font-family: "SemiBoldMonaSans";
+    font-family: "MediumCereal";
     padding: 22px;
     border: 1.8px solid rgb(231, 231, 231);
     margin: 0.5em 0;
+    gap: 0.5em;
   }
 }

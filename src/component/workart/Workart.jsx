@@ -2,6 +2,7 @@ import React from "react";
 import "./Workart.scss";
 import WorkartInfo from "../workartInfo/WorkartInfo";
 import WorkartMedia from "../workartMedia/WorkartMedia";
+import WatermarkArtwork from "../waterMask/WatermarkArtwork";
 
 function Workart({
   idArtwork,
@@ -16,7 +17,12 @@ function Workart({
 }) {
   return (
     <div>
-      <WorkartMedia image={image} id={idArtwork} />
+      {price > 0 ? (
+        <WatermarkArtwork url={image} id={idArtwork} />
+      ) : (
+        <WorkartMedia image={image} id={idArtwork} />
+      )}
+
       <WorkartInfo
         price={price}
         interactionLike={interactionLike}

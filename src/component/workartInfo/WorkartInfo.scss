@@ -1,4 +1,6 @@
 .info {
+  width: 335px;
+  margin: 0.5em 0 2em 0;
   display: flex;
   justify-content: space-between;
   &__right {
@@ -13,7 +15,7 @@
       font-family: "MediumMonaSans";
       overflow: hidden;
       white-space: nowrap;
-      text-overflow: ellipsis ;
+      text-overflow: ellipsis;
     }
     &__tag {
       font-family: "BoldMonaSans";
@@ -91,11 +93,3 @@
     }
   }
 }
-
-
-
-
-
-
-
-

@@ -73,45 +73,45 @@ function CreatorPage() {
           />
         </Sider>
       )}
-     
+
       <Content
         width={isChangeLayout ? "100%" : "75%"}
         className={styles.contentStyle}
-        style={{padding:"2em"}}
+        style={{ padding: "2em" }}
       >
         {/* <ChangeTabCreator /> */}
         {/* <CreatorWorkart
           list={data.artworks}
           style={{ paddingLeft: "2em", paddingBottom: "3em" }}
         /> */}
-         <h1 style={{ fontSize: "20px", fontWeight: "500" }}>Artworks</h1>
+        <h1 style={{ fontSize: "20px", fontWeight: "500" }}>Artworks</h1>
 
-        <Row x container gutter={32} >
-        {artworks.map((artwork, index) => (
-          <Col
-            style={{ cursor: "pointer" }}
-            xs={24}
-            sm={12}
-            lg={8}
-            xl={8}
-            xxl={8}
-            // span={8}
-            key={index}
-          >
-            <Workart
-              price={artwork.price}
-              idArtwork={artwork?.id}
-              idCreator={artwork.user.id}
-              image={artwork.image}
-              name={artwork.user.name}
-              avatar={artwork.user.avt}
-              countLike={artwork.countLike}
-              countComment={artwork.countComment}
-              interactionLike={artwork.interactionLike}
-            />
-          </Col>
-        ))}
-      </Row>
+        <Row x container gutter={32}>
+          {artworks.map((artwork, index) => (
+            <Col
+              style={{ cursor: "pointer" }}
+              xs={24}
+              sm={12}
+              lg={8}
+              xl={8}
+              xxl={8}
+              // span={8}
+              key={index}
+            >
+              <Workart
+                price={artwork.price}
+                idArtwork={artwork?.id}
+                idCreator={artwork.user.id}
+                image={artwork.image}
+                name={artwork.user.name}
+                avatar={artwork.user.avt}
+                countLike={artwork.countLike}
+                countComment={artwork.countComment}
+                interactionLike={artwork.interactionLike}
+              />
+            </Col>
+          ))}
+        </Row>
       </Content>
     </Layout>
   );
