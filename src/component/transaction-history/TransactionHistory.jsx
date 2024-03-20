@@ -10,7 +10,7 @@ import {
 import { alertFail } from "../../assets/hook/useNotification";
 import api from "../../config/axios";
 
-function TransactionHistory({transaction}) {
+function TransactionHistory({ transaction }) {
   const [userData, setUserData] = useState();
   const [dataTrans, setDataTrans] = useState([]);
   const [id, setId] = useState("");

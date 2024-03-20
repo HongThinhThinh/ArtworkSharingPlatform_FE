@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Increment.scss";
 
-function Increment() {
+function Increment({ data }) {
+  console.log(data?.data);
   const [number, setNumber] = useState(0);
+
   useEffect(() => {
-    if (number <= 100 - 1) {
+    if (number <= data - 1) {
       const id = setInterval(() => {
         setNumber(number + 1);
       }, 10);
