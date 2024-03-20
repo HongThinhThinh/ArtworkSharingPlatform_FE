@@ -102,9 +102,13 @@ function Creators() {
         { text: "Deactive", value: false },
       ],
       onFilter: (value, record) => record.active === value,
-      render: (active) => (
+      render: (deActive) => (
         <div>
-          <GoDotFill style={{ color: active ? "red" : "green" }} />
+          {deActive ? (
+            <MdOutlineBlock style={{ color: "red", marginLeft:"0.2em" }} />
+          ) : (
+            <GoDotFill style={{ color: "green", fontSize: "1.7em" }} />
+          )}
         </div>
       ),
     },

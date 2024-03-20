@@ -5,7 +5,7 @@ import api from "../../../../config/axios";
 import { Button, Form, Input, Modal, Space, Table } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import { alertFail, alertSuccess } from "../../../../assets/hook/useNotification";
-
+import { MdOutlineBlock } from "react-icons/md";
 function SearchUser() {
   const [data, setData] = useState([]);
 
@@ -109,9 +109,10 @@ function SearchUser() {
       dataIndex: "deActive",
       key: "deActive",
 
-      render: (active) => (
+      render: (deActive) => (
         <div>
-          <GoDotFill style={{ color: active ? "red" : "green" }} />
+       
+          {deActive ? (<MdOutlineBlock style={{ color: "red" }} /> ) : (<GoDotFill style={{ color: "green" , fontSize:"1.7em"}} />)}
         </div>
       ),
     },
