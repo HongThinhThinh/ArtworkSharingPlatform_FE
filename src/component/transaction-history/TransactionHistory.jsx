@@ -19,7 +19,7 @@ function TransactionHistory() {
     try {
       const response = await api.get(`/transactionsById`);
       console.log(response.data.data);
-      setDataTrans(response.data.data.reverse());
+      setDataTrans(response.data.data);
     } catch (e) {
       alertFail(e.response.data);
     }
@@ -37,14 +37,17 @@ function TransactionHistory() {
     },
     {
       title: "Transfer To",
-      dataIndex: "to",
-      key: "to",
-      render: ({ avatar, name }) => (
+      dataIndex: "artwork",
+      key: "artwork",
+      render: (artwork) => (
         <a>
-          {avatar ? (
-            <Avatar style={{ marginRight: "0.5em" }} src={avatar || ""} />
+          {artwork ? (
+            <Avatar
+              style={{ marginRight: "0.5em" }}
+              src={artwork?.user.avt || ""}
+            />
           ) : null}
-          {name}
+          {artwork?.user.name}
         </a>
       ),
     },
@@ -70,15 +73,6 @@ function TransactionHistory() {
           second
         ).toDateString();
         return <p>{date}</p>;
-      },
-    },
-    {
-      title: "Account Name",
-      dataIndex: "to",
-      key: "to",
-      render: (to) => {
-        console.log(to.walletID);
-        return <div>{to.walletID ? to.walletID : ""}</div>;
       },
     },
     {
