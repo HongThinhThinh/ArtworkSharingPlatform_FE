@@ -15,37 +15,37 @@ export const navDashboardConfig = [
   },
   {
     key: "2",
+    icon: <FaMoneyBillTransfer style={{ fontSize: "1.8em" }} />,
+    label: "Transaction",
+  },
+  {
+    key: "3",
     icon: <TeamOutlined />,
     label: "Users",
     children: [
       {
-        key: "21",
+        key: "31",
         label: "Modes",
       },
       {
-        key: "22",
+        key: "32",
         label: "Creators",
       },
       {
-        key: "23",
+        key: "33",
         label: "Audiences",
       },
     ],
   },
   {
-    key: "3",
+    key: "4",
     icon: <SolutionOutlined />,
     label: "Posts",
   },
   {
-    key: "4",
+    key: "5",
     icon: <FileExclamationOutlined />,
     label: "Reported Posts",
-  },
-  {
-    key: "5",
-    icon: <FaMoneyBillTransfer style={{fontSize:"1.8em"}}/>,
-    label: "Transaction",
   },
 ];
 
@@ -53,22 +53,22 @@ export const navpath = {
   1: {
     path: "/dashboard/overview",
   },
-  21: {
+  31: {
     path: "/dashboard/modes",
   },
-  22: {
+  32: {
     path: "/dashboard/creators",
   },
-  23: {
+  33: {
     path: "/dashboard/audiences",
   },
-  3: {
+  4: {
     path: "/dashboard/posts",
   },
-  4: {
+  5: {
     path: "/dashboard/reported-posts",
   },
-  5: {
+  2: {
     path: "/dashboard/view-transaction",
   },
 };
