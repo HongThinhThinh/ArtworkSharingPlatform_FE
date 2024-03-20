@@ -52,6 +52,7 @@ import LikedShots from "../sections/LikedShots/LikedShots";
 import FormSignupMod from "../component/formSignupMod/FormSignupMod";
 import SearchResult from "../pages/searchResult/SearchResult";
 import SearchUser from "../pages/dashboard/pages/searchUser/SearchUser";
+import Error404 from "../pages/error404/Error404";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
   {
     path: "register",
     element: <SignUp />,
+  },
+  {
+    path: "error",
+    element: <Error404 />,
   },
   {
     path: "test",
