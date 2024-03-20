@@ -10,14 +10,14 @@ import {
 import { alertFail } from "../../assets/hook/useNotification";
 import api from "../../config/axios";
 
-function TransactionHistory() {
+function TransactionHistory({transaction}) {
   const [userData, setUserData] = useState();
   const [dataTrans, setDataTrans] = useState([]);
   const [id, setId] = useState("");
 
   const getTransaction = async () => {
     try {
-      const response = await api.get(`/transactionsById`);
+      const response = await api.get(`/${transaction}`);
       console.log(response.data.data);
       setDataTrans(response.data.data);
     } catch (e) {
@@ -130,6 +130,11 @@ function TransactionHistory() {
         style={{ fontFamily: "MediumCereal" }}
         columns={columns}
         dataSource={dataTrans}
+        pagination={{
+          defaultPageSize: 5,
+          showSizeChanger: true,
+          pageSizeOptions: ["4", "8"],
+        }}
       />
     </div>
   );

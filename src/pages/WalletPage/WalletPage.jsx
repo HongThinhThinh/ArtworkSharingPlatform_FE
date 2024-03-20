@@ -150,7 +150,7 @@ function WalletPage() {
           </div>
         </div>
       </div>
-      <TransactionHistory />
+      <TransactionHistory transaction="transactionsById"/>
       <Modal open={open} onCancel={handleCancel} footer={null}>
         <Form onFinish={onFinish}>
           <div style={{ fontFamily: "MediumCereal", marginBottom: "-2em" }}>

@@ -53,6 +53,7 @@ import FormSignupMod from "../component/formSignupMod/FormSignupMod";
 import SearchResult from "../pages/searchResult/SearchResult";
 import SearchUser from "../pages/dashboard/pages/searchUser/SearchUser";
 import Error404 from "../pages/error404/Error404";
+import ViewTransaction from "../pages/view-transaction/ViewTransaction";
 
 export const router = createBrowserRouter([
   {
@@ -142,6 +143,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/reported-posts",
         element: <ReportedPosts />,
+      },
+      {
+        path: "/dashboard/view-transaction",
+        element: <ViewTransaction/>,
       },
     ],
   },

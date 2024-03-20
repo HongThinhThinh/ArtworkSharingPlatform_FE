@@ -5,6 +5,7 @@ import {
   TeamOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
 
 export const navDashboardConfig = [
   {
@@ -41,6 +42,11 @@ export const navDashboardConfig = [
     icon: <FileExclamationOutlined />,
     label: "Reported Posts",
   },
+  {
+    key: "5",
+    icon: <FaMoneyBillTransfer style={{fontSize:"1.8em"}}/>,
+    label: "Transaction",
+  },
 ];
 
 export const navpath = {
@@ -61,6 +67,9 @@ export const navpath = {
   },
   4: {
     path: "/dashboard/reported-posts",
+  },
+  5: {
+    path: "/dashboard/view-transaction",
   },
 };
 

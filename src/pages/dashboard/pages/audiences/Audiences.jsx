@@ -9,6 +9,7 @@ import {
 } from "../../../../assets/hook/useNotification";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { GoDotFill } from "react-icons/go";
+import { MdOutlineBlock } from "react-icons/md";
 
 function Audiences() {
   const navigate = useNavigate();
@@ -100,9 +101,13 @@ function Audiences() {
       dataIndex: "deActive",
       key: "deActive",
 
-      render: (active) => (
+      render: (deActive) => (
         <div>
-          <GoDotFill style={{ color: active ? "red" : "green" }} />
+          {deActive ? (
+            <MdOutlineBlock style={{ color: "red", marginLeft:"0.2em" }} />
+          ) : (
+            <GoDotFill style={{ color: "green", fontSize: "1.7em" }} />
+          )}
         </div>
       ),
     },
