@@ -1,4 +1,4 @@
-import { Outlet, createBrowserRouter } from "react-router-dom";
+import { Navigate, Outlet, createBrowserRouter } from "react-router-dom";
 import Header from "../component/header/Header";
 import Footer from "../component/footer/Footer";
 import HomePage from "../pages/homepage/HomePage";
@@ -54,15 +54,55 @@ import SearchResult from "../pages/searchResult/SearchResult";
 import SearchUser from "../pages/dashboard/pages/searchUser/SearchUser";
 import Error404 from "../pages/error404/Error404";
 import ViewTransaction from "../pages/view-transaction/ViewTransaction";
+import { useDispatch, useSelector } from "react-redux";
+import { selectUser } from "../redux/features/counterSlice";
+import { alertFail } from "../assets/hook/useNotification";
+
+const ProtectedRouteAuth = ({ children }) => {
+  const user = useSelector(selectUser);
+  if (!user) {
+    alertFail("You need to login first!!");
+    return <Navigate to="/login" replace />;
+  }
+  return children;
+};
+
+const ProtectedRouteCreator = ({ children }) => {
+  const user = useSelector(selectUser);
+  console.log(user);
+  if (user.role === "AUDIENCE") {
+    alertFail("You do not have permissions to access");
+    return <Navigate to="/go-pro" replace />;
+  }
+  return children;
+};
+
+const ProtectedADMIN = ({ children }) => {
+  const user = useSelector(selectUser);
+  console.log(user);
+  if (user.role !== "ADMIN") {
+    alertFail("You do not have permissions to access");
+    return <Navigate to="/" replace />;
+  }
+  return children;
+};
 
 export const router = createBrowserRouter([
+  {
+    path: "*",
+    element: <Error404 />,
+  },
   {
     path: "/room-messages",
     element: <RoomChat />,
     children: [
       {
         path: ":id",
-        element: <ChatDetail />,
+        element: (
+          <ProtectedRouteAuth>
+            <ChatDetail />
+          </ProtectedRouteAuth>
+        ),
       },
     ],
   },
@@ -104,7 +144,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/your-bill",
-    element: <PrintBill />,
+    element: (
+      <ProtectedRouteAuth>
+        <PrintBill />
+      </ProtectedRouteAuth>
+    ),
   },
 
   {
@@ -113,7 +157,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Main />,
+    element: (
+      <ProtectedADMIN>
+        <Main />
+      </ProtectedADMIN>
+    ),
     children: [
       {
         path: "/dashboard/overview",
@@ -146,13 +194,17 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/view-transaction",
-        element: <ViewTransaction/>,
+        element: <ViewTransaction />,
       },
     ],
   },
   {
     path: "creator-manage",
-    element: <CreatorManage />,
+    element: (
+      <ProtectedRouteCreator>
+        <CreatorManage />
+      </ProtectedRouteCreator>
+    ),
     children: [
       {
         path: "/creator-manage/artworks",
@@ -243,11 +295,19 @@ export const router = createBrowserRouter([
 
       {
         path: "/buyPosts",
-        element: <OptionUpgrate />,
+        element: (
+          <ProtectedRouteAuth>
+            <OptionUpgrate />
+          </ProtectedRouteAuth>
+        ),
       },
       {
         path: "/go-pro",
-        element: <GoPro />,
+        element: (
+          <ProtectedRouteAuth>
+            <GoPro />
+          </ProtectedRouteAuth>
+        ),
       },
       {
         path: "/search?",
@@ -255,7 +315,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <AudienceProfile />,
+        element: (
+          <ProtectedRouteAuth>
+            <AudienceProfile />,{" "}
+          </ProtectedRouteAuth>
+        ),
         children: [
           {
             path: "/profile/likedShots",

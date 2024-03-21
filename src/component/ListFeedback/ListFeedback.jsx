@@ -18,6 +18,7 @@ import api from "../../config/axios";
 import { getCurrentDateTime } from "../../assets/hook/useGetTime";
 import ButtonBuy from "../buttonBuy/ButtonBuy";
 import { MdOutlineReportProblem } from "react-icons/md";
+import { alertFail } from "../../assets/hook/useNotification";
 
 function ListFeedback({
   idArtwork,
@@ -52,9 +53,9 @@ function ListFeedback({
   const showModalDelete = () => {
     setOpenDelete(true);
   };
-  const showModalReport = () =>{
+  const showModalReport = () => {
     setOpenReport(true);
-  }
+  };
   const params = useParams();
   console.log(params);
   const sendComment = async () => {
@@ -73,6 +74,7 @@ function ListFeedback({
           e.response.data === "Expired Token!" ||
           e.response.data === "Invalid Token!"
         ) {
+          alertFail("You must be logged in");
           navigate(`/login`);
         }
       }
@@ -103,6 +105,7 @@ function ListFeedback({
         e.response.data === "Expired Token!" ||
         e.response.data === "Invalid Token!"
       ) {
+        alertFail("You must be logged in");
         navigate(`/login`);
       }
       if (e.response.data === "dislike") {
@@ -241,8 +244,11 @@ function ListFeedback({
             </div>
           </>
         )}
-        <div className="listFeedback--interact__share" onClick={showModalReport} >
-          <MdOutlineReportProblem  />
+        <div
+          className="listFeedback--interact__share"
+          onClick={showModalReport}
+        >
+          <MdOutlineReportProblem />
         </div>
       </div>
       <div className="wrapListfeedback">

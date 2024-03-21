@@ -19,7 +19,7 @@ function PostJob({ render, status, setStatus, setRender }) {
   const [description, setDescription] = useState("");
   const user = useSelector(selectUser);
   const formRef = useRef();
- 
+
   const config = {
     rules: [
       {
@@ -56,12 +56,10 @@ function PostJob({ render, status, setStatus, setRender }) {
       setRender(!render);
       formRef.current.resetFields();
       alertSuccess("Post new job successfully");
-      
     } catch (error) {
       alertFail("Post new job fail");
     }
   };
-
 
   // console.log(description)
   // console.log(title)
@@ -113,13 +111,11 @@ function PostJob({ render, status, setStatus, setRender }) {
               ]}
             >
               <Input
-                
                 onInput={(e) => setTitle(e.target.value)}
                 placeholder="e.g. landing page, iOS icon"
                 maxLength={70}
                 showCount
                 className="post__container__details__input"
-                
               />
             </Form.Item>
             <p>
