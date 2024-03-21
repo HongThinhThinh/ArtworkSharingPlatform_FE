@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
+import { alertFail } from "../../assets/hook/useNotification";
 
 function JobsPage() {
   const [status, setStatus] = useState(false);
@@ -40,8 +41,10 @@ function JobsPage() {
   }, [render]);
 
   const onFinish = () => {
-    if (user == null || user == undefined) navigate("/login");
-    else setStatus(!status);
+    if (user == null || user == undefined) {
+      alertFail("You need to login first");
+      navigate("/login");
+    } else setStatus(!status);
   };
 
   return (

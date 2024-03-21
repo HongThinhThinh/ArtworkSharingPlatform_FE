@@ -18,7 +18,7 @@ function FormSignupMod({ status, setStatus }) {
 
   const createMod = async () => {
     try {
-      const response = await api.post("/signupMod", {
+      const response = await api.post("/registerMod", {
         userName: formData.username,
         password: formData.password,
       });

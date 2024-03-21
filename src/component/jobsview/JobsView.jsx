@@ -21,18 +21,23 @@ function JobsView({ data }) {
   const user = useSelector(selectUser);
 
   const onFinish = async (e) => {
-    if (user.role === "AUDIENCE") navigate("/go-pro");
-    else {
-      try {
-        const response = await api.put("/updateOrderRequestGlobal", {
-          id: e,
-        });
-        navigate(`/creator-manage/requestOrder/requestOrderDetail/${e}`);
-        alertSuccess("Approve this job successfully");
-      } catch (error) {
-        alertFail(error.response.data);
-        // console.log(error);
+    if (user != null) {
+      if (user?.role === "AUDIENCE") navigate("/go-pro");
+      else {
+        try {
+          const response = await api.put("/updateOrderRequestGlobal", {
+            id: e,
+          });
+          navigate(`/creator-manage/requestOrder/requestOrderDetail/${e}`);
+          alertSuccess("Approve this job successfully");
+        } catch (error) {
+          alertFail(error.response.data);
+          // console.log(error);
+        }
       }
+    } else {
+      alertFail("Please login first");
+      navigate("/login");
     }
   };
 
