@@ -56,7 +56,7 @@ function TransactionHistory({ transaction }) {
       dataIndex: "transactionDate",
       key: "transactionDate",
       render: (date) => {
-        var transactionDate = "20240314160231";
+        var transactionDate = date;
         var year = transactionDate.substring(0, 4);
         var month = transactionDate.substring(4, 6) - 1; // Month in JavaScript Date object is 0-indexed
         var day = transactionDate.substring(6, 8);
@@ -84,7 +84,9 @@ function TransactionHistory({ transaction }) {
           color={
             tag == "Recharge"
               ? "green"
-              : tag == "withdraw"
+              : tag == "BUYPOST"
+              ? "volcano"
+              : tag == "Vip"
               ? "volcano"
               : tag == "Buy Artwork"
               ? "geekblue"
@@ -94,7 +96,9 @@ function TransactionHistory({ transaction }) {
         >
           {tag == "Recharge"
             ? "Deposit"
-            : tag == "Withdraw"
+            : tag == "BUYPOST"
+            ? "Withdraw"
+            : tag == "Vip"
             ? "Withdraw"
             : tag == "Buy Artwork"
             ? "Transfer"

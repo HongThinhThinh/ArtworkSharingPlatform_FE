@@ -15,6 +15,7 @@ import RoomChat from "../pages/RoomChat/RoomChat";
 import CreatorProduct from "../pages/creator/creator-product/CreatorProduct";
 import CreatorSetting from "../pages/creator/creator-setting/CreatorSetting";
 import FormArtwork from "../pages/addArtWork/FormArtWork";
+import AboutUs from "../pages/dashboard/pages/about-us/AboutUs";
 
 import Main from "../pages/dashboard/layout/main-dashboard/Main";
 import Mode from "../pages/dashboard/pages/mode/Mode";
@@ -308,6 +309,10 @@ export const router = createBrowserRouter([
             <GoPro />
           </ProtectedRouteAuth>
         ),
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
         path: "/search?",
