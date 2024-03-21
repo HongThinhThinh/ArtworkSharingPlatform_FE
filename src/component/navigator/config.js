@@ -1,8 +1,7 @@
-
 export const navHeaderConfig = [
   {
     title: "Message",
-    path: "/room-messages", 
+    path: "/room-messages",
   },
   {
     title: "Inspiration",
@@ -11,6 +10,10 @@ export const navHeaderConfig = [
   {
     title: "Jobs",
     path: "/jobs",
+  },
+  {
+    title: "About Us",
+    path: "/about-us",
   },
   {
     title: "Go Pro",

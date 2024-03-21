@@ -1,20 +1,20 @@
-const users = [
+let users = [
   {
-    id: "Blocked",
-    label: "Blocked",
+    id: "Moderators",
+    label: "Moderators",
     value: 117,
     color: "hsl(290, 70%, 50%)",
   },
 
   {
-    id: "Verified",
-    label: "Verified",
+    id: "Creators",
+    label: "Creators",
     value: 127,
     color: "hsl(176, 70%, 50%)",
   },
   {
-    id: "Not Authenticated",
-    label: "Not Authenticated",
+    id: "Audiences",
+    label: "Audiences",
     value: 104,
     color: "hsl(90, 70%, 50%)",
   },

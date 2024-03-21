@@ -3,8 +3,8 @@ import TransactionHistory from "../../component/transaction-history/TransactionH
 
 function ViewTransaction() {
   return (
-    <div style={{ padding: "0 2em", width:"100%", height:"auto"}}>
-      <TransactionHistory  transaction="allTransactions"/>
+    <div style={{ padding: "0 2em", width: "100%", height: "auto" }}>
+      <TransactionHistory transaction="allTransactions" />
     </div>
   );
 }

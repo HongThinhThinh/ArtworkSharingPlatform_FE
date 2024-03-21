@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Increment.scss";
 
 function Increment({ data }) {
-  console.log(data?.data);
   const [number, setNumber] = useState(0);
 
   useEffect(() => {
