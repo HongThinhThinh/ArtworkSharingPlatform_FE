@@ -20,6 +20,8 @@ function Mode() {
   const [modal1Open, setModal1Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
   const [reason, setReason] = useState("");
+  const [activeUsersCount, setActiveUsersCount] = useState(0);
+  const [deactiveUsersCount, setDeactiveUsersCount] = useState(0);
   const onChange = (e) => {
     setReason(e.target.value);
   };
@@ -71,7 +73,7 @@ function Mode() {
       dataIndex: "role",
       key: "role",
     },
-  
+
     {
       title: "Deactive",
       dataIndex: "deActive",
@@ -136,6 +138,20 @@ function Mode() {
         },
       });
       setAllUsers(response.data.data);
+      const { activeCount, deactiveCount } = response.data.data.reduce(
+        (counts, user) => {
+          if (user.deActive) {
+            counts.deactiveCount++;
+          } else {
+            counts.activeCount++;
+          }
+          return counts;
+        },
+        { activeCount: 0, deactiveCount: 0 }
+      );
+
+      setActiveUsersCount(activeCount);
+      setDeactiveUsersCount(deactiveCount);
     } catch (e) {
       alertFail("Fail to load");
     }
@@ -149,13 +165,22 @@ function Mode() {
 
   return (
     <div className="mode">
-      <Button
-        style={{ backgroundColor: "white" }}
-        onClick={() => setStatus(!status)}
-        className="mode__createMod"
-      >
-        Create new moderator account <IoPersonAddOutline />
-      </Button>
+      <div style={{display:"flex" ,justifyContent:"space-between"}}>
+        <Button
+          style={{ backgroundColor: "white" }}
+          onClick={() => setStatus(!status)}
+          className="mode__createMod"
+        >
+          Create new moderator account <IoPersonAddOutline />
+        </Button>
+        <div style={{ color: "red" }} className="mode__info">
+          
+          <h3>Active Mode: {activeUsersCount}</h3>
+          <h3>Deactive Mode: {deactiveUsersCount}</h3>
+          <h3>Total Mode: {allUsers.length} </h3>
+        </div>
+      </div>
+
       <FormSignupMod status={status} setStatus={() => setStatus(!status)} />
 
       <Table

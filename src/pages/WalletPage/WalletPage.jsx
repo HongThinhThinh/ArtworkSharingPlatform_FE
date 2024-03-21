@@ -38,6 +38,32 @@ function WalletPage() {
   const [check, setCheck] = useState(false);
   const [wallet, setWallet] = useState({});
   const [balance, setBalance] = useState(0);
+  const [openForm, setOpenForm] = useState(false);
+  const [widthdrawForm, setWithdrawForm] = useState({});
+  const [openCofirm, setOpenConfirm] = useState(false);
+  const [form] = Form.useForm();
+
+  const widthdraw = (e) => {
+    console.log(e);
+    setWithdrawForm(e);
+    console.log(widthdrawForm);
+
+    form
+      .validateFields()
+      .then(() => {
+        setOpenConfirm(true); // Mở form xác nhận khi tất cả các trường đã được nhập đầy đủ
+      })
+      .catch((error) => {
+        console.log("Form validation failed:", error);
+      });
+  };
+
+  const handleWithdraw = () => {
+    console.log(widthdrawForm);
+    setOpenConfirm(false);
+    form.resetFields();
+  };
+
   useEffect(() => {
     if (balance <= (wallet?.balance == 0 ? 0 : wallet?.balance) - 1) {
       const id = setInterval(() => {
@@ -148,9 +174,13 @@ function WalletPage() {
           >
             <ButtonPlan content="Deposit more money with Paypal" />
           </div>
+          <div style={{ marginTop: "1em" }} onClick={() => setOpenForm(true)}>
+            <ButtonPlan content="Withdraw" />
+          </div>
         </div>
       </div>
-      <TransactionHistory transaction="transactionsById"/>
+
+      <TransactionHistory transaction="transactionsById" />
       <Modal open={open} onCancel={handleCancel} footer={null}>
         <Form onFinish={onFinish}>
           <div style={{ fontFamily: "MediumCereal", marginBottom: "-2em" }}>
@@ -192,6 +222,94 @@ function WalletPage() {
             </RoundedBtn>
           </Form.Item>
         </Form>
+      </Modal>
+
+      <Modal
+        open={openForm}
+        title={<div style={{ textAlign: "center" }}>WITHDRAWAL FORM</div>}
+        footer={null}
+        onCancel={() => setOpenForm(false)}
+      >
+        <Form layout="vertical" onFinish={widthdraw}>
+          <Form.Item
+            label="Account Number"
+            name="accountNumber"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Account Name"
+            name="accountName"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Bank Name"
+            name="bankName"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            name="amount"
+            // noStyle
+            label="Amount"
+            rules={[
+              {
+                required: true,
+                message: "Please input!",
+              },
+            ]}
+          >
+            <InputNumber
+              min={1}
+              addonBefore="+"
+              addonAfter="$"
+              defaultValue={number}
+              onChange={(e) => setNumber(e)}
+              style={{ width: "100%" }}
+            />
+          </Form.Item>
+          <RoundedBtn
+            color="#2C547F"
+            style={{ width: "100%", transform: "translateY(1em)" }}
+            htmlType="submit"
+            // onClick={() => setOpenConfirm(true)}
+          >
+            {check == true ? "Loading..." : "Submit"}
+          </RoundedBtn>
+        </Form>
+      </Modal>
+
+      <Modal
+        title={<div>Confirm</div>}
+        open={openCofirm}
+        footer={
+          <div onClick={handleWithdraw}>
+            <Button style={{width:"30%", backgroundColor:"black",color:"white",borderRadius:"50px",height:"2.5em"}}>Sure</Button>
+          </div>
+        }
+        onCancel={() => setOpenConfirm(false)}
+      >
+        Are you sure withdraw
       </Modal>
     </div>
   );
