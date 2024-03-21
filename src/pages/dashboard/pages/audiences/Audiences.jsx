@@ -20,6 +20,8 @@ function Audiences() {
   const [modal1Open, setModal1Open] = useState(false);
   const [modal2Open, setModal2Open] = useState(false);
   const [reason, setReason] = useState("");
+  const [activeUsersCount, setActiveUsersCount] = useState(0);
+  const [deactiveUsersCount, setDeactiveUsersCount] = useState(0);
   const onChange = (e) => {
     setReason(e.target.value);
   };
@@ -104,7 +106,7 @@ function Audiences() {
       render: (deActive) => (
         <div>
           {deActive ? (
-            <MdOutlineBlock style={{ color: "red", marginLeft:"0.2em" }} />
+            <MdOutlineBlock style={{ color: "red", marginLeft: "0.2em" }} />
           ) : (
             <GoDotFill style={{ color: "green", fontSize: "1.7em" }} />
           )}
@@ -175,6 +177,20 @@ function Audiences() {
         },
       });
       setAllUsers(response.data.data);
+      const { activeCount, deactiveCount } = response.data.data.reduce(
+        (counts, user) => {
+          if (user.deActive) {
+            counts.deactiveCount++;
+          } else {
+            counts.activeCount++;
+          }
+          return counts;
+        },
+        { activeCount: 0, deactiveCount: 0 }
+      );
+
+      setActiveUsersCount(activeCount);
+      setDeactiveUsersCount(deactiveCount);
     } catch (e) {
       alertFail("Fail to load");
     }
@@ -188,6 +204,11 @@ function Audiences() {
 
   return (
     <div className="audience" style={{ padding: "1.5em" }}>
+      <div style={{ color: "red" }} className="mode__info">
+        <h3>Active Mode: {activeUsersCount}</h3>
+        <h3>Deactive Mode: {deactiveUsersCount}</h3>
+        <h3>Total Mode: {allUsers.length} </h3>
+      </div>
       <Table
         columns={columns}
         dataSource={allUsers}
