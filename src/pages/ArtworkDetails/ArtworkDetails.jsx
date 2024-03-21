@@ -12,7 +12,11 @@ import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import LoadingDelete from "../../component/loadingDelete/LoadingDelete";
 import Rocket from "../../component/loadingDelete/Rocket";
 import useRealtime from "../../assets/hook/useRealTime";
+import image1 from "../../assets/CremoBackground.png";
 import moment from "moment";
+import ImgPreview from "../Image/Image";
+import UploadArtWork from "../../component/UploadArtWork/UploadArtWork";
+import uploadFile from "../../assets/hook/useUpload";
 
 function ArtworkDetails() {
   const [open, setOpen] = useState(false);
@@ -25,6 +29,14 @@ function ArtworkDetails() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
+
+  const [URL, setURL] = useState(image1);
+  const getLink = async (file) => {
+    let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
+    setURL(URL);
+    URL = await uploadFile(file);
+    setURL(URL);
+  };
 
   useRealtime(async (body) => {
     if (body.body === "interaction") {
@@ -76,9 +88,9 @@ function ArtworkDetails() {
     }
   };
 
-  const report = (e) =>{
+  const report = (e) => {
     console.log(e);
-  }
+  };
 
   const update = async (e) => {
     setShow(true);
@@ -153,7 +165,7 @@ function ArtworkDetails() {
                   footer={null}
                   onCancel={handleCancelReport}
                 >
-                   <Form onFinish={report}>
+                  <Form onFinish={report}>
                     <div
                       style={{ fontFamily: "MediumCereal", marginTop: "3em" }}
                     >
@@ -201,6 +213,29 @@ function ArtworkDetails() {
                         </Form.Item>
                       </Form.Item>
                     </div>
+                    <h3
+                      style={{
+                        fontFamily: "MediumCereal",
+                      }}
+                    >
+                      Evidence
+                    </h3>
+                    <ImgPreview
+                      src={URL}
+                      width="100%"
+                      height="100%"
+                      style={{
+                        margin: "1em 0",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <div
+                      onChange={(e) => {
+                        getLink(e.target.files[0]);
+                      }}
+                    >
+                      <UploadArtWork content="Upload new Artwork" />
+                    </div>
                     <Form.Item>
                       <RoundedBtn
                         color="#2C547F"
@@ -211,7 +246,6 @@ function ArtworkDetails() {
                       </RoundedBtn>
                     </Form.Item>
                   </Form>
-                  
                 </Modal>
                 <Modal
                   open={open}

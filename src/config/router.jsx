@@ -54,6 +54,7 @@ import SearchResult from "../pages/searchResult/SearchResult";
 import SearchUser from "../pages/dashboard/pages/searchUser/SearchUser";
 import Error404 from "../pages/error404/Error404";
 import ViewTransaction from "../pages/view-transaction/ViewTransaction";
+import AboutUs from "../pages/dashboard/pages/about-us/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -146,7 +147,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/view-transaction",
-        element: <ViewTransaction/>,
+        element: <ViewTransaction />,
       },
     ],
   },
@@ -248,6 +249,10 @@ export const router = createBrowserRouter([
       {
         path: "/go-pro",
         element: <GoPro />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
       },
       {
         path: "/search?",

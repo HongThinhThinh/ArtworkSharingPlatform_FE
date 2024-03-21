@@ -6,13 +6,13 @@ const MyResponsivePie = ({ data, title, y }) => (
     <h2>{title}</h2>
     <ResponsivePie
       data={data}
-      margin={{ top: 0, right: 90, bottom: 50, left: 200 }}
-      innerRadius={0}
+      margin={{ top: 0, right: 100, bottom: 50, left: 120 }}
+      innerRadius={0.5}
       padAngle={0.7}
       cornerRadius={3}
       activeOuterRadiusOffset={8}
       borderWidth={4}
-      colors={{ scheme: "set3" }}
+      colors={{ scheme: "paired" }}
       borderColor={{
         from: "color",
         modifiers: [["darker", 0.2]],
@@ -50,13 +50,7 @@ const MyResponsivePie = ({ data, title, y }) => (
       fill={[
         {
           match: {
-            id: "Not Authenticated",
-          },
-          id: "dots",
-        },
-        {
-          match: {
-            id: "Verified",
+            id: "Moderators",
           },
           id: "lines",
         },
@@ -66,10 +60,10 @@ const MyResponsivePie = ({ data, title, y }) => (
           anchor: "bottom",
           direction: "row",
           justify: false,
-          translateX: -120,
+          translateX: 0,
           translateY: y,
-          itemsSpacing: 0,
-          itemWidth: 100,
+          itemsSpacing: 15,
+          itemWidth: 120,
           itemHeight: 18,
           itemTextColor: "#000",
           itemDirection: "left-to-right",
@@ -88,14 +82,14 @@ const MyResponsivePie = ({ data, title, y }) => (
       ]}
       theme={{
         text: {
-          fontSize: "1.2em",
-          fontFamily: "BoldCereal",
+          fontSize: "1em",
+          fontFamily: "MediumCereal",
         },
         annotations: { text: { fontSize: "1.5em", color: "black" } },
         legends: {
           text: {
-            fontSize: "1.2em",
-            fontFamily: "BoldCereal",
+            fontSize: "1em",
+            fontFamily: "MediumCereal",
             color: "#000000 !important",
           },
         },

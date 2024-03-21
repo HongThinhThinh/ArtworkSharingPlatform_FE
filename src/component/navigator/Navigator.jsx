@@ -63,10 +63,27 @@ function Navigator({ status }) {
           </Drawer>
         </nav>
       ) : (
-        navList.map((nav) => 
-        (
-          <Link className="navigator__nav" to={nav.path === "/room-messages" ? user?.role === "CREATOR"? "/creator-manage/room":"/room-messages": nav.path} key={nav.title}>
-            {nav.title === "Message" ? user === null ? "" : nav.title: nav.title === "Go Pro" ? user?.role === "CREATOR" ? "" : nav.title : nav.title }
+        navList.map((nav) => (
+          <Link
+            className="navigator__nav"
+            to={
+              nav.path === "/room-messages"
+                ? user?.role === "CREATOR"
+                  ? "/creator-manage/room"
+                  : "/room-messages"
+                : nav.path
+            }
+            key={nav.title}
+          >
+            {nav.title === "Message"
+              ? user === null
+                ? ""
+                : nav.title
+              : nav.title === "Go Pro"
+              ? user?.role === "CREATOR"
+                ? ""
+                : nav.title
+              : nav.title}
           </Link>
         ))
       )}
