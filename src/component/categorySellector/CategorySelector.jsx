@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./CategorySelector.scss";
 import { CloseOutlined } from "@ant-design/icons";
 import api from "../../config/axios";
+import { alertFail } from "../../assets/hook/useNotification";
 
 const imageCategories = [
   "Nature",
