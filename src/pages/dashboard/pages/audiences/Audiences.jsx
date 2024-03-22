@@ -125,7 +125,7 @@ function Audiences() {
 
       render: (_, record) => {
         return (
-          <Space size="middle">
+          <>
             {record.deActive ? (
               <Button
                 style={{
@@ -163,7 +163,7 @@ function Audiences() {
                 Deactive
               </Button>
             )}
-          </Space>
+          </>
         );
       },
     },
@@ -204,7 +204,7 @@ function Audiences() {
 
   return (
     <div className="audience" style={{ padding: "1.5em" }}>
-      <div style={{ color: "red" }} className="mode__info">
+      <div style={{ color: "#3c3c3c" }} className="mode__info">
         <h3>Active Mode: {activeUsersCount}</h3>
         <h3>Deactive Mode: {deactiveUsersCount}</h3>
         <h3>Total Mode: {allUsers.length} </h3>
