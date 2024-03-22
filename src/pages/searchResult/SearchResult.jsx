@@ -6,12 +6,14 @@ import "./SearchResult.scss";
 import { Col, Empty, Row } from "antd";
 import Workart from "../../component/workart/Workart";
 import CategorySlider from "../../sections/categorySlider/CategorySlider";
+import CategorySelector from "../../component/categorySellector/CategorySelector";
 function SearchResult({}) {
   const [data, setData] = useState([]);
   const params = useParams();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const search = searchParams.get("search");
+  const [selectedCategories, setSelectedCategories] = useState([]);
   useEffect(() => {
     const getAll = async () => {
       const response = await api.get(`/searchArtwork?search=${search}`);
@@ -19,10 +21,12 @@ function SearchResult({}) {
     };
     getAll();
   }, [search]);
-  console.log(search);
-  console.log(data);
   return (
     <div className="search-result">
+      <CategorySelector
+        selectedCategories={selectedCategories}
+        setSelectedCategories={setSelectedCategories}
+      />
       {data.length > 0 ? (
         <div>
           <Row container gutter={32} style={{ padding: "2.5em" }}>

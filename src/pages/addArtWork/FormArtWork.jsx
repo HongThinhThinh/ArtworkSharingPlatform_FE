@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { login, selectUser } from "../../redux/features/counterSlice";
 import { useNavigate } from "react-router-dom";
 import { EllipsisOutlined } from "@ant-design/icons";
+import CategorySelector from "../../component/categorySellector/CategorySelector";
 
 function toArr(str) {
   return Array.isArray(str) ? str : [str];
@@ -69,7 +70,7 @@ function FormArtwork() {
     setIsSell(checked);
   };
 
-  const [selectedTags, setSelectedTags] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const onFinish = async (value) => {
     setIsLoading(true);
@@ -94,7 +95,7 @@ function FormArtwork() {
         description: value.description,
         price: isSell ? price : 0,
         createDate: getCurrentDateTime(),
-        categoriesName: selectedTags,
+        categoriesName: selectedCategories,
       });
       console.log(response.data.data);
       dispath(login(response.data.data.user));
@@ -122,7 +123,12 @@ function FormArtwork() {
               layout="vertical"
               onFinish={onFinish}
             >
-              <h3 style={{ color: theme ? "#fff" : "#202020" }}>
+              <h3
+                style={{
+                  color: theme ? "#fff" : "#202020",
+                  marginBottom: "1em",
+                }}
+              >
                 Upload New ArtWork
               </h3>
               <MyFormItemGroup className="login__form__container__namepass__group-form">
@@ -138,7 +144,9 @@ function FormArtwork() {
                     {
                       validator: (_, value) => {
                         if (!value || /^\s/.test(value)) {
-                          return Promise.reject('Name must not start with whitespace');
+                          return Promise.reject(
+                            "Name must not start with whitespace"
+                          );
                         }
                         return Promise.resolve();
                       },
@@ -159,14 +167,13 @@ function FormArtwork() {
                   />
                 </Form.Item>
                 <Form.Item
-                  label="Tags"
+                  label="Categories"
                   name="title"
                   className="login__form__container__namepass__group-form"
-                 
                 >
-                  <Tags
-                    setSelectedTags={setSelectedTags}
-                    selectedTags={selectedTags}
+                  <CategorySelector
+                    selectedCategories={selectedCategories}
+                    setSelectedCategories={setSelectedCategories}
                   />
                 </Form.Item>
                 <Form.Item>
@@ -184,13 +191,16 @@ function FormArtwork() {
                         message:
                           "Please input your expect price for this artwork!",
                       },
-                      { validator: (_, value) => {
-                        if (parseFloat(value) <= 0) {
-                          return Promise.reject('Price must be greater than 0');
-                        }
-                        return Promise.resolve();
-                      }
-                    },
+                      {
+                        validator: (_, value) => {
+                          if (parseFloat(value) <= 0) {
+                            return Promise.reject(
+                              "Price must be greater than 0"
+                            );
+                          }
+                          return Promise.resolve();
+                        },
+                      },
                     ]}
                   >
                     <Input

@@ -182,11 +182,6 @@ function CategoryPage() {
         >
           Create New Category <IoMdAdd />
         </Button>
-        {/* <div style={{ color: "#3c3c3c" }} className="mode__info">
-          <h3>Active Mode: {activeUsersCount}</h3>
-          <h3>Deactive Mode: {deactiveUsersCount}</h3>
-          <h3>Total Mode: {allUsers.length} </h3>
-        </div> */}
       </div>
 
       <FormNewCategory

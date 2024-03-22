@@ -17,6 +17,16 @@ export const navDashboardConfig = [
     key: "2",
     icon: <FaMoneyBillTransfer style={{ fontSize: "1.8em" }} />,
     label: "Transaction",
+    children: [
+      {
+        key: "21",
+        label: "View all transaction",
+      },
+      {
+        key: "22",
+        label: "Request widthdraw",
+      },
+    ]
   },
   {
     key: "3",
@@ -76,8 +86,11 @@ export const navpath = {
   6: {
     path: "/dashboard/categories",
   },
-  2: {
+  21: {
     path: "/dashboard/view-transaction",
+  },
+  22: {
+    path: "/dashboard/view-widthdraw",
   },
 };
 
