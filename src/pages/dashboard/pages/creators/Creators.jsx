@@ -128,7 +128,7 @@ function Creators() {
 
       render: (_, record) => {
         return (
-          <Space size="middle">
+          <>
             {record.deActive ? (
               <Button
                 style={{
@@ -166,7 +166,7 @@ function Creators() {
                 Deactive
               </Button>
             )}
-          </Space>
+          </>
         );
       },
     },
@@ -208,12 +208,11 @@ function Creators() {
 
   return (
     <div className="audience" style={{ padding: "1.5em" }}>
-      <div style={{ color: "red" }} className="mode__info">
-          
-          <h3>Active Mode: {activeUsersCount}</h3>
-          <h3>Deactive Mode: {deactiveUsersCount}</h3>
-          <h3>Total Mode: {allUsers.length} </h3>
-        </div>
+      <div style={{ color: "#3c3c3c" }} className="mode__info">
+        <h3>Active Mode: {activeUsersCount}</h3>
+        <h3>Deactive Mode: {deactiveUsersCount}</h3>
+        <h3>Total Mode: {allUsers.length} </h3>
+      </div>
       <Table
         columns={columns}
         dataSource={allUsers}
