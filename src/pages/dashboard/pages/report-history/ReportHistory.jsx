@@ -12,7 +12,7 @@ import { GoDotFill } from "react-icons/go";
 import { MdOutlineBlock } from "react-icons/md";
 import ImgPreview from "../../../Image/Image";
 
-function ReportedPosts() {
+function ReportHistory() {
   const navigate = useNavigate();
   const [id, setId] = useState("");
   const [name, setName] = useState("");
@@ -22,39 +22,6 @@ function ReportedPosts() {
   const [reason, setReason] = useState("");
   const onChange = (e) => {
     setReason(e.target.value);
-  };
-
-  const onFinishDeactive = async () => {
-    if (reason.trim().length == 0) {
-      alertFail("Please input a reason!");
-    } else {
-      try {
-        const response = await api.put("/responseReport", {
-          id: id,
-          status: "REJECT",
-          reasonReject: reason,
-        });
-
-        setModal2Open(false);
-        alertSuccess("Reject reported post successfully!");
-        getAllByRole();
-      } catch (error) {
-        alertFail(error.response.data);
-      }
-    }
-  };
-  const onFinishActive = async () => {
-    try {
-      const response = await api.put(`/responseReport`, {
-        id: id,
-        status: "APPROVE",
-      });
-      setModal1Open(false);
-      alertSuccess("Approve reported post successfully!");
-      getAllByRole();
-    } catch (error) {
-      alertFail(error.response.data);
-    }
   };
 
   const columns = [
@@ -152,60 +119,43 @@ function ReportedPosts() {
       ),
     },
     {
-      title: "Action",
-      key: "action",
-      filters: [
-        { text: "Active", value: false },
-        { text: "Deactive", value: true },
-      ],
-      onFilter: (value, record) => record.deActive === value,
-
-      render: (_, record) => {
-        return (
-          <>
-            <Button
-              style={{
-                backgroundColor: "rgba(92, 177, 84, 0.1)",
-                color: "rgba(92, 177, 84, 1)",
-                fontFamily: "MediumCereal",
-                border: "2px solid rgba(92, 177, 84, 1)",
-                height: "3em",
-                padding: "0 1.5em",
-                marginRight: "0.5em",
-              }}
-              onClick={() => {
-                setId(record.id);
-                setModal1Open(true);
-              }}
-            >
-              Approve
-            </Button>
-            <Button
-              style={{
-                backgroundColor: "rgba(177, 84, 84, 0.1)",
-                color: "rgba(177, 84, 84, 1)",
-                fontFamily: "MediumCereal",
-                border: "2px solid rgba(177, 84, 84, 1)",
-                height: "3em",
-                padding: "0 1.5em",
-              }}
-              onClick={() => {
-                setId(record.id);
-                setName(record.username);
-                setModal2Open(true);
-              }}
-            >
-              Reject
-            </Button>
-          </>
-        );
-      },
+      title: "Status",
+      key: "statusReport",
+      dataIndex: "statusReport",
+      render: (tag) => (
+        <Tag
+          color={
+            tag == "REPORTARTWORK"
+              ? "geekblue"
+              : tag == "APPROVE"
+              ? "green"
+              : tag == null
+              ? "geekblue"
+              : "volcano"
+          }
+          key={tag}
+        >
+          {tag == "REPORTARTWORK"
+            ? "Pending"
+            : tag == "APPROVE"
+            ? "Approve"
+            : tag == null
+            ? "pending"
+            : "Reject"}
+        </Tag>
+      ),
+    },
+    {
+      title: "Reason Reject",
+      dataIndex: "artwork",
+      key: "artwork",
+      render: (artwork) => <p>{artwork ? artwork.reasonReject : ""}</p>,
     },
   ].filter((item) => !item.hidden);
 
   const getAllByRole = async () => {
     try {
-      const response = await api.get("/adminReports");
+      const response = await api.get("/userReports");
       setAllUsers(response.data.data);
       const { activeCount, deactiveCount } = response.data.data.reduce(
         (counts, user) => {
@@ -229,71 +179,26 @@ function ReportedPosts() {
 
   return (
     <div style={{ padding: "1.5em", height: "100%", overflowY: "scroll" }}>
+      <h1
+        style={{
+          fontFamily: "BoldCereal",
+          fontSize: "1.2em",
+          marginBottom: "1.5em",
+        }}
+      >
+        History Reported Post
+      </h1>
       <Table
         columns={columns}
-        dataSource={allUsers?.filter(
-          (value) => value?.statusReport == "REPORTARTWORK"
-        )}
+        dataSource={allUsers}
         pagination={{
           defaultPageSize: 4,
           showSizeChanger: true,
           pageSizeOptions: ["2", "4"],
         }}
       />
-      <Modal
-        title="Confirm to approve report artwork"
-        centered
-        open={modal1Open}
-        footer={null}
-        onCancel={() => setModal1Open(false)}
-      >
-        <Form name="form_item_path" layout="vertical">
-          <h3>Are you sure to approve report this artwork?</h3>
-          <br />
-          <label>ID</label>
-          <Input value={id} disabled />
-          <Button
-            style={{ marginTop: "1em" }}
-            type="primary"
-            htmlType="submit"
-            onClick={onFinishActive}
-          >
-            Submit
-          </Button>
-        </Form>
-      </Modal>
-      <Modal
-        title="Confirm to reject report artwork"
-        centered
-        open={modal2Open}
-        footer={null}
-        onCancel={() => setModal2Open(false)}
-      >
-        <Form name="form_item_path" layout="vertical">
-          <label>Are you sure to reject report this artwork?</label>
-          <br />
-          <label>ID</label>
-          <Input value={id} disabled />
-          <label>Reason</label>
-
-          <TextArea
-            showCount
-            maxLength={100}
-            onChange={onChange}
-            placeholder="Please give us a reason!"
-            style={{
-              height: 120,
-              resize: "none",
-              marginBottom: "1.5em",
-            }}
-          />
-          <Button type="primary" htmlType="submit" onClick={onFinishDeactive}>
-            Submit
-          </Button>
-        </Form>
-      </Modal>
     </div>
   );
 }
 
-export default ReportedPosts;
+export default ReportHistory;
