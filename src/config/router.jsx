@@ -58,10 +58,17 @@ import ViewTransaction from "../pages/view-transaction/ViewTransaction";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../redux/features/counterSlice";
 import { alertFail } from "../assets/hook/useNotification";
-import Category from "../component/category/Category";
-import CategoryPage from "../pages/dashboard/pages/category/CategoryPage";
+
 import ReportHistory from "../pages/dashboard/pages/report-history/ReportHistory";
 import CategorySelector from "../component/categorySellector/CategorySelector";
+
+import Category from "../component/category/Category";
+import CategoryPage from "../pages/dashboard/pages/category/CategoryPage";
+
+import ReportHistory from "../pages/dashboard/pages/report-history/ReportHistory";
+import ViewWithdraw from "../pages/viewWithdraw/ViewWithdraw";
+
+
 
 const ProtectedRouteAuth = ({ children }) => {
   const user = useSelector(selectUser);
@@ -205,6 +212,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/categories",
         element: <CategoryPage />,
+      },
+      {
+        path: "/dashboard//view-widthdraw",
+        element: <ViewWithdraw/>,
       },
     ],
   },
