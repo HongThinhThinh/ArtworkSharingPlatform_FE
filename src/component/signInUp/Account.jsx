@@ -26,6 +26,7 @@ function Account() {
       >
         Your wallet
       </Link>
+      <Link to={"/report-history"}>Report Post</Link>
       <Link
         to="/"
         onClick={() => {

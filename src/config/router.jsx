@@ -61,6 +61,8 @@ import { alertFail } from "../assets/hook/useNotification";
 import Category from "../component/category/Category";
 import CategoryPage from "../pages/dashboard/pages/category/CategoryPage";
 
+import ReportHistory from "../pages/dashboard/pages/report-history/ReportHistory";
+
 const ProtectedRouteAuth = ({ children }) => {
   const user = useSelector(selectUser);
   if (!user) {
@@ -133,6 +135,7 @@ export const router = createBrowserRouter([
     path: "test01",
     element: <FormSignupMod />,
   },
+
   {
     path: "test2",
     element: <WatermarkArtwork />,
@@ -315,6 +318,10 @@ export const router = createBrowserRouter([
             <GoPro />
           </ProtectedRouteAuth>
         ),
+      },
+      {
+        path: "/report-history",
+        element: <ReportHistory />,
       },
       {
         path: "/about-us",
