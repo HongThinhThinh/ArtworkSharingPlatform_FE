@@ -58,6 +58,7 @@ import ViewTransaction from "../pages/view-transaction/ViewTransaction";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../redux/features/counterSlice";
 import { alertFail } from "../assets/hook/useNotification";
+import ReportHistory from "../pages/dashboard/pages/report-history/ReportHistory";
 
 const ProtectedRouteAuth = ({ children }) => {
   const user = useSelector(selectUser);
@@ -131,6 +132,7 @@ export const router = createBrowserRouter([
     path: "test01",
     element: <FormSignupMod />,
   },
+
   {
     path: "test2",
     element: <WatermarkArtwork />,
@@ -309,6 +311,10 @@ export const router = createBrowserRouter([
             <GoPro />
           </ProtectedRouteAuth>
         ),
+      },
+      {
+        path: "/report-history",
+        element: <ReportHistory />,
       },
       {
         path: "/about-us",
