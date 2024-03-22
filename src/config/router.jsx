@@ -58,10 +58,19 @@ import ViewTransaction from "../pages/view-transaction/ViewTransaction";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../redux/features/counterSlice";
 import { alertFail } from "../assets/hook/useNotification";
+<<<<<<< HEAD
+<<<<<<< HEAD
+import Category from "../component/category/Category";
+import CategoryPage from "../pages/dashboard/pages/category/CategoryPage";
+=======
+import ReportHistory from "../pages/dashboard/pages/report-history/ReportHistory";
+>>>>>>> 57ac8a46565fd17e67265664d0c3736cc056e7d0
+=======
 import Category from "../component/category/Category";
 import CategoryPage from "../pages/dashboard/pages/category/CategoryPage";
 
 import ReportHistory from "../pages/dashboard/pages/report-history/ReportHistory";
+>>>>>>> 1355d015430194d8ce07c615aa65e56d728cdd36
 
 const ProtectedRouteAuth = ({ children }) => {
   const user = useSelector(selectUser);
