@@ -5,7 +5,7 @@ import WorkartSection from "../../sections/workartSection/WorkartSection";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../config/axios";
 import { useEffect, useLayoutEffect, useState } from "react";
-import { Button, Form, Input, Modal } from "antd";
+import { Button, Form, Input, Modal, Popconfirm } from "antd";
 import RoundedBtn from "../../component/rounded-button/RoundedButton";
 import { ExclamationCircleTwoTone } from "@ant-design/icons";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
@@ -29,6 +29,7 @@ function ArtworkDetails() {
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams();
+  const [dataReport, setDataReport] = useState();
 
   const [URL, setURL] = useState(image1);
   const getLink = async (file) => {
@@ -89,8 +90,28 @@ function ArtworkDetails() {
   };
 
   const report = (e) => {
-    console.log(e);
+    setDataReport(e);
   };
+
+  const confirm = async (e) => {
+    try {
+      const res = await api.post(`/reportArtwork`, {
+        title: dataReport.title,
+        description: dataReport.reason,
+        artworkID: id,
+        evidenceImage: URL,
+      });
+      setOpenReport(false);
+      alertSuccess("Report successfully");
+    } catch (error) {
+      alertFail("Please re-login and try again!");
+    }
+  };
+  const cancel = (e) => {
+    setShow(false);
+  };
+
+  const onFinish = async () => {};
 
   const update = async (e) => {
     setShow(true);
@@ -237,13 +258,25 @@ function ArtworkDetails() {
                       <UploadArtWork content="Upload new Artwork" />
                     </div>
                     <Form.Item>
-                      <RoundedBtn
-                        color="#2C547F"
-                        style={{ width: "100%", transform: "translateY(1em)" }}
-                        htmlType="submit"
+                      <Popconfirm
+                        title="Delete the task"
+                        description="Are you sure to delete this task?"
+                        onConfirm={confirm}
+                        onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
                       >
-                        Send
-                      </RoundedBtn>
+                        <RoundedBtn
+                          color="#2C547F"
+                          style={{
+                            width: "100%",
+                            transform: "translateY(1em)",
+                          }}
+                          htmlType="submit"
+                        >
+                          Send
+                        </RoundedBtn>
+                      </Popconfirm>
                     </Form.Item>
                   </Form>
                 </Modal>
