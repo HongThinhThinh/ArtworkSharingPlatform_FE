@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Button,
   Col,
@@ -26,7 +26,7 @@ import api from "../../config/axios";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
-import { alertSuccess } from "../../assets/hook/useNotification";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import TransactionHistory from "../../component/transaction-history/TransactionHistory";
 
 const { Meta } = Card;
@@ -42,12 +42,13 @@ function WalletPage() {
   const [widthdrawForm, setWithdrawForm] = useState({});
   const [openCofirm, setOpenConfirm] = useState(false);
   const [form] = Form.useForm();
+  const formRef = useRef();
 
   const widthdraw = (e) => {
     console.log(e);
     setWithdrawForm(e);
     console.log(widthdrawForm);
-
+    setOpenForm(false);
     form
       .validateFields()
       .then(() => {
@@ -58,10 +59,26 @@ function WalletPage() {
       });
   };
 
-  const handleWithdraw = () => {
+  const handleWithdraw = async () => {
     console.log(widthdrawForm);
-    setOpenConfirm(false);
-    form.resetFields();
+
+    try {
+      const res = await api.post("/withDraw", {
+        accountNumber: widthdrawForm.accountNumber,
+        accountName: widthdrawForm.accountName,
+        bankName: widthdrawForm.bankName,
+        amount: widthdrawForm.amount,
+      });
+      setOpenConfirm(false);
+
+      alertSuccess("Send request successfully!");
+      formRef.current.resetFields();
+    } catch (e) {
+      console.log(e);
+      alertFail("Send request fail!");
+      setOpenConfirm(false);
+      // formRef.current.resetFields();
+    }
   };
 
   useEffect(() => {
@@ -229,8 +246,9 @@ function WalletPage() {
         title={<div style={{ textAlign: "center" }}>WITHDRAWAL FORM</div>}
         footer={null}
         onCancel={() => setOpenForm(false)}
+        
       >
-        <Form layout="vertical" onFinish={widthdraw}>
+        <Form layout="vertical" onFinish={widthdraw} ref={formRef}>
           <Form.Item
             label="Account Number"
             name="accountNumber"
@@ -280,7 +298,7 @@ function WalletPage() {
             ]}
           >
             <InputNumber
-              min={1}
+              min={0}
               addonBefore="+"
               addonAfter="$"
               defaultValue={number}
@@ -304,7 +322,17 @@ function WalletPage() {
         open={openCofirm}
         footer={
           <div onClick={handleWithdraw}>
-            <Button style={{width:"30%", backgroundColor:"black",color:"white",borderRadius:"50px",height:"2.5em"}}>Sure</Button>
+            <Button
+              style={{
+                width: "30%",
+                backgroundColor: "black",
+                color: "white",
+                borderRadius: "50px",
+                height: "2.5em",
+              }}
+            >
+              Sure
+            </Button>
           </div>
         }
         onCancel={() => setOpenConfirm(false)}
