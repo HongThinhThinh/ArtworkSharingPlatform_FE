@@ -1,0 +1,23 @@
+.category-sellector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__search {
+    height: 3em !important;
+    width: 30%;
+    font-family: "MediumCereal";
+  }
+  &__categories {
+    display: flex;
+    margin: 1em 0;
+    flex-wrap: wrap;
+    &__item {
+      background-color: rgb(254, 247, 255);
+      padding: 0.4em 1em;
+      border-radius: 100px;
+      margin-right: 0.5em;
+      border: 2px solid rgba(84, 21, 86, 0.139);
+    }
+  }
+}
