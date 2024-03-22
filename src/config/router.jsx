@@ -59,6 +59,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../redux/features/counterSlice";
 import { alertFail } from "../assets/hook/useNotification";
 
+
 import ReportHistory from "../pages/dashboard/pages/report-history/ReportHistory";
 import CategorySelector from "../component/categorySellector/CategorySelector";
 
@@ -332,7 +333,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/report-history",
-        element: <ReportHistory />,
+        element: (
+          <ProtectedRouteAuth>
+            <ReportHistory />
+          </ProtectedRouteAuth>
+        ),
       },
       {
         path: "/about-us",
