@@ -58,6 +58,9 @@ import ViewTransaction from "../pages/view-transaction/ViewTransaction";
 import { useDispatch, useSelector } from "react-redux";
 import { selectUser } from "../redux/features/counterSlice";
 import { alertFail } from "../assets/hook/useNotification";
+import Category from "../component/category/Category";
+import CategoryPage from "../pages/dashboard/pages/category/CategoryPage";
+
 import ReportHistory from "../pages/dashboard/pages/report-history/ReportHistory";
 
 const ProtectedRouteAuth = ({ children }) => {
@@ -198,6 +201,10 @@ export const router = createBrowserRouter([
       {
         path: "/dashboard/view-transaction",
         element: <ViewTransaction />,
+      },
+      {
+        path: "/dashboard/categories",
+        element: <CategoryPage />,
       },
     ],
   },

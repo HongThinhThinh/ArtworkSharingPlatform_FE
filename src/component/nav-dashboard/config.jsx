@@ -6,7 +6,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
-
+import { TbCategory2 } from "react-icons/tb";
 export const navDashboardConfig = [
   {
     key: "1",
@@ -47,6 +47,11 @@ export const navDashboardConfig = [
     icon: <FileExclamationOutlined />,
     label: "Reported Posts",
   },
+  {
+    key: "6",
+    icon: <TbCategory2 />,
+    label: "Categories",
+  },
 ];
 
 export const navpath = {
@@ -67,6 +72,9 @@ export const navpath = {
   },
   5: {
     path: "/dashboard/reported-posts",
+  },
+  6: {
+    path: "/dashboard/categories",
   },
   2: {
     path: "/dashboard/view-transaction",
