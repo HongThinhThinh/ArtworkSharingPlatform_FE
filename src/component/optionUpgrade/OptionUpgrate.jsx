@@ -25,10 +25,14 @@ function OptionUpgrate() {
     <section
       className="bg-white dark:bg-gray-900"
       style={{
-        background: "linear-gradient(90deg,#F7D3D3,#F6CDE4)",
+        background:
+          "linear-gradient(0deg, #ffffff 0%, rgba(248,240,255,1) 49%, rgba(249,248,245,1) 100%)",
       }}
     >
-      <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+      <div
+        className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6"
+        style={{ fontFamily: "MediumCereal" }}
+      >
         <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-12">
           <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">
             Upgrade to Cremo Pro today!
