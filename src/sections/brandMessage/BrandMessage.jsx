@@ -11,7 +11,7 @@ function BrandMessage() {
         designer today
       </h1>
       <h5 className="footer-cta__subtitle">
-        The world’s leading brands use Dribbble to hire creative talent. Browse
+        The world’s leading brands use Cremo to hire creative talent. Browse
         millions of top-rated portfolios to find your perfect creative match.
       </h5>
       <div className="footer-cta__link-to">
