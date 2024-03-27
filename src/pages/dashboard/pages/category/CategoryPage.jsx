@@ -102,31 +102,31 @@ function CategoryPage() {
     },
 
     {
-      title: "Update",
-      key: "action",
-      render: (_, record) => {
-        return (
-          <div style={{ display: "flex ", gap: "10px" }}>
-            <Button
-              style={{
-                backgroundColor: "rgba(177, 84, 84, 0.1)",
-                color: "rgba(177, 84, 84, 1)",
-                fontFamily: "MediumCereal",
-                border: "2px solid rgba(177, 84, 84, 1)",
-                height: "3em",
-                padding: "0 1.5em",
-              }}
-              onClick={() => {
-                setId(record.id);
-                setName(record.name);
-                setModal2Open(true);
-              }}
-            >
-              Update
-            </Button>
-          </div>
-        );
-      },
+      // title: "Update",
+      // key: "action",
+      // render: (_, record) => {
+      //   return (
+      //     <div style={{ display: "flex ", gap: "10px" }}>
+      //       <Button
+      //         style={{
+      //           backgroundColor: "rgba(177, 84, 84, 0.1)",
+      //           color: "rgba(177, 84, 84, 1)",
+      //           fontFamily: "MediumCereal",
+      //           border: "2px solid rgba(177, 84, 84, 1)",
+      //           height: "3em",
+      //           padding: "0 1.5em",
+      //         }}
+      //         onClick={() => {
+      //           setId(record.id);
+      //           setName(record.name);
+      //           setModal2Open(true);
+      //         }}
+      //       >
+      //         Update
+      //       </Button>
+      //     </div>
+      //   );
+      // },
     },
     {
       title: "Delete",

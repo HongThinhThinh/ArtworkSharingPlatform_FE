@@ -17,7 +17,7 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import api from "../../config/axios";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
-import { alertSuccess } from "../../assets/hook/useNotification";
+import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 
 function PrintBill() {
   const SubmitButton = ({ form, children }) => {
@@ -63,7 +63,7 @@ function PrintBill() {
       alertSuccess("Buy artwork successfully, please check your mail");
       navigate("/profile/wallet");
     } catch (error) {
-      console.error(error.response.data);
+      alertFail(error.response.data);
     }
   };
   const handleOk = async () => {

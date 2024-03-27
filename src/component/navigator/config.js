@@ -3,6 +3,10 @@ export const navHeaderConfig = [
     title: "Message",
     path: "/room-messages",
   },
+  {
+    title: "AI",
+    path: "/aiPage",
+  },
 
   {
     title: "Jobs",

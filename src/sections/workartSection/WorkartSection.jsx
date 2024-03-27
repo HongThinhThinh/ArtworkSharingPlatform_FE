@@ -24,6 +24,7 @@ function WorkartSection() {
       <Row container gutter={32}>
         {data.map((artwork, index) => (
           <Col
+            data-aos="fade-up"
             style={{ cursor: "pointer" }}
             xs={24}
             sm={12}
@@ -46,7 +47,6 @@ function WorkartSection() {
           </Col>
         ))}
       </Row>
-      <button className="workart-section__more">Browse more inspiration</button>
     </div>
   );
 }
