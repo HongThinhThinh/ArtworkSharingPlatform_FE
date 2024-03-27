@@ -61,7 +61,6 @@ function ArtworkDetails() {
   };
 
   useLayoutEffect(() => {
-    // Scroll to the top of the page when component mounts
     window.scrollTo(0, 0);
   }, [id]);
 
@@ -154,7 +153,11 @@ function ArtworkDetails() {
               <div className="artworkDetails">
                 <div className="artworkDetails--left">
                   <div className="artworkDetails--left--content">
-                    <ArtworkInfo img={data.image} />
+                    <ArtworkInfo
+                      img={data.image}
+                      id={data?.id}
+                      price={data.price}
+                    />
                   </div>
                 </div>
                 <div className="artworkDetails--right">
