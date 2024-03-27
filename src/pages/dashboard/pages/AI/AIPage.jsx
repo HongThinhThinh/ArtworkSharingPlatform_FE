@@ -11,7 +11,7 @@ function AIPage() {
   const [prompt, setPrompt] = useState("A cute baby sea otter");
   const [generatedImages, setGeneratedImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const OPENAI_API_KEY = "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";
+  const OPENAI_API_KEY = "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";
   async function generateImages() {
     setRobot(drawing);
     setIsClick(true);
@@ -21,7 +21,7 @@ function AIPage() {
       setGeneratedImages(drawing);
       const requestData = {
         model: "dall-e-3",
-        prompt: "A cute baby sea otter",
+        prompt: prompt,
         n: 1,
         size: "1024x1024",
         quality: "hd",
@@ -43,7 +43,7 @@ function AIPage() {
     } catch (error) {
       console.error("Error generating images:", error);
     } finally {
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   }
   const [robot, setRobot] = useState(draw);
