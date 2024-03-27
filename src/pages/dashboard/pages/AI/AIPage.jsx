@@ -11,7 +11,7 @@ function AIPage() {
   const [prompt, setPrompt] = useState("A cute baby sea otter");
   const [generatedImages, setGeneratedImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  // const OPENAI_API_KEY = "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";
+  // const OPENAI_API_KEY = "";
   async function generateImages() {
     setRobot(drawing);
     setIsClick(true);
