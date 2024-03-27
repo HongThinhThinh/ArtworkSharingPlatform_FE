@@ -7,6 +7,10 @@ import {
 } from "@ant-design/icons";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { TbCategory2 } from "react-icons/tb";
+
+
+
+
 export const navDashboardConfig = [
   {
     key: "1",
@@ -47,6 +51,25 @@ export const navDashboardConfig = [
       },
     ],
   },
+  {
+    key: "4",
+    icon: <SolutionOutlined />,
+    label: "Posts",
+  },
+  {
+    key: "5",
+    icon: <FileExclamationOutlined />,
+    label: "Reported Posts",
+  },
+  {
+    key: "6",
+    icon: <TbCategory2 />,
+    label: "Categories",
+  },
+];
+
+
+export const navDashboardConfigMod = [
   {
     key: "4",
     icon: <SolutionOutlined />,

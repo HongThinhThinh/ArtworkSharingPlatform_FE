@@ -92,12 +92,16 @@ function Login() {
       if (role === "ADMIN") {
         navigate("/dashboard");
       }
+      if (role === "MOD") {
+        navigate("/dashboard");
+      }
       if (role === "CREATOR") {
         navigate("/creator-manage/artworks");
       }
       if (role === "AUDIENCE") {
         navigate("/profile");
       }
+    
     } catch (e) {
       console.log(e);
       alertFail(e.response.data, "Please Try Again");

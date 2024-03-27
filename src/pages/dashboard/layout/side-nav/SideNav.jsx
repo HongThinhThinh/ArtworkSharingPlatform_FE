@@ -3,8 +3,11 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../../../component/logo/Logo";
 import "./SideNav.scss";
 import navDashboardConfig, {
+  navDashboardConfigMod,
   navpath,
 } from "../../../../component/nav-dashboard/config";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../../redux/features/counterSlice";
 
 function SideNav({}) {
   const { pathname } = useLocation();
@@ -13,6 +16,7 @@ function SideNav({}) {
   const onClick = (e) => {
     navigate(navpath[e.key].path);
   };
+  const user = useSelector(selectUser);
 
   return (
     <>
@@ -24,7 +28,7 @@ function SideNav({}) {
         defaultOpenKeys={["sub1"]}
         mode="inline"
         theme="dark"
-        items={navDashboardConfig}
+        items={user.role == "ADMIN" ? navDashboardConfig : navDashboardConfigMod }
         className="menu-sidebar"
       />
     </>

@@ -78,7 +78,7 @@ const ProtectedRouteAuth = ({ children }) => {
 const ProtectedRouteCreator = ({ children }) => {
   const user = useSelector(selectUser);
   console.log(user);
-  if (user?.role === "AUDIENCE") {
+  if (user.role === "AUDIENCE") {
     alertFail("You do not have permissions to access");
     return <Navigate to="/go-pro" replace />;
   }
@@ -88,9 +88,12 @@ const ProtectedRouteCreator = ({ children }) => {
 const ProtectedADMIN = ({ children }) => {
   const user = useSelector(selectUser);
   console.log(user);
-  if (user?.role !== "ADMIN") {
-    alertFail("You do not have permissions to access");
-    return <Navigate to="/" replace />;
+  if (user.role !== "ADMIN") {
+    if (user.role !== "MOD"){
+      alertFail("You do not have permissions to access");
+      return <Navigate to="/" replace />;
+    }
+ 
   }
   return children;
 };
@@ -339,7 +342,7 @@ export const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "/search",
+        path: "/search?",
         element: <SearchResult />,
       },
       {
