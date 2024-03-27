@@ -90,11 +90,10 @@ const ProtectedADMIN = ({ children }) => {
   const user = useSelector(selectUser);
   console.log(user);
   if (user.role !== "ADMIN") {
-    if (user.role !== "MOD"){
+    if (user.role !== "MOD") {
       alertFail("You do not have permissions to access");
       return <Navigate to="/" replace />;
     }
- 
   }
   return children;
 };

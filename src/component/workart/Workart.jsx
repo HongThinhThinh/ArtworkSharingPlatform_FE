@@ -18,7 +18,7 @@ function Workart({
   return (
     <div>
       {price > 0 ? (
-        <WatermarkArtwork url={image} id={idArtwork} />
+        <WatermarkArtwork url={image} id={idArtwork} width={335} height={252} />
       ) : (
         <WorkartMedia image={image} id={idArtwork} />
       )}
