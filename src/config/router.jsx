@@ -339,7 +339,7 @@ export const router = createBrowserRouter([
         element: <AboutUs />,
       },
       {
-        path: "/search?",
+        path: "/search",
         element: <SearchResult />,
       },
       {

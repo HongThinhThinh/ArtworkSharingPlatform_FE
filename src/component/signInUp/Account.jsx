@@ -39,6 +39,22 @@ function Account() {
       </Link>
     </div>
   );
+
+  const contentADMIN = (
+    <div className="account-popup">
+      <Link to="/dashboard">Dashboard</Link>
+      <Link
+        to="/"
+        onClick={() => {
+          localStorage.removeItem("token");
+          dispatch(logout());
+          navigate("/login");
+        }}
+      >
+        Logout
+      </Link>
+    </div>
+  );
   return (
     <div className="signInUp">
       <div className="signInUp__active">
@@ -59,12 +75,12 @@ function Account() {
                   width: "3.5em",
                   cursor: "pointer",
                 }}
-                src={user.avt}
+                src={user?.avt}
               />
-              <h3>{user.name}</h3>
+              <h3>{user?.name}</h3>
             </div>
           }
-          content={content}
+          content={user?.role === "ADMIN" ? contentADMIN : content}
         >
           <div
             className="signInUp__active__current-account"
