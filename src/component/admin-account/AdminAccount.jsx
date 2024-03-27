@@ -1,4 +1,4 @@
-import { Avatar } from "antd";
+import { Avatar, Popover } from "antd";
 import React from "react";
 import "./AdminAccount.scss";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
