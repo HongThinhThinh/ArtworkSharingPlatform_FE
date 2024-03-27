@@ -64,15 +64,23 @@ function Login() {
     // });
 
     const res = await api.post("/login-gg", { token });
-    console.log(res.data);
-    localStorage.setItem("token", token);
+    const role = res.data.role;
+
+    console.log(res.data.role);
+    localStorage.setItem("token", res.data.token);
     localStorage.setItem("accountId", res.id);
     //save redux
     dispatch(login(res.data));
-    if (res.data.role === "CREATOR") {
+    if (role === "ADMIN") {
+      navigate("/dashboard");
+    }
+    if (role === "MOD") {
+      navigate("/dashboard");
+    }
+    if (role === "CREATOR") {
       navigate("/creator-manage/artworks");
     }
-    if (res.data.role === "AUDIENCE") {
+    if (role === "AUDIENCE") {
       navigate("/profile");
     }
   };
@@ -101,7 +109,6 @@ function Login() {
       if (role === "AUDIENCE") {
         navigate("/profile");
       }
-    
     } catch (e) {
       console.log(e);
       alertFail(e.response.data, "Please Try Again");

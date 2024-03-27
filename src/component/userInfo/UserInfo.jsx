@@ -16,10 +16,6 @@ function UserInfo({ user }) {
             <EditProfile user={user} />
           </div>
         </div>
-        <div className="creator-profilee__info__follower">
-          <h4>20 Likes </h4>
-          <h4>200 Comments</h4>
-        </div>
       </div>
     </div>
   );

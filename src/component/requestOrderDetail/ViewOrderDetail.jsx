@@ -13,7 +13,8 @@ import { selectUser } from "../../redux/features/counterSlice";
 import ImgPreview from "../../pages/Image/Image";
 import RoundedBtn from "../rounded-button/RoundedButton";
 import TextArea from "antd/es/input/TextArea";
-
+import ImageGallery from "react-image-gallery";
+import ReactImageGallery from "react-image-gallery";
 function ViewOrderDetail({ choice }) {
   const navigate = useNavigate();
   const [data, setData] = useState();
@@ -317,6 +318,7 @@ function ViewOrderDetail({ choice }) {
                   </p>
                 </div>
 
+                <ReactImageGallery items={demoRequest} />
                 {demoRequest.map((item) => {
                   return (
                     <>

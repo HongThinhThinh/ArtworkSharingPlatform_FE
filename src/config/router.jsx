@@ -310,6 +310,11 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: "/aiPage",
+        element: <AIPage />,
+      },
+
+      {
         path: "/jobs",
         element: <JobsPage />,
       },
