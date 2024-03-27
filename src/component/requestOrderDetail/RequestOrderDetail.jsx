@@ -60,9 +60,11 @@ function RequestOrderDetail() {
       cancelOrder();
     }
   };
+
   const cancel = (e) => {
     setModal1Open(false);
   };
+
   const handleSendProduct = async () => {
     console.log(URL);
     console.log(description);
@@ -163,12 +165,14 @@ function RequestOrderDetail() {
     fetchDataDetail();
   }, [id]);
 
-  const onFinish = async (fieldsValue) => {
-    const rangeValue = fieldsValue["range-picker"];
-    const rangeTimeValue = fieldsValue["range-time-picker"];
+  const [value, setValue] = useState("");
+
+  const confirmApprove = async () => {
+    const rangeValue = value["range-picker"];
+    const rangeTimeValue = value["range-time-picker"];
     const values = {
-      ...fieldsValue,
-      date: fieldsValue["date"].format("MMMM Do YYYY, h:mm:ss a"),
+      ...value,
+      date: value["date"].format("MMMM Do YYYY, h:mm:ss a"),
     };
 
     try {
@@ -187,6 +191,34 @@ function RequestOrderDetail() {
       alertFail("Please purchase more", e.response.data);
     }
     setModal2Open(false);
+  };
+
+  const onFinish = async (fieldsValue) => {
+    const rangeValue = fieldsValue["range-picker"];
+    const rangeTimeValue = fieldsValue["range-time-picker"];
+    const values = {
+      ...fieldsValue,
+      date: fieldsValue["date"].format("MMMM Do YYYY, h:mm:ss a"),
+    };
+
+    setValue(fieldsValue);
+
+    // try {
+    //   const res = await api.put("/updateOrderRequest-creator", {
+    //     id: newData.id,
+    //     dateEnd: values.date,
+    //     price: values.number,
+    //     status: "ACTIVE",
+    //   });
+    //   setNewData(res.data.data);
+    //   // setData(res.data.data);
+    //   fetchData();
+    //   // setChangeSection(res.data.data);
+    //   alertSuccess("Please waiting for audience acept");
+    // } catch (e) {
+    //   alertFail("Please purchase more", e.response.data);
+    // }
+    // setModal2Open(false);
   };
 
   return (
@@ -365,9 +397,18 @@ function RequestOrderDetail() {
                       </Form.Item>
                     </div>
                     <Form.Item>
-                      <RoundedBtn color="#3c3c3c" style={{ width: "100%" }}>
-                        Submit
-                      </RoundedBtn>
+                      <Popconfirm
+                        title="Approve the offer"
+                        description="Are you sure to approve this offer?You will be deducted 50% of the order before completion"
+                        onConfirm={confirmApprove}
+                        onCancel={cancel}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <RoundedBtn color="#3c3c3c" style={{ width: "100%" }}>
+                          Submit
+                        </RoundedBtn>
+                      </Popconfirm>
                     </Form.Item>
                   </Form>
                 </Modal>

@@ -80,7 +80,7 @@ function Account() {
               <h3>{user?.name}</h3>
             </div>
           }
-          content={user?.role === "ADMIN" ? contentADMIN : content}
+          content={user?.role === "ADMIN" || user?.role === "MOD" ? contentADMIN : content}
         >
           <div
             className="signInUp__active__current-account"
