@@ -46,9 +46,7 @@ function WatermarkArtwork({ url, id, width, height }) {
         document.getElementById("viewport").replaceWith(tempCanvas);
         return tempCanvas.toDataURL();
       }
-    } catch (e) {
-      alertFail(e);
-    }
+    } catch (e) {}
   }, [url]);
 
   const navigate = useNavigate();
