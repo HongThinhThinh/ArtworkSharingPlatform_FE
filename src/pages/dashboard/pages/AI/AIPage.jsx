@@ -16,6 +16,7 @@ function AIPage() {
     setRobot(drawing);
     setIsClick(true);
     setIsLoading(true);
+    //abc
     try {
       setGeneratedImages(drawing);
       const requestData = {
