@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { Watermark } from "antd";
 import { useNavigate } from "react-router-dom";
 
-function WatermarkArtwork({ url, id }) {
+function WatermarkArtwork({ url, id, width, height }) {
   useEffect(() => {
     var canvas = document.getElementById("viewport");
     var ctx = canvas.getContext("2d");
@@ -15,15 +14,15 @@ function WatermarkArtwork({ url, id }) {
     img.src = url;
 
     let rate = img.height / img.width;
-    let newWidth = 335;
+    let newWidth = width;
     let newHeight = newWidth * rate;
     img.height = newHeight;
     img.width = newWidth;
     function start() {
-      canvas.width = 335;
-      canvas.height = 252;
+      canvas.width = width;
+      canvas.height = height;
 
-      ctx.drawImage(img, 0, 0, 335, 252);
+      ctx.drawImage(img, 0, 0, width, height);
       var dataURL = watermarkedDataURL(canvas, "Cremo");
     }
 

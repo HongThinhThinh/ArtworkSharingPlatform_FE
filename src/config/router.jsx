@@ -288,6 +288,7 @@ export const router = createBrowserRouter([
     path: "/artworkDetails/:id",
     element: (
       <div>
+        <Header/>
         <ArtworkDetails />,
         <Footer />
       </div>

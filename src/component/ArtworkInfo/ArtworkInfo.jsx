@@ -6,9 +6,11 @@ import ImgPreview from "../../pages/Image/Image";
 import { IoMdArrowBack } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
-function ArtworkInfo({ img }) {
+import WatermarkArtwork from "../waterMask/WatermarkArtwork";
+function ArtworkInfo({ img, id, price }) {
   const isMobile = useMediaQuery({ maxWidth: "550px" });
   console.log(img);
+  console.log("haha", price);
   const navigate = useNavigate();
   return (
     <div className="artworkInfo">
@@ -18,7 +20,11 @@ function ArtworkInfo({ img }) {
       <div className="artworkInfo--img">
         {!isMobile ? (
           <div className="artworkInfo--img__image">
-            <ImgPreview src={img} />
+            {price == 0 ? (
+              <ImgPreview src={img} />
+            ) : (
+              <WatermarkArtwork url={img} id={id} width={965} height={700} />
+            )}
           </div>
         ) : null}
         {/* <div className="artworkInfo--img__icon">

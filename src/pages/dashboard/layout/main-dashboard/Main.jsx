@@ -5,6 +5,7 @@ import SideNav from "../side-nav/SideNav";
 import Header from "../header-dasboard/Header";
 import "./Main.scss";
 import { LeftCircleFilled, LeftCircleTwoTone } from "@ant-design/icons";
+import { AiOutlineLogout } from "react-icons/ai";
 
 const { Content, Sider } = Layout;
 
@@ -32,6 +33,7 @@ function Main({ children }) {
       >
         <Layout>
           <SideNav />
+       
         </Layout>
       </Drawer>
 

@@ -77,7 +77,6 @@ function ViewOrderDetail({ choice }) {
     fetchData();
   }, [newData]);
   const fetchData = async () => {
-    console.log(id);
     try {
       const response = await api.get(`/getOrderRequestDetail/${id}`);
       setData(response.data.data);
@@ -100,7 +99,7 @@ function ViewOrderDetail({ choice }) {
       alertFail("Please purchase more", e.response.data);
     }
   };
-  console.log(data);
+
   return (
     <>
       {data != null ? (
@@ -251,12 +250,32 @@ function ViewOrderDetail({ choice }) {
                 >
                   Cancel Offer
                 </Button>
-                <Button
+                {/* <Button
                   onClick={acpOrder}
                   className="view-order-detail__detail__confirm__accept"
                 >
                   Accept Offer
-                </Button>
+                </Button> */}
+                <Popconfirm
+                  title="Confirm approve offer"
+                  description="If you accept, you will have to deposit 100% for this offer!"
+                  onConfirm={acpOrder}
+                  onCancel={closeModal}
+                  okText="Yes"
+                  cancelText="No"
+                >
+                  {/* <RoundedBtn color="#3c3c3c" style={{ width: "100%" }}>
+                      Submit
+                    </RoundedBtn> */}
+                  <Button
+                    // onClick={acpOrder}
+                    className="view-order-detail__detail__confirm__accept"
+                  >
+                    Accept Offer
+                  </Button>
+                </Popconfirm>
+
+               
               </div>
             )}
 
