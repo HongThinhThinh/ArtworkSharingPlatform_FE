@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import WorkartSection from "../../sections/workartSection/WorkartSection";
 import api from "../../config/axios";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import "./SearchResult.scss";
 import { Col, Empty, Row } from "antd";
 import Workart from "../../component/workart/Workart";
 import CategorySlider from "../../sections/categorySlider/CategorySlider";
 import CategorySelector from "../../component/categorySellector/CategorySelector";
+import { alertFail } from "../../assets/hook/useNotification";
 function SearchResult({}) {
   const [data, setData] = useState([]);
   const params = useParams();
@@ -14,6 +15,7 @@ function SearchResult({}) {
   const searchParams = new URLSearchParams(location.search);
   const search = searchParams.get("search");
   const [selectedCategories, setSelectedCategories] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     const getAll = async () => {
       const response = await api.get(`/searchArtwork?search=${search}`);
@@ -21,6 +23,28 @@ function SearchResult({}) {
     };
     getAll();
   }, [search]);
+
+  useEffect(() => {
+    const onChangeCategory = async () => {
+      try {
+        if (selectedCategories.length == 0) {
+          const getAll = async () => {
+            const response = await api.get(`/searchArtwork?search=${search}`);
+            setData(response.data.data);
+          };
+          getAll();
+        } else {
+          const response = await api.post("/artworkByCategory", {
+            categoryName: selectedCategories,
+          });
+          setData(response.data.data);
+        }
+      } catch (e) {
+        alertFail(e.response);
+      }
+    };
+    onChangeCategory();
+  }, [selectedCategories]);
   return (
     <div className="search-result">
       <CategorySelector

@@ -57,7 +57,6 @@ function FormArtwork() {
     },
   ];
   const [open, setOpen] = useState(false);
-  console.log(user);
   const getLink = async (file) => {
     let URL = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
     setURL(URL);
