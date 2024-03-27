@@ -65,6 +65,7 @@ import CategorySelector from "../component/categorySellector/CategorySelector";
 import CategoryPage from "../pages/dashboard/pages/category/CategoryPage";
 
 import ViewWithdraw from "../pages/viewWithdraw/ViewWithdraw";
+import AIPage from "../pages/dashboard/pages/AI/AIPage";
 
 const ProtectedRouteAuth = ({ children }) => {
   const user = useSelector(selectUser);
@@ -312,7 +313,10 @@ export const router = createBrowserRouter([
         path: "/jobs",
         element: <JobsPage />,
       },
-
+      {
+        path: "/ai",
+        element: <AIPage />,
+      },
       {
         path: "/buyPosts",
         element: (
