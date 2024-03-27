@@ -150,9 +150,6 @@ function RoomChatDetail() {
               handleSend(e.target.files[0]);
             }}
           />
-          <label htmlFor="file">
-            <BsImageFill fontSize={"25px"} cursor={"pointer"} />
-          </label>
           {message.length === 0 || (
             <button onClick={sendMessage}>
               <IoSend color={theme ? "#fff" : "#000"} fontSize={"25px"} />
