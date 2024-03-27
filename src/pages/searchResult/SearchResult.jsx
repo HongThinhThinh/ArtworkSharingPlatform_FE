@@ -40,18 +40,19 @@ function SearchResult({}) {
           setData(response.data.data);
         }
       } catch (e) {
-        alertFail(e.response);
+        alertFail("Cc");
       }
     };
     onChangeCategory();
   }, [selectedCategories]);
+  console.log(data);
   return (
     <div className="search-result">
       <CategorySelector
         selectedCategories={selectedCategories}
         setSelectedCategories={setSelectedCategories}
       />
-      {data.length > 0 ? (
+      {data?.length > 0 ? (
         <div>
           <Row container gutter={32} style={{ padding: "2.5em" }}>
             {data?.map((artwork, index) => (

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import "./CategorySelector.scss";
 import { CloseOutlined } from "@ant-design/icons";
 import api from "../../config/axios";
+import { alertFail } from "../../assets/hook/useNotification";
 
 const imageCategories = [
   "Nature",
@@ -24,7 +25,7 @@ function CategorySelector({ selectedCategories, setSelectedCategories }) {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const response = await api.get("/adminCategorys");
+        const response = await api.get("/creatorCategorys");
         const names = response.data.data.map((item) => item.name);
         const name2 = [...names];
         setData(name2);

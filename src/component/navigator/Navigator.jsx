@@ -80,7 +80,7 @@ function Navigator({ status }) {
                 ? ""
                 : nav.title
               : nav.title === "Go Pro"
-              ? user?.role === "CREATOR"
+              ? user?.role === "CREATOR" || user?.role === "ADMIN"
                 ? ""
                 : nav.title
               : nav.title}
