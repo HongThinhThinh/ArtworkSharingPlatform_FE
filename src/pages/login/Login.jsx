@@ -80,7 +80,9 @@ function Login() {
   const onFinish = async (value) => {
     try {
       const response = await api.post("/login", value);
+      console.log(response.data);
       const role = response.data.data.role;
+      console.log(role);
       const user = response.data.data;
       console.log(user);
       localStorage.setItem("token", response.data.data.token);
@@ -170,9 +172,8 @@ function Login() {
                       if (!/^[a-zA-Z0-9_]*$/.test(value)) {
                         return Promise.reject(
                           <div>
-                            <WarningFilled /> Username must contain only
-                            English characters, numbers, and underscores
-                            NOT whitespace
+                            <WarningFilled /> Username must contain only English
+                            characters, numbers, and underscores NOT whitespace
                           </div>
                         );
                       }
@@ -224,7 +225,7 @@ function Login() {
                       return Promise.resolve();
                     },
                   },
-                
+
                   {
                     required: true,
                     message: (
