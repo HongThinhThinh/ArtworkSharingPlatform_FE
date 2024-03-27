@@ -20,9 +20,11 @@ function AIPage() {
     try {
       setGeneratedImages(drawing);
       const requestData = {
-        prompt: prompt,
-        n: 2,
-        size: "256x256", // Set the desired image size here
+        model: "dall-e-3",
+        prompt: "A cute baby sea otter",
+        n: 1,
+        size: "1024x1024",
+        quality: "hd",
       };
       const headers = {
         "Content-Type": "application/json",
