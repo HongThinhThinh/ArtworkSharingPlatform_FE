@@ -54,7 +54,7 @@ function ChatList({ setFetchRoom }) {
             className="chat-list__information__right"
             onClick={() => setShowSearchFriends(true)}
           >
-            <FaEdit fontSize={"20px"} color={theme ? "#fff" : "#000"} />
+            {/* <FaEdit fontSize={"20px"} color={theme ? "#fff" : "#000"} /> */}
           </div>
         </div>
         <h3>Message</h3>

@@ -311,7 +311,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/aiPage",
-        element: <AIPage />,
+        element: (
+          <ProtectedRouteAuth>
+            <AIPage />
+          </ProtectedRouteAuth>
+        ),
       },
 
       {
