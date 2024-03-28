@@ -1,4 +1,5 @@
 import {
+  AppstoreOutlined,
   FileExclamationOutlined,
   SolutionOutlined,
   StockOutlined,
@@ -6,10 +7,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { FaMoneyBillTransfer } from "react-icons/fa6";
-import { TbCategory2 } from "react-icons/tb";
-
-
-
+import { TbCategory2, TbCategoryPlus } from "react-icons/tb";
 
 export const navDashboardConfig = [
   {
@@ -30,7 +28,7 @@ export const navDashboardConfig = [
         key: "22",
         label: "Request widthdraw",
       },
-    ]
+    ],
   },
   {
     key: "3",
@@ -63,11 +61,10 @@ export const navDashboardConfig = [
   },
   {
     key: "6",
-    icon: <TbCategory2 />,
+    icon: <AppstoreOutlined />,
     label: "Categories",
   },
 ];
-
 
 export const navDashboardConfigMod = [
   {
@@ -82,7 +79,7 @@ export const navDashboardConfigMod = [
   },
   {
     key: "6",
-    icon: <TbCategory2 />,
+    icon: <AppstoreOutlined />,
     label: "Categories",
   },
 ];

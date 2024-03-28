@@ -195,7 +195,7 @@ function CategoryPage() {
   console.log();
 
   return (
-    <div className="mode">
+    <div className="mode" style={{ height: "100%", overflowY: "scroll" }}>
       <div style={{ display: "flex", justifyContent: "space-between" }}>
         <Button
           style={{ backgroundColor: "white" }}

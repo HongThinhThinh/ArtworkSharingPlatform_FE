@@ -36,8 +36,8 @@ function SideNav({}) {
         className="menu-sidebar"
       />
       <div
-        className="layoutLeft--logout"
-        style={{marginLeft:"1em"}}
+        className="ant-menu-item"
+        style={{ marginLeft: "2em", display: "flex" }}
         onClick={() => {
           localStorage.removeItem("token");
           //save redux
@@ -45,7 +45,16 @@ function SideNav({}) {
           navigate("/");
         }}
       >
-        <AiOutlineLogout />
+        <AiOutlineLogout
+          className="anticon"
+          style={{ fontSize: "1.5em", marginRight: "0.5em" }}
+        />{" "}
+        <span
+          className="ant-menu-title-content"
+          style={{ fontFamily: "MediumCereal" }}
+        >
+          Logout
+        </span>
       </div>
     </>
   );
