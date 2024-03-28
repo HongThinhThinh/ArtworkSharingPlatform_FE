@@ -42,7 +42,7 @@ function ListFeedback({
   const [dataComment, setDataComment] = useState({});
   const [like, setLike] = useState(false);
   const commentRef = useRef();
-
+  const [creator, setCreator] = useState();
   const navigate = useNavigate();
   const user = useSelector(selectUser);
 
@@ -244,12 +244,23 @@ function ListFeedback({
             </div>
           </>
         )}
-        <div
+        {/* <div
           className="listFeedback--interact__share"
           onClick={showModalReport}
         >
           <MdOutlineReportProblem />
-        </div>
+        </div> */}
+
+        {user.name == name ? (
+          ""
+        ) : (
+          <div
+            className="listFeedback--interact__share"
+            onClick={showModalReport}
+          >
+            <MdOutlineReportProblem />
+          </div>
+        )}
       </div>
       <div className="wrapListfeedback">
         {isOpen && (
