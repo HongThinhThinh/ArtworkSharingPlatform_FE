@@ -26,7 +26,7 @@ function Posts() {
     <div style={{ height: "100%", overflowY: "scroll" }}>
       {data.length <= 0
         ? "Dont have any Request"
-        : data.map((post) => (
+        : data.reverse().map((post) => (
             <PostView
               setReload={setReload}
               key={post.id} // Add a unique key for each PostView component

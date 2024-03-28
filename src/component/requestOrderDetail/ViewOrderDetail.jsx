@@ -274,8 +274,6 @@ function ViewOrderDetail({ choice }) {
                     Accept Offer
                   </Button>
                 </Popconfirm>
-
-               
               </div>
             )}
 
@@ -286,7 +284,19 @@ function ViewOrderDetail({ choice }) {
                   className="request-order-detail__detail__description"
                 >
                   <h3>Message: </h3>
-                  <p>{newData ? newData.productMessage : null}</p>
+                  <p>
+                    {newData
+                      ? newData.productMessage
+                        ? newData.productMessage
+                        : "There is no message!"
+                      : "There is no message!"}
+                  </p>
+                </div>
+                <div
+                  style={{ marginTop: "30px" }}
+                  className="request-order-detail__detail__description"
+                >
+                  <h3>Result: </h3>
                 </div>
                 <div className="request-order-detail__upload-demo__upload">
                   <ImgPreview
@@ -317,17 +327,25 @@ function ViewOrderDetail({ choice }) {
                     are some demo of your order which are uploaded by creator
                   </p>
                 </div>
-
-                <ReactImageGallery items={demoRequest} />
-                {demoRequest.map((item) => {
-                  return (
-                    <>
-                      <div className="view-order-detail__demo__upload">
-                        <img src={item.image} alt="" />
-                      </div>
-                    </>
-                  );
-                })}
+                <div className="request-order-detail__upload-demo__upload">
+                  <ReactImageGallery items={demoRequest} />
+                  {demoRequest.map((item) => {
+                    return (
+                      <>
+                        <ImgPreview
+                          src={item.image}
+                          width="16em"
+                          height="16em"
+                          style={{
+                            borderRadius: "25px",
+                            padding: "1em",
+                            objectFit: "cover",
+                          }}
+                        />
+                      </>
+                    );
+                  })}
+                </div>
               </>
             )}
           </div>

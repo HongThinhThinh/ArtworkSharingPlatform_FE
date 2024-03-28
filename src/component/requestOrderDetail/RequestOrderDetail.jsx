@@ -42,6 +42,7 @@ function RequestOrderDetail() {
   const [modal2Open, setModal2Open] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [audience, setAudience] = useState({});
+  const [uploadStatus, setUploadStatus] = useState(false);
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -100,10 +101,12 @@ function RequestOrderDetail() {
     console.log(URL);
   };
   const getLink2 = async (file) => {
-    let URLDemo = `https://cdn.dribbble.com/users/2973561/screenshots/5757826/loading__.gif`;
+    setUploadStatus(true);
+    let URLDemo = null;
     setURLDemo(URLDemo);
     URLDemo = await uploadFile(file);
     setURLDemo(URLDemo);
+    setUploadStatus(false);
   };
   const isMobile = useMediaQuery({ maxWidth: 785 });
   const [newData, setNewData] = useState();
@@ -136,6 +139,8 @@ function RequestOrderDetail() {
 
       console.log(res.data.data);
       setProductDemo(res.data.data.demoRequests);
+      setUploadStatus(false);
+      setURLDemo(null);
       fetchDataDetail();
     } catch (error) {
       console.log(error);
@@ -488,7 +493,7 @@ function RequestOrderDetail() {
                       getLink2(e.target.files[0]);
                     }}
                   >
-                    <UploadDemo URLDemo={URLDemo} />
+                    <UploadDemo status={uploadStatus} URLDemo={URLDemo} />
                     {productDemo.length > 0 ? (
                       <>
                         {productDemo.map((item) => (
@@ -508,7 +513,14 @@ function RequestOrderDetail() {
                       ""
                     )}
                   </div>
-                  <Button className="send" onClick={handeSendDemo}>
+
+                  <Button
+                    disabled={
+                      URLDemo == null || URLDemo == undefined ? true : false
+                    }
+                    className="send"
+                    onClick={handeSendDemo}
+                  >
                     Send <SendOutlined />
                   </Button>
                 </div>
@@ -523,6 +535,7 @@ function RequestOrderDetail() {
                   <p>{newData ? newData.productMessage : null}</p>
                 </div>
                 <div className="request-order-detail__upload-demo__upload">
+                  <h3>Result: </h3>
                   <ImgPreview
                     src={newData.productImage}
                     width="16em"
