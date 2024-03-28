@@ -28,8 +28,10 @@ function CreatorPage() {
   const getDetailCreator = async () => {
     try {
       const response = await api.get(`/getCreator-detail/${id}`);
+      console.log(response.data.data.artworks);
       setData(response.data.data);
       setartworks(response.data.data.artworks);
+
       // console.log(response.data.data.artworks);
     } catch (e) {
       alertFail("Fail to load");
@@ -87,30 +89,32 @@ function CreatorPage() {
         <h1 style={{ fontSize: "20px", fontWeight: "500" }}>Artworks</h1>
 
         <Row x container gutter={32}>
-          {artworks.map((artwork, index) => (
-            <Col
-              style={{ cursor: "pointer" }}
-              xs={24}
-              sm={12}
-              lg={8}
-              xl={8}
-              xxl={8}
-              // span={8}
-              key={index}
-            >
-              <Workart
-                price={artwork.price}
-                idArtwork={artwork?.id}
-                idCreator={artwork.user.id}
-                image={artwork.image}
-                name={artwork.user.name}
-                avatar={artwork.user.avt}
-                countLike={artwork.countLike}
-                countComment={artwork.countComment}
-                interactionLike={artwork.interactionLike}
-              />
-            </Col>
-          ))}
+          {artworks
+            .filter((item) => item.status === "ACTIVE")
+            .map((artwork, index) => (
+              <Col
+                style={{ cursor: "pointer" }}
+                xs={24}
+                sm={12}
+                lg={8}
+                xl={8}
+                xxl={8}
+                // span={8}
+                key={index}
+              >
+                <Workart
+                  price={artwork.price}
+                  idArtwork={artwork?.id}
+                  idCreator={artwork.user.id}
+                  image={artwork.image}
+                  name={artwork.user.name}
+                  avatar={artwork.user.avt}
+                  countLike={artwork.countLike}
+                  countComment={artwork.countComment}
+                  interactionLike={artwork.interactionLike}
+                />
+              </Col>
+            ))}
         </Row>
       </Content>
     </Layout>
