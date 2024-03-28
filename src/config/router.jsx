@@ -322,10 +322,7 @@ export const router = createBrowserRouter([
         path: "/jobs",
         element: <JobsPage />,
       },
-      {
-        path: "/ai",
-        element: <AIPage />,
-      },
+
       {
         path: "/buyPosts",
         element: (
