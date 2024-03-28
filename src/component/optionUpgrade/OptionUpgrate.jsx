@@ -4,6 +4,7 @@ import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
 import api from "../../config/axios";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/features/counterSlice";
+import { Popconfirm } from "antd";
 
 function OptionUpgrate() {
   const dispatch = useDispatch();
@@ -20,6 +21,10 @@ function OptionUpgrate() {
     } catch (err) {
       alertFail(err.response.data);
     }
+  };
+
+  const cancel = (e) => {
+    setModal1Open(false);
   };
   return (
     <section
@@ -133,9 +138,16 @@ function OptionUpgrate() {
             </ul>
 
             <div className=" max-w-2xl sm:text-center">
-              <RoundedBtn onClick={() => buyPost(1, 1, "basic")} color="black">
-                Buy
-              </RoundedBtn>
+              <Popconfirm
+                title="Confirm buy post"
+                description="Are you sure buy this option?"
+                onConfirm={() => buyPost(1, 1, "basic")}
+                onCancel={cancel}
+                okText="Yes"
+                cancelText="No"
+              >
+                <RoundedBtn color="black">Buy</RoundedBtn>
+              </Popconfirm>
             </div>
             <p className="font-light text-gray-400 dark:text-gray-300">
               *Pros who post over 1 shots per month get 10x more views on
@@ -263,9 +275,16 @@ function OptionUpgrate() {
             </ul>
 
             <div className=" max-w-2xl sm:text-center">
-              <RoundedBtn color="black" onClick={() => buyPost(3, 5, "Pro")}>
-                Buy
-              </RoundedBtn>
+              <Popconfirm
+                title="Confirm buy post"
+                description="Are you sure buy this option?"
+                onConfirm={() => buyPost(3, 5, "Pro")}
+                onCancel={cancel}
+                okText="Yes"
+                cancelText="No"
+              >
+                <RoundedBtn color="black">Buy</RoundedBtn>
+              </Popconfirm>
             </div>
             <p className="font-light text-gray-400 dark:text-gray-300">
               *Vip pro who post over 10 shots per month get 10x more views on
@@ -377,9 +396,16 @@ function OptionUpgrate() {
               </li>
             </ul>
             <div className=" max-w-2xl sm:text-center">
-              <RoundedBtn color="black" onClick={() => buyPost(5, 10, "Vip")}>
-                Buy
-              </RoundedBtn>
+              <Popconfirm
+                title="Confirm buy post"
+                description="Are you sure buy this option?"
+                onConfirm={() => buyPost(5, 10, "Vip")}
+                onCancel={cancel}
+                okText="Yes"
+                cancelText="No"
+              >
+                <RoundedBtn color="black">Buy</RoundedBtn>
+              </Popconfirm>
             </div>
             <p className="font-light text-gray-400 dark:text-gray-300">
               *Pro who post over 5 shots per month get 10x more views on average
