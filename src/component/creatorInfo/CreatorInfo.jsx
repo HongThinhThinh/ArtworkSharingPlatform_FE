@@ -78,11 +78,11 @@ function CreatorInfo({
         <div style={{ marginLeft: "1em" }}>
           <h3 className="creator-info__name">{name}</h3>
           <h1 className="creator-info__openLine">{openingLine}</h1>
-          <CreatorSocial
+          {/* <CreatorSocial
             followers={followers}
             following={following}
             likes={likes}
-          />
+          /> */}
 
           {user?.id != id ? (
             <div className="creator-info__contact">
