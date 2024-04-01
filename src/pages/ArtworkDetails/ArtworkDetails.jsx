@@ -162,18 +162,18 @@ function ArtworkDetails() {
                 </div>
                 <div className="artworkDetails--right">
                   <ListFeedback
-                    price={data.price}
+                    price={data?.price}
                     idArtwork={data?.id}
-                    id={user.id}
-                    title={data.title}
+                    id={user?.id}
+                    title={data?.title}
                     description={data.description}
-                    avt={user.avt || "abc"}
-                    name={user.name}
+                    avt={user?.avt || "abc"}
+                    name={user?.name}
                     setOpenUpdate={setOpen}
                     setOpenDelete={setOpenConfirmDelete}
                     setOpenReport={setOpenReport}
-                    countLike={data.countLike}
-                    countComment={data.countComment}
+                    countLike={data?.countLike}
+                    countComment={data?.countComment}
                     interactionLike={interactionLike}
                     interactionComment={interactionComment}
                   />

@@ -16,7 +16,7 @@ function Hero() {
         Get inspired by the work of millions of top-rated designers & agencies
         around the world.
       </h5>
-      <Link className="hero__getStarted ">Get started</Link>
+      {/* <Link className="hero__getStarted ">Get started</Link> */}
     </div>
   );
 }

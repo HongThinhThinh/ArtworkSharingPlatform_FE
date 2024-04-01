@@ -216,7 +216,7 @@ function CategoryPage() {
         columns={columns}
         dataSource={allUsers}
         pagination={{
-          defaultPageSize: 8,
+          defaultPageSize: 5,
           showSizeChanger: true,
           pageSizeOptions: ["2", "4"],
         }}

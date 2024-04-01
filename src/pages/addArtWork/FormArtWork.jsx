@@ -98,7 +98,9 @@ function FormArtwork() {
       });
       console.log(response.data.data);
       dispath(login(response.data.data.user));
-      alertSuccess(response.data.message);
+      alertSuccess(
+        "Added Artwork successfully, Please waitting for admin approve"
+      );
     } catch (e) {
       // alertFail(e.message);
       console.log(e);
