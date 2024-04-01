@@ -39,7 +39,7 @@ function PrintBill() {
   };
   const [submittable, setSubmittable] = React.useState(false);
   const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
+  const searchParams = new location.search();
   const id = searchParams.get("idArtwork");
   const idTransaction = searchParams.get("transactionId");
   const [data, setData] = useState({});

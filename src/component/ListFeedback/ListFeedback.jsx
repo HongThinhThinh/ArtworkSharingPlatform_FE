@@ -251,7 +251,7 @@ function ListFeedback({
           <MdOutlineReportProblem />
         </div> */}
 
-        {user.name == name ? (
+        {user?.name == name ? (
           ""
         ) : (
           <div

@@ -75,7 +75,7 @@ function WalletPage() {
       formRef.current.resetFields();
     } catch (e) {
       console.log(e);
-      alertFail("Send request fail!");
+      alertFail(e.response.data);
       setOpenConfirm(false);
       // formRef.current.resetFields();
     }
@@ -246,7 +246,6 @@ function WalletPage() {
         title={<div style={{ textAlign: "center" }}>WITHDRAWAL FORM</div>}
         footer={null}
         onCancel={() => setOpenForm(false)}
-        
       >
         <Form layout="vertical" onFinish={widthdraw} ref={formRef}>
           <Form.Item
