@@ -7,7 +7,7 @@ function useRealtime(callback) {
   // const baseUrl = "http://68.183.180.21:8080";
   // const WS_URL = "http://localhost:8080/websocket";
 
-  const WS_URL = "http://68.183.180.21:8080/websocket";
+  const WS_URL = "https://68.183.180.21:8080/websocket";
   const socket = new SockJS(WS_URL);
   const stomp = Stomp.over(socket);
   const accountID = localStorage.getItem("accountId");
