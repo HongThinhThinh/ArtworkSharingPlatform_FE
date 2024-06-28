@@ -22,7 +22,6 @@ function Workart({
       ) : (
         <WorkartMedia image={image} id={idArtwork} />
       )}
-
       <WorkartInfo
         price={price}
         interactionLike={interactionLike}

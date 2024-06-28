@@ -10,9 +10,10 @@ function WorkartMedia({ image, id }) {
         navigate(`/artworkDetails/${id}`);
       }}
       style={{
+        // width: "100%",
+        // backgroundSize: "cover",
         cursor: "pointer",
         backgroundImage: `url(${image})`,
-        
       }}
       className="workart-media"
     />

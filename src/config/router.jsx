@@ -84,7 +84,7 @@ const ProtectedRouteCreator = ({ children }) => {
     return <Navigate to="/go-pro" replace />;
   }
   return children;
-};
+}; 
 
 const ProtectedADMIN = ({ children }) => {
   const user = useSelector(selectUser);
@@ -170,9 +170,7 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: (
-      <ProtectedADMIN>
         <Main />
-      </ProtectedADMIN>
     ),
     children: [
       {

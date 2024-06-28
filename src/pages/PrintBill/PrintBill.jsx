@@ -18,6 +18,7 @@ import api from "../../config/axios";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/features/counterSlice";
 import { alertFail, alertSuccess } from "../../assets/hook/useNotification";
+import useGetParams from "../../assets/hook/useGetParams";
 
 function PrintBill() {
   const SubmitButton = ({ form, children }) => {
@@ -38,10 +39,12 @@ function PrintBill() {
     );
   };
   const [submittable, setSubmittable] = React.useState(false);
-  const location = useLocation();
-  const searchParams = new location.search();
-  const id = searchParams.get("idArtwork");
-  const idTransaction = searchParams.get("transactionId");
+  // const location = useLocation();
+  // const searchParams = new location.search();
+  const params = useGetParams();
+
+  const id = params("idArtwork");
+  const idTransaction = params("transactionId");
   const [data, setData] = useState({});
   const user = useSelector(selectUser);
   const navigate = useNavigate();

@@ -31,13 +31,13 @@ function SideNav({}) {
         mode="inline"
         theme="dark"
         items={
-          user.role == "ADMIN" ? navDashboardConfig : navDashboardConfigMod
+          user?.role == "ADMIN" ? navDashboardConfig : navDashboardConfigMod
         }
         className="menu-sidebar"
       />
       <div
         className="layoutLeft--logout"
-        style={{marginLeft:"1em"}}
+        style={{ marginLeft: "1em" }}
         onClick={() => {
           localStorage.removeItem("token");
           //save redux

@@ -21,10 +21,10 @@ function WorkartSection() {
       <h2 className="workart-section__title " data-aos="fade-">
         Explore inspiring designs
       </h2>
-      <Row container gutter={32}>
-        {data.map((artwork, index) => (
+      <Row container gutter={30}>
+        {data?.map((artwork, index) => (
           <Col
-            data-aos="fade-up"
+            // data-aos="fade-up"
             style={{ cursor: "pointer" }}
             xs={24}
             sm={12}
